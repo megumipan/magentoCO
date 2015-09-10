@@ -1,0 +1,825 @@
+<?xml version="1.0"?>
+<!--
+/*
+ * Irvine Systems Award Points
+ *
+ * NOTICE OF LICENSE
+ * This source file is subject to the Revised BSD License which is bundled with
+ * this package in the files LICENSE.txt and LICENSE.html.
+ *
+ * @category	Magento Sale Extension
+ * @package		IrvineSystems_AwardPoints
+ * @author Irvine Systems, Inc.
+ * @copyright Copyright (c) 2015, Irvine Systems, Inc. (http://irvinesystems.co.jp/)
+ * @license     Revised BSD License
+ */
+-->
+<config>
+  <!-- *********************** MODULE SECTIONS ********************** -->
+  <sections>
+    <!-- ********** MODULE SETTING SECTION (Current Module) ********** -->
+    <awardpoints translate="label" module="awardpoints">
+      <tab>irvinesystems</tab>
+      <label>Award Points</label>
+      <frontend_type>text</frontend_type>
+      <sort_order>200</sort_order>
+      <show_in_default>1</show_in_default>
+      <show_in_website>1</show_in_website>
+      <show_in_store>1</show_in_store>
+      <groups>
+        <!-- About Settings-->
+        <about translate="label">
+          <label>About Award Points</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>10</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <fields>
+            <version translate="label">
+              <label>Extension Release</label>
+              <frontend_type>label</frontend_type>
+              <sort_order>10</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </version>
+            <info>
+              <frontend_model>awardpoints/aboutAwardpoints</frontend_model>
+              <sort_order>20</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </info>
+          </fields>
+        </about>
+        <!-- General Settings -->
+        <general translate="label">
+          <label>General Settings</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>20</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <fields>
+            <money_points translate="label comment">
+              <label>Money to Point Rate</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>10</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <comment>Points gathered for 1 unit of money spent. (e.g. if set to 0.01, the client will obtain 1 point for each 100yen spent. If set to 1 the client will obtain 1 point for each yen spent).</comment>
+            </money_points>
+            <points_money translate="label comment">
+              <label>Point to Money Rate</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>20</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <comment>Amount of points required to obtain a discount.(e.g. if set to 1, 1 point will equal to 1 yen discount. If set to 10, 10 point will equal to 1 yen discount).</comment>
+            </points_money>
+            <math_method translate="label comment">
+              <label>Calculation Method</label>
+              <frontend_type>select</frontend_type>
+              <source_model>awardpoints/system_config_source_mathmethod</source_model>
+              <sort_order>30</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <comment>Type of Calculation method which will be used when converting money to points.</comment>
+            </math_method>
+
+            <cart_method translate="label comment">
+              <label>Cart Points Calculation</label>
+              <frontend_type>select</frontend_type>
+              <source_model>awardpoints/system_config_source_cartcalculation</source_model>
+              <sort_order>40</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <comment>Method in which the points for the whole order will be calculated.</comment>
+            </cart_method>
+
+            <points_duration translate="label comment">
+              <label>Points Expiration</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>50</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <comment>Points expiration days (use 0 for unlimited).</comment>
+            </points_duration>
+            <auto_use translate="label comment">
+              <label>Automatic use of points</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <sort_order>60</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <comment>The maximum amount of point for the cart will be apply to the order automatically.</comment>
+            </auto_use>
+            <step_apply translate="label comment">
+              <label>Apply points by step</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <sort_order>70</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <auto_use>0</auto_use>
+              </depends>
+              <comment>Enable/Disable Apply Points by Step Mode.</comment>
+            </step_apply>
+            <step_value translate="label comment">
+              <label>Step Value</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>80</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <auto_use>0</auto_use>
+                <step_apply>1</step_apply>
+              </depends>
+              <comment>Step Value for Apply Points by Step Mode.</comment>
+            </step_value>
+            <full_use translate="label comment">
+              <label>Use maximum amount of points</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <sort_order>90</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <auto_use>0</auto_use>
+              </depends>
+              <comment>Apply the maximum amount of point to the order.</comment>
+            </full_use>
+            <coupon_codes translate="label comment">
+              <label>Disable Coupon codes</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <sort_order>100</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <comment>If disabled, the customers will not be able to use coupon codes and award points at the same time.</comment>
+            </coupon_codes>
+            <store_scope translate="label comment">
+              <label>Restrict Store Scope</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <sort_order>110</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+              <comment>If enabled, the points collected will be available only for the same store in which the points were earned.</comment>
+            </store_scope>
+          </fields>
+        </general>
+        <!-- Points Settings - Registration -->
+        <registration translate="label">
+          <label>Points Settings - Registration</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>30</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <fields>
+            <registration_show translate="label comment">
+              <label>Enable Registration Points</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <sort_order>10</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <comment>Enable/Disable Registration Points.</comment>
+            </registration_show>
+            <registration_points translate="label comment">
+              <label>Registration Points</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>20</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <registration_show>1</registration_show>
+              </depends>
+              <comment>Amount of points earned upon customer registration.</comment>
+            </registration_points>
+          </fields>
+        </registration>
+        <!-- Points Settings - Newsletter -->
+        <newsletter translate="label">
+          <label>Points Settings - Newsletter</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>40</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <fields>
+            <newsletter_show translate="label comment">
+              <label>Enable Newsletter Points</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <sort_order>10</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <comment>Enable/Disable Newsletter Points.</comment>
+            </newsletter_show>
+            <newsletter_points translate="label comment">
+              <label>Registration Points</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>20</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <newsletter_show>1</newsletter_show>
+              </depends>
+              <comment>Amount of points earned upon newsletter registration.</comment>
+            </newsletter_points>
+          </fields>
+        </newsletter>
+        <!-- Points Settings - Shopping -->
+        <shopping translate="label">
+          <label>Points Settings - Shopping</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>50</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <fields>
+            <shopping_show translate="label comment">
+              <label>Enable Shopping Points</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <sort_order>10</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <comment>Enable/Disable Shopping Points.</comment>
+            </shopping_show>
+            <max_point_collect_order translate="label comment">
+              <label>Maximum points collected per order</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>20</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <shopping_show>1</shopping_show>
+              </depends>
+              <comment>Maximum amount of points that can be collected per order (use 0 for unlimited).</comment>
+            </max_point_collect_order>
+            <max_point_used_order translate="label comment">
+              <label>Maximum points used per order</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>30</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <shopping_show>1</shopping_show>
+              </depends>
+              <comment>Maximum amount of points that can be used per order (use 0 for unlimited).</comment>
+            </max_point_used_order>
+            <min_subtotal translate="label comment">
+              <label>Minimum Subtotal</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>40</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <shopping_show>1</shopping_show>
+              </depends>
+              <comment>Minimum Subtotal value in which the points cannot be applied (if set to 0 the system will allow to apply points until reaching a subtotal of 0).</comment>
+            </min_subtotal>
+          </fields>
+        </shopping>
+        <!-- Points Settings - Referrals -->
+        <referral translate="label">
+          <label>Points Settings - Referrals</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>60</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <fields>
+            <referral_show translate="label comment">
+              <label>Enable Referral Points</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <sort_order>10</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <comment>Enable/Disable Referral Points.</comment>
+            </referral_show>
+            <referral_points translate="label comment">
+              <label>Referral Points</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>20</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <referral_show>1</referral_show>
+              </depends>
+              <comment>Amount of points earned by the customer for a referred friend.</comment>
+            </referral_points>
+            <referral_orders_mode translate="label comment">
+              <label>Order Points Acquisition Mode</label>
+              <frontend_type>select</frontend_type>
+              <source_model>awardpoints/system_config_source_referralorders</source_model>
+              <sort_order>30</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <comment>Select Which order will grant referral points.</comment>
+            </referral_orders_mode>
+            <referral_orders_number translate="label comment">
+              <label>Amount of orders</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>40</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <referral_orders_mode>3</referral_orders_mode>
+              </depends>
+              <comment>Insert the maximum amount of order in which the referral points will be assigned.</comment>
+            </referral_orders_number>
+            <referral_parent_order translate="label comment">
+              <label>Referrer Order Points</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>50</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <referral_show>1</referral_show>
+              </depends>
+              <comment>Set the amount of point which will be earned by the referrer customer.</comment>
+            </referral_parent_order>
+            <referral_child_order translate="label comment">
+              <label>Referred Order Points</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>60</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <referral_show>1</referral_show>
+              </depends>
+              <comment>Set the amount of point which will be earned by the referred customer.</comment>
+            </referral_child_order>
+            <referral_permanent translate="label comment">
+              <label>Show referral permanent link</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <sort_order>70</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <referral_show>1</referral_show>
+              </depends>
+              <comment>This will allow customers to share permanently their permanent link to refer friends.</comment>
+            </referral_permanent>
+            <referral_addthis translate="label comment">
+              <label>Share with AddThis</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <sort_order>80</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <referral_show>1</referral_show>
+              </depends>
+              <comment>Allow the customers to share their permanent link using AddThis.</comment>
+            </referral_addthis>
+            <referral_addthis_account translate="label comment">
+              <label>AddThis Account Name</label>
+              <frontend_type>text</frontend_type>
+              <validate>required-entry</validate>
+              <sort_order>90</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <referral_addthis>1</referral_addthis>
+              </depends>
+              <comment>Store AddThis account name. Visit addthis.com to create an account. (Not real account names can be used. The account name is needed only for receive the use statistics in AddThis account.)</comment>
+            </referral_addthis_account>
+          </fields>
+        </referral>
+        <!-- Points Settings - Reviews -->
+        <review translate="label">
+          <label>Points Settings - Reviews</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>70</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <fields>
+            <review_show translate="label comment">
+              <label>Enable Review Points</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <sort_order>10</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <comment>Enable/Disable Review Points.</comment>
+            </review_show>
+            <review_points translate="label comment">
+              <label>Review Points</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>20</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <review_show>1</review_show>
+              </depends>
+              <comment>Amount of points the customer will earn when his review is approved.</comment>
+            </review_points>
+          </fields>
+        </review>
+        <!-- Notifications Settings - Referral E-mail -->
+        <referralnotif translate="label">
+          <label>Notifications Settings - Referral E-mails</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>80</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <fields>
+            <enable translate="label comment">
+              <label>Enable Notification</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <sort_order>10</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <comment>Enable/Disable notification.</comment>
+            </enable>
+            <template translate="label">
+              <label>Notification E-mail Template</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_email_template</source_model>
+              <sort_order>20</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <enable>1</enable>
+              </depends>
+              <comment>Select the E-mail template to be used for the notification.</comment>
+            </template>
+          </fields>
+        </referralnotif>
+        <!-- Notifications Settings - Referral Order Confirmation E-mails -->
+        <referralordernotif translate="label">
+          <label>Notifications Settings - Referral Order Confirmation E-mails</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>90</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <fields>
+            <enable translate="label comment">
+              <label>Enable Notification</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <sort_order>10</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <comment>Enable/Disable notification.</comment>
+            </enable>
+            <sender translate="label">
+              <label>Notification Email Sender</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_email_identity</source_model>
+              <sort_order>20</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <enable>1</enable>
+              </depends>
+              <comment>Select from which Store e-mail the notification will be sent</comment>
+            </sender>
+            <template translate="label">
+              <label>Notification E-mail Template</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_email_template</source_model>
+              <sort_order>30</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <enable>1</enable>
+              </depends>
+              <comment>Select the E-mail template to be used for the notification.</comment>
+            </template>
+          </fields>
+        </referralordernotif>
+
+        <!-- Notifications Settings - Referral Registration Confirmation E-mails -->
+        <referralregistrationnotif translate="label">
+          <label>Notifications Settings - Referral Registration Confirmation E-mails</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>100</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <fields>
+            <enable translate="label comment">
+              <label>Enable Notification</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <sort_order>10</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <comment>Enable/Disable notification.</comment>
+            </enable>
+            <sender translate="label">
+              <label>Notification Email Sender</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_email_identity</source_model>
+              <sort_order>20</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <enable>1</enable>
+              </depends>
+              <comment>Select from which Store e-mail the notification will be sent</comment>
+            </sender>
+            <template translate="label">
+              <label>Notification E-mail Template</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_email_template</source_model>
+              <sort_order>30</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <enable>1</enable>
+              </depends>
+              <comment>Select the E-mail template to be used for the notification.</comment>
+            </template>
+          </fields>
+        </referralregistrationnotif>
+
+        <!-- Notifications Settings - Points Balance E-mails -->
+        <pointsbalancenotif translate="label">
+          <label>Notifications Settings - Points Balance E-mails</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>110</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <fields>
+            <note translate="label">
+              <label>IMPORTANT NOTICE</label>
+              <frontend_type>label</frontend_type>
+              <frontend_model>awardpoints/adminhtml_system_config_form_field_notice</frontend_model>
+              <sort_order>0</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </note>
+            <enable translate="label comment">
+              <label>Enable Notification</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <backend_model>awardpoints/system_config_cron_balance</backend_model>
+              <sort_order>10</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <comment>Enable/Disable notification.</comment>
+            </enable>
+            <sender translate="label">
+              <label>Notification Email Sender</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_email_identity</source_model>
+              <sort_order>20</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <enable>1</enable>
+              </depends>
+              <comment>Select from which Store e-mail the notification will be sent</comment>
+            </sender>
+            <template translate="label">
+              <label>Notification E-mail Template</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_email_template</source_model>
+              <sort_order>30</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <enable>1</enable>
+              </depends>
+              <comment>Select the E-mail template to be used for the notification.</comment>
+            </template>
+            <frequency translate="label comment">
+              <label>Notification Frequency</label>
+              <frontend_type>select</frontend_type>
+              <source_model>awardpoints/system_config_source_frequency</source_model>
+              <sort_order>40</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>0</show_in_website>
+              <show_in_store>0</show_in_store>
+              <depends>
+                <enable>1</enable>
+              </depends>
+              <comment>Select the frequency in which the notification will be sent.</comment>
+            </frequency>
+            <time translate="label comment">
+              <label>Execution Time</label>
+              <frontend_type>time</frontend_type>
+              <sort_order>50</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>0</show_in_website>
+              <show_in_store>0</show_in_store>
+              <comment>Select the time in which the notification will be sent.</comment>
+              <depends>
+                <enable>1</enable>
+              </depends>
+            </time>
+            <weekday translate="label comment">
+              <label>Execution Week Day</label>
+              <frontend_type>select</frontend_type>
+              <source_model>awardpoints/system_config_source_weekdays</source_model>
+              <sort_order>60</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>0</show_in_website>
+              <show_in_store>0</show_in_store>
+              <depends>
+                <enable>1</enable>
+                <frequency>W</frequency>
+              </depends>
+              <comment>Select the week day in which the notification will be sent.</comment>
+            </weekday>
+            <monthdate translate="label comment">
+              <label>Execution Month Date</label>
+              <frontend_type>select</frontend_type>
+              <source_model>awardpoints/system_config_source_monthdates</source_model>
+              <sort_order>70</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>0</show_in_website>
+              <show_in_store>0</show_in_store>
+              <depends>
+                <enable>1</enable>
+                <frequency>M</frequency>
+              </depends>
+              <comment>Select the month date in which the notification will be sent.</comment>
+            </monthdate>
+          </fields>
+        </pointsbalancenotif>
+        <!-- Notifications Settings - Points Expiration E-mails -->
+        <pointsexpirationnotif translate="label">
+          <label>Notifications Settings - Points Expiration E-mails</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>120</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <fields>
+            <note translate="label">
+              <label>IMPORTANT NOTICE</label>
+              <frontend_type>label</frontend_type>
+              <frontend_model>awardpoints/adminhtml_system_config_form_field_notice</frontend_model>
+              <sort_order>0</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </note>
+            <enable translate="label comment">
+              <label>Enable Notification</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <backend_model>awardpoints/system_config_cron_expiration</backend_model>
+              <sort_order>10</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <comment>Enable/Disable notification.</comment>
+            </enable>
+            <sender translate="label">
+              <label>Notification Email Sender</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_email_identity</source_model>
+              <sort_order>20</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <enable>1</enable>
+              </depends>
+              <comment>Select from which Store e-mail the notification will be sent</comment>
+            </sender>
+            <template translate="label">
+              <label>Notification E-mail Template</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_email_template</source_model>
+              <sort_order>30</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <enable>1</enable>
+              </depends>
+              <comment>Select the E-mail template to be used for the notification.</comment>
+            </template>
+            <days translate="label comment">
+              <label>Number of days before Expiration</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>40</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>0</show_in_website>
+              <show_in_store>0</show_in_store>
+              <depends>
+                <enable>1</enable>
+              </depends>
+              <validate>validate-greater-than-zero</validate>
+              <comment>Insert the amount of days before the points expiration in which the notification will be sent.</comment>
+            </days>
+            <frequency translate="label comment">
+              <label>Points Chcek and Notification Frequency</label>
+              <frontend_type>select</frontend_type>
+              <source_model>awardpoints/system_config_source_frequency</source_model>
+              <sort_order>50</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>0</show_in_website>
+              <show_in_store>0</show_in_store>
+              <depends>
+                <enable>1</enable>
+              </depends>
+              <comment>Select the frequency in which the points will be checked and the notification sent.</comment>
+            </frequency>
+            <time translate="label comment">
+              <label>Execution Time</label>
+              <frontend_type>time</frontend_type>
+              <sort_order>60</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>0</show_in_website>
+              <show_in_store>0</show_in_store>
+              <comment>Select the time in which the notification will be sent.</comment>
+              <depends>
+                <enable>1</enable>
+              </depends>
+            </time>
+            <weekday translate="label comment">
+              <label>Execution Week Day</label>
+              <frontend_type>select</frontend_type>
+              <source_model>awardpoints/system_config_source_weekdays</source_model>
+              <sort_order>70</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>0</show_in_website>
+              <show_in_store>0</show_in_store>
+              <depends>
+                <enable>1</enable>
+                <frequency>W</frequency>
+              </depends>
+              <comment>Select the week day in which the notification will be sent.</comment>
+            </weekday>
+            <monthdate translate="label comment">
+              <label>Execution Month Date</label>
+              <frontend_type>select</frontend_type>
+              <source_model>awardpoints/system_config_source_monthdates</source_model>
+              <sort_order>80</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>0</show_in_website>
+              <show_in_store>0</show_in_store>
+              <depends>
+                <enable>1</enable>
+                <frequency>M</frequency>
+              </depends>
+              <comment>Select the month date in which the notification will be sent.</comment>
+            </monthdate>
+          </fields>
+        </pointsexpirationnotif>
+      </groups>
+    </awardpoints>
+  </sections>
+</config>

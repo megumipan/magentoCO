@@ -1,0 +1,8 @@
+a:4:{i:0;s:78:"Module "IrvineSystems_Deliverydate" requires module "IrvineSystems_Adminhtml".";i:1;s:919:"#0 /home/airily/airily.sixcore.jp/public_html/magento/app/code/core/Mage/Core/Model/Config.php(849): Mage::throwException('Module "IrvineS...')
+#1 /home/airily/airily.sixcore.jp/public_html/magento/app/code/core/Mage/Core/Model/Config.php(812): Mage_Core_Model_Config->_sortModuleDepends(Array)
+#2 /home/airily/airily.sixcore.jp/public_html/magento/app/code/core/Mage/Core/Model/Config.php(315): Mage_Core_Model_Config->_loadDeclaredModules()
+#3 /home/airily/airily.sixcore.jp/public_html/magento/app/code/core/Mage/Core/Model/App.php(425): Mage_Core_Model_Config->loadModules()
+#4 /home/airily/airily.sixcore.jp/public_html/magento/app/code/core/Mage/Core/Model/App.php(354): Mage_Core_Model_App->_initModules()
+#5 /home/airily/airily.sixcore.jp/public_html/magento/app/Mage.php(684): Mage_Core_Model_App->run(Array)
+#6 /home/airily/airily.sixcore.jp/public_html/magento/index.php(83): Mage::run('', 'store')
+#7 {main}";s:3:"url";s:9:"/magento/";s:11:"script_name";s:18:"/magento/index.php";}

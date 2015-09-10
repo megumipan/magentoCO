@@ -1,0 +1,79 @@
+<script src="<?php echo $this->getSkinUrl('js/testimonial/jquery.cycle.js')?>" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo $this->getSkinUrl('css/testimonial/style.css')?>" />
+
+<script type="text/javascript">
+   $j = jQuery.noConflict();
+   $j(document).ready(function() {
+   $j('#slideshow_advance').cycle({
+      fx: '<?php echo (Mage::getStoreConfig('hm_testimonial/general/slider')) ? Mage::getStoreConfig('hm_testimonial/general/slider'):''; ?>',
+     timeout:  <?php echo (Mage::getStoreConfig('hm_testimonial/general/delay')) ? Mage::getStoreConfig('hm_testimonial/general/delay') : 1000; ?>
+	});
+});
+</script>
+<?php $testimonials = $this->getRecents(); ?>
+<?php
+    if($testimonials->count() < 1):
+?>
+<div class="postWrapper">
+<?php echo Mage::helper('testimonial')->__('No Testimonials'); ?>
+</div>
+<?php
+    else:
+?>
+<div class="postWrapper">
+	<div class="div_testimonial_L">
+		<div class="div_testimonial_main_TR">
+		  <div class="block div_testimonial_main_C">
+			<div class="block-title">
+				<strong>
+					<span><?php echo Mage::helper('testimonial')->__('Testimonials'); ?></span>
+				</strong>
+			</div>
+			<div class="block-content">
+				<div id="slideshow_advance"> 		
+				<?php foreach ($testimonials as $testimonial): ?>
+					 <div>
+						<p class="postcontents" style="font-style:italic; margin-bottom:5px;"><span>"</span> 
+						<?php 
+							$ldk = nl2br($testimonial->getPostContent());
+							if( strlen($ldk)>105){
+								$ldk = substr($ldk,0,105);
+								echo ($ldk."...");
+							}else{
+								echo $ldk ;
+							}
+						?> <span>"</span></p>
+						<p class="address_test" style="float:right; margin-right:0;"><?php echo $testimonial->getClientName();?> 
+						<?php 
+						$allow_Email = Mage::getStoreConfig('hm_testimonial/general/allow_email');
+						$allow_address = Mage::getStoreConfig('hm_testimonial/general/allow_address');
+						$allow_company = Mage::getStoreConfig('hm_testimonial/general/allow_company');
+															if($allow_Email && $testimonial->getEmail()!=''){
+							  echo ' - '.$testimonial->getEmail();
+						}
+						 if($allow_company && $testimonial->getCompany()!='') {?>- <a href="<?php echo $testimonial->getWebsite(); ?>" ><?php echo $testimonial->getCompany();?></a><?php } 
+						
+						if($allow_address && $testimonial->getAddress()!=''){
+							echo ' - '.$testimonial->getAddress();
+						}
+						?></p>
+					</div>
+					  
+				<?php endforeach; ?>
+				</div>
+				<div class="div_bt">
+					<h6>
+						<a href="<?php echo Mage::getUrl("testimonial"); ?>">
+							<?php echo Mage::helper('testimonial')->__('> View All'); ?>
+						</a>
+					
+					</h6>	
+				</div>
+			</div>
+		   </div>
+		</div>	
+	</div>
+</div>
+<?php
+    endif;
+?>

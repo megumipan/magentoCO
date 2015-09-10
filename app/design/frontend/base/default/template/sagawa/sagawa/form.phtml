@@ -1,0 +1,122 @@
+<?php
+/*
+ * Irvine Systems Shipping Japan Sgw
+ *
+ * NOTICE OF LICENSE
+ * This source file is subject to the Revised BSD License which is bundled with
+ * this package in the files LICENSE.txt and LICENSE.html.
+ *
+ * @category	Magento Shipping Extension
+ * @package		IrvineSystems_Sagawa
+ * @author Irvine Systems, Inc.
+ * @copyright Copyright (c) 2015, Irvine Systems, Inc. (http://irvinesystems.co.jp/)
+ * @license     Revised BSD License
+ */
+?>
+
+<?php
+/**
+* Shipping Japan Sgw Form Template
+* 
+* @var $this IrvineSystems_Deliverydate_Block_Deliverydate_Form
+* @see IrvineSystems_Deliverydate_Block_Deliverydate_Form
+*/
+?>
+
+<?php // Check if the Form is avaiulable ?>
+<?php if($this->canRender()):?>
+	<?php // Get extension Helper ?>
+	<?php $helper = Mage::helper('sagawa');?>
+
+	<script type="text/javascript">
+	//<![CDATA[
+		// Default hidden Groups
+		if($('cool-shipment-group')) $('cool-shipment-group').hide();
+	
+		// Control "cool-shipment-group" Visibility
+		checkCool = function (thisvalue){
+			if(thisvalue.checked){
+				$('cool-shipment-group').show();
+				} else {
+				$('cool-shipment-group').hide();
+			};
+			
+			<?php // Firecheckout Totals Updater ?>
+			<?php if($helper->hasFirecheckout()):?>
+		        new Ajax.Request(ajaxURL, {
+		            method: 'post',
+		            onSuccess: function(transport){},
+		            onFailure: function(){}
+		        });
+				checkout.update(checkout.urls.shipping_method, { 'review': 1 });
+			<?php endif;?> 
+		};
+	//]]>
+	</script>
+
+	<?php // Render Carrier Shipping Options ?>
+	<ul>
+		<?php // Delivery Method Options ?>
+		<li>
+			<h3><?php echo $helper->__('Shipping Preferences') ?></h3>
+		</li>
+		<li>
+			<b><?php echo $helper->__('Delivery Method:') ?></b><br/>
+			<select name="delivery_value" id="delivery_value" class="input-box" style="width:100%" >
+				<?php echo $this->getDeliveryHtmlSelect();?>
+           </select>
+		</li>
+		
+		<?php // Package Content Options ?>
+		<li>
+			<table width="100%" border="0">
+				<tr>
+					<b><?php echo $helper->__('Package Content:') ?></b>
+				</tr>
+				<tr>
+					<td width="33%">
+						<input type="checkbox" name="fragile_value" value="1" id="fragile_value" class="checkbox" />
+						<label for="fragile_value"><?php echo $helper->__('Fragile Products') ?></label>
+					</td>
+					<td width="33%">
+						<input type="checkbox" name="valuables_value" value="1" id="valuables_value" class="checkbox" />
+						<label for="valuables_value"><?php echo $helper->__('Valuables Products') ?></label>
+					</td>
+					<td width="33%">
+						<input type="checkbox" name="side_value" value="1" id="side_value" class="checkbox" />
+	                    <label for="side_value"><?php echo $helper->__("Up Side Specified") ?></label>
+					</td>
+				</tr>
+			</table>
+		</li>
+
+		<?php // Cool Shipments Options (Only Available according the Current Shopping Cart Dimension and weight) ?>
+		<?php if($this->canCool()):?>
+		<li>
+			<b><?php echo $helper->__('Cool Shipments:') ?></b><br/>
+			<div class="check-box">
+				<input type="checkbox" name="cool_shipments_value" value="1" id="cool_shipments_value" class="checkbox" onClick="checkCool(this);" /> 
+				<?php $coolLabel =  $helper->__('Cool Shipments (+%s)',$this->getCoolRate()) ?>
+				<label for="cool_shipments_value"><?php echo $coolLabel ?></label>
+			</div>
+			<div id="cool-shipment-group" class="input-box">
+				<label for="cooler_value"><?php echo $helper->__("Cool Shipment Type:") ?></label>
+				<select name="cooler_value" id="cooler_value" class="input-box" style="width:100%" >
+					<?php echo $this->getCoolShipHtmlSelect();?>
+				</select>
+			</div>
+		</li>
+		<?php endif;?>
+
+		<?php // Cash on Delivery Options (Only available if Irvine System Cash on Delivery Extension is Available) ?>
+		<?php if($this->canCod()):?>
+		<li>
+			<b><?php echo $helper->__('Cash on Delivery Payment Method (Only available if Cash on Delivery Shipping Method is selected):') ?></b><br/>
+			<select name="cod_value" id="cod_value" class="input-box" style="width:100%" >
+				<?php echo $this->getCodPaymentsHtmlSelect();?>
+           </select>
+		</li>
+		<?php endif;?>
+
+	</ul>
+<?php endif;?>

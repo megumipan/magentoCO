@@ -1,0 +1,190 @@
+<?php
+/*
+ * Irvine Systems Award Points
+ *
+ * NOTICE OF LICENSE
+ * This source file is subject to the Revised BSD License which is bundled with
+ * this package in the files LICENSE.txt and LICENSE.html.
+ *
+ * @category    Magento Sale Extension
+ * @package        IrvineSystems_AwardPoints
+ * @author Irvine Systems, Inc.
+ * @copyright Copyright (c) 2015, Irvine Systems, Inc. (http://irvinesystems.co.jp/)
+ * @license     Revised BSD License
+ */
+?>
+
+<?php // Base Parameters
+$helper					= Mage::helper('awardpoints');
+$pointsTitleLbl			= $helper->__('Shopping Points');
+$totCartPointsLbl		= $helper->__('Total Cart Points: %d', $this->getPointsOnOrder());
+$apIcon					= $this->getSkinUrl('images/AwardPoints/AwardPoints.png');
+$cpIcon					= $this->getSkinUrl('images/AwardPoints/CustomerPoints.png');
+$moneyIcon				= $this->getSkinUrl('images/AwardPoints/Money.png');
+$points_currently_used	= $this->getPointsCurrentlyUsed();
+?>
+
+<?php // Check if the Shopping Points are enabled ?>
+<?php if ($this->isPointsEnable()): ?>
+
+	<?php // Check if the Points are automatically used ?>
+	<?php if (!$this->getAutoUse()): ?>
+
+		<?php // Check if the Customer is logged in ?>
+		<?php if (!$this->getCustomerId()): ?>
+			<?php // If the customer is not logged in disable use of points and inform the client ?>
+	        <div class="discount">
+		        <h2><?php echo $pointsTitleLbl; ?></h2>
+			    <div class="discount-form">
+			        <div style="padding-bottom:4px;">
+                    	<img src="<?php echo $apIcon ?>" alt=""/>
+	                	&nbsp;&nbsp;&nbsp;
+						<?php echo $totCartPointsLbl;?>
+					</div>
+			        <div style="padding-bottom:4px;"><em><strong><?php echo $helper->__('You must Log In for use the Shopping points');?></strong></em></div>
+			    </div>
+		    </div>
+		<?php else:?>
+		    <?php // Shopping Points Parameters
+				$couponCode				= Mage::getSingleton('checkout/cart')->getQuote()->getCouponCode();
+				$currCurrencySymbol		= Mage::app()->getLocale()->currency(Mage::app()->getStore()->getCurrentCurrencyCode())->getSymbol();
+				// Set Points Information
+				$point_details			= $this->getPointsInfo();
+				$customerPoints			= $point_details['customer_points'];
+				$points_money			= $point_details['points_money'];
+				$step					= $point_details['step'];
+				$step_apply				= $point_details['step_apply'];
+				$full_use				= $point_details['full_use'];
+				$max_use				= $point_details['max_use'];
+				$order_subtotal			= $point_details['order_subtotal'];
+				// unset Array after use
+				unset($point_details);
+				// Control Bools
+				$canApply		= false; // Can render Apply button
+				$selectMode		= true; // Drop down box Mode
+				$slideMode		= false; // Slider Mode (*Currently not supported)
+				// Get the minimum subtotal in current currency
+				$min_subtotal	= $this->getMinimumSubtotal();
+				// Common Labels
+				$customerPointsLbl	= $helper->__('Your Total Points: %d', $customerPoints);
+				$minimumSubtotalLbl	= $helper->__('Points cannot be apply for subtotals below: %s%s', $currCurrencySymbol,$min_subtotal);
+				$stepValueLbl		= $helper->__('%d points', Mage::getStoreConfig('awardpoints/general/step_value')) .' = '.$currCurrencySymbol.$this->getPointsValue();
+				$minimumPointsLbl	= $helper->__('To get a discount you need at least %d points.', $points_money);
+			?>
+			<?php // Check if the customer can use the points when a standard coupon is applyed ?>
+			<?php if ($this->couponCodeDisable() && ($couponCode == "" || $couponCode == null) || !$this->couponCodeDisable()): ?>
+				<div class="discount">
+					<?php // Check if the customer have not yet used points ?>
+					<?php if (!$points_currently_used): ?>
+						<form action="<?php echo $this->getUrl('awardpoints/index/quotation/') ?>" method="post" name="apForm">
+							<h2><?php echo $pointsTitleLbl; ?></h2>
+				            <div class="discount-form">
+								<?php // Render Cart Points Information ?>
+			                    <div style="padding-bottom:4px; padding-top:4px"><img src="<?php echo $apIcon ?>" alt=""/>&nbsp;&nbsp;&nbsp;<?php echo $totCartPointsLbl;?></div>
+								<?php // Render Customer Points Information ?>
+								<div style="padding-bottom:6px;"><img src="<?php echo $cpIcon ?>" alt=""/>&nbsp;&nbsp;&nbsp;<?php echo $customerPointsLbl; ?></div>
+								<?php // Check Cart minimum Subtotal ?>
+								<?php if ($min_subtotal > 0 && $min_subtotal > $order_subtotal): ?>
+				                	<div><?php echo $minimumSubtotalLbl ?></div>
+								<?php else:?>
+									<?php // Check if we are using standard or Step-points Mode ?>
+									<?php if (!$step_apply): ?>
+										<?php // Check available Point and enable Apply Button or inform the customer ?>
+										<?php if ($points_money > $customerPoints):?>
+							                <div><?php echo $minimumPointsLbl; ?></div>
+						                <?php else:?>
+											<?php // Check if full points use is enable ?>
+											<?php if (!$full_use): ?>
+												<div style="font-size:11px;"><?php echo $helper->__('Please input the quantity of points you want to use.') ?></div>
+												<input type="number" value="" name="points_to_be_used" class="input-text validate-digits-range digits-range-1-<?php echo $max_use ?>" max="<?php echo $max_use ?>" style="width:100px"/>
+												<span style="color:#C00; padding-bottom:3px;">
+													<img src="<?php echo $moneyIcon ?>" alt=""/>&nbsp;&nbsp;&nbsp;<?php echo $stepValueLbl; ?>
+												</span>
+							                <?php else:?>
+												<?php // Add an Hiden Field With the Maximum Amount ?>
+							                    <input type="hidden" value="<?php echo $max_use;?>"  name="points_to_be_used" class="input-text" />
+				    						<?php endif; // Close Check for full Points Use ?>
+											<?php $canApply = true;?>
+			    						<?php endif; // Close Customer Available Point Check ?>
+					                <?php else:?>
+										<?php // Check available Point and enable Apply Button or inform the customer ?>
+										<?php if ($step_apply > $customerPoints):?>
+							                <div><?php echo $minimumPointsLbl; ?></div>
+						                <?php else:?>
+											<?php if (!$full_use): ?>
+												<div style="font-size:11px;"><?php echo $helper->__('Please Select the quantity of points you want to use.') ?></div>
+												<?php // Switch for Step-Apply Use Modes ?>
+												<?php switch (true): ?>
+<?php case ($selectMode): // Drop down Select Mode ?>
+												<select name="points_to_be_used" id="coupon_code_points_qty" class="input-text">
+													<?php echo $this->pointsToAddOptions($customerPoints, $step);?>
+					    	                 	</select>
+													<?php break; ?>
+<?php case ($slideMode): // Slide Select mode ?>
+													<?php break; ?>
+												<?php endswitch ?>
+												<span style="color:#C00; padding-bottom:3px;">
+													<img src="<?php echo $moneyIcon ?>" alt=""/>&nbsp;&nbsp;&nbsp;<?php echo $stepValueLbl; ?>
+												</span>
+							                <?php else:?>
+												<?php // Add an Hiden Field With the Maximum Amount ?>
+							                    <input type="hidden" value="<?php echo $max_use;?>"  name="points_to_be_used" class="input-text" />
+				    						<?php endif; // Close Check for full Points Use ?>
+											<?php $canApply = true;?>
+			    						<?php endif; // Close Customer Available Point Check ?>
+		    						<?php endif; // Close Step Apply Check ?>
+									<?php // Check if the Apply Button casn be render ?>
+									<?php if ($canApply): ?>
+										<?php $btnLabel = $helper->__('Apply Points') ?>
+						                <div class="buttons-set">
+			    			                <button type="button" title="<?php echo $btnLabel ?>" class="button" onclick="apForm.submit(false)" value="<?php echo $btnLabel ?>">
+		                                    	<span><?php echo $btnLabel ?></span>
+											</button>
+										</div>
+										<?php if($full_use):?>
+											<div style="font-size:11px; padding-top:2px"><?php echo $helper->__('*The maximum amount of points (%d) will be used', $max_use) ?></div>
+			    						<?php endif; // Close Check for full Points Use ?>
+		    						<?php endif; // Close Can Apply Button Check ?>
+		    					<?php endif; // Close Minimum Subtotal Check ?>
+							</div>
+						</form>
+					<?php else:?>
+					<?php // Case when the Point are already Applyed ?>
+						<form action="<?php echo $this->getUrl('awardpoints/index/removequotation/') ?>" method="post" name="apForm">
+							<h2><?php echo $pointsTitleLbl; ?></h2>
+				            <div class="discount-form">
+								<?php // Render Cart Points Information ?>
+					            <div style="padding-bottom:4px;"><img src="<?php echo $apIcon ?>" alt="" />&nbsp;&nbsp;&nbsp;<?php echo $totCartPointsLbl;?></div>
+								<?php // Render Customer Points Balance Information ?>
+								<?php $points_balance = $this->getCustomerPoints()-$points_currently_used;?>
+								<div style="padding-bottom:8px;">
+		                        	<img src="<?php echo $cpIcon ?>" alt=""/>&nbsp;&nbsp;&nbsp;<?php echo $helper->__('Your Points Balance: %d',$points_balance); ?>
+								</div>
+								<?php // Inform the Customer about the amount of points in usen ?>
+								<?php if($points_currently_used == $this->getCustomerPoints()):?>
+						            <span style="font-size:11px;"><?php echo $helper->__('You are currently using all your available points!: %d' ,$points_currently_used); ?></span>
+									<?php else: ?>
+						            <span style="font-size:11px;"><?php echo $helper->__('You are currently using %d points!', $points_currently_used); ?></span>
+								<?php endif;?>
+								<?php // Render Remove Point Button ?>
+								<?php $btnLabel = $helper->__('Remove Points') ?>
+					            <div class="buttons-set">
+				                    <button type="button" title="<?php echo $btnLabel ?>" class="button" onclick="apForm.submit(false)" value="<?php echo $btnLabel ?>">
+		                            	<span><?php echo $btnLabel ?></span>
+									</button>
+					            </div>
+							</div>
+						</form>
+					<?php endif; // Close Poits Used check ?>
+				</div>
+			<?php endif; // Close Coupon correlation check ?>
+		<?php endif; // Close Customer ID check ?>
+	<?php endif; // Close Automatic Use Check ?>
+	<?php // Case if the standard coupon code can be rendered ?>
+	<?php if ($this->couponCodeDisable() && ($points_currently_used < 1 || $points_currently_used == null) || !$this->couponCodeDisable()):?>
+		<?php echo $this->getChildHtml('coupon_original');?>
+	<?php endif;?>
+<?php else:?>
+	<?php // Show the original Coupon if the Shopping Points are not enable ?>
+	<?php echo $this->getChildHtml('coupon_original');?>
+<?php endif; // Close Shopping Points Enable Check ?>

@@ -1,0 +1,78 @@
+==== 2.0.1.1 ====
+
+=== Improvements ===
+Updtaed Price List for 8% Ta
+
+==== 2.0.1.0 ====
+
+=== Major Highlights ===
+Added Compatibility with Magento 1.8
+Added External Price List management for allow user price list update (Local Rates only)
+Improved compatibility with 3rd part extensions
+Improved extension processing performance
+
+=== Improvements ===
+Moved Layout Updated to base folder
+Added option for disable/Enable cool shipments
+Added option for disable/Enable cash on delivery services
+Added option to use internal Cash on delivery prices or standard IrvineMage CashOnDelivery Fees
+Added Automated localization for pt_PT, zh_CN, zh_TW
+Removed Cash on delivery as Shipping Methods and added its management in Payment selection (* Requires IrvineMage CashOnDelivery Extension)
+Remove Cool Shipments as Shipping Methods and added as shipping option
+Removed unecessary core override
+
+
+==== 2.0.0.2 ====
+
+=== Improvements ===
+Added compatibility support for a 3rd party company Templates Master's extension "Fire Checkout"
+Added an error message for currencies that do not have exchange rates for the Japanese yen
+
+
+==== 2.0.0.1 ====
+
+=== Enhanced Compatibility ===
+Enhanced compatibility with PHP version before 5.3
+
+
+==== 2.0.0.0 ====
+
+=== Major Highlights ===
+Moved Full Consolidation Engine to external Extension
+Added Basic Consolidation Engine
+Added integration with optional full consolidation Engine
+Added integration with 3rd part Extensions
+Added Cash On Delivery Methods
+Added Teikei and Teikeigai Methods
+Added Shipping Slip Magnagement and Export
+Added Shipping Tracking
+Added Shipment Slip Import
+Added AJAX Dinamic selection for Shipping Options
+
+=== Improvements ===
+Standarized compatibility from Magento 1.4.2
+Move Extension scope to Local
+Improved Admin Setting
+
+=== Changes ===
+Updated Price list database and shipping rules
+Full Code rewrite
+Error Control Rewrite
+
+
+==== 1.0.0.3 ====
+
+=== Features ===
+Implement the Japan Post Shipping Carrier in Magento.
+Support all Carier methods (Yu-Pack, EMS, SAL, Airmail, Surface Mail)
+Carrier and all methods can be configured indipendently.
+Any setting Carrier and methods can be customized for Store Layers (Website-Store-View)
+Special Price valutation and suppor (alternative Japan post price list according dimensions and weight)
+Multi currency carrier price list.
+Extensive fee calculation support
+All Japan Post eligible country weight database and algorith is integrated
+Automatic Quote system on front end for any method.
+Volumetric bi-dimensional Engine for cart row products
+Multi language support
+Error handling
+Magento Connect Manager Comatibility

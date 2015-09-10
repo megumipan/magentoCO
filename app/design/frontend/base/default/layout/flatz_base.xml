@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+           <block type="flatz_base/js" name="flatz_base.js" before="js_cookies" template="flatz_base/js.phtml"></block>
+           <action method="addItem"><type>skin_js</type><name>flatz_base/price.js</name></action>
+           <action method="addItem" ifconfig="flatz_base_japanese/additional/useselectfordob"><type>skin_js</type><name>flatz_base/dob.js</name></action>
+        </reference>
+    </default>    
+    <customer_address_form translate="label">
+        <reference name="customer_address_edit">
+            <action method="setTemplate" ifconfig="flatz_base_japanese/address/enablejp"><template>flatz_base/customer/address/edit.phtml</template></action>
+        </reference>
+    </customer_address_form>
+    
+    <customer_account_create>
+        <reference name="customer_form_register">
+            <action method="setTemplate" ifconfig="flatz_base_japanese/address/enablejp"><template>flatz_base/customer/form/register.phtml</template></action>
+            <action method="setShowAddressFields" ifconfig="flatz_base_japanese/address/showaddress">
+                <flag>true</flag>
+            </action>
+        </reference>
+    </customer_account_create>
+<!--    
+    <checkout_onepage_index translate="label">
+        <reference name="checkout.onepage.billing">
+            <action method="setTemplate" ifconfig="flatz_base_japanese/address/enablejp"><template>flatz_base/checkout/onepage/billing.phtml</template></action>
+        </reference>
+        <reference name="checkout.onepage.shipping">
+            <action method="setTemplate" ifconfig="flatz_base_japanese/address/enablejp"><template>flatz_base/checkout/onepage/shipping.phtml</template></action>
+        </reference>    
+    </checkout_onepage_index>
+-->
+    <paypal_express_review translate="label">
+        <reference name="express.review.billing">
+            <action method="setTemplate" ifconfig="flatz_base_japanese/address/enablejp"><template>flatz_base/paypal/express/review/address.phtml</template></action>
+        </reference>
+        <reference name="express.review.shipping">
+            <action method="setTemplate" ifconfig="flatz_base_japanese/address/enablejp"><template>flatz_base/paypal/express/review/address.phtml</template></action>
+        </reference>
+    </paypal_express_review>
+
+    <checkout_onepage_review>
+        <reference name="checkout.onepage.agreements">
+<!--            <action method="setTemplate" ifconfig="flatz_base_japanese/address/xxxx"><template>flatz_base/checkout/onepage/agreements.phtml</template></action>-->
+            <action method="setTemplate"><template>flatz_base/checkout/onepage/agreements.phtml</template></action>
+        </reference>        
+    </checkout_onepage_review>
+
+    <checkout_multishipping_overview>
+        <reference name="checkout.multishipping.agreements">
+<!--            <action method="setTemplate" ifconfig="flatz_base_japanese/address/xxxx"><template>flatz_base/checkout/onepage/agreements.phtml</template></action>-->            
+            <action method="setTemplate"><template>flatz_base/checkout/multishipping/agreements.phtml</template></action>
+        </reference>        
+    </checkout_multishipping_overview>
+
+    <sales_order_print>
+        <reference name="content">
+            <!-- 注文コメント -->
+            <block after="sales.order.print" type="flatz_sales/order_comment" template="flatz_base/sales/order/comment.phtml" />
+        </reference>
+    </sales_order_print>   
+</layout>

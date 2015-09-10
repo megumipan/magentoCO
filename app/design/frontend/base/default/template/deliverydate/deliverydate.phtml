@@ -1,0 +1,86 @@
+﻿<?php
+/*
+ * Irvine Systems Delivery Date Optimum
+ *
+ * NOTICE OF LICENSE
+ * This source file is subject to the Revised BSD License which is bundled with
+ * this package in the files LICENSE.txt and LICENSE.html.
+ *
+ * @category	Magento Catalog Extension
+ * @package		IrvineSystems_Deliverydate
+ * @author Irvine Systems, Inc.
+ * @copyright Copyright (c) 2015, Irvine Systems, Inc. (http://irvinesystems.co.jp/)
+ * @license     Revised BSD License
+ */
+?>
+<?php // Update head css includes for calendar skin ?>
+<head>
+<link rel="stylesheet" href="<?php echo $this->getCallendarSkin() ?>" type="text/css" />
+</head>
+
+<?php //Additional CSS style implementation for Delivery date form ?>
+
+<style type="text/css">
+    .delivery-info ul{ border:none !important; padding:0 !important; margin:0 !important;}
+    .delivery-info li{ margin-bottom:10px; text-align:left; }
+    .delivery-info label{ font-weight:bold; color:#666666;}
+</style>
+
+<?php //Delivery Date Group ?>
+<div id="delivery-date-form" class="buttons-set delivery-info">
+	<?php echo $this->getChildHtml(); ?>
+</div>
+
+<?php //AJAX Loading Elements ?>
+<?php $message = Mage::helper('deliverydate')->__('Please wait, available delivery dates for the selected shipping method are been calculated...'); ?>
+<span id="delivery-date-processing" class="a-left" style="display:none;">
+	<img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif');?>" alt="<?php echo $message?>" title="<?php echo $message?>" class="v-middle" />
+	<?php echo $message?>
+</span>
+
+<?php
+/*
+ * AJAX Request Management
+ *
+ * Choose to show or hide the delivery date form acording to
+ * Selected Shipping Method
+ */
+?>
+<script type="text/javascript">
+	//<![CDATA[
+	var radioSelectorString = 'input[type="radio"][name="shipping_method"]';
+	$$(radioSelectorString).each(function(el){
+	    Event.observe(el, 'click', function(){
+	        if (el.checked == true){
+	            var shippingCode = el.getValue();
+ 
+	            // Disable console and show AJAX update during processing
+				$$(radioSelectorString).each( function(el){ el.disable(); } );
+	            $('shipping-method-buttons-container') && $('shipping-method-buttons-container').hide();
+	            $('delivery-date-form').hide();
+	            $('delivery-date-processing').show();
+	 
+	            new Ajax.Request('<?php echo $this->getPostUrl() ?>', {
+	                method: 'post',
+	                parameters: { 'shipping_code': shippingCode },
+	                onSuccess: function(transport){ 
+			            // On successfull Process hide Ajax update and show result
+	                    var json = transport.responseText.evalJSON();
+	                    Element.update('delivery-date-form', json.formhtml);
+	                    $('delivery-date-processing').hide();
+	                    $('delivery-date-form').show();
+	                    $('shipping-method-buttons-container') && $('shipping-method-buttons-container').show();
+	                    $$(radioSelectorString).each( function(el){ el.enable(); } );
+	                },
+	                onFailure: function(){ 
+			            // On failure Process hide Ajax update
+	                    $('delivery-date-processing').hide();
+	                    $('shipping-method-buttons-container') && $('shipping-method-buttons-container').show();
+	                    $$(radioSelectorString).each( function(el){ el.enable(); } );
+	                }
+	            });
+	        }
+	    });
+	});
+	//]]>
+</script>

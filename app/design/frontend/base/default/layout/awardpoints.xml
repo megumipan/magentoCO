@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<!--
+/*
+ * Irvine Systems Award Points
+ *
+ * NOTICE OF LICENSE
+ * This source file is subject to the Revised BSD License which is bundled with
+ * this package in the files LICENSE.txt and LICENSE.html.
+ *
+ * @category    Magento Sale Extension
+ * @package        IrvineSystems_AwardPoints
+ * @author Irvine Systems, Inc.
+ * @copyright Copyright (c) 2015, Irvine Systems, Inc. (http://irvinesystems.co.jp/)
+ * @license     Revised BSD License
+ */
+-->
+
+<layout>
+  <!-- ********************** AWARD POINTS ORGINAL LAYOUTS ********************* -->
+  <!--
+   * Shopping Points Layout
+   * Layout information for the shopping Points Page in Customer Dashboard
+   -->
+  <awardpoints_index_points>
+    <update handle="customer_account"/>
+    <reference name="content">
+      <block type="awardpoints/points" name="awardpoints" template="awardpoints/points.phtml" />
+      <block type="customer/account_dashboard" name="customer.account.link.back" template="customer/account/link/back.phtml"/>
+    </reference>
+  </awardpoints_index_points>
+  <!--
+   * Refferals Layout
+   * Layout information for the referrals Page in Customer Dashboard
+   -->
+  <awardpoints_index_referral>
+    <reference name="before_body_end">
+      <block type="awardpoints/referralhead" name="referralhead" as="referralhead"></block>
+    </reference>
+    <update handle="customer_account"/>
+    <reference name="content">
+      <block type="awardpoints/referral" name="referral" template="awardpoints/referral.phtml" />
+      <block type="customer/account_dashboard" name="customer.account.link.back" template="customer/account/link/back.phtml"/>
+    </reference>
+  </awardpoints_index_referral>
+
+  <!-- ********************** CUSTOMER ACCOUNT UPDATES ********************* -->
+  <!--
+   * Customer Dashboard Update
+   * Integrates Award Points Information
+   -->
+  <customer_account_index>
+    <reference name="customer_account_dashboard">
+      <action method="setTemplate">
+        <template>awardpoints/my_dashboard.phtml</template>
+      </action>
+      <block type="awardpoints/dashboard" name="customer_account_points" as="points" template="awardpoints/dashboard_points.phtml"/>
+    </reference>
+  </customer_account_index>
+  <!--
+   * Customer Dashboard Update
+   * Add Additional links for Shopping Points and Referrals
+   -->
+  <customer_account>
+    <reference name="customer_account_navigation">
+      <action method="addLink" translate="label" module="customer" ifconfig="awardpoints/referral/referral_show">
+        <name>referral</name>
+        <path>awardpoints/index/referral/</path>
+        <label>Friends Referral</label>
+      </action>
+      <action method="addLink" translate="label" module="customer" ifconfig="awardpoints/shopping/shopping_show">
+        <name>awardpoints</name>
+        <path>awardpoints/index/points/</path>
+        <label>Shopping Points</label>
+      </action>
+    </reference>
+  </customer_account>
+
+  <!-- ********************** SHOPING CART UPDATES ********************* -->
+  <!--
+   * Shopping Cart Update
+   * Integrates Award Points Information into the Shopping cart
+   -->
+  <checkout_cart_index>
+    <reference name="checkout.cart.coupon">
+      <action method="setTemplate">
+        <template>awardpoints/coupons.phtml</template>
+      </action>
+      <block type="awardpoints/coupon" name="checkout_cart_coupon_normal" as="coupon_points" template="awardpoints/award_coupon.phtml">
+        <block type="checkout/cart_coupon" name="checkout_cart_coupon_award" as="coupon_original" template="checkout/cart/coupon.phtml"/>
+      </block>
+    </reference>
+  </checkout_cart_index>
+
+  <!-- ********************** CATALOG PRODUCT VIEW UPDATES ********************* -->
+  <!--
+   * Catalog Product View Update
+   * Integrates Award Points Information into the Product View
+   -->
+  <catalog_product_view>
+    <reference name="product.info.extrahint">
+      <block type="awardpoints/productpoints" name="points_product" as="points_product" template="awardpoints/productpoints.phtml"/>
+    </reference>
+  </catalog_product_view>
+
+  <!-- ********************** PRODUCT REVIEW LIST UPDATES ********************* -->
+  <!--
+   * Product Review List Update
+   * Integrates Award Points Information into the Product Review List
+   -->
+  <review_product_list>
+    <reference name="product.info.addtocart">
+      <action method="setTemplate">
+        <template>awardpoints/review_wrapper.phtml</template>
+      </action>
+      <block type="awardpoints/productpoints" name="points_product" as="points_product" template="awardpoints/productpoints.phtml"/>
+      <block type="catalog/product_view" name="original_addtocart" as="original_addtocart" template="catalog/product/view/addtocart.phtml"/>
+    </reference>
+  </review_product_list>
+</layout>

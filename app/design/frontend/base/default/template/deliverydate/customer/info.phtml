@@ -1,0 +1,30 @@
+<?php
+/*
+ * Irvine Systems Delivery Date Optimum
+ *
+ * NOTICE OF LICENSE
+ * This source file is subject to the Revised BSD License which is bundled with
+ * this package in the files LICENSE.txt and LICENSE.html.
+ *
+ * @category	Magento Catalog Extension
+ * @package		IrvineSystems_Deliverydate
+ * @author Irvine Systems, Inc.
+ * @copyright Copyright (c) 2015, Irvine Systems, Inc. (http://irvinesystems.co.jp/)
+ * @license     Revised BSD License
+ */
+?>
+<?php // Check if we have a delivery date to Display ?>
+<?php if($this->displayDeliveryDate()): ?>
+<div class="col-set order-info-box">
+    <div class="col">
+        <div class="box">
+            <div class="box-title">
+                <h2><?php echo Mage::helper('deliverydate')->__('Expected Delivery Date') ?></h2>
+            </div>
+            <div class="box-content">
+                <?php echo $this->getDeliveryDateInfo(); ?>
+            </div>
+        </div>
+    </div>
+</div>
+<?php endif; ?>

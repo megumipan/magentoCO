@@ -1,0 +1,41 @@
+<?php
+/*
+ * Irvine Systems Award Points
+ *
+ * NOTICE OF LICENSE
+ * This source file is subject to the Revised BSD License which is bundled with
+ * this package in the files LICENSE.txt and LICENSE.html.
+ *
+ * @category    Magento Sale Extension
+ * @package        IrvineSystems_AwardPoints
+ * @author Irvine Systems, Inc.
+ * @copyright Copyright (c) 2015, Irvine Systems, Inc. (http://irvinesystems.co.jp/)
+ * @license     Revised BSD License
+ */
+?>
+<div class="dashboard">
+    <div class="page-title">
+        <h1><?php echo $this->__('My Dashboard') ?></h1>
+    </div>
+    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+    <?php echo $this->getChildHtml('hello') ?>
+    <?php echo $this->getChildHtml('top') ?>
+
+	<?php // Add Award Point Information Child to the Dashboard ?>
+	<div class="box-account box-info">
+		<div class="box-head">
+			<h1><?php echo Mage::helper('awardpoints')->__('Shopping Points') ?></h1>
+		</div>
+		<?php echo $this->getChildHtml('points') ?>
+	</div>
+
+    <div class="box-account box-info">
+        <div class="box-head">
+            <h1><?php echo $this->__('Account Information') ?></h1>
+        </div>
+        <?php echo $this->getChildHtml('info') ?>
+        <?php echo $this->getChildHtml('address') ?>
+    </div>
+    <?php echo $this->getChildHtml('info1') ?>
+    <?php echo $this->getChildHtml('info2') ?>
+</div>

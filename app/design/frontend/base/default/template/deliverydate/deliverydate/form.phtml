@@ -1,0 +1,275 @@
+<?php
+/*
+ * Irvine Systems Delivery Date Optimum
+ *
+ * NOTICE OF LICENSE
+ * This source file is subject to the Revised BSD License which is bundled with
+ * this package in the files LICENSE.txt and LICENSE.html.
+ *
+ * @category	Magento Catalog Extension
+ * @package		IrvineSystems_Deliverydate
+ * @author Irvine Systems, Inc.
+ * @copyright Copyright (c) 2015, Irvine Systems, Inc. (http://irvinesystems.co.jp/)
+ * @license     Revised BSD License
+ */
+?>
+
+<?php
+/**
+* Delivery Date Form Template
+* 
+* @this IrvineSystems_Deliverydate_Block_Deliverydate_Form
+*/
+?>
+
+<?php // Get Delivery dates data ?>
+<?php $data = $this->getDeliveryData(); ?>
+
+<?php // If data are available we can process the form for user selection ?>
+<?php if($data): ?>
+
+	<?php // Get Parameters Values
+	$dayoff = $data['dayoff'];
+    $minDays = $data['minDate'];
+    $maxDays = $data['maxDate'];
+	$helper = Mage::helper('deliverydate');
+	?>
+
+	<?php // Set Delivery Date Data ?>
+	<ul>
+		<li>
+			<h3><?php echo $helper->__('Delivery Date Preferences') ?></h3>
+		</li>
+		<li>
+		<table width="100%" border="0">
+			<tr>
+				<td width="50%">
+		            <label for="page_date-end"><?php echo $helper->__('Delivery Date:') ?></label>
+					<input name="shipping_delivery_date_display" id="shipping_delivery_date_display" value="" title="date" class=" input-text" style="width: 80px;" type="text">
+					<img src="<?php echo Mage::getBaseUrl('skin')?>adminhtml/default/default/images/grid-cal.gif" alt="" class="v-middle" id="cal_btn" title="Select Date" style="">
+					<input name="shipping_delivery_date" id="shipping_delivery_date" value="" onChange="shippingDeliveryDateOnChange(this); return false;" title="date"  type="hidden">
+				</td>
+				<td width="50%">
+					<label for="shipping_delivery_time"><?php echo $helper->__('Delivery Time:') ?></label>
+					<select name="shipping_delivery_time" id="shipping_delivery_time" class="input-text">
+						<?php echo $this->getTimeHtmlSelect($data['hours']);?>
+					</select>
+				</td>
+			</tr>
+		</table>
+		</li>
+		<li>
+			<label for="shipping_delivery_comments"><?php echo $helper->__('Delivery Comments:') ?></label><br/>
+			<textarea cols="90" rows="6" name="shipping_delivery_comments" id="shipping_delivery_comments"></textarea>
+		</li>
+		<li>
+			<?php echo Mage::getStoreConfig('deliverydate/general/footer_html'); ?>
+		</li>
+	</ul>
+
+	<?php // Calendar Javascript Initialization, Set-up and Updates ?>
+	<script type="text/javascript">
+		/**
+		 * Calendar Initialization
+		 *
+		 */
+		Calendar.prototype._init = function (firstDayOfWeek, date) {
+            var today = new CalendarDateObject(),
+            TY = today.getFullYear(),
+            TM = today.getMonth(),
+            TD = today.getDate();
+            this.table.style.visibility = "hidden";
+            var year = date.getFullYear();
+            if (year < this.minYear) {
+                year = this.minYear;
+                date.setFullYear(year);
+            } else if (year > this.maxYear) {
+                year = this.maxYear;
+                date.setFullYear(year);
+            }
+            this.firstDayOfWeek = firstDayOfWeek;
+   	        this.date = new CalendarDateObject(date);
+            var month = date.getMonth();
+            var mday = date.getDate();
+            var no_days = date.getMonthDays();
+            var check_flag = false;
+	
+            // Computing the first day that would actually be displayed in the calendar
+            date.setDate(1);
+            var day1 = (date.getDay() - this.firstDayOfWeek) % 7;
+            if (day1 < 0)
+                day1 += 7;
+            date.setDate(-day1);
+            date.setDate(date.getDate() + 1);
+
+            var row = this.tbody.firstChild;
+            var MN = Calendar._SMN[month];
+            var ar_days = this.ar_days = new Array();
+            var weekend = Calendar._TT["WEEKEND"];
+            var dates = this.multiple ? (this.datesCells = {}) : null;
+            for (var i = 0; i < 6; ++i, row = row.nextSibling) {
+                var cell = row.firstChild;
+                if (this.weekNumbers) {
+                    cell.className = "day wn";
+                    cell.innerHTML = date.getWeekNumber();
+                    cell = cell.nextSibling;
+                }
+                row.className = "daysrow";
+                var hasdays = false, iday, dpos = ar_days[i] = [];
+                for (var j = 0; j < 7; ++j, cell = cell.nextSibling, date.setDate(iday + 1)) {
+                    iday = date.getDate();
+                    var wday = date.getDay();
+                    cell.className = "day";
+                    cell.pos = i << 4 | j;
+                    dpos[j] = cell;
+                    var current_month = (date.getMonth() == month);
+
+                    cell.otherMonth = false;
+                    hasdays = true;
+
+                    cell.disabled = false;
+                    cell.innerHTML = this.getDateText ? this.getDateText(date, iday) : iday;
+                    if (dates)
+                        dates[date.print("%Y%m%d")] = cell;
+                    if (this.getDateStatus) {
+                        var status = this.getDateStatus(date, year, month, iday);
+                        if (this.getDateToolTip) {
+                            var toolTip = this.getDateToolTip(date, year, month, iday);
+                            if (toolTip)
+                                cell.title = toolTip;
+                        }
+                        if (status === true) {
+                            cell.className += " disabled";
+                            cell.disabled = true;
+                        } else {
+                            if (/disabled/i.test(status))
+                                cell.disabled = true;
+                            cell.className += " " + status;
+                        }
+                    }
+                    if (!cell.disabled) {
+                        cell.caldate = new CalendarDateObject(date);
+                        cell.ttip = "_";
+                        if (!this.multiple && current_month
+                            && iday == mday && this.hiliteToday) {
+                            cell.className += " selected";
+                            this.currentDateEl = cell;
+                        }
+                        if (date.getFullYear() == TY &&
+                            date.getMonth() == TM &&
+                            iday == TD) {
+                            cell.className += " today";
+                            cell.ttip += Calendar._TT["PART_TODAY"];
+                        }
+                        if (weekend.indexOf(wday.toString()) != -1)
+                            cell.className += cell.otherMonth ? " oweekend" : " weekend";
+                        if (check_flag){
+                            cell.className += " selected";
+                            this.currentDateEl = cell; 
+                            check_flag=false;
+                        }
+                    }else{
+                        if (!this.multiple && current_month
+                            && iday == mday && this.hiliteToday) {
+                            check_flag=true;
+                        }
+                    }
+                }
+                if (!(hasdays || this.showsOtherMonths))
+                    row.className = "emptyrow";
+            }
+            this.title.innerHTML = Calendar._MN[month] + ", " + year;
+            this.onSetTime();
+            this.table.style.visibility = "visible";
+            this._initMultipleDates();
+        };
+
+		/**
+		 * Calendar Set-up
+		 * Calendare setting and Day selection limitations
+		 *
+		 */
+		var dayoff = '<?php echo $dayoff; ?>';
+        var test_flag = false;
+        Calendar.setup({
+			inputField: "shipping_delivery_date",
+			ifFormat: "%Y-%mm-%ee %H:%M:%S",
+			//showsTime: true,
+			button: "cal_btn",
+			align: "Bl",
+			singleClick :false,
+			onSelect :function()
+			{
+				// UPDATE DELIVERY DATE ON DATE SELECTION
+				// Get the Calendar date
+				currentTime = new Date(calendar.date.getTime()); 
+				var d=currentTime.getDate();
+				var m=parseInt(currentTime.getMonth())+parseInt(1);
+				var y=currentTime.getFullYear();
+
+				// If a date is selected update Display Date and _Controller Date
+				if (calendar.dateClicked) 
+				{
+					document.getElementById('shipping_delivery_date_display').value	=y+"-"+m+"-"+d;
+					document.getElementById('shipping_delivery_date').value			=y+"-"+m+"-"+d;
+					calendar.hide();
+				}
+			},
+			disableFunc : function(date)
+			{  
+				// DISABLE NOT SELECTABLE DATES
+				// Get Minimum and Maximun selectable Dates
+				var minDays = <?php echo $minDays; ?>;
+				var maxDays = <?php echo $maxDays; ?>;
+
+				// Format current date into a int value
+				var d = date.getDate();
+				if (d<10) d = "0" + d;
+				var m = parseInt(date.getMonth())+parseInt(1);
+				if (m<10) m = "0" + m;
+				var y = date.getFullYear();
+				var curFormatDate = y+""+m+""+d;
+				// Compare current Date with Maximum and minimun Dates
+				if (curFormatDate<minDays || curFormatDate>maxDays){
+					// If in range disable the date
+					return true;
+				}
+					
+				// Convert Dayoff Days into an array
+				var day_off_array = dayoff.split(",") ;
+
+				// Disable any Date included in Dayoff Array
+				for (var i=0; i<day_off_array.length;i++){
+					if (day_off_array[i]>=0 && day_off_array[i]!=''){
+						if (date.getDay()==day_off_array[i]){
+							return true;
+						}
+					}
+				}
+			}
+		});
+
+		/**
+		* Keep Display and Reference Value Update when a date is selected
+		*
+		*/
+		function shippingDeliveryDateOnChange(el)
+		{
+			var displayDate = $('shipping_delivery_date_display');
+			var date = $('shipping_delivery_date').getValue();
+			displayDate.setValue(date);
+		}
+	
+		/**
+		* Keep the Form Field for delivery date disable
+		* The date will be inmput only via Calendar, This will avoid User mistake
+		*
+		*/
+		Form.Element.disable('shipping_delivery_date_display');
+		//]]>
+	</script>
+
+	<?php // Load Calendar Localization Block ?>
+	<?php echo $this->getLayout()->createBlock('core/html_calendar')->setTemplate('deliverydate/js/calendar.phtml')->toHtml() ; ?>
+
+<?php endif ?>

@@ -1,0 +1,133 @@
+<?php
+/*
+ * Irvine Systems Shipping Japan Jp
+ *
+ * NOTICE OF LICENSE
+ * This source file is subject to the Revised BSD License which is bundled with
+ * this package in the files LICENSE.txt and LICENSE.html.
+ *
+ * @category	Magento Shipping Extension
+ * @package		IrvineSystems_JapanPost
+ * @author Irvine Systems, Inc.
+ * @copyright Copyright (c) 2015, Irvine Systems, Inc. (http://irvinesystems.co.jp/)
+ * @license     Revised BSD License
+ */
+?>
+
+<?php
+/**
+* Shipping Japan Jp Form Template
+* 
+* @var $this IrvineSystems_Deliverydate_Block_Deliverydate_Form
+* @see IrvineSystems_Deliverydate_Block_Deliverydate_Form
+*/
+?>
+<?php // Check if the Form is avaiulable ?>
+<?php if($this->canRender()):?>
+	<?php // Get extension Helper ?>
+	<?php $helper = Mage::helper('japanpost');?>
+
+	<script type="text/javascript">
+	//<![CDATA[
+		// Firecheckout Totals Updater
+		checkCool = function (thisvalue){
+			<?php // Firecheckout Totals Updater ?>
+			<?php if($helper->hasFirecheckout()):?>
+		        new Ajax.Request(ajaxURL, {
+		            method: 'post',
+		            onSuccess: function(transport){},
+		            onFailure: function(){}
+		        });
+				checkout.update(checkout.urls.shipping_method, { 'review': 1 });
+			<?php endif;?> 
+		};
+	//]]>
+	</script>
+
+	<?php // Render Carrier Shipping Options ?>
+	<ul>
+		<?php // Delivery Method Options ?>
+		<li>
+			<h3><?php echo $helper->__('Shipping Preferences') ?></h3>
+		</li>
+		<li>
+			<b><?php echo $helper->__('Delivery Method:') ?></b><br/>
+			<select name="delivery_value" id="delivery_value" class="input-box" style="width:100%" >
+				<?php echo $this->getDeliveryHtmlSelect();?>
+           </select>
+		</li>
+
+		<?php // Cool Shipments Options (Only Available according the Current Shopping Cart Dimension and weight) ?>
+		<?php if($this->canCool()):?>
+		<li>
+			<b><?php echo $helper->__('Cool Shipments:') ?></b><br/>
+			<div class="check-box">
+				<input type="checkbox" name="cool_shipments_value" value="1" id="cool_shipments_value" class="checkbox" onClick="checkCool(this);" /> 
+				<?php $coolLabel =  $helper->__('Cool Shipments (+%s)',$this->getCoolRate()) ?>
+				<label for="cool_shipments_value"><?php echo $coolLabel ?></label>
+			</div>
+		</li>
+		<?php endif;?>
+
+		<?php // Package Content Options ?>
+		<li>
+			<table width="100%" border="0">
+				<tr>
+					<b><?php echo $helper->__('Package Content:') ?></b>
+				</tr>
+				<tr>
+					<td width="33%">
+						<input type="checkbox" name="fragile_value" value="1" id="fragile_value" class="checkbox" />
+						<label for="fragile_value"><?php echo $helper->__('Fragile Products') ?></label>
+					</td>
+					<td width="33%">
+						<input type="checkbox" name="creature_value" value="1" id="creature_value" class="checkbox" />
+						<label for="creature_value"><?php echo $helper->__('Living Creature') ?></label>
+					</td>
+					<td width="33%">
+						<input type="checkbox" name="glass_value" value="1" id="glass_value" class="checkbox" />
+						<label for="glass_value"><?php echo $helper->__('Glasses Products') ?></label>
+					</td>
+				</tr>
+			</table>
+		</li>
+		<?php // Package Handling Options ?>
+		<li>
+			<table width="100%" border="0">
+				<tr>
+					<b><?php echo $helper->__('Package Handling:') ?></b>
+				</tr>
+				<tr>
+					<td width="33%">
+						<input type="checkbox" name="side_value" value="1" id="side_value" class="checkbox" />
+	                    <label for="side_value"><?php echo $helper->__("Don't Rotate The Package") ?></label>
+					</td>
+					<td width="33%">
+						<input type="checkbox" name="weight_value" value="1" id="weight_value" class="checkbox" />
+	                    <label for="weight_value"><?php echo $helper->__("Don't Place Weights") ?></label>
+					</td>
+					<td width="33%"></td>
+				</tr>
+			</table>
+		</li>
+		<?php // Delivery Notifications Options ?>
+		<li>
+			<table width="100%" border="0">
+				<tr>
+					<b><?php echo $helper->__('Delivery Notifications') ?></b>
+				</tr>
+				<tr>
+					<td width="33%">
+						<input type="checkbox" name="post_value" value="1" id="post_value" class="checkbox" />
+	                    <label for="post_value"><?php echo $helper->__('Recieve Post Notification') ?></label>
+					</td>
+					<td width="33%">
+						<input type="checkbox" name="email_value" value="1" id="email_value" class="checkbox" />
+	                    <label for="email_value"><?php echo $helper->__('Recieve Email Notification') ?></label>
+					</td>
+					<td width="33%"></td>
+				</tr>
+			</table>
+		</li>
+	</ul>
+<?php endif;?>

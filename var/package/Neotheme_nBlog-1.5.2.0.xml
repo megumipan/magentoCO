@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<package>
+    <name>Neotheme_nBlog</name>
+    <version>1.5.2.0</version>
+    <stability>stable</stability>
+    <license uri="http://www.neotheme.com.au/legal/licenses/ndsm.html">Neotheme Non-Distributable Software Modification License (NDSML)</license>
+    <channel>community</channel>
+    <extends/>
+    <summary>Blogging component</summary>
+    <description>Blogging component</description>
+    <notes>1.5.2.0 - 24/06/2014 - Tony Schirmer&#xD;
+ - Added 1.5.0.0 compatibility&#xD;
+&#xD;
+1.3.0.0 - 16/12/2013 - Tony Schirmer&#xD;
+ - Added optional summary with Wordpress style "Read More" Tags&#xD;
+&#xD;
+1.2.10.0 - 20/11/2013 - Tony Schirmer&#xD;
+ - Corrected bug in saving blog post without publish date set&#xD;
+&#xD;
+1.2.9.0 - 18/11/2013 - Tony Schirmer&#xD;
+ - Corrected locale time discrepancy between the Backend and Frontend.&#xD;
+&#xD;
+1.2.8.0 - 5/11/2013 - Tony Schirmer&#xD;
+ - corrected PHP dependency issue with Magento Connect Package&#xD;
+&#xD;
+1.2.7.0 - 11/10/2013 - Tony Schirmer&#xD;
+ - corrected locale files that weren't in UTF-8&#xD;
+&#xD;
+1.2.6.0 - 11/10/2013 - Tony Schirmer&#xD;
+ - Re-package of 1.2.5 - debug code accidently left in 1.2.5&#xD;
+&#xD;
+1.2.5.0 - 11/10/2013 - Tony Schirmer&#xD;
+ - Added in Language Files&#xD;
+&#xD;
+1.2.4.0 - 09/09/2013 - Tony Schirmer&#xD;
+ - Correct Store Filter bug in post backend&#xD;
+ - Added time storage for posting&#xD;
+&#xD;
+1.2.3.0 - 21/08/2013 - Tony Schirmer&#xD;
+- Corrected Single Store Router Bug&#xD;
+&#xD;
+1.2.2.0- 03/07/2013 - Tony Schirmer&#xD;
+- Correcting Collection bugs&#xD;
+&#xD;
+1.2.1.0- 03/07/2013 - Tony Schirmer&#xD;
+- Fixed Publish Date, and post ordering bugs&#xD;
+&#xD;
+1.2.0.0- 06/05/2013 - Tony Schirmer&#xD;
+- Added Customer Group Filtering Option (beta)&#xD;
+&#xD;
+1.1.5.0- 30/12/2012 - Tony Schirmer&#xD;
+- Fixed undefined params problem in strict mode under 1.1.4&#xD;
+- Created url key checking for categories with posts (allows urls like http://website.com/categoryname/postname)&#xD;
+&#xD;
+1.1.4.0- 29/12/2012 - Tony Schirmer&#xD;
+Bug Fix:&#xD;
+ - Fixed Frontend Draft Visibilty after the additional of URL Keys&#xD;
+&#xD;
+1.1.3.0- 5/12/2012 - Tony Schirmer&#xD;
+Bug Fix:&#xD;
+ - Fixed Frontend Pagination When frontname changed&#xD;
+&#xD;
+1.1.2.0- 4/12/2012 - Tony Schirmer&#xD;
+Bug Fix:&#xD;
+ - Added Facebook Width&#xD;
+ - Fixed Date to follow config on Post Summary Block&#xD;
+&#xD;
+1.1.1.0- 4/12/2012 - Tony Schirmer&#xD;
+Bug Fix:&#xD;
+- WYSIWYG editor in backend a was little small&#xD;
+- Added Unique Key &#xD;
+- Fixed interference with cms router&#xD;
+&#xD;
+1.1.0.0- 4/12/2012 - Tony Schirmer&#xD;
+Added Frontend routing Finalised to Release Version&#xD;
+&#xD;
+1.0.0.5- 3/12/2012 - Rowan Volker&#xD;
+Styling Blog Blocks&#xD;
+Removed comment count when FB commenting is active&#xD;
+&#xD;
+1.0.0.4- 3/12/2012 - Tony Schirmer&#xD;
+Added in RSS to default settings&#xD;
+Added in Date / Time Format Configuration&#xD;
+Added in Blog RSS Feeds integrated with core Magento RSS&#xD;
+Added in RSS Blog Feeds Block&#xD;
+Added in Comment Templating&#xD;
+&#xD;
+TODO:&#xD;
+- Archieving&#xD;
+&#xD;
+1.0.0.3- 30/11/2012 - Tony Schirmer&#xD;
+Added in RSS to default settings (No complete yet)&#xD;
+TODO:&#xD;
+- Date / Time Format Configuration&#xD;
+- Blog RSS Feeds integrated with core Magento RSS&#xD;
+- Latest / Recent Posts Block / Widget&#xD;
+- RSS Blog Feeds Block&#xD;
+- Archieving&#xD;
+- Comment Templating&#xD;
+&#xD;
+1.0.0.2- 30/11/2012 - Rowan Volker&#xD;
+Base Template Styling&#xD;
+&#xD;
+1.0.0.1- 27/09/2012 - Tony Schirmer&#xD;
+Continued development (begun to add taging)&#xD;
+&#xD;
+1.0.0d - 08/09/2012 - Tony Schirmer&#xD;
+Inital Development for Blog</notes>
+    <authors><author><name>Neotheme</name><user>neotheme</user><email>support@neotheme.com.au</email></author></authors>
+    <date>2014-06-24</date>
+    <time>08:30:50</time>
+    <contents><target name="magecommunity"><dir name="NeoTheme"><dir name="Blog"><dir name="Block"><dir name="Account"><dir name="Dashboard"><file name="Blog.php" hash="69cf727c9a9c7d6f52f0cdfa3fcd3bb0"/></dir><dir name="Preferences"><file name="Edit.php" hash="39ba341f13e723f2526c1244c747fa77"/></dir></dir><dir name="Adminhtml"><dir name="Category"><dir name="Edit"><file name="Form.php" hash="620ec11503526d845999feb6afbffd9c"/><dir name="Tab"><file name="Design.php" hash="d44e97a88c8fd6a35dec920c753562e1"/><file name="Form.php" hash="dcc3dcf2894dc0c4389c7c31e7a19081"/><file name="Meta.php" hash="f33a571b193f5de1190ddb4c3fb1c4f9"/></dir><file name="Tabs.php" hash="37ee3ef4adcf785457daebfb42d190c7"/></dir><file name="Edit.php" hash="b7f0540402c1df67b09f63b3c77ec58a"/><file name="Grid.php" hash="9c4a2a672c36a15cc8f9e495cf38caea"/><file name="Tree.php" hash="c31c6214d5ff781b9d3c31059a3eef5d"/><dir name="Widget"><file name="Chooser.php" hash="af375cc58cc0b667d9dbf5a59673aa14"/></dir></dir><file name="Category.php" hash="53f7962153ebd9a49d58d022fc0c0736"/><dir name="Comment"><dir name="Edit"><file name="Form.php" hash="33e85527bb67dbcf480e902ef95bee8c"/><dir name="Tab"><file name="Form.php" hash="3ca091ba2f78e43fbec55cb84fb530c3"/><file name="Meta.php" hash="005edf1f8a48d3ceb2e7f06f853b852b"/><file name="Publishing.php" hash="5938e46611b13e0c5cd118647d828872"/></dir><file name="Tabs.php" hash="ff1532b8d2562f04b776929dd0baaac6"/></dir><file name="Edit.php" hash="8622fe35bc417ec65217762cd627f2fd"/><file name="Grid.php" hash="b842cfd338d7336414e30586d937b521"/></dir><file name="Comment.php" hash="7f6154d313ff8865153968b2999b1603"/><dir name="Post"><dir name="Edit"><file name="Form.php" hash="573066897c6d7bb1fc7d3e12ebb606e5"/><dir name="Tab"><file name="Content.php" hash="7eee086ed76c42760e690e3d778df8c5"/><file name="Design.php" hash="588175d3906a0ec5391d69443ceb536a"/><file name="Form.php" hash="5e041e1bd0292f63715f8bb14ce948eb"/><file name="Meta.php" hash="f5cd4abaca2a4940dad89e6d58018c10"/><file name="Publishing.php" hash="a7ddc4d8b968f5c339b2805b42c0a807"/></dir><file name="Tabs.php" hash="ad7cbf32a937a9f42123679d675ee005"/></dir><file name="Edit.php" hash="9cc556baa7f6fdae4c7432eca67188e9"/><file name="Grid.php" hash="714c3dd6b0b41ab5160daff7747fb2cc"/><dir name="Widget"><file name="Chooser.php" hash="79ec35ad371f3bd7b598515841a736f4"/><dir name="Grid"><dir name="Column"><dir name="Renderer"><file name="Ordering.php" hash="c21c1ad1df79406b02de1f846276b4e4"/></dir></dir></dir></dir></dir><file name="Post.php" hash="7e01526a797974ecf903113794c099ec"/></dir><dir name="Category"><dir name="List"><file name="Rss.php" hash="d0ac8d09fde2548ecc9ab3060e640daa"/></dir><file name="List.php" hash="559ed3eba387901b342f7232d80d00a3"/></dir><dir name="Comment"><file name="Form.php" hash="8f4b002154b190bceeba1b9b70bcc613"/><file name="List.php" hash="2aa82fd89b08fe8f23980a17cd2ab617"/><file name="Summary.php" hash="19db7c383f2fd09fd03f19ed7e0625b8"/></dir><dir name="Post"><file name="Detail.php" hash="045f11e0657f2323d232340e10411c94"/><file name="List.php" hash="37bbea444a1f6cc2d766d3fc32adf8e0"/><file name="Summary.php" hash="09e449a22314f0de08462cf3c3d767d3"/></dir><dir name="Rss"><file name="Blog.php" hash="060beb781f40e3f6b58771764f92b85e"/><file name="List.php" hash="cb8a784335b810575f5ef37fb8210e3d"/><dir name="Post"><file name="Details.php" hash="88b2bbd6797492feacfb7f41e83bd0d4"/></dir></dir><dir name="Widget"><dir name="Post"><file name="Latest.php" hash="ff33c14c113bee2713a0a6dfe911114a"/><file name="List.php" hash="e2736e71d55aaf928c2076352e903cee"/><file name="Selected.php" hash="cce5921ac403bf42651b2ad3b36339f6"/></dir></dir></dir><dir name="Controller"><file name="Abstract.php" hash="638b2fcec2795b83b46dfe85225f3576"/><dir name="Adminhtml"><file name="Abstract.php" hash="0751117f5994918f0c81a3c4b98cfbdc"/></dir><file name="Router.php" hash="2e7b89b2f9f4c4f91622ce347b13764c"/></dir><dir name="Helper"><file name="Data.php" hash="fe5dbd8df193162e563109939399f841"/></dir><dir name="Model"><dir name="Abstract"><file name="Store.php" hash="9d262cfacca8bd3830d78e20762dadc3"/></dir><file name="Abstract.php" hash="82e1a4cb4076e9b935ac761395834620"/><dir name="Attribute"><dir name="Source"><file name="Abstract.php" hash="97ec5f9b77052f959f7fa3f17796ae82"/><file name="Boolean.php" hash="a0870b84949c6f859117670a2456a038"/><dir name="Comment"><file name="Status.php" hash="7547f3793167f90ea0409fb6dd9f2482"/><file name="Type.php" hash="7e988c2e014be418d17227c63074ff31"/></dir><file name="Layout.php" hash="e632bed130c1b8471e4725c198ad8ec7"/><dir name="Locale"><file name="Format.php" hash="92af3e18f67679fac0f1946415d03159"/></dir><dir name="Post"><file name="Status.php" hash="34541e499aabb86ede1e5adebe5ceb59"/></dir><file name="Status.php" hash="90696dc092b7b1a4c6aa8208f0661eab"/></dir></dir><file name="Category.php" hash="1a9b5590a63b50fca9a5898cfa5cbbb6"/><file name="Comment.php" hash="4796a2a52886ddbae33b3c752515043b"/><file name="IFrontendRoute.php" hash="490efbbee1cae854f1b1c2709917b5fd"/><file name="Post.php" hash="dc4c5fb86bef7f6147aa06a10290533b"/><dir name="Resource"><dir name="Abstract"><dir name="Status"><file name="Collection.php" hash="0914eb6a74d7b71bdad17ecdafdffc53"/></dir><dir name="Store"><file name="Collection.php" hash="93b80cbfbbf1d72d320dfb7f9924509b"/></dir></dir><dir name="Category"><file name="Collection.php" hash="e9d1f6ab93d9d6fdcb8fe799e67fcfa0"/></dir><file name="Category.php" hash="71ced559b6012fbd7667924efdc86146"/><dir name="Comment"><file name="Collection.php" hash="218e48f15e4dded534fcd5ee6f259d96"/></dir><file name="Comment.php" hash="d423bd5140d49139757b990e197a7cfe"/><dir name="Post"><file name="Collection.php" hash="279f2a7633b33be7be69a92958a094f9"/></dir><file name="Post.php" hash="5eaa7c96f81a11cfef39e7102b6505eb"/><file name="Setup.php" hash="cd5874ee32eeb0e0783cece0422da19b"/><dir name="Tag"><file name="Collection.php" hash="1a90d8f3a7c18543c6b947a7edec5f4a"/></dir><file name="Tag.php" hash="1d53054ba0786464e0f6c871ab596b8f"/></dir><file name="Tag.php" hash="d6fa5e81350163b4ea1833a324c2854c"/></dir><dir name="controllers"><dir name="Adminhtml"><dir name="Neotheme"><dir name="Blog"><file name="CategoryController.php" hash="e72076318482858547b36b0a457cad5e"/><file name="CommentController.php" hash="cfd554e618f69615ce98d19d01d40db6"/><file name="PostController.php" hash="8b47c95fd7b64b18e77e020a9c8e0194"/><file name="UnittestController.php" hash="86b6fe80c0a1e8dbdf3ff9b456312b3c"/><file name="WidgetController.php" hash="8f3db5e039dc5b4b5107daf5eaa7529b"/><file name="WysiwygController.php" hash="688721ddfa2eebffb202327899f597b0"/></dir></dir></dir><file name="CategoryController.php" hash="2de900c3829aa2c71ec6d88cdd90cd17"/><file name="CommentController.php" hash="c074717a8242e62c7e47e64be2e199d9"/><file name="IndexController.php" hash="c3ddc70a383c010645a9cda3b245d4a7"/><file name="PostController.php" hash="eada7f0535363a5b3f941736fe9f0611"/><file name="PreferencesController.php" hash="212186bd93801d792e04d22533b327fd"/><dir name="Rss"><file name="BlogController.php" hash="b3e8eb6c02bf5df5ef025a08247547ee"/></dir></dir><dir name="etc"><file name="adminhtml.xml" hash="057737a4bb8159c1451facf196221886"/><file name="config.xml" hash="5caf76bf55b167e2b9584b2d40474655"/><file name="system.xml" hash="1a5bb10a0ad95c9ec55bdb66edbafaca"/><file name="widget.xml" hash="99ce629c31d51933a622792ffe0f2e84"/></dir><dir name="sql"><dir name="neotheme_blog_setup"><file name="mysql4-install-1.0.0.php" hash="f26afcf0f4d60f17a09ed85fe2ff9424"/><file name="mysql4-upgrade-1.0.0-1.0.0.1.php" hash="836e46f825f234bc00e4f015215a5e92"/><file name="mysql4-upgrade-1.0.0.1-1.0.0.2.php" hash="e157a18682c664056c8fbc642a7ab9f9"/><file name="mysql4-upgrade-1.0.0.2-1.0.0.3.php" hash="e157a18682c664056c8fbc642a7ab9f9"/><file name="mysql4-upgrade-1.0.0.3-1.0.0.4.php" hash="e157a18682c664056c8fbc642a7ab9f9"/><file name="mysql4-upgrade-1.0.0.4-1.0.0.5.php" hash="e157a18682c664056c8fbc642a7ab9f9"/><file name="mysql4-upgrade-1.0.0.5-1.1.0.0.php" hash="ec61031a23b02f5ac366cae0176946b8"/><file name="mysql4-upgrade-1.1.0.0-1.1.1.0.php" hash="c7264d73d30ad5dc9400c43cf2ae34f4"/><file name="mysql4-upgrade-1.1.1.0-1.1.2.0.php" hash="e157a18682c664056c8fbc642a7ab9f9"/><file name="mysql4-upgrade-1.1.2.0-1.1.3.0.php" hash="e157a18682c664056c8fbc642a7ab9f9"/><file name="mysql4-upgrade-1.1.3.0-1.1.4.0.php" hash="e157a18682c664056c8fbc642a7ab9f9"/><file name="mysql4-upgrade-1.1.4.0-1.1.5.0.php" hash="e157a18682c664056c8fbc642a7ab9f9"/><file name="mysql4-upgrade-1.1.5.0-1.1.6.0.php" hash="e157a18682c664056c8fbc642a7ab9f9"/><file name="mysql4-upgrade-1.1.6.0-1.2.0.0.php" hash="8220989be243400361d1eae74fad09f7"/><file name="mysql4-upgrade-1.2.0.0-1.2.1.0.php" hash="7ad37635faf24eb0e275b27bb53dbd62"/><file name="mysql4-upgrade-1.2.1.0-1.2.2.0.php" hash="4c60eab3e53ba0817f3c5c655e0b9076"/><file name="mysql4-upgrade-1.2.10.0-1.3.0.0.php" hash="c205281c2df0206bd837663eaf7fcbef"/><file name="mysql4-upgrade-1.2.2.0-1.2.3.0.php" hash="4c60eab3e53ba0817f3c5c655e0b9076"/><file name="mysql4-upgrade-1.2.3.0-1.2.4.0.php" hash="4c60eab3e53ba0817f3c5c655e0b9076"/><file name="mysql4-upgrade-1.2.4.0-1.2.5.0.php" hash="4c60eab3e53ba0817f3c5c655e0b9076"/><file name="mysql4-upgrade-1.2.5.0-1.2.6.0.php" hash="4c60eab3e53ba0817f3c5c655e0b9076"/><file name="mysql4-upgrade-1.2.6.0-1.2.7.0.php" hash="4c60eab3e53ba0817f3c5c655e0b9076"/><file name="mysql4-upgrade-1.2.7.0-1.2.8.0.php" hash="4c60eab3e53ba0817f3c5c655e0b9076"/><file name="mysql4-upgrade-1.2.8.0-1.2.9.0.php" hash="4c60eab3e53ba0817f3c5c655e0b9076"/><file name="mysql4-upgrade-1.2.9.0-1.2.10.0.php" hash="4c60eab3e53ba0817f3c5c655e0b9076"/><file name="mysql4-upgrade-1.3.0.0-1.4.0.0.php" hash="dd1c42c626b8837aa2c6c94edc307910"/><file name="mysql4-upgrade-1.4.0.0-1.4.1.0.php" hash="a10f078aa5644a822a6b465d86e49bde"/><file name="mysql4-upgrade-1.4.1.0-1.5.0.0.php" hash="3835ebcd9d9bd11e0d322ddc7ca033df"/></dir></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="NeoTheme_Blog.xml" hash="9529e8d4a7afeb87e31a15c711397c74"/></dir></target><target name="magedesign"><dir name="frontend"><dir name="base"><dir name="default"><dir name="layout"><dir name="neotheme"><file name="blog.xml" hash="e3cfc08b754f659a2f8f3f6a845a6008"/></dir></dir><dir name="template"><dir name="neotheme"><dir name="blog"><dir name="account"><dir name="preferences"><file name="edit.phtml" hash="30885ef2f2a053addd2dc83ad52d6151"/></dir></dir><dir name="category"><dir name="list"><file name="rss.phtml" hash="8513c7fa2437ad42b1f2731af05d31fd"/></dir><file name="list.phtml" hash="0693007a708072122dde5bc1273638cb"/></dir><dir name="comment"><dir name="form"><file name="default.phtml" hash="f48423ec9576a5d5e9f25f0afff8452a"/><file name="facebook.phtml" hash="f1b722f80228f4836560bbdbcabe507c"/></dir><file name="form.phtml" hash="e01c770cc0253243ac14d1fb4b9d2996"/><file name="list.phtml" hash="f0b7bbdeaf8e2d91c8c80d4c2da3af83"/><file name="summary.phtml" hash="260d4edfe6dcc6231aca68a4bcfab5fd"/></dir><dir name="post"><file name="detail.phtml" hash="dc4cb9131c5c22fc378328a7654b4c8c"/><file name="list.phtml" hash="412c4adbce9a289ff53fed2bf44c3d90"/><file name="summary.phtml" hash="0a6d537224def2ed2af9175dd5994123"/></dir><dir name="rss"><file name="list.phtml" hash="5bd27ce60d532490af4a5a0d128ea231"/><file name="post.detail.phtml" hash="c90a9011739fa5eed1c0d10d503fc803"/></dir><dir name="widget"><dir name="post"><file name="list_block.phtml" hash="a6a72d6c5623adb899849b906e495448"/><file name="list_inline.phtml" hash="e9096090097554e4b7015042c0b66893"/></dir></dir></dir></dir></dir></dir></dir></dir><dir name="adminhtml"><dir name="default"><dir name="default"><dir name="layout"><dir name="neotheme"><file name="blog.xml" hash="21caea1bb72869b388684083ab9e895f"/></dir></dir><dir name="template"><dir name="neotheme"><dir name="blog"><file name="category.phtml" hash="f93666189e862d3379c967b029c7868f"/><file name="comment.phtml" hash="103417a569c8743c90108bc21a896b99"/><dir name="edit"><dir name="form"><dir name="renderer"><file name="tag.phtml" hash="b3daca4f03ea9f51975540f6087dc3c5"/></dir></dir></dir><file name="post.phtml" hash="8fb9c032c7f1b4016768bef91d2e438e"/></dir></dir></dir></dir></dir></dir></target><target name="mageskin"><dir name="frontend"><dir name="base"><dir name="default"><dir name="css"><dir name="neotheme"><dir name="blog"><file name="blog.css" hash="f437f2ab6fe0ecb17b83417878f7c1d3"/></dir></dir></dir></dir></dir></dir><dir name="adminhtml"><dir name="base"><dir name="default"><dir name="images"><dir name="neotheme"><dir name="blog"><file name="blog-logo.gif" hash="7ffea778a9629dc54ead98a8452eaaf8"/></dir></dir></dir></dir></dir></dir></target><target name="magelocale"><dir name="de_DE"><file name="NeoTheme_Blog.csv" hash="e2399bd6470a373d2fd48c23daee4679"/></dir><dir name="en_US"><file name="NeoTheme_Blog.csv" hash="e5929b386af2a641749bc9e878ccba36"/></dir><dir name="es_ES"><file name="NeoTheme_Blog.csv" hash="e783c88918451dceff7a096157a214ca"/></dir><dir name="fr_FR"><file name="NeoTheme_Blog.csv" hash="4840cfc97008f22e1b2529563a8d4a04"/></dir><dir name="nl_NL"><file name="NeoTheme_Blog.csv" hash="ae560ea04a8bb677adf9f55bf9b0dc79"/></dir></target></contents>
+    <compatible/>
+    <dependencies><required><php><min>5.2.0</min><max>5.5.12</max></php></required></dependencies>
+</package>

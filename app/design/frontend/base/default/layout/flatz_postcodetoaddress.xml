@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<layout version="1.0">
+    <customer_address_form>
+        <reference name="head">
+          <action method="addJs" ifconfig="postcodetoaddress/settings/enable"><script>flatz/post2addr.js</script></action>
+        </reference>
+        <reference name="before_body_end">
+          <block type="core/template" name="postcodetoaddress" template="postcodetoaddress/js.phtml">
+            <action method="setMode"><p></p></action>
+            <action method="setButtonId"><p>posttoaddr</p></action>
+            <action method="setZipId"><p>zip</p></action>
+            <action method="setRegionId"><p>region_id</p></action>
+            <action method="setCityId"><p>city</p></action>
+            <action method="setStreetId"><p>street_1</p></action>
+            <action method="setCountryId"><p>country</p></action>
+          </block>
+        </reference>
+    </customer_address_form>
+    <checkout_onepage_index>
+        <reference name="head">
+          <action ifconfig="postcodetoaddress/settings/enable" method="addJs"><script>flatz/post2addr.js</script></action>
+        </reference>
+        <reference name="before_body_end">
+          <block type="core/template" name="postcodetoaddress.billing" template="postcodetoaddress/js.phtml">
+            <action method="setMode"><p>b</p></action>
+            <action method="setButtonId"><p>billing:posttoaddr</p></action>
+            <action method="setZipId"><p>billing:postcode</p></action>
+            <action method="setRegionId"><p>billing:region_id</p></action>
+            <action method="setCityId"><p>billing:city</p></action>
+            <action method="setStreetId"><p>billing:street1</p></action>
+            <action method="setCountryId"><p>billing:country_id</p></action>
+          </block>
+          <block type="core/template" name="postcodetoaddress.shipping" template="postcodetoaddress/js.phtml">
+            <action method="setMode"><p>s</p></action>
+            <action method="setButtonId"><p>shipping:posttoaddr</p></action>
+            <action method="setZipId"><p>shipping:postcode</p></action>
+            <action method="setRegionId"><p>shipping:region_id</p></action>
+            <action method="setCityId"><p>shipping:city</p></action>
+            <action method="setStreetId"><p>shipping:street1</p></action>
+            <action method="setCountryId"><p>shipping:country_id</p></action>
+          </block>
+        </reference>
+    </checkout_onepage_index>
+</layout>

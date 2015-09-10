@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!--
+/*
+ * Irvine Systems Shipping Japan Ymt
+ *
+ * NOTICE OF LICENSE
+ * This source file is subject to the Revised BSD License which is bundled with
+ * this package in the files LICENSE.txt and LICENSE.html.
+ *
+ * @category	Magento Shipping Extension
+ * @package		IrvineSystems_Yamato
+ * @author Irvine Systems, Inc.
+ * @copyright Copyright (c) 2015, Irvine Systems, Inc. (http://irvinesystems.co.jp/)
+ * @license     Revised BSD License
+ */
+-->
+<config>
+  <menu>
+    <sales>
+      <children>
+        <shipmentslips translate="title" module="yamato">
+          <title>Shipments Slips</title>
+          <sort_order>31</sort_order>
+          <children>
+            <yamato translate="title" module="yamato">
+              <title>Yamato</title>
+              <sort_order>50</sort_order>
+              <children>
+                <slips translate="title" module="yamato">
+                  <title>Edit and Export Slips</title>
+                  <sort_order>1</sort_order>
+                  <action>yamato/adminhtml_slips</action>
+                </slips>
+              </children>
+              <children>
+                <import translate="title" module="yamato">
+                  <title>Import Shipments Slips</title>
+                  <sort_order>2</sort_order>
+                  <action>yamato/adminhtml_import</action>
+                </import>
+              </children>
+            </yamato>
+          </children>
+        </shipmentslips>
+      </children>
+    </sales>
+  </menu>
+  <acl>
+    <resources>
+      <all>
+        <title>Allow Everything</title>
+      </all>
+      <admin>
+        <children>
+          <system>
+            <children>
+              <config>
+                <children>
+                  <yamato translate="title" module="yamato">
+                    <title>Irvine Systems &gt; Shipping Japan Ymt</title>
+                    <sort_order>1000</sort_order>
+                  </yamato>
+                </children>
+              </config>
+            </children>
+          </system>
+        </children>
+      </admin>
+    </resources>
+  </acl>
+</config>

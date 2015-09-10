@@ -1,0 +1,199 @@
+<?php
+/*
+ * Irvine Systems Shipping Japan Ymt
+ *
+ * NOTICE OF LICENSE
+ * This source file is subject to the Revised BSD License which is bundled with
+ * this package in the files LICENSE.txt and LICENSE.html.
+ *
+ * @category	Magento Shipping Extension
+ * @package		IrvineSystems_Yamato
+ * @author Irvine Systems, Inc.
+ * @copyright Copyright (c) 2015, Irvine Systems, Inc. (http://irvinesystems.co.jp/)
+ * @license     Revised BSD License
+ */
+?>
+
+<?php
+/**
+* Shipping Japan Ymt Form Template
+* 
+* @var $this IrvineSystems_Deliverydate_Block_Deliverydate_Form
+* @see IrvineSystems_Deliverydate_Block_Deliverydate_Form
+*/
+?>
+
+<?php // Check if the Form is avaiulable ?>
+<?php if($this->canRender()):?>
+	<?php // Get extension Helper ?>
+	<?php $helper = Mage::helper('yamato');?>
+
+	<script type="text/javascript">
+	//<![CDATA[
+		// Default hidden Groups
+		if($('cool-shipment-group')) $('cool-shipment-group').hide();
+		if($('yamato-office-group')) $('yamato-office-group').hide();
+		if($('schedule-group')) $('schedule-group').hide();
+		if($('complete-group')) $('complete-group').hide();
+
+		// Control "yamato-office-group" Visibility
+		checkPickUp = function (thisvalue){
+			if(thisvalue.checked){
+				$('yamato-office-group').show();
+				} else {
+				$('yamato-office-group').hide();
+			};
+		};
+
+		// Control "schedule-group" Visibility
+		checkSchedule = function (thisvalue){
+			if(thisvalue.checked){
+				$('schedule-group').show();
+				} else {
+				$('schedule-group').hide();
+			};
+		};
+
+		// Control "complete-group" Visibility
+		checkComplete = function (thisvalue){
+			if(thisvalue.checked){
+				$('complete-group').show();
+				} else {
+				$('complete-group').hide();
+			};
+		};
+
+		// Control "cool-shipment-group" Visibility
+		checkCool = function (thisvalue){
+			if(thisvalue.checked){
+				$('cool-shipment-group').show();
+				} else {
+				$('cool-shipment-group').hide();
+			};
+			<?php // Firecheckout Totals Updater ?>
+			<?php if($helper->hasFirecheckout()):?>
+		        new Ajax.Request(ajaxURL, {
+		            method: 'post',
+		            onSuccess: function(transport){},
+		            onFailure: function(){}
+		        });
+				checkout.update(checkout.urls.shipping_method, { 'review': 1 });
+			<?php endif;?> 
+		};
+		// Control "cool-shipment-group" Visibility
+		checkExp = function (thisvalue){
+			<?php // Firecheckout Totals Updater ?>
+			<?php if($helper->hasFirecheckout()):?>
+		        new Ajax.Request(ajaxURL, {
+		            method: 'post',
+		            onSuccess: function(transport){},
+		            onFailure: function(){}
+		        });
+				checkout.update(checkout.urls.shipping_method, { 'review': 1 });
+			<?php endif;?> 
+		};
+	//]]>
+	</script>
+
+	<?php // Render Carrier Shipping Options ?>
+	<ul>
+		<?php // Delivery Method Options ?>
+		<li>
+			<h3><?php echo $helper->__('Shipping Preferences') ?></h3>
+		</li>
+
+		<?php // Package Content Handling Options (Only Available according for Ta-Q-Bin) ?>
+		<?php if($this->canHandle()):?>
+		<li>
+			<b><?php echo $helper->__('Package Handling:') ?></b><br/>
+			<label for="handling1_value"><?php echo $helper->__("Handling 1"); echo ' '; echo $helper->__("Limit:Max length 20 byte character") ?></label>
+			<div class="input-box">
+				<input type="text" name="handling1_value" value="" id="handling1_value" class="input-text validate-length maximum-length-20" maxlength="20" style="width:100%" /> 
+			</div>
+			<label for="handling2_value"><?php echo $helper->__("Handling 2"); echo ' '; echo $helper->__("Limit:Max length 20 byte character") ?></label>
+			<div class="input-box">
+				<input type="text" name="handling2_value" value="" id="handling2_value"  class="input-text validate-length maximum-length-20" maxlength="20" style="width:100%" /> 
+			</div>
+		</li>
+		<?php endif;?>
+
+		<?php // Cool Shipments Options (Only Available according the Current Shopping Cart Dimension and weight) ?>
+		<?php if($this->canExpress()):?>
+		<li>
+			<b><?php echo $helper->__('Express Service:') ?></b><br/>
+			<div class="check-box">
+				<input type="checkbox" name="exp_shipments_value" value="1" id="exp_shipments_value" class="checkbox" onClick="checkExp(this);" /> 
+				<?php $expLabel =  $helper->__('Use Express Service (+%s)',$this->getExpressRate()) ?>
+				<label for="exp_shipments_value"><?php echo $expLabel ?></label>
+			</div>
+		</li>
+		<?php endif;?>
+
+		<?php // Cool Shipments Options (Only Available according the Current Shopping Cart Dimension and weight) ?>
+		<?php if($this->canCool()):?>
+		<li>
+			<b><?php echo $helper->__('Cool Shipments:') ?></b><br/>
+			<div class="check-box">
+				<input type="checkbox" name="cool_shipments_value" value="1" id="cool_shipments_value" class="checkbox" onClick="checkCool(this);" /> 
+				<?php $coolLabel =  $helper->__('Cool Shipments (+%s)',$this->getCoolRate()) ?>
+				<label for="cool_shipments_value"><?php echo $coolLabel ?></label>
+			</div>
+			<div id="cool-shipment-group" class="input-box">
+				<label for="cooler_value"><?php echo $helper->__("Cool Shipment Type:") ?></label>
+				<select name="cooler_value" id="cooler_value" class="input-box" style="width:100%" >
+					<?php echo $this->getCoolShipHtmlSelect();?>
+				</select>
+			</div>
+		</li>
+		<?php endif;?>
+
+		<?php // Held at Yamato Office Options ?>
+		<li>
+			<b><?php echo $helper->__('Held at Yamato Office:') ?></b><br/>
+			<div class="check-box">
+				<input type="checkbox" name="held_yamato_office_value" value="1" id="held_yamato_office_value" class="checkbox" onClick="checkPickUp(this);" /> 
+				<label for="held_yamato_office_value"><?php echo $helper->__("Use Held at Yamato Office") ?></label>
+			</div>
+			<div id="yamato-office-group" class="input-box">
+				<label for="yamato_office_id_value"><?php echo $helper->__("Yamato Office ID") ?></label>
+				<input type="text" name="yamato_office_id_value" value="" id="yamato_office_id_value"  class="input-text required-entry validate-length minimum-length-6 maximum-length-6 " maxlength="6" style="width:100%" /> 
+			</div>
+		</li>
+
+		<?php // Delivery Notifications Options (Only Available according for Ta-Q-Bin) ?>
+		<?php if($this->canNotify()):?>
+		<li>
+			<b><?php echo $helper->__('Delivery Notifications:') ?></b><br/>
+			<div class="check-box">
+				<input type="checkbox" name="enable_email_to_notice_schedule_value" value="1" id="enable_email_to_notice_schedule_value" class="checkbox" onClick="checkSchedule(this);" /> 
+				<label for="enable_email_to_notice_schedule_value"><?php echo $helper->__("Use Email to Notice Schedule") ?></label>
+			</div>
+			<div id="schedule-group" class="input-box">
+				<ul>
+					<li>
+						<input type="radio" name="input_equipment_value" value="1" id="input_equipment_value_pc" class="radio" checked />
+						<label for="input_equipment_value_pc"><?php echo $helper->__("Use PC Email Address") ?></label>
+					</li>
+					<li>
+						<input type="radio" name="input_equipment_value" value="2" id="input_equipment_value_mobile" class="radio" />
+						<label for="input_equipment_value_mobile"><?php echo $helper->__("Use Mobile Email Address") ?></label>
+					</li>
+					<li>
+						<label for="email_to_notice_schedule_value"><?php echo $helper->__("Email to Notice Schedule") ?></label>
+						<input type="text" name="email_to_notice_schedule_value" value="" id="email_to_notice_schedule_value"  class="input-text required-entry validate-email" maxlength="60" style="width:100%" /> 
+					</li>
+				</ul>
+			</div>
+			<div class="check-box">
+				<input type="checkbox" name="enable_email_to_notice_complete_value" value="1" id="enable_email_to_notice_complete_value" class="checkbox" onClick="checkComplete(this);" /> 
+				<label for="enable_email_to_notice_complete_value"><?php echo $helper->__("Use Email to Notice Complete") ?></label>
+			</div>
+			<div id="complete-group" class="input-box">
+				<label for="email_to_notice_complete_value"><?php echo $helper->__("Email to Notice Complete") ?></label>
+				<input type="text" name="email_to_notice_complete_value" value="" id="email_to_notice_complete_value"  class="input-text required-entry validate-email" maxlength="60" style="width:100%" /> 
+			</div>
+		</li>
+		<?php endif;?>
+
+	</ul>
+<?php endif;?>

@@ -1,0 +1,84 @@
+<?php
+//{{block type="core/template" show_total="4" name="product_featured" as="product_featured" template="catalog/product/featured.phtml}}
+
+
+
+$totalPerPage = ($this->show_total) ? $this->show_total : 4;
+$visibility = array(
+                      Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH,
+                      Mage_Catalog_Model_Product_Visibility::VISIBILITY_IN_CATALOG
+                  );
+
+$storeId = Mage::app()->getStore()->getId();
+
+$_productCollection = Mage::getResourceModel('reports/product_collection')
+						->addAttributeToSelect('*')     
+					    ->setStoreId($storeId)
+                        ->addStoreFilter($storeId)	
+					    ->addAttributeToFilter('visibility', $visibility)						
+						->setOrder('created_at', 'desc')
+						->addAttributeToSelect('status') 
+						->setPageSize($totalPerPage);
+Mage::getSingleton('catalog/product_status')->addVisibleFilterToCollection($_productCollection);
+Mage::getSingleton('cataloginventory/stock')->addInStockFilterToCollection($_productCollection);
+Mage::getSingleton('catalog/product_visibility')->addVisibleInSearchFilterToCollection($_productCollection);
+
+
+// // if product is part of configurable product get first parent product
+// $junkProducts = new Varien_Data_Collection();
+// foreach ($_productCollection as $k => $p) {
+	// $p = $p->loadParentProductIds();
+	// $parentIds = $p->getData('parent_product_ids');	
+	// if (is_array($parentIds) && !empty($parentIds)) {
+		// if (!$junkProducts->getItemById($parentIds[0])) {
+			// $parentProduct = Mage::getModel('catalog/product')->setStoreId($storeId)->load($parentIds[0]);
+			// if ($parentProduct->isVisibleInCatalog()) {
+				// $junkProducts->addItem($parentProduct);
+			// }
+		// }
+	// } else {
+		// if (!$junkProducts->getItemById($k)) {
+			// $junkProducts->addItem($p);
+		// }
+	// }		
+// }
+// $_productCollection = $junkProducts;
+// //end if product is part of configurable product get first parent product
+?>
+<div class="product_head">
+	<h2>New Musics</h2>
+</div>
+<div class="product_body" >
+<div class="product_body_top" ><span></span></div>
+<div class="product_body_middle" >
+<?php $_collectionSize = $_productCollection->count() ?>
+    <table class="generic-product-grid product-list-table">
+    <?php $i=0; foreach ($_productCollection as $_product): ?>
+    <?php if ($i++%4==0): ?>
+    <tr>
+    <?php endif ?>
+        <td>
+            <p class="product-image">
+                <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($this->getImageLabel($_product, 'small_image')) ?>">
+                    <img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(113, 167); ?>" alt="<?php echo $this->htmlEscape($this->getImageLabel($_product, 'small_image')) ?>" title="<?php echo $this->htmlEscape($this->getImageLabel($_product, 'small_image')) ?>" />
+                </a>
+            </p>
+            <div class="clear"></div>
+        </td>
+    <?php if ($i%4==0 && $i!=$_collectionSize): ?>
+    </tr>
+    <?php endif ?>
+    <?php endforeach ?>
+    <?php for($i;$i%4!=0;$i++): ?>
+          <td class="empty-product">&nbsp;</td>
+    <?php endfor ?>
+    <?php if ($i%4==0): ?>
+    </tr>
+    <?php endif ?>
+    </table>
+    <script type="text/javascript">decorateTable('product-list-table')</script>
+	<p class="view_more"><a href=""> >&nbsp;&nbsp;View More</a>
+	</p>
+	</div>
+	<div class="product_body_bottom" ><span></span></div>
+</div>

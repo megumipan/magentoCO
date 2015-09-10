@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package>
+    <name>techBandhu_asktologin</name>
+    <version>0.1.5</version>
+    <stability>stable</stability>
+    <license>http://opensource.org/licenses/osl-3.0.php</license>
+    <channel>community</channel>
+    <extends/>
+    <summary>forced popup login boxes</summary>
+    <description>Forced popup login boxes</description>
+    <notes>First Preview Release</notes>
+    <authors><author><name>Tech Bandhu</name><user>techbandhu</user><email>techbandhus@gmail.com</email></author></authors>
+    <date>2013-11-13</date>
+    <time>09:44:01</time>
+    <contents><target name="mageetc"><dir name="modules"><file name="Techbandhu_Asktologin.xml" hash="0cdd96d33eb6120502589f33e1ad7f1e"/></dir></target><target name="magecommunity"><dir name="Techbandhu"><dir name="Asktologin"><dir name="Block"><file name="Asktologin.php" hash="73455a02ecea4b313bc79b97c7738680"/></dir><dir name="Helper"><file name="Data.php" hash="9604c16af193df5636c7bc11a1b01fe9"/></dir><dir name="controllers"><file name="AjaxController.php" hash="c97e26a7a8a87e251ad8177eba9c465d"/></dir><dir name="etc"><file name="config.xml" hash="84689c0bf51a753efc3a1680554cdbed"/><file name="system.xml" hash="f1e8a092fd1762d8798de31c3e50a442"/></dir></dir></dir></target><target name="magedesign"><dir name="frontend"><dir name="base"><dir name="default"><dir name="layout"><file name="asktologin.xml" hash="074477a5bc691a6473f77e31b6bea11b"/></dir><dir name="template"><dir name="asktologin"><file name="index.phtml" hash="0488ecd5be474eb8ea6a471363b5991a"/></dir></dir></dir></dir></dir></target></contents>
+    <compatible/>
+    <dependencies><required><php><min>5.1.0</min><max>6.0.0</max></php></required></dependencies>
+</package>

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0"?>
+<!--
+/*
+ * Irvine Systems Shipping Japan Ymt
+ *
+ * NOTICE OF LICENSE
+ * This source file is subject to the Revised BSD License which is bundled with
+ * this package in the files LICENSE.txt and LICENSE.html.
+ *
+ * @category	Magento Shipping Extension
+ * @package		IrvineSystems_Yamato
+ * @author Irvine Systems, Inc.
+ * @copyright Copyright (c) 2015, Irvine Systems, Inc. (http://irvinesystems.co.jp/)
+ * @license     Revised BSD License
+ */
+-->
+
+<layout version="0.1.0">
+  <!-- ********************** CHECKOUT ONEPAGE LAYOUT UPDATES ********************* -->
+  <checkout_onepage_shippingmethod>
+    <reference name="root">
+      <action method="setTemplate" ifconfig="yamato/slips/ajaxenable">
+        <template>yamato/available.phtml</template>
+      </action>
+      <block type="checkout/onepage_shipping_method_available" template="checkout/onepage/shipping_method/available.phtml" name="yamato.available"></block>
+      <block type="yamato/yamato" name="yamato.yamato">
+        <block type="yamato/yamato_form" name="yamato.form"></block>
+      </block>
+    </reference>
+  </checkout_onepage_shippingmethod>
+</layout>

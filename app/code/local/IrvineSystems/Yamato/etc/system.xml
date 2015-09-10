@@ -1,0 +1,551 @@
+<?xml version="1.0"?>
+<!--
+/*
+ * Irvine Systems Shipping Japan Ymt
+ *
+ * NOTICE OF LICENSE
+ * This source file is subject to the Revised BSD License which is bundled with
+ * this package in the files LICENSE.txt and LICENSE.html.
+ *
+ * @category	Magento Shipping Extension
+ * @package		IrvineSystems_Yamato
+ * @author Irvine Systems, Inc.
+ * @copyright Copyright (c) 2015, Irvine Systems, Inc. (http://irvinesystems.co.jp/)
+ * @license     Revised BSD License
+ */
+-->
+<config>
+  <sections>
+    <!-- ******* MODULE SETTING MAIN SECTION (Carriers Groups) ******* -->
+    <carriers>
+      <groups>
+        <yamato translate="label" module="shipping">
+          <label>Yamato Transport Co.,Ltd. (Powered by Irvine Systems.)</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>0</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <fields>
+            <active translate="label">
+              <label>Enabled</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <sort_order>1</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </active>
+            <title translate="label">
+              <label>Title</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>10</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </title>
+            <sort_order translate="label">
+              <label>Sort order</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>20</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </sort_order>
+            <unit_of_measure translate="label">
+              <label>Store Weight Unit</label>
+              <frontend_type>select</frontend_type>
+              <source_model>yamato/system_config_source_dropdown_unitofmeasure</source_model>
+              <sort_order>30</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </unit_of_measure>
+            <handling_type translate="label">
+              <label>Calculate Handling Fee</label>
+              <frontend_type>select</frontend_type>
+              <source_model>shipping/source_handlingType</source_model>
+              <sort_order>40</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </handling_type>
+            <handling_action translate="label">
+              <label>Handling Applied</label>
+              <frontend_type>select</frontend_type>
+              <source_model>shipping/source_handlingAction</source_model>
+              <sort_order>50</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </handling_action>
+            <handling_fee translate="label">
+              <label>Handling Fee</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>60</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </handling_fee>
+          </fields>
+        </yamato>
+      </groups>
+    </carriers>
+    
+    <!-- ******* MODULE SETTING MAIN SECTION (Payment Groups) ******* -->
+    <payment>
+      <groups>
+        <yamatocod translate="label" module="yamato">
+          <label>Yamato cash on Delivery</label>
+          <sort_order></sort_order>
+          <show_in_default>0</show_in_default>
+          <show_in_website>0</show_in_website>
+          <show_in_store>0</show_in_store>
+          <fields>
+            <active translate="label">
+              <label>Enabled</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <sort_order>10</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </active>
+            <order_status translate="label">
+              <label>Order status</label>
+              <frontend_type>select</frontend_type>
+              <source_model>adminhtml/system_config_source_order_status_processing</source_model>
+              <sort_order>20</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </order_status>
+            <title translate="label">
+              <label>Method Title</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>30</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </title>
+          </fields>
+        </yamatocod>
+      </groups>
+    </payment>
+    
+    <!-- ********** MODULE SETTING SECTION (Current Module) ********** -->
+    <yamato translate="label" module="yamato">
+      <label>Shipping Japan Ymt</label>
+      <tab>irvinesystems</tab>
+      <frontend_type>text</frontend_type>
+      <sort_order>1920</sort_order>
+      <show_in_default>1</show_in_default>
+      <show_in_website>1</show_in_website>
+      <show_in_store>1</show_in_store>
+      <groups>
+        <about translate="label">
+          <label>About Shipping Japan Ymt</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>0</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <fields>
+            <version translate="label">
+              <label>Extension Release</label>
+              <frontend_type>label</frontend_type>
+              <sort_order>10</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </version>
+            <info>
+              <frontend_model>yamato/aboutYamato</frontend_model>
+              <sort_order>20</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </info>
+          </fields>
+        </about>
+        <general translate="label">
+          <label>General Settings</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>10</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <fields>
+            <profit_type translate="label">
+              <label>Calculate Profit on Shipping</label>
+              <frontend_type>select</frontend_type>
+              <source_model>shipping/source_handlingType</source_model>
+              <sort_order>10</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </profit_type>
+            <profit_fee translate="label">
+              <label>Profit Value</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>20</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </profit_fee>
+            <max_package_weight translate="label comment">
+              <label>Maximum Package Weight (g)</label>
+              <comment>Maximun weight limit for all Shipping methods.</comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>30</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>0</show_in_website>
+              <show_in_store>0</show_in_store>
+              <validate>validate-digits</validate>
+            </max_package_weight>
+            <locmaxsize translate="label comment">
+              <label>Maximum Package Size (mm)</label>
+              <comment>Maximum size limit for all Shipping methods (L+W+H).</comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>40</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>0</show_in_website>
+              <show_in_store>0</show_in_store>
+              <validate>validate-digits</validate>
+            </locmaxsize>
+          </fields>
+        </general>
+
+        <!-- Local Shipping Settings - Mail-BIN -->
+        <mailbin translate="label">
+          <label>Local Shipping Settings - Mail-BIN</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>20</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <fields>
+            <title translate="label comment">
+              <label>Method Title</label>
+              <comment>Title of the Shipping Method displayed in Frontend.</comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>10</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </title>
+            <showmethod translate="label comment">
+              <label>Show Results</label>
+              <comment>If enabled will allow to show the results for the method in Frontend.</comment>
+              <frontend_type>select</frontend_type>
+              <sort_order>20</sort_order>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </showmethod>
+            <showmailexpress translate="label comment">
+              <label>Enable Mail-Bin Express Service</label>
+              <comment>If enabled will allow the customer to choose mailbin express service as option when mail-bin shipping method is selected.</comment>
+              <frontend_type>select</frontend_type>
+              <sort_order>30</sort_order>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </showmailexpress>
+            <mailexpressfee translate="label comment">
+              <label>Mail-Bin Express Fee</label>
+              <comment>Additional fee for mail-bin express service.</comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>40</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <validate>validate-digits</validate>
+              <depends>
+                <showmailexpress>1</showmailexpress>
+              </depends>
+            </mailexpressfee>
+            <maxweight translate="label comment">
+              <label>Maximum Package Weight (g)</label>
+              <comment>Maximum package weight allowed for the method.</comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>50</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>0</show_in_website>
+              <show_in_store>0</show_in_store>
+              <validate>validate-digits</validate>
+            </maxweight>
+            <maxlenght translate="label comment">
+              <label>Maximum Package Length (mm)</label>
+              <comment>Maximum package length allowed for the method (Length = package greatest measure).</comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>60</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>0</show_in_website>
+              <show_in_store>0</show_in_store>
+              <validate>validate-digits</validate>
+            </maxlenght>
+            <maxwidth translate="label comment">
+              <label>Maximum Package Width (mm)</label>
+              <comment>Maximum package width allowed for the method (Width = package middle measure).</comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>70</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>0</show_in_website>
+              <show_in_store>0</show_in_store>
+              <validate>validate-digits</validate>
+            </maxwidth>
+            <maxdepth translate="label comment">
+              <label>Maximum Package Depth (mm)</label>
+              <comment>Maximum package depth allowed for the method (Depth = package smallest measure).</comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>80</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>0</show_in_website>
+              <show_in_store>0</show_in_store>
+              <validate>validate-digits</validate>
+            </maxdepth>
+            <maxtotal translate="label comment">
+              <label>Maximum Package Size (mm)</label>
+              <comment>Maximum package size allowed for the method. (L+W+D)</comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>90</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>0</show_in_website>
+              <show_in_store>0</show_in_store>
+              <validate>validate-digits</validate>
+            </maxtotal>
+            <finaladd translate="label comment">
+              <label>Additional Cost</label>
+              <comment>Any additional cost you may want to apply for the shipping Method.</comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>100</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <validate>validate-digits</validate>
+            </finaladd>
+          </fields>
+        </mailbin>
+
+        <!-- Local Shipping Settings - Ta-Q-BIN -->
+        <taqbin translate="label">
+          <label>Local Shipping Settings - Ta-Q-BIN</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>40</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <fields>
+            <title translate="label comment">
+              <label>Method Title</label>
+              <comment>Title of the Shipping Method displayed in Frontend.</comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>10</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </title>
+            <showmethod translate="label comment">
+              <label>Show Results</label>
+              <comment>If enabled will allow to show the results for the method in Frontend.</comment>
+              <frontend_type>select</frontend_type>
+              <sort_order>20</sort_order>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </showmethod>
+			<showcool translate="label comment">
+              <label>Enable Cool Shipments</label>
+              <comment>If enabled will allow the customer to choose cool shipments as option.</comment>
+              <frontend_type>select</frontend_type>
+              <sort_order>30</sort_order>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </showcool>
+            <showcod translate="label comment">
+              <label>Enable Cash on Delivery Option</label>
+              <comment>If enabled will allow the customer to choose cash on delivery as Payment method when this shipping method is selected.</comment>
+              <frontend_type>select</frontend_type>
+              <sort_order>40</sort_order>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </showcod>
+            <internalcod translate="label comment">
+              <label>Use internal Cash on Delivery Fees</label>
+              <comment>If set to yes the specific carrier fees for cash on delivery service will be used.</comment>
+              <frontend_type>select</frontend_type>
+              <sort_order>50</sort_order>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <depends>
+                <showcod>1</showcod>
+              </depends>
+            </internalcod>
+            <finaladd translate="label comment">
+              <label>Additional Cost</label>
+              <comment>Any additional cost you may want to apply for the shipping Method.</comment>
+              <frontend_type>text</frontend_type>
+              <sort_order>60</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+              <validate>validate-digits</validate>
+            </finaladd>
+          </fields>
+        </taqbin>
+
+        <!-- Shipping Slips Configuration -->
+        <slips translate="label">
+          <label>Shipping Slips Configuration</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>80</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <fields>
+            <ajaxenable translate="label comment">
+              <label>Enable Customer Shipping Options</label>
+              <comment>If enable customer shipping options will be available to be selected during checkout.</comment>
+              <frontend_type>select</frontend_type>
+              <sort_order>10</sort_order>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </ajaxenable>
+            <member_number translate="label comment">
+              <label>Sender Member Number</label>
+              <comment>Insert the sender member number which will be exported for the slips.</comment>
+              <frontend_type>text</frontend_type>
+              <validate>validate-length maximum-length-20</validate>
+              <sort_order>20</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </member_number>
+            <name translate="label comment">
+              <label>Sender Name</label>
+              <comment>Insert the sender name which will be exported for the slips.</comment>
+              <frontend_type>text</frontend_type>
+              <validate>validate-length maximum-length-32</validate>
+              <sort_order>30</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </name>
+            <name_kana translate="label comment">
+              <label>Sender Name (kana)</label>
+              <comment>Insert the sender name in kana which will be exported for the slips.</comment>
+              <frontend_type>text</frontend_type>
+              <validate>validate-length maximum-length-100</validate>
+              <sort_order>40</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </name_kana>
+            <address translate="label comment">
+              <label>Sender Address</label>
+              <comment>Insert the sender full address which will be exported for the slips.</comment>
+              <frontend_type>textarea</frontend_type>
+              <validate>validate-length maximum-length-64</validate>
+              <sort_order>50</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </address>
+            <postcode translate="label comment">
+              <label>Sender Post Code</label>
+              <comment>Insert the sender post code which will be exported for the slips.</comment>
+              <frontend_type>text</frontend_type>
+              <validate>validate-length maximum-length-8</validate>
+              <sort_order>60</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </postcode>
+            <tel translate="label comment">
+              <label>Sender Telephone</label>
+              <comment>Insert the sender telephone number which will be exported for the slips.</comment>
+              <frontend_type>text</frontend_type>
+              <validate>validate-length maximum-length-15</validate>
+              <sort_order>70</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </tel>
+            <tel_branch_num translate="label comment">
+              <label>Sender Telephone Branch Number</label>
+              <comment>Insert the sender telephone branch number number which will be exported for the slips.</comment>
+              <frontend_type>text</frontend_type>
+              <validate>validate-length maximum-length-2</validate>
+              <sort_order>80</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </tel_branch_num>
+            <invoice_customer_id translate="label comment">
+              <label>Invoice Customer ID</label>
+              <comment>Insert the invoice customer id which will be exported for the slips.</comment>
+              <frontend_type>text</frontend_type>
+              <validate>validate-length maximum-length-12</validate>
+              <sort_order>90</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </invoice_customer_id>
+            <invoice_class_id translate="label comment">
+              <label>Invoice Class ID</label>
+              <comment>Insert the invoice class id which will be exported for the slips.</comment>
+              <frontend_type>text</frontend_type>
+              <validate>validate-length maximum-length-3</validate>
+              <sort_order>100</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </invoice_class_id>
+            <shipping_charge_number translate="label comment">
+              <label>Shipping Charge Number</label>
+              <comment>Insert the shipping charge number which will be exported for the slips.</comment>
+              <frontend_type>text</frontend_type>
+              <validate>validate-length maximum-length-2</validate>
+              <sort_order>110</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </shipping_charge_number>
+            <mail_message_to_schedule translate="label comment">
+              <label>Sender Message For Notice Schedule Mail</label>
+              <comment>Insert the sender message when user use notice schedule mail.</comment>
+              <frontend_type>textarea</frontend_type>
+              <validate>validate-length maximum-length-148</validate>
+              <sort_order>120</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </mail_message_to_schedule>
+            <mail_message_to_complete translate="label comment">
+              <label>Sender Message For Notice complete Mail</label>
+              <comment>Insert the sender message when user use notice complate mail.</comment>
+              <frontend_type>textarea</frontend_type>
+              <validate>validate-length maximum-length-318</validate>
+              <sort_order>130</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </mail_message_to_complete>
+          </fields>
+        </slips>
+      </groups>
+    </yamato>
+  </sections>
+</config>

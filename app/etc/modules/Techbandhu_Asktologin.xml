@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * @category  Techbandhu
+ * @package   Techbandhu_Asktologin
+ * @author 	  TechBandhu <techbandhus@gmail.com>
+ */
+-->
+<config>
+    <modules>
+        <Techbandhu_Asktologin>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Techbandhu_Asktologin>
+    </modules>
+</config>

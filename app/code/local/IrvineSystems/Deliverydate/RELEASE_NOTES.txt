@@ -1,0 +1,27 @@
+==== 1.0.1.0 ====
+
+=== Major Highlights ===
+Added Compatibility with Magento 1.8
+Improved extension processing performance
+
+=== Improvements ===
+Added Calendar Skins Management
+Added Automated localization for pt_PT, zh_CN, zh_TW
+
+
+==== 1.0.0.0 ====
+
+=== Features ===
+AJAX dinamic Update
+Delivery Date information in Order Grid
+Shipping Delivery Date And Time Management
+Shipping Delivery comment Management
+Customer and Admin Order info implement all the delivery date information
+Stock Status Item delivery date management (offer different date if items are in stock or not)
+Store Closing day management
+Specific delivery time ranges
+Specific setting for any shipping method.
+Enable/Disable any shipping method or the whole management
+Multi language support
+Error handling
+Magento Connect Manager Comatibility

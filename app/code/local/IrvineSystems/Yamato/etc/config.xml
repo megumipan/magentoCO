@@ -1,0 +1,214 @@
+<?xml version="1.0"?>
+<!--
+/*
+ * Irvine Systems Shipping Japan Ymt
+ *
+ * NOTICE OF LICENSE
+ * This source file is subject to the Revised BSD License which is bundled with
+ * this package in the files LICENSE.txt and LICENSE.html.
+ *
+ * @category	Magento Shipping Extension
+ * @package		IrvineSystems_Yamato
+ * @author Irvine Systems, Inc.
+ * @copyright Copyright (c) 2015, Irvine Systems, Inc. (http://irvinesystems.co.jp/)
+ * @license     Revised BSD License
+ */
+-->
+<config>
+  
+  <!-- ************************* MODULE CONFIGURATION ************************** -->
+  <modules>
+    <IrvineSystems_Yamato>
+      <version>1.0.1.1</version>
+    </IrvineSystems_Yamato>
+  </modules>
+  
+  <!-- ************************* GLOBAL CONFIGURATION ************************** -->
+  <global>
+    <!-- MODULE MODELS -->
+    <models>
+      <yamato>
+        <class>IrvineSystems_Yamato_Model</class>
+        <resourceModel>yamato_resource</resourceModel>
+      </yamato>
+      <yamato_resource>
+        <class>IrvineSystems_Yamato_Resource</class>
+        <deprecatedNode>IrvineSystems_Yamato_Mysql4</deprecatedNode>
+        <entities>
+          <slips>
+            <table>yamato_slips</table>
+          </slips>
+        </entities>
+      </yamato_resource>
+    </models>
+    <!-- MODULE RESOURCES -->
+    <resources>
+      <yamato_setup>
+        <setup>
+          <module>IrvineSystems_Yamato</module>
+          <class>Mage_Eav_Model_Entity_Setup</class>
+        </setup>
+        <connection>
+          <use>core_setup</use>
+        </connection>
+      </yamato_setup>
+      <yamato_write>
+        <connection>
+          <use>core_write</use>
+        </connection>
+      </yamato_write>
+      <yamato_read>
+        <connection>
+          <use>core_read</use>
+        </connection>
+      </yamato_read>
+    </resources>
+    <!-- MODULE HELPERS -->
+    <helpers>
+      <yamato>
+        <class>IrvineSystems_Yamato_Helper</class>
+      </yamato>
+    </helpers>
+    <!-- MODULE BLOCKS -->
+    <blocks>
+      <yamato>
+        <class>IrvineSystems_Yamato_Block</class>
+      </yamato>
+    </blocks>
+    <!-- MODULE GLOBAL OBSERVERS -->
+    <events>
+      <!-- Order Save Observer for Shipping Slips Option Management and Invoice Creation -->
+      <sales_order_place_after>
+        <observers>
+          <yamato>
+            <type>singleton</type>
+            <class>yamato/observer</class>
+            <method>processOrderAfterSave</method>
+          </yamato>
+        </observers>
+      </sales_order_place_after>
+      <!-- Quote Update Observer for Cash on Delivery Payments Option -->
+      <sales_quote_collect_totals_after>
+        <observers>
+          <yamato>
+            <type>singleton</type>
+            <class>yamato/observer</class>
+            <method>updateCheckoutQuote</method>
+          </yamato>
+        </observers>
+      </sales_quote_collect_totals_after>
+    </events>
+  </global>
+  
+  <!-- ************************ FRONTEND CONFIGURATION ************************* -->
+  <frontend>
+    <!-- TRANSLATION CSV -->
+    <translate>
+      <modules>
+        <IrvineSystems_Yamato>
+          <files>
+            <default>IrvineSystems_Yamato.csv</default>
+          </files>
+        </IrvineSystems_Yamato>
+      </modules>
+    </translate>
+    <!-- LAYOUT UPDATES -->
+    <layout>
+      <updates>
+        <yamato>
+          <file>yamato.xml</file>
+        </yamato>
+      </updates>
+    </layout>
+  </frontend>
+  
+  <!-- ************************* BACKEND CONFIGURATION ************************* -->
+  <adminhtml>
+    <!-- TRANSLATION CSV -->
+    <translate>
+      <modules>
+        <IrvineSystems_Yamato>
+          <files>
+            <default>IrvineSystems_Yamato.csv</default>
+          </files>
+        </IrvineSystems_Yamato>
+      </modules>
+    </translate>
+    <!-- ROUTERS UPDATES -->
+    <routers>
+      <adminhtml>
+        <args>
+          <modules>
+            <IrvineSystems_Yamato after="Mage_Adminhtml">IrvineSystems_Yamato</IrvineSystems_Yamato>
+          </modules>
+        </args>
+      </adminhtml>
+    </routers>
+  </adminhtml>
+  
+  <!-- ************************** ADMIN CONFIGURATION ************************** -->
+  <admin>
+    <!-- ROUTERS UPDATES -->
+    <routers>
+      <yamato>
+        <use>admin</use>
+        <args>
+          <module>IrvineSystems_Yamato</module>
+          <frontName>yamato</frontName>
+        </args>
+      </yamato>
+    </routers>
+  </admin>
+  
+  <!-- ********************* DEFAULT VALUES CONFIGURATION ********************** -->
+  <default>
+    <!-- Shipping Carriers Group -->
+    <carriers>
+      <yamato>
+        <active>1</active>
+        <title>Yamato</title>
+        <unit_of_measure>KG</unit_of_measure>
+        <sallowspecific>0</sallowspecific>
+        <model>yamato/carrier_yamato</model>
+        <showmethod>1</showmethod>
+        <handling_type>F</handling_type>
+        <handling_action>O</handling_action>
+      </yamato>
+    </carriers>
+    <!-- Extension Group -->
+    <yamato>
+      <about>
+        <version>1.0.1.1</version>
+      </about>
+      <general>
+        <profit_type>P</profit_type>
+        <profit_fee>15</profit_fee>
+        <max_package_weight>25000</max_package_weight>
+        <locmaxsize>1600</locmaxsize>
+      </general>
+      <mailbin>
+        <title>Mail-Bin</title>
+        <showmethod>1</showmethod>
+        <showmailexpress>1</showmailexpress>
+        <mailexpressfee>100</mailexpressfee>
+        <maxweight>1000</maxweight>
+        <maxlenght>332</maxlenght>
+        <maxwidth>240</maxwidth>
+        <maxdepth>20</maxdepth>
+        <maxtotal>600</maxtotal>
+        <finaladd>0</finaladd>
+      </mailbin>
+      <taqbin>
+        <title>Ta-Q-BIN</title>
+        <showmethod>1</showmethod>
+        <showcool>1</showcool>
+		<showcod>0</showcod>
+		<internalcod>1</internalcod>
+        <finaladd>0</finaladd>
+      </taqbin>
+      <slips>
+        <ajaxenable>1</ajaxenable>
+      </slips>
+    </yamato>
+  </default>
+</config>

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package>
+    <name>Jayje</name>
+    <version>1.00.20</version>
+    <stability>stable</stability>
+    <license>wakensys</license>
+    <channel>community</channel>
+    <extends/>
+    <summary>Return Me, rchant Authorization</summary>
+    <description>bugs fixed,  Full entity  support and  some features included</description>
+    <notes> * Jayje_Rma extension&#xD;
+ *  &#xD;
+ * @category   	Return Merchant Authorization Magento - wakensys&#xD;
+ * @package	Jayje_Rma&#xD;
+ * @copyright  	Copyright (c) 2013&#xD;
+ * @license	http://opensource.org/licenses/mit-license.php MIT License&#xD;
+ * @category	Jayje&#xD;
+ * @package	Jayje_Rma&#xD;
+ * @author        wakensys&#xD;
+ * @developper   s.ratheepan@gmail.com&#xD;
+</notes>
+    <authors><author><name>wakensys</name><user>wakensys</user><email>admin@wakensys.com</email></author><author><name>ratheepan s</name><user>ratheepan</user><email>s.ratheepan@gmail.com</email></author></authors>
+    <date>2013-01-09</date>
+    <time>05:05:02</time>
+    <contents><target name="magecommunity"><dir name="jayje"><dir name="Rma"><dir name="Block"><dir name="Adminhtml"><dir name="Rma"><dir name="Edit"><file name="Form.php" hash="c17dda020eea0e35655c6c3d936b4e4d"/><dir name="Tab"><file name="Comments.php" hash="2c2d455204298e9275b9ea22f921af44"/><file name="Form.php" hash="cb2862bc76d3771c83bee9c06fa33ef2"/><file name="Order.php" hash="321cc9771d4f395cbdfd7cc7987c444b"/></dir><file name="Tabs.php" hash="b98372c342c3283720f4c498fbe5ff96"/></dir><file name="Edit.php" hash="acffce78658a4feaa64f16df705edcb0"/><file name="Grid.php" hash="54596d790e64904cb33ec2ab2024aab3"/><file name="Info.php" hash="6b1cc7816adbaebc644bea85361641a2"/></dir><file name="Rma.php" hash="2f06c3c3193b9e9b285d4bfb0ea4e79c"/><dir name="Rstatus"><dir name="Edit"><file name="Form.php" hash="179b8c8f9a0ce4bc1f7dd77f4462929d"/><dir name="Tab"><file name="Form.php" hash="195281b00db9345f6cda629d6dd90fa7"/></dir><file name="Tabs.php" hash="f32eec6f49b792e05db98beb388f1aa5"/></dir><file name="Edit.php" hash="64cc94fd3c728ab47e46e3e0bfd406fd"/><file name="Grid.php" hash="a3a492f66c92dc5409b098d0d4878fbb"/></dir><file name="Rstatus.php" hash="fd615a7d2cd20da9d1a9a0ebdcbccf2b"/></dir><file name="Ajax.php" hash="9d6962522f37f14e3862d4237e4ad353"/><file name="Rma.php" hash="c6b7034bea7ff9bdc8a10e2c08656567"/></dir><dir name="Controller"><dir name="Adminhtml"><file name="Rma.php" hash="11690815008d3afb6e8620d07bb9fd61"/></dir></dir><dir name="Helper"><file name="Data.php" hash="93aa9730afa6fba2232ede4393be8275"/></dir><dir name="Model"><dir name="Mysql4"><dir name="Rcomments"><file name="Collection.php" hash="61811ba914638703ea1ca74e4048ee6b"/></dir><file name="Rcomments.php" hash="53317fd8d43703c86667523e898af74c"/><dir name="Rma"><file name="Collection.php" hash="e7b5aeb3ed76ebfc81ddbc39a9d656ef"/></dir><file name="Rma.php" hash="d947b8498e305f0f40ec085e7982774c"/><dir name="Rproducts"><file name="Collection.php" hash="627fb76b1c4c497a66ba2101882dea96"/></dir><file name="Rproducts.php" hash="f70ea73d161c6c9646dd5d9b64da9e95"/><dir name="Rstatus"><file name="Collection.php" hash="1bd6110583bb244668c9c70eaa34f253"/></dir><file name="Rstatus.php" hash="ac299021684b8ab9c4257b4dbfc9cafc"/></dir><file name="Rcomments.php" hash="4f2b408aed3a310ab70d11188a5b6899"/><file name="Rma.php" hash="ddd840e73f7a633d71c405b94e42d5bd"/><file name="Rproducts.php" hash="a520c1d7d2af7921f25a8774d80d1183"/><file name="Rstatus.php" hash="83f848c66cc76f6e876e887ce8657e22"/><file name="Status.php" hash="67d0514d440066d1fdef19debd8bf5bf"/><dir name="config"><file name="Returntype.php" hash="b45375f67bd4137aea729f1b74eedaa3"/><file name="Status.php" hash="5c087385d389ee7710a2f717eb9773d2"/></dir></dir><dir name="controllers"><dir name="Adminhtml"><file name="RmaController.php" hash="c05b3491da5fc6e2df4c15036cd9a4ac"/><file name="RstatusController.php" hash="0cefdd66b97b922f5e44aa446c7dc9eb"/></dir><file name="IndexController.php" hash="6875a2f96c55456cbc8645df7e63a24e"/></dir><dir name="etc"><file name="adminhtml.xml" hash="d1d774f537d3aaa91df1b1b3c22e5d08"/><file name="config.xml" hash="b1bf4e70eca649f574ea587a94a89a28"/><file name="system.xml" hash="f498d8a6bcc1216b7789050d9354ec41"/></dir><dir name="sql"><dir name="Rma_setup"><file name="mysql4-install-0.1.0.php" hash="65a95b9c69c885e56271d871e6549e72"/></dir></dir></dir></dir></target><target name="magedesign"><dir name="adminhtml"><dir name="default"><dir name="default"><dir name="layout"><file name="rma.xml" hash="0a4553f71ad996d10db5e15a764b0e2c"/></dir><dir name="template"><dir name="rma"><file name="comments.phtml" hash="b2a0ade4d36b658f0f6a044e5c0cefba"/><file name="info.phtml" hash="b4ea9b9a0ca3f5e4d78957f44618ad55"/></dir></dir></dir></dir></dir><dir name="frontend"><dir name="default"><dir name="default"><dir name="layout"><file name="rma.xml" hash="e38cc9f629b81a89f4ee1f0a2d61a18c"/></dir><dir name="template"><dir name="rma"><file name="request.phtml" hash="500a313cac5b0384c34f24b388862d70"/><file name="ritem.phtml" hash="aeaf5a037a087ec30e35faba41cb73e5"/><file name="rma.phtml" hash="1a444cce844534c5c89b85b1fb67c571"/><file name="view.phtml" hash="98505728afde900c2b1c5701b84c1f67"/></dir></dir></dir></dir></dir></target><target name="mage"><dir name="js"><file name="jquery-1.4.2.js" hash="10092eee563dec2dca82b77d2cf5a1ae"/></dir><dir name="app"><dir name="etc"><dir name="modules"><file name="Jayje_Rma.xml" hash="6efd4aedf8b0e86df813eec41919030a"/></dir></dir></dir></target></contents>
+    <compatible/>
+    <dependencies><required><php><min>5.2.0</min><max>6.0.0</max></php></required></dependencies>
+</package>

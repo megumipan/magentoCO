@@ -1,0 +1,193 @@
+<?xml version="1.0"?>
+<!--
+/*
+ * Irvine Systems Delivery Date Optimum
+ *
+ * NOTICE OF LICENSE
+ * This source file is subject to the Revised BSD License which is bundled with
+ * this package in the files LICENSE.txt and LICENSE.html.
+ *
+ * @category	Magento Catalog Extension
+ * @package		IrvineSystems_Deliverydate
+ * @author Irvine Systems, Inc.
+ * @copyright Copyright (c) 2015, Irvine Systems, Inc. (http://irvinesystems.co.jp/)
+ * @license     Revised BSD License
+ */
+-->
+<config>
+  
+  <!-- ********************** MODULE PARAMETERS ********************* -->
+  <modules>
+    <IrvineSystems_Deliverydate>
+      <version>1.0.1.0</version>
+    </IrvineSystems_Deliverydate>
+  </modules>
+  
+  <!-- ********************** GLOBAL PARAMETERS ********************* -->
+  <global>
+    <!-- MODULE MODELS -->
+    <models>
+      <deliverydate>
+        <class>IrvineSystems_Deliverydate_Model</class>
+      </deliverydate>
+    </models>
+    <!-- ENABLE DATABASE RESOURCES -->
+    <resources>
+      <deliverydate_setup>
+        <setup>
+          <module>IrvineSystems_Deliverydate</module>
+          <class>Mage_Core_Model_Resource_Setup</class>
+        </setup>
+        <connection>
+          <use>core_setup</use>
+        </connection>
+      </deliverydate_setup>
+      <deliverydate_write>
+        <connection>
+          <use>core_write</use>
+        </connection>
+      </deliverydate_write>
+      <deliverydate_read>
+        <connection>
+          <use>core_read</use>
+        </connection>
+      </deliverydate_read>
+    </resources>
+    <!-- MODULE HELPERS -->
+    <helpers>
+      <deliverydate>
+        <class>IrvineSystems_Deliverydate_Helper</class>
+      </deliverydate>
+    </helpers>
+    <!-- MODULE BLOCKS -->
+    <blocks>
+      <deliverydate>
+        <class>IrvineSystems_Deliverydate_Block</class>
+      </deliverydate>
+    </blocks>
+    <!-- GLOBAL FIELDSET -->
+    <!-- Set the fieldset which needs to be copy from quote to order when a order is placed -->
+    <fieldsets>
+      <sales_convert_quote_address>
+        <shipping_delivery_date>
+          <to_order>*</to_order>
+        </shipping_delivery_date>
+        <shipping_delivery_time>
+          <to_order>*</to_order>
+        </shipping_delivery_time>
+        <shipping_delivery_comments>
+          <to_order>*</to_order>
+        </shipping_delivery_comments>
+      </sales_convert_quote_address>
+    </fieldsets>
+  </global>
+  
+  <!-- ********************* FRONTEND TRANSLATION PARAMETERS ******************** -->
+  <frontend>
+    <!-- FRONTEND OBSERVERS -->
+    <events>
+      <checkout_controller_onepage_save_shipping_method>
+        <observers>
+          <deliverydate>
+            <type>singleton</type>
+            <class>deliverydate/observer</class>
+            <method>saveDeliveryDate</method>
+          </deliverydate>
+        </observers>
+      </checkout_controller_onepage_save_shipping_method>
+    </events>
+    <!-- FRONTEND TRANSLATION CSV -->
+    <translate>
+      <modules>
+        <IrvineSystems_Deliverydate>
+          <files>
+            <default>IrvineSystems_Deliverydate.csv</default>
+          </files>
+        </IrvineSystems_Deliverydate>
+      </modules>
+    </translate>
+    <!-- FRONTEND LAYOUT UPDATES -->
+    <layout>
+      <updates>
+        <deliverydate>
+          <file>deliverydate.xml</file>
+        </deliverydate>
+      </updates>
+    </layout>
+    <!-- FRONTEND ROUTERS -->
+    <routers>
+      <deliverydate>
+        <use>standard</use>
+        <args>
+          <module>IrvineSystems_Deliverydate</module>
+          <frontName>deliverydate</frontName>
+        </args>
+      </deliverydate>
+    </routers>
+  </frontend>
+  
+  <!-- ********************* ADMIN PARAMETERS ******************** -->
+  <admin>
+    <!-- ADMIN ROUTERS -->
+    <routers>
+      <deliverydate>
+        <use>admin</use>
+        <args>
+          <module>IrvineSystems_Deliverydate</module>
+          <frontName>deliverydate</frontName>
+        </args>
+      </deliverydate>
+    </routers>
+  </admin>
+  
+  <!-- ********************* BACKEND TRANSLATION PARAMETERS AND LAYOUT ******************** -->
+  <adminhtml>
+    <translate>
+      <modules>
+        <IrvineSystems_Deliverydate>
+          <files>
+            <default>IrvineSystems_Deliverydate.csv</default>
+          </files>
+        </IrvineSystems_Deliverydate>
+      </modules>
+    </translate>
+    <layout>
+      <updates>
+        <deliverydate>
+          <file>deliverydate.xml</file>
+        </deliverydate>
+      </updates>
+    </layout>
+    <sales_convert_order_to_quote>
+      <observers>
+        <copy_delivery_date>
+          <type>singleton</type>
+          <class>deliverydate/observer</class>
+          <method>copyDeliveryDateToQuote</method>
+        </copy_delivery_date>
+      </observers>
+    </sales_convert_order_to_quote>
+  </adminhtml>
+  
+  <!-- ********************** DEFAULT PARAMETERS ******************** -->
+  <default>
+    <deliverydate>
+      <about>
+        <version>1.0.1.0</version>
+      </about>
+      <general>
+        <enabled>1</enabled>
+        <calendar_skin>win2k-1</calendar_skin>
+        <footer_html>Please choose your preferable delivery date and time for your order.</footer_html>
+        <date_format>d/M/Y</date_format>
+      </general>
+      <limiter>
+        <dayoff></dayoff>
+        <first_instock_day>1</first_instock_day>
+        <first_notinstock_day>1</first_notinstock_day>
+        <maximum_day>7</maximum_day>
+        <delivery_times>12~14,14~16,16~18,18~20,20~21</delivery_times>
+      </limiter>
+    </deliverydate>
+  </default>
+</config>

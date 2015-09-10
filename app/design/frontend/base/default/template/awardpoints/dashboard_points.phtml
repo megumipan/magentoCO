@@ -1,0 +1,32 @@
+<?php
+/*
+ * Irvine Systems Award Points
+ *
+ * NOTICE OF LICENSE
+ * This source file is subject to the Revised BSD License which is bundled with
+ * this package in the files LICENSE.txt and LICENSE.html.
+ *
+ * @category    Magento Sale Extension
+ * @package        IrvineSystems_AwardPoints
+ * @author Irvine Systems, Inc.
+ * @copyright Copyright (c) 2015, Irvine Systems, Inc. (http://irvinesystems.co.jp/)
+ * @license     Revised BSD License
+ */
+?>
+
+<?php // Helper Definition ?>
+<?php $helper = Mage::helper('awardpoints');?>
+
+<div class="box">
+	<div class="box-title">
+		<h3><?php echo $helper->__('Points Details') ?></h3>
+	</div>
+	<div class="box-content">
+		<p>
+			<?php echo $helper->__('Your Available Points: %d', $this->getPointsCurrent()) ?><br/>
+			<?php echo $helper->__('Total Accumulated Points: %d', $this->getPointsReceived()) ?><br/>
+			<?php echo $helper->__('Total Points Spent: %d', $this->getPointsSpent()) ?><br/>
+			<?php echo $helper->__('Points waiting for validation: %d', $this->getPointsWaitingValidation()) ?>
+		</p>
+	 </div>
+</div>

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0"?>
+<!--
+/*
+ * Irvine Systems Shipping Japan Jp
+ *
+ * NOTICE OF LICENSE
+ * This source file is subject to the Revised BSD License which is bundled with
+ * this package in the files LICENSE.txt and LICENSE.html.
+ *
+ * @category	Magento Shipping Extension
+ * @package		IrvineSystems_JapanPost
+ * @author Irvine Systems, Inc.
+ * @copyright Copyright (c) 2015, Irvine Systems, Inc. (http://irvinesystems.co.jp/)
+ * @license     Revised BSD License
+ */
+-->
+
+<layout version="0.1.0">
+  <!-- ********************** CHECKOUT ONEPAGE LAYOUT UPDATES ********************* -->
+  <checkout_onepage_shippingmethod>
+    <reference name="root">
+      <action method="setTemplate" ifconfig="japanpost/slips/ajaxenable">
+        <template>japanpost/available.phtml</template>
+      </action>
+      <block type="checkout/onepage_shipping_method_available" template="checkout/onepage/shipping_method/available.phtml" name="japanpost.available"></block>
+      <block type="japanpost/japanpost" name="japanpost.japanpost">
+        <block type="japanpost/japanpost_form" name="japanpost.form"></block>
+      </block>
+    </reference>
+  </checkout_onepage_shippingmethod>
+</layout>

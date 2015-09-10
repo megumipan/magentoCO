@@ -1,0 +1,213 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magentoa
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    Mage
+ * @package     Mage_Tax
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+-->
+<config>
+    <menu>
+        <system>
+            <children>
+                <magestore_extension>
+                    <disabled>1</disabled>
+                </magestore_extension>
+                <xtento_extensions>
+                    <disabled>1</disabled>
+                </xtento_extensions>
+                <email_template>
+                    <disabled>1</disabled>
+                </email_template>
+                <myaccount>
+                    <disabled>1</disabled>
+                </myaccount>
+                <design>
+                    <disabled>1</disabled>
+                </design>
+                <items>
+                    <disabled>1</disabled>
+                </items>
+                <currency>
+                    <disabled>1</disabled>
+                </currency>
+                <email_template>
+                    <disabled>1</disabled>
+                </email_template>
+                <acl>
+                    <disabled>1</disabled>
+                </acl>
+                <store>
+                    <disabled>1</disabled>
+                </store>
+                <order_statuses>
+                    <disabled>1</disabled>
+                </order_statuses>
+            </children>
+        </system>
+        <xmlconnect>
+            <disabled>1</disabled>
+        </xmlconnect>
+        <magestore>
+            <disabled>1</disabled>
+        </magestore>
+        <sales>
+            <children>
+                <checkoutagreement>
+                    <disabled>1</disabled>
+                </checkoutagreement>
+                <tax>
+                    <disabled>1</disabled>
+                </tax>
+            </children>
+        </sales>
+        <catalog>
+            <children>
+                <urlrewrite>
+                    <disabled>1</disabled>
+                </urlrewrite>
+                <search>
+                    <disabled>1</disabled>
+                </search>
+                <sitemap>
+                    <disabled>1</disabled>
+                </sitemap>                    
+            </children>
+        </catalog>
+        <base_config translate="title">
+            <title>Basic Configuration</title>
+            <sort_order>81</sort_order>            
+            <children>
+                <myaccount translate="title">
+                    <title>My Account</title>
+                    <action>adminhtml/system_account</action>
+                    <sort_order>10</sort_order>
+                </myaccount>
+                <checkoutagreement translate="title" module="checkout">
+                    <sort_order>100</sort_order>
+                    <title>Terms and conditions</title>
+                    <action>adminhtml/checkout_agreement/</action>
+                </checkoutagreement>
+                <sitemap translate="title" module="sitemap">
+                    <title>Google Sitemap</title>
+                    <sort_order>300</sort_order>
+                    <action>adminhtml/sitemap/</action>
+                </sitemap>
+                <email_template translate="title">
+                    <title>Transactional Emails</title>
+                    <action>adminhtml/system_email_template</action>
+                    <sort_order>700</sort_order>
+                </email_template>
+                <design translate="title">
+                    <title>Design</title>
+                    <action>adminhtml/system_design</action>
+                    <sort_order>900</sort_order>
+                </design>
+                <tax translate="title" module="tax">
+                    <title>Tax</title>
+                    <sort_order>1000</sort_order>
+                    <children>
+                        <rules translate="title" module="tax">
+                            <title>Manage Tax Rules</title>
+                            <action>adminhtml/tax_rule</action>
+                        </rules>
+                        <rates translate="title" module="tax">
+                            <title>Manage Tax Zones &amp; Rates</title>
+                            <action>adminhtml/tax_rate</action>
+                        </rates>
+                        <import_export translate="title" module="tax">
+                            <title>Import / Export Tax Rates</title>
+                            <action>adminhtml/tax_rate/importExport</action>
+                        </import_export>
+                        <classes_customer translate="title" module="tax">
+                            <title>Customer Tax Classes</title>
+                            <action>adminhtml/tax_class_customer</action>
+                        </classes_customer>
+                        <classes_product translate="title" module="tax">
+                            <title>Product Tax Classes</title>
+                            <action>adminhtml/tax_class_product</action>
+                        </classes_product>
+                    </children>
+                </tax>
+                <currency translate="title">
+                    <title>Manage Currency Rates</title>
+                    <action>adminhtml/system_currency</action>
+                    <sort_order>1010</sort_order>
+                </currency>
+                <acl translate="title">
+                    <title>Permissions</title>
+                    <sort_order>1020</sort_order>
+                    <children>
+                        <users translate="title">
+                            <title>Users</title>
+                            <action>adminhtml/permissions_user</action>
+                        </users>
+                        <roles translate="title">
+                            <title>Roles</title>
+                            <action>adminhtml/permissions_role</action>
+                        </roles>
+                    </children>
+                </acl>
+                <order_statuses translate="title" module="sales">
+                    <title>Order Statuses</title>
+                    <action>adminhtml/sales_order_status</action>
+                    <sort_order>1030</sort_order>
+                </order_statuses>                
+                <store translate="title" module="core">
+                    <title>Manage Stores</title>
+                    <action>adminhtml/system_store/</action>
+                    <sort_order>1040</sort_order>
+                </store>                                                 
+            </children>
+        </base_config>
+        <cms>
+            <children>
+                <search translate="title" module="catalogsearch">
+                    <title>Search Terms</title>
+                    <action>adminhtml/catalog_search/</action>
+                    <sort_order>40</sort_order>
+                </search>
+                <urlrewrite translate="title" module="cms">
+                    <title>URL Rewrite Management</title>
+                    <action>adminhtml/urlrewrite/index</action>
+                    <sort_order>30</sort_order>
+                </urlrewrite> 
+            </children>            
+        </cms>
+    </menu>
+    <activemenu>
+        <Mage_Adminhtml_System_AccountController>base_config/myaccount</Mage_Adminhtml_System_AccountController>
+        <Mage_Adminhtml_Checkout_AgreementController>base_config/checkoutagreement</Mage_Adminhtml_Checkout_AgreementController>
+        <Mage_Adminhtml_System_DesignController>base_config/design</Mage_Adminhtml_System_DesignController>
+        <Mage_Adminhtml_SitemapController>base_config/sitemap</Mage_Adminhtml_SitemapController>
+        <Mage_Adminhtml_System_Email_TemplateController>base_config/email_template</Mage_Adminhtml_System_Email_TemplateController>
+        <Mage_Adminhtml_Tax_RuleController>base_config/tax/rules</Mage_Adminhtml_Tax_RuleController>
+        <Mage_Adminhtml_Tax_RateController>base_config/tax/rates</Mage_Adminhtml_Tax_RateController>
+        <Mage_Adminhtml_Tax_Class_CustomerController>base_config/tax/classes_customer</Mage_Adminhtml_Tax_Class_CustomerController>
+        <Mage_Adminhtml_Tax_Class_ProductController>base_config/tax/classes_product</Mage_Adminhtml_Tax_Class_ProductController>
+        <Mage_Adminhtml_System_CurrencyController>base_config/currency</Mage_Adminhtml_System_CurrencyController>
+        <Mage_Adminhtml_Permissions_UserController>base_config/acl/users</Mage_Adminhtml_Permissions_UserController>
+        <Mage_Adminhtml_Permissions_RoleController>base_config/acl/roles</Mage_Adminhtml_Permissions_RoleController>
+        <Mage_Adminhtml_Sales_Order_StatusController>base_config/order_statuses</Mage_Adminhtml_Sales_Order_StatusController>
+        <Mage_Adminhtml_System_StoreController>base_config/store</Mage_Adminhtml_System_StoreController>
+    </activemenu>
+</config>

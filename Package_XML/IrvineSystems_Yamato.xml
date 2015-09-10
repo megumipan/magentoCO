@@ -1,0 +1,118 @@
+<_>
+   <form_key>MIe5nB4zhS1O1Sx9</form_key>
+   <name>IrvineSystems_Yamato</name>
+   <channel>community</channel>
+   <version_ids>
+      <version_ids>2</version_ids>
+      <version_ids>1</version_ids>
+   </version_ids>
+   <summary>Shipping Japan Ymt will make available in your store every shipping methods from Yamato Transport which can be now totally available for you!</summary>
+   <description>The Only Fully Operative Magento extension for Yamato Transport Co.,Ltd. Shipping!
+
+This unique extension is part of the notorious and exclusive Irvine Systems series &quot;Shipping Japan&quot; which cover all major shipping carriers in Japan.
+Shipping Japan Ymt will make available in your store every shipping methods from Yamato Transport which can be now totally available for you!
+The extension feature also a great variety of &quot;optional&quot; settings in the back-end of your store for totally personalize your rates in order to fully reflect your company needs and policies and fully configure the slips export and Import fully compatible with Yamato Transport Label software.
+All the rates have been fully analyzed directly with Yamato Transport and integrated in the module. Every single specific option or limitation is taken in consideration for guaranty the absolute accuracy of the system and your precious customers quotes.
+Anything you need to completely integrate Yamato Transport Shipments with your Magento Store is available for you thanks to the Irvine 
+Systems Exclusive Shipping Japan Ymt!</description>
+   <license>BSD</license>
+   <license_uri>http://opensource.org/licenses/BSD-3-Clause</license_uri>
+   <version>1.0.1.1</version>
+   <stability>stable</stability>
+   <notes>Not compatible with Magento CE prior 1.4.2</notes>
+   <authors>
+      <name>
+         <name>Irvine Mage</name>
+      </name>
+      <user>
+         <user>IrvineMage</user>
+      </user>
+      <email>
+         <email>magentosupport@irvine.jp</email>
+      </email>
+   </authors>
+   <depends_php_min>3.1.0</depends_php_min>
+   <depends_php_max>7.0.0</depends_php_max>
+   <depends>
+      <package>
+         <name>
+            <name/>
+            <name>IrvineSystems_Adminhtml</name>
+         </name>
+         <channel>
+            <channel/>
+            <channel>community</channel>
+         </channel>
+         <min>
+            <min/>
+            <min>1.0.0.0</min>
+         </min>
+         <max>
+            <max/>
+            <max>9.0.0.0</max>
+         </max>
+         <files>
+            <files>                                                  </files>
+            <files>                                                  </files>
+         </files>
+      </package>
+      <extension>
+         <name>
+            <name>Core</name>
+         </name>
+         <min>
+            <min/>
+         </min>
+         <max>
+            <max/>
+         </max>
+      </extension>
+   </depends>
+   <contents>
+      <target>
+         <target>magelocal</target>
+         <target>mageetc</target>
+         <target>magelocal</target>
+         <target>magelocale</target>
+         <target>magedesign</target>
+         <target>magedesign</target>
+         <target>mageskin</target>
+      </target>
+      <path>
+         <path/>
+         <path>modules/IrvineSystems_Yamato.xml</path>
+         <path>IrvineSystems/Yamato</path>
+         <path/>
+         <path>frontend/base/default/layout/yamato.xml</path>
+         <path>frontend/base/default/template/yamato</path>
+         <path>adminhtml/default/default/images/irvinesystems/shipping_japan_ymt.png</path>
+      </path>
+      <type>
+         <type>file</type>
+         <type>file</type>
+         <type>dir</type>
+         <type>dir</type>
+         <type>file</type>
+         <type>dir</type>
+         <type>file</type>
+      </type>
+      <include>
+         <include/>
+         <include/>
+         <include/>
+         <include>#IrvineSystems_Yamato.csv#</include>
+         <include/>
+         <include/>
+         <include/>
+      </include>
+      <ignore>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+      </ignore>
+   </contents>
+</_>

@@ -1,0 +1,264 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+<?php if (($_products = $this->getProductCollection()) && $_products->getSize()): ?>
+<div class="page-title"><h3><?php echo $this->__('New Products') ?></h3></div>
+<?php $_columnCount = $this->getColumnCount(); ?>
+    <?php $i=0; foreach ($_products->getItems() as $_product): ?>
+        <?php if ($i++%$_columnCount==0): ?>
+        <ul class="products-grid grid-recent">
+        <?php endif ?>
+            <li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">
+                <p class="product-image">
+                    <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($this->getImageLabel($_product, 'small_image')) ?>">
+                        <img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(100, 100); ?>" width="100" height="100" alt="<?php echo $this->escapeHtml($this->getImageLabel($_product, 'small_image')) ?>" title="<?php echo $this->escapeHtml($this->getImageLabel($_product, 'small_image')) ?>" />
+                    </a>
+                </p>
+                <h5 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_product->getName()) ?>"><?php echo $this->escapeHtml($_product->getName()) ?></a></h5>
+                <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
+                <?php echo $this->getPriceHtml($_product, true, '-new') ?>
+                <div class="actions">
+                    <?php if($_product->isSaleable()): ?>
+                    <button type="button" class="button" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+                    <?php else: ?>
+                    <div class="out-of-stock"><?php echo $this->__('Out of stock') ?></div>
+                    <?php endif; ?>
+                </div>
+            </li>
+        <?php if ($i%$_columnCount==0 || $i==count($_products)): ?>
+        </ul>
+        <?php endif ?>
+    <?php endforeach; ?>
+         <script type="text/javascript">decorateGeneric($$('ul.products-grid'), ['odd','even','first','last'])</script>
+<?php endif; ?>
+*/
+?>
+<?php
+/*
+                   <p><img src="<?php echo $this->getSkinUrl('images/main_img.png'); ?>"></p>
+                   <section id="news">
+                       <div class="news_title">
+                           <p>HIROCHI-NEWS</p>
+                           <a href="#"><img src="<?php echo $this->getSkinUrl('images/more.png'); ?>"></a>
+                       </div>
+                       <ul>
+                           <li><span>2015/08/17</span><a href="/magento/index.php/home/blog/test4/">test4</a></li>
+                           <li><span>2015/08/17</span><a href="/magento/index.php/home/blog/test3/">test3</a></li>
+                           <li><span>2015/08/17</span><a href="/magento/index.php/home/blog/test2/">test2</a></li>
+                           <li><span>2015/08/17</span><a href="/magento/index.php/home/blog/test1/">test1</a></li>
+                       </ul>
+
+
+
+                   </section> 
+
+                                                           
+                                                            <div class="maker">
+                       <div class="maker_box">
+                           <h2 class="title">各メーカー純正部品を多数取り扱っています。</h2>
+                           <ul>
+                               <li><a href="#"><img src="<?php echo $this->getSkinUrl('images/honda.png'); ?>"></a></li>
+                               <li>ホンダ</li>
+                           </ul>
+                           <ul>
+                               <li><a href="#"><img src="<?php echo $this->getSkinUrl('images/yamaha.png'); ?>"></a></li>
+                               <li>ヤマハ</li>
+                           </ul>
+                           <ul>
+                               <li><a href="#"><img src="<?php echo $this->getSkinUrl('images/suzuki.png'); ?>"></a></li>
+                               <li>スズキ</li>
+                           </ul>
+                           <ul>
+                               <li><a href="#"><img src="<?php echo $this->getSkinUrl('images/kawasaki.png'); ?>"></a></li>
+                               <li>カワサキ</li>
+                           </ul>
+                           <ul>
+                               <li><a href="#"><img src="<?php echo $this->getSkinUrl('images/harley.png'); ?>"></a></li>
+                               <li>ハーレーダビッドソン</li>
+                           </ul>
+                       </div>
+                   </div>
+                   <div class="tire_maker">
+                       <h2 class="title">タイヤメーカー続々登場</h2>
+                       <p>文字通りバイクの【足】であるタイヤ。<br>
+                       人間と同じで、バイクも足が弱れば日々の行動そのものに影響があります。<br>ぜひ、取扱数が豊富なヒロチー商事で皆様のバイクを一新してください！</p>
+                       <div class="maker_box">
+                           <ul>
+                               <li><a href="#"><img src="<?php echo $this->getSkinUrl('images/bridgestone.png'); ?>"></a></li>
+                               <li>ブリヂストン</li>
+                           </ul>
+                           <ul>
+                               <li><a href="#"><img src="<?php echo $this->getSkinUrl('images/dunlop.png'); ?>"></a></li>
+                               <li>ダンロップ(DUNLOP)</li>
+                           </ul>
+                           <ul>
+                               <li><a href="#"><img src="<?php echo $this->getSkinUrl('images/michelin.png'); ?>"></a></li>
+                               <li>ミシュラン(MICHELIN)</li>
+                           </ul>
+                           <ul>
+                               <li><a href="#"><img src="<?php echo $this->getSkinUrl('images/pirelli.png'); ?>"></a></li>
+                               <li>ピレリ(PIRELLI)</li>
+                           </ul>
+                           <ul>
+                               <li><a href="#"><img src="<?php echo $this->getSkinUrl('images/metzeler.png'); ?>"></a></li>
+                               <li>メッツラー(METZELER)</li>
+                           </ul>
+                           <ul>
+                               <li><a href="#"><img src="<?php echo $this->getSkinUrl('images/irctire.png'); ?>"></a></li>
+                               <li>井上ゴム工業(IRC)</li>
+                           </ul>
+                           <ul>
+                               <li><a href="#"><img src="<?php echo $this->getSkinUrl('images/hirochi_tire.png'); ?>"></a></li>
+                               <li>ヒロチー商事</li>
+                           </ul>
+                           <ul>
+                               <li><a href="#"><img src="<?php echo $this->getSkinUrl('images/tire_index.png'); ?>"></a></li>
+                               <li>タイヤメーカー総合INDEX</li>
+                           </ul>
+                       </div>
+                   </div>
+                   <div class="lead">
+                       <h2 class="title">リード工業 始めました♪</h2>
+                       <p>リード工業はヘルメット・グローブから盗難防止用品やHIDなど多岐にわたる商品を開発・製造しているメーカーです。<br>
+                       エクストリームハーフヘルメット「X-AIR」、エクストリームジェットヘルメット「RAZZO」はグッドデザイン賞を受賞し、デザイン性の高い作りの人気商品です！<br>
+                       ぜひご覧ください♪</p>
+                       <div class="maker_box">
+                           <ul>
+                               <li><a href="#"><img src="<?php echo $this->getSkinUrl('images/helmet.png'); ?>"></a></li>
+                               <li>ヘルメット</li>
+                           </ul>
+                           <ul>
+                               <li><a href="#"><img src="<?php echo $this->getSkinUrl('images/apparel.png'); ?>"></a></li>
+                               <li>アパレル</li>
+                           </ul>
+                           <ul>
+                               <li><a href="#"><img src="<?php echo $this->getSkinUrl('images/security.png'); ?>"></a></li>
+                               <li>用品／セキュリティ</li>
+                           </ul>
+                           <ul>
+                               <li><a href="#"><img src="<?php echo $this->getSkinUrl('images/lead_index.png'); ?>"></a></li>
+                               <li>LEAD総合INDEX</li>
+                           </ul>
+                       </div>
+                   </div>
+*/
+?>
+<div class="recommend">
+                       <h2 class="title">オススメ商品</h2>
+                       <div class="maker_box">
+                           <ul>
+                               <li><a href="http://airily.sixcore.jp/magento/index.php/harley-davidson/sportsstar/drag-xl/mem1619-memphis-shades.html"><img src="<?php echo $this->getSkinUrl('images/recommend_01.png'); ?>"></a></li>
+                               <li><a href="http://airily.sixcore.jp/magento/index.php/harley-davidson/sportsstar/drag-xl/mem1619-memphis-shades.html">メンフィスシェードウインドシールド ハンドル取付金具付 シューター スモーク</a></li>
+                               <span>価格29,160円(税込)</span>
+                           </ul>
+                           <ul>
+                               <li><a href="http://airily.sixcore.jp/magento/index.php/harley-davidson/sportsstar/xl-65/2001-0634-0207-2004apx-ch-5-3-4-apex.html"><img src="<?php echo $this->getSkinUrl('images/recommend_02.png'); ?>"></a></li>
+                               <li><a href="http://airily.sixcore.jp/magento/index.php/harley-davidson/sportsstar/xl-65/2001-0634-0207-2004apx-ch-5-3-4-apex.html">0207-2004APX-CH パフォーマンスマシン 5-3/4インチ ヘッドライト APEX クローム</a></li>
+                               <span>価格60,653円(税込)</span>
+                           </ul>
+                           <ul>
+                               <li><a href="http://airily.sixcore.jp/magento/index.php/harley-davidson/sportsstar/xl-66/2001-0758-0207-2006tra-ch-rsd.html"><img src="<?php echo $this->getSkinUrl('images/recommend_03.png'); ?>"></a></li>
+                               <li><a href="http://airily.sixcore.jp/magento/index.php/harley-davidson/sportsstar/xl-66/2001-0758-0207-2006tra-ch-rsd.html">0207-2006TRA-CH ローランドサンズデザイン (RSD) ヘッドライト トラッカー クローム</a></li>
+                               <span>価格59,778円(税込)</span>
+                           </ul>
+                           <ul>
+                               <li><a href="http://airily.sixcore.jp/magento/index.php/harley-davidson/sportsstar/xl-69/0804-0418-lk-006-le-pera-10-xl1200x-v.html"><img src="<?php echo $this->getSkinUrl('images/recommend_04.png'); ?>"></a></li>
+                               <li><a href="http://airily.sixcore.jp/magento/index.php/harley-davidson/sportsstar/xl-69/0804-0418-lk-006-le-pera-10-xl1200x-v.html">LK-006 ラペラ(Le Pera) ベアボーン ソロシート スムース 10年以降 XL1200X、V</a></li>
+                               <span>価格59,007円(税込)</span>
+                           </ul>
+                           <ul>
+                               <li><a href="http://airily.sixcore.jp/magento/index.php/harley-davidson/sportsstar/xl-70/16861-1801-0676-3-14-xl.html"><img src="<?php echo $this->getSkinUrl('images/CBR.png'); ?>"></a></li>
+                               <li><a href="http://airily.sixcore.jp/magento/index.php/harley-davidson/sportsstar/xl-70/16861-1801-0676-3-14-xl.html">バンス＆ハインズ スリップオンマフラー ツインスラッシュ 3インチ 14年以降 XL</a></li>
+                               <span>価格38,098円(税込)</span>
+                           </ul>
+                           <ul>
+                               <li><a href="http://airily.sixcore.jp/magento/index.php/harley-davidson/sportsstar/efi-xl/1020-1494-pv-2-dynoiet-12-14.html"><img src="<?php echo $this->getSkinUrl('images/YZF.png'); ?>"></a></li>
+                               <li><a href="http://airily.sixcore.jp/magento/index.php/harley-davidson/sportsstar/efi-xl/1020-1494-pv-2-dynoiet-12-14.html">PV-2 ダイノジェット(Dynoiet) パワービジョン 12年-14年 ハーレー</a></li>
+                               <span>価格93,744円(税込)</span>
+                           </ul>
+                           <ul>
+                               <li><a href="http://airily.sixcore.jp/magento/index.php/harley-davidson/sportsstar/xl-71/217-6142-led-5-3-4.html"><img src="<?php echo $this->getSkinUrl('images/GSX.png'); ?>"></a></li>
+                               <li><a href="http://airily.sixcore.jp/magento/index.php/harley-davidson/sportsstar/xl-71/217-6142-led-5-3-4.html">キジマ LEDヘッドライトユニット 5-3/4 スポーツスター系</a></li>
+                               <span>価格22,050円(税込)</span>
+                           </ul>
+                           <ul>
+                               <li><a href="http://airily.sixcore.jp/magento/index.php/harley-davidson/sportsstar/drag-xl/mem1619-memphis-shades.html"><img src="<?php echo $this->getSkinUrl('images/ninja.png'); ?>"></a></li>
+                               <li><a href="http://airily.sixcore.jp/magento/index.php/harley-davidson/sportsstar/drag-xl/mem1619-memphis-shades.html">メンフィスシェード(MEMPHIS SHADES) ウインドシールド ハンドル取付金具付 シューター スモーク）</a></li>
+                               <span>価格48,017円(税込)</span>
+                           </ul>
+                       </div>
+                   </div>
+                   <!-- recommend -->
+<!--new-->
+
+
+
+<?php
+/**
+
+<br><br><br><br><br><br><br>
+
+
+<?php if (($_products = $this->getProductCollection()) && $_products->getSize()): ?>
+<div class="page-title"><h3><?php echo $this->__('New Products') ?></h3></div>
+<?php $_columnCount = $this->getColumnCount(); ?>
+    <?php $i=0; foreach ($_products->getItems() as $_product): ?>
+        <?php if ($i++%$_columnCount==0): ?>
+        <ul class="products-grid grid-recent">
+        <?php endif ?>
+            <li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">
+                <p class="product-image">
+                    <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($this->getImageLabel($_product, 'small_image')) ?>">
+                        <img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(100, 100); ?>" width="100" height="100" alt="<?php echo $this->escapeHtml($this->getImageLabel($_product, 'small_image')) ?>" title="<?php echo $this->escapeHtml($this->getImageLabel($_product, 'small_image')) ?>" />
+                    </a>
+                </p>
+                <h5 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_product->getName()) ?>"><?php echo $this->escapeHtml($_product->getName()) ?></a></h5>
+                <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
+                <?php echo $this->getPriceHtml($_product, true, '-new') ?>
+                <div class="actions">
+                    <?php if($_product->isSaleable()): ?>
+                    <button type="button" class="button" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+                    <?php else: ?>
+                    <div class="out-of-stock"><?php echo $this->__('Out of stock') ?></div>
+                    <?php endif; ?>
+                </div>
+            </li>
+        <?php if ($i%$_columnCount==0 || $i==count($_products)): ?>
+        </ul>
+        <?php endif ?>
+    <?php endforeach; ?>
+         <script type="text/javascript">decorateGeneric($$('ul.products-grid'), ['odd','even','first','last'])</script>
+<?php endif; ?>
+
+**/
+?>
+
+
+
+
+

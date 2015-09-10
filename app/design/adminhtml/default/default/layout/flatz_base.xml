@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.1.0">
+    <adminhtml_cms_wysiwyg_images_index>
+        <reference name="wysiwyg_images.uploader">
+            <action method="setTemplate"><template>flatz_base/cms/browser/content/uploader.phtml</template></action>
+        </reference>
+    </adminhtml_cms_wysiwyg_images_index>
+</layout>

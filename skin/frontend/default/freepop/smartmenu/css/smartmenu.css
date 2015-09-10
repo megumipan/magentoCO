@@ -1,0 +1,324 @@
+.mv_smartmenu{
+	background:#F6F6F6 none repeat scroll 0 0;
+	border:0;
+	float:left;
+	margin-bottom:15px;
+	padding:0;
+	width:100%;
+}
+.mv_smartmenu_content{background:#fff url(../images/bg_block_content.gif) left top repeat-x; border:1px solid #cacaca; border-top:0; border-radius:0 0 8px 8px; padding:10px 13px;}
+.mv_smartmenu .head a{
+	background:url(../images/arrow-cat.png) no-repeat right center;
+	float: right;
+	width: 12px;
+	height: 11px;
+	padding: 11px 0 8px!important;
+}
+.mv_smartmenu .head a:hover{
+	background:url(../images/arrow-cat-hover.png) no-repeat right center;
+}
+.mv_smartmenu .selected a{
+	background:url(../images/arrow-cat-active.png) no-repeat right center !important;
+}
+.mv_smartmenu_head strong{text-transform: none !important; font-size:14px !important;}
+#theMenu_acc li a{
+	clear: both;
+	padding-bottom: 0px;
+	padding-top:2px;
+	padding-left:17px;
+}
+#theMenu_acc li a.main-cate{background:url(../images/bg_listmenu.png) left center no-repeat; padding-bottom: 8px; padding-top: 8px;}
+#theMenu_acc li a.main-cate:hover{padding-bottom: 8px; padding-top: 8px; text-decoration:underline; font-weight:bold; padding-left:17px;}
+#theMenu_acc li a:hover{
+	padding-bottom: 0px;
+	padding-top: 2px;
+	padding-left: 12px;
+}
+#theMenu_acc li ul li a{
+	background:url(../images/bg_listmenu2.png) no-repeat 0 9px;
+	padding-left: 12px;
+	color: #666666;
+	text-decoration: none;
+	padding-bottom: 5px;
+	padding-top: 5px;
+	display:block;
+}
+#theMenu_acc li ul li a:hover{
+	background:url(../images/bg_listmenu2.png) no-repeat 0 9px;
+	padding-left: 12px;
+	color: #3FA4CB;
+	text-decoration: none;
+	padding-bottom: 5px;
+	padding-top: 5px;
+	display:block;
+}
+#theMenu_acc li ul li ul{
+	margin-left: 10px;
+}
+#theMenu_acc li ul li ul li a{
+	background:url(../images/bg_listmenu2.png) no-repeat 0 10px;
+	padding-left: 13px;
+	color: #666666;
+	text-decoration: none;
+}
+#theMenu_acc li ul li ul li a:hover{
+	background:url(../images/bg_listmenu2.png) no-repeat 0 10px;
+	padding-left: 13px;
+	color: #3FA4CB;
+	text-decoration: none;
+}
+#theMenu_acc li.active a{
+	font-weight: bold;
+}
+#theMenu_acc li.active ul li a{
+	font-weight: normal;
+}
+#theMenu_acc li.active ul li.active a{
+	font-weight: bold;
+}
+#theMenu_acc li.active ul li.active ul li a{
+	font-weight: normal;
+}
+#theMenu_acc li.active ul li.active ul li.active a{
+	font-weight: bold;
+}
+/*-----------------------------------------*/
+.mw_shopby{
+	margin-bottom: 1.3em;
+}
+.mw_shopby_head {
+	background:transparent url(../images/layered_nav_head_bg.gif) no-repeat scroll 0 0;
+	height:24px;
+	margin:0;
+}
+.mw_shopby h4 {
+	background: url(../images/bg_block_content.gif) repeat-x scroll left top;
+	border-color:#CACACA;
+	border-style:solid;
+	border-width:0 1px 1px;
+	color:#666;
+	font-size:1em;
+	font-weight:bold;
+	margin:0;
+	padding:4px 12px 5px;
+}
+.mw_shopby .block-content{padding-top:0;}
+.mw_shopby p.block-subtitle{
+	background:none;
+	border-color:#CACACA;
+	border-style:solid;
+	border-width:0;
+	color:#3FA4CB;
+	font-size:1em;
+	font-weight:bold;
+	margin:0;
+	padding:7px 0 0;
+}
+.mw_shopby .btn-remove{
+	float:right;
+	font-size:11px;
+	margin:4px 3px 1px 5px;
+}
+.mw_shopby .currently{
+	border:0;
+}
+.mw_shopby .currently ol li{padding:5px 0; display:block;}
+.mw_shopby .actions{
+	text-align: right;
+	border:0;
+	padding:0;
+}
+.mw_shopby_content{
+	border:0;
+	padding-top: 7px !important;
+	padding-bottom: 0 !important;
+}
+.mw_shopby_content span.title{
+	color:#2F2F2F;
+	margin-right:0;
+	margin-bottom: 0px;
+	padding:2px 0 5px 15px;
+	text-transform:uppercase;
+	font-size: 12px;
+	font-weight: bold;
+	display: block;
+}
+.mw_shopby .block-title strong{text-transform:none !important; font-size:14px !important;}
+.mw_shopby_content span.title{
+	background:transparent url(../images/arrow-cat.png) no-repeat scroll right center;
+	padding-left:0;
+}
+.mw_shopby_content span.selected	
+{	
+	background: transparent url(../images/arrow-cat-active.png) no-repeat scroll right center !important;
+}
+
+.mw_shopby_content span.title a{
+    color: #3FA4CB;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: none;
+	background: url(../images/bg_listmenu.png) no-repeat scroll left 8px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+	padding-left:17px;
+	display:block;
+}
+.mw_shopby_content span.title a:hover{
+	color: #3FA4CB;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: underline;
+    text-transform: none;
+}
+.mw_shopby_content ol{
+	padding-left: 17px;
+}
+.mw_shopby_content ol li{
+	background: url(../images/bg_listmenu2.png) no-repeat scroll 0 9px;
+	padding:5px 0 5px 10px;
+}
+.mv_smartmenu h4{
+	border-bottom:1px solid #DDDDDD;
+	color:#0A263C;
+	padding:0px 8px;
+	text-transform:uppercase;
+}
+a.main-cate, a:hover.main-cate  {
+	color:#3fa4cb;
+	font-size:12px;
+	font-weight:bold;
+	text-decoration:none;
+	text-transform:none;
+}
+
+.mw_shopby_content a.title_auto , .mw_shopby_content a:hover.title_auto{
+	background:transparent url(../images/arrow-cat-active.gif) no-repeat scroll right center;
+	color:#2F2F2F;
+	display:block;
+	font-size:12px;
+	font-weight:bold;
+	margin-bottom:0;
+	margin-right:3px;
+	padding:2px 0 5px 15px;
+	text-transform:uppercase;
+	text-decoration: none;
+}
+.mw_shopby_content a.select_auto , .mw_shopby_content a:hover.select_auto{
+	background:transparent url(../images/arrow-cat.gif) no-repeat scroll right center !important;
+	color:#2F2F2F;
+	display:block;
+	font-size:12px;
+	font-weight:bold;
+	margin-bottom:0;
+	margin-right:3px;
+	padding:2px 0 5px 15px;
+	text-transform:uppercase;
+	text-decoration: none;
+}
+
+.mw_shopby_content a.title_collap , .mw_shopby_content a:hover.title_collap{
+	background:transparent url(../images/arrow-cat-active.gif) no-repeat scroll right center !important;
+	color:#2F2F2F;
+	display:block;
+	font-size:12px;
+	font-weight:bold;
+	margin-bottom:0;
+	margin-right:3px;
+	padding:2px 0 5px 15px;
+	text-transform:uppercase;
+	text-decoration: none;
+}
+.mw_shopby_content a.select_collap , .mw_shopby_content a:hover.select_collap{
+	background:transparent url(../images/arrow-cat.gif) no-repeat scroll right center;
+	color:#2F2F2F;
+	display:block;
+	font-size:12px;
+	font-weight:bold;
+	margin-bottom:0;
+	margin-right:3px;
+	padding:2px 0 5px 15px;
+	text-transform:uppercase;
+	text-decoration: none;
+}
+
+
+#cate_collap a.title_collap span , #cate_collap a:hover.title_collap span{
+	background:transparent url(../images/arrow-cat.gif) no-repeat scroll 0 50%;
+	display:block;
+	width:15px;
+}
+#cate_collap a.select_auto span , #cate_collap a:hover.select_auto span{
+	background:transparent url(../images/arrow-cat-active.gif) no-repeat scroll 0 50%;
+	display:block;
+	width:15px;
+}
+
+
+.ul_level1 ul{
+	display: block !important;
+}
+#cate_collap li a{
+		clear: both;
+		padding-bottom: 0px;
+		padding-top: 2px;
+		padding-left: 12px;
+		color:#2F2F2F;
+		font-size:12px;
+		font-weight:bold;
+		text-decoration:none;
+		text-transform:uppercase;
+}
+#cate_collap li a:hover{
+		padding-bottom: 0px;
+		padding-top: 2px;
+		padding-left: 12px;
+		color:#2F2F2F;
+		font-size:12px;
+		font-weight:bold;
+		text-decoration:none;
+		text-transform:uppercase;
+}
+#cate_collap li ul li a{
+	background:url(../images/bg-li.gif) no-repeat 10px 10px;
+	padding-left: 25px;
+	color: #444;
+	text-decoration: none;
+	padding-bottom: 0px;
+	text-transform:capitalize;
+	font-weight: normal;
+}
+#cate_collap li ul li a:hover{
+	background:url(../images/bg-li.gif) no-repeat 10px 10px;
+	padding-left: 25px;
+	color: #444;
+	text-decoration: none;
+	padding-bottom: 0px;
+	text-transform:capitalize;
+	font-weight: normal;
+}
+#cate_collap li ul li ul{
+	margin-left: 10px;
+}
+#cate_collap li ul li ul li a{
+	background:url(../images/bg-cate-active2.gif) no-repeat 10px 10px;
+	padding-left: 25px;
+	color: #444;
+	text-decoration: none;
+}
+#cate_collap li ul li ul li a:hover{
+	background:url(../images/bg-cate-active2.gif) no-repeat 10px 10px;
+	padding-left: 25px;
+	color: #444;
+	text-decoration: none;
+}
+#cate_collap li.active a{
+	font-weight: bold;
+}
+#cate_collap li.active ul li a{
+	font-weight: normal;
+}
+#cate_collap li.active ul li.active a{
+	font-weight: bold;
+}

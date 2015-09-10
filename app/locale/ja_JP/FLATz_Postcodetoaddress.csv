@@ -1,0 +1,7 @@
+"FLATz Postcodetoaddress", "郵便番号からの住所自動入力"
+"FLATz Postcodetoaddress Setting", "設定"
+"URL", "住所照会APIのURL"
+"Get Address", "住所取得"
+"Please input the postal code number by %s characters.","郵便番号は%s文字で入力してください。"
+"System Error","システムエラーが発生しました。しばらく待ってから再度お試しください。"
+"Address not found", "郵便番号に該当する住所情報が見つかりませんでした。"

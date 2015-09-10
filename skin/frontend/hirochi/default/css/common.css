@@ -1,0 +1,123 @@
+@charset 'UTF-8';
+/* ——————————————
+page Style Seet
+00.基本レイアウト
+01.カレンダー
+99.汎用クラス（Clearfix含）
+—————————————— */
+
+/* 00.基本レイアウト
+———————————————————— */
+html,body{ height:100%; }
+body{ 
+	background-color:#efefef;/* 背景色 */
+	font-family: 'Lucida Grande', 'Lucida Sans Unicode', "游ゴシック", YuGothic, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, 'ＭＳ Ｐゴシック', Helvetica, Arial, Verdana, sans-serif;
+	color:#484848;/* 文字色 */
+	margin:0;
+	/* 基本フォントサイズ */
+	font-size:14px;
+}
+#wrapper{ /* 全体DIV */
+	margin:0 auto;
+	padding:0;
+	/* footer下部へ */
+	position:relative;
+	height:auto!important;
+	height:100%;
+	min-height:100%;
+}
+#header{ /* ヘッダーDIV */
+	margin:0;
+	padding:10px;
+	background-color:#6CF;
+}
+#contents{ /* コンテンツDIV */
+	width:960px;
+	margin:20px auto;
+	padding:10px;
+	background-color:#ccc;
+}
+#footer{ /* フッターDIV */
+	height:auto;
+	width:100%;
+	margin:0;
+	padding:30px 0;
+	position:absolute;
+	bottom:0;
+	text-align:center;
+	background-color:pink;
+}
+
+/* 01.カレンダー
+———————————————————————————————————————————————————————————— */
+#calendar{
+	border: 1px solid #333;
+}
+	#calendar h3 img{
+		width: 100%;
+		height: auto;
+	}
+	#calendar p{
+		padding: 0 10px 10px;
+		font-size: 12px;
+	}
+	#calendar > table{
+		margin: 0 5px;
+		width: 90%;
+	}
+	#calendar .days td{
+		padding: 3px;
+	}
+	#calendar td.calendar-month{
+		text-align: center;
+		font-weight: bold;
+		padding: 5px 0;
+	}
+	#calendar table td table{
+		margin: 0 0 1em;
+	}
+	#calendar .cal-day.cal-header {
+		border: 1px solid #fff;
+		background-color: #ccc;
+		padding: 5px;
+		font-weight: normal;
+	}
+	#calendar .day-holiday,
+	#calendar .day-last{
+		background-color: #ff9999;
+	}
+	#calendar th.cal-day:nth-child(7n) {
+		color: #ff0000;
+	}
+	#calendar th.cal-day:nth-child(6n) ,
+	#calendar td.cal-day:nth-child(6n) {
+		color: #0000ff;
+	}
+	#calendar td.cal-day:nth-child(6n) {
+		background-color: #ffed93;
+	}
+
+
+
+/* 99.汎用クラス
+———————————————————— */
+.cf:before,
+.cf:after {
+    content: " ";
+    display: table;
+}
+
+.cf:after {
+    clear: both;
+}
+
+.cf {
+    *zoom: 1;
+}
+
+/* all_pages_comment 表示・非表示切り替え
+———————————————————————————————————————— */
+
+/*.all_pages_comment{
+    display: none;
+}*/

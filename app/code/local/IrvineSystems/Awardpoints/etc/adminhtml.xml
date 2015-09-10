@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<!--
+/*
+ * Irvine Systems Award Points
+ *
+ * NOTICE OF LICENSE
+ * This source file is subject to the Revised BSD License which is bundled with
+ * this package in the files LICENSE.txt and LICENSE.html.
+ *
+ * @category	Magento Sale Extension
+ * @package		IrvineSystems_AwardPoints
+ * @author Irvine Systems, Inc.
+ * @copyright Copyright (c) 2015, Irvine Systems, Inc. (http://irvinesystems.co.jp/)
+ * @license     Revised BSD License
+ */
+-->
+<config>
+  <menu>
+    <awardpoints translate="title" module="awardpoints">
+      <title>Award Points</title>
+      <sort_order>50</sort_order>
+      <children>
+        <stats translate="title" module="awardpoints">
+          <title>Statistics</title>
+          <sort_order>2</sort_order>
+          <action>awardpoints/adminhtml_stats</action>
+        </stats>
+        <customertpoints translate="title" module="awardpoints">
+          <title>Customers Points</title>
+          <sort_order>3</sort_order>
+          <action>awardpoints/adminhtml_customertpoints</action>
+        </customertpoints>
+        <referrals translate="title" module="awardpoints">
+          <title>Referrals</title>
+          <sort_order>5</sort_order>
+          <action>awardpoints/adminhtml_referrals</action>
+        </referrals>
+        <catalogrules translate="title" module="awardpoints">
+          <title>Catalog Points Rules</title>
+          <sort_order>6</sort_order>
+          <action>awardpoints/adminhtml_catalogrules</action>
+        </catalogrules>
+        <cartrules translate="title" module="awardpoints">
+          <title>Shopping Cart Points Rules</title>
+          <sort_order>7</sort_order>
+          <action>awardpoints/adminhtml_cartrules</action>
+        </cartrules>
+        <config translate="title" module="awardpoints">
+          <title>Configuration</title>
+          <sort_order>8</sort_order>
+          <action>adminhtml/system_config/edit/section/awardpoints</action>
+        </config>
+      </children>
+    </awardpoints>
+  </menu>
+  <acl>
+    <resources>
+      <all>
+        <title>Allow Everything</title>
+      </all>
+      <admin>
+        <children>
+          <awardpoints module="awardpoints">
+            <title>Award Points</title>
+            <sort_order>50</sort_order>
+            <children>
+              <stats translate="title" module="awardpoints">
+                <title>Statistics</title>
+                <sort_order>2</sort_order>
+              </stats>
+              <customertpoints translate="title" module="awardpoints">
+                <title>Customers Points</title>
+                <sort_order>3</sort_order>
+              </customertpoints>
+              <referrals translate="title" module="awardpoints">
+                <title>Referrals</title>
+                <sort_order>4</sort_order>
+              </referrals>
+              <catalogrules translate="title" module="awardpoints">
+                <title>Catalog Points Rules</title>
+                <sort_order>5</sort_order>
+              </catalogrules>
+              <cartrules translate="title" module="awardpoints">
+                <title>Shopping Cart Points Rules</title>
+                <sort_order>6</sort_order>
+              </cartrules>
+              <config translate="title" module="awardpoints">
+                <title>Configuration</title>
+                <sort_order>7</sort_order>
+              </config>
+            </children>
+          </awardpoints>
+          <catalog>
+            <children>
+              <awardpoints_adminform>
+                <title>Configuration</title>
+              </awardpoints_adminform>
+            </children>
+          </catalog>
+          <customer>
+            <children>
+              <awardpoints translate="title">
+                <title>Award Points</title>
+                <sort_order>41</sort_order>
+              </awardpoints>
+            </children>
+          </customer>
+          <system>
+            <children>
+              <config>
+                <children>
+                  <awardpoints translate="title" module="awardpoints">
+                    <title>Irvine Systems &gt; Award Points</title>
+                    <sort_order>1000</sort_order>
+                  </awardpoints>
+                </children>
+              </config>
+            </children>
+          </system>
+        </children>
+      </admin>
+    </resources>
+  </acl>
+</config>

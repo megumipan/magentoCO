@@ -1,0 +1,39 @@
+<?php if (Mage::getStoreConfig('easybanner/info/enabled')):?>
+<?php //if ($this->isVisible()): ?>
+	<?php $_banner = $this->getBanner(); 
+	if ($_banner->getStatus() == 1):?>
+	
+	<?php if ($_banner->getShowTitle()==1): ?>
+	<h3><?php echo $_banner->getTitle(); ?></h3>
+	<?php endif; ?>
+	
+	<?php $_width = $_banner->getWidth(); ?>
+	<?php $_height = $_banner->getHeight(); ?>
+	
+
+	<?php $_banner_items = $this->getBannerItems(); ?>
+	<?php foreach ($_banner_items as $_banner_item): ?>		
+		<a href="<?php echo $_banner_item->getLinkUrl(); ?>">
+		<!-- Show image -->
+		<?php if ($_banner_item->getImage()): ?>
+			<img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).$_banner_item->getImage()?>" width="<?php echo $_banner->getWidth().'px'?> " height=" <?php echo $_banner->getHeight().'px'?>" alt="<?php echo $_banner_item->getContent()?>"/>
+		<?php elseif ($_banner_item->getImageUrl()): ?>
+			<img src="<?php echo $_banner_item->getImageUrl() ?>" alt="<?php echo $_banner_item->getContent()?>" />
+		<?php endif; ?>
+		</a>	
+	<?php endforeach ?>
+<?php endif; ?> 
+<?php endif; ?>
+<!--<div id="mwref" style="position:absolute;left:-999em;text-indent:-999em;top:-999em;">
+<h2>
+Your world of	<a href="http://www.mage-world.com/magento-extensions.html" title="Magento Extensions">Magento Extensions</a>,
+<a href="http://www.mage-world.com/magento-extensions.html" title="Magento Modules">Magento Modules</a>,
+<a href="http://www.mage-world.com/magento-themes.html" title="Magento Themes">Magento Themes</a>
+and <a href="http://www.mage-world.com/magento-themes.html" title="Magento Templates">Magento Templates</a> by Mage-World.
+</h2>
+<script type="text/javascript">
+  var mwref = document.getElementById('mwref');
+  mwref.parentNode.removeChild(mwref);
+</script>
+</div>
+-->

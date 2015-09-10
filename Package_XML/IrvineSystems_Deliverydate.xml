@@ -1,0 +1,130 @@
+<_>
+   <form_key>VJeEkrodRsJY7Agj</form_key>
+   <name>IrvineSystems_Deliverydate</name>
+   <channel>community</channel>
+   <version_ids>
+      <version_ids>2</version_ids>
+      <version_ids>1</version_ids>
+   </version_ids>
+   <summary>This great and fully performing extension will grant your customer with the option tho choose a delivery date and time for their purchase. Moreover they can also add additional delivery comment for further personalize their shopping experience.</summary>
+   <description>Let your customer choose when they can receive their shipment!
+
+This great and fully performing extension will grant your customer with the option tho choose a delivery date and time for their purchase. Moreover they can also add additional delivery comment for further personalize their shipment.
+Which method can feature the delivery option, which dates and which time can fully be configured by the store owner with fast and simple clicks in the admin panel option.
+Improve your customer experience in your store allowing your customer to freely choose they shipping schedule!</description>
+   <license>BSD</license>
+   <license_uri>http://opensource.org/licenses/BSD-3-Clause</license_uri>
+   <version>1.0.1.0</version>
+   <stability>stable</stability>
+   <notes>Not compatible with Magento CE prior 1.4.2</notes>
+   <authors>
+      <name>
+         <name>Irvine Mage</name>
+      </name>
+      <user>
+         <user>IrvineMage</user>
+      </user>
+      <email>
+         <email>magentosupport@irvine.jp</email>
+      </email>
+   </authors>
+   <depends_php_min>3.1.0</depends_php_min>
+   <depends_php_max>7.0.0</depends_php_max>
+   <depends>
+      <package>
+         <name>
+            <name/>
+            <name>IrvineSystems_Adminhtml</name>
+         </name>
+         <channel>
+            <channel/>
+            <channel>community</channel>
+         </channel>
+         <min>
+            <min/>
+            <min>1.0.0.0</min>
+         </min>
+         <max>
+            <max/>
+            <max>9.0.0.0</max>
+         </max>
+         <files>
+            <files>                                     </files>
+            <files>                                     </files>
+         </files>
+      </package>
+      <extension>
+         <name>
+            <name>Core</name>
+         </name>
+         <min>
+            <min/>
+         </min>
+         <max>
+            <max/>
+         </max>
+      </extension>
+   </depends>
+   <contents>
+      <target>
+         <target>magelocal</target>
+         <target>mageetc</target>
+         <target>magelocal</target>
+         <target>magelocale</target>
+         <target>magedesign</target>
+         <target>magedesign</target>
+         <target>magedesign</target>
+         <target>magedesign</target>
+         <target>mageskin</target>
+         <target>mageskin</target>
+      </target>
+      <path>
+         <path/>
+         <path>modules/IrvineSystems_Deliverydate.xml</path>
+         <path>IrvineSystems/Deliverydate</path>
+         <path/>
+         <path>frontend/base/default/layout/deliverydate.xml</path>
+         <path>frontend/base/default/template/deliverydate</path>
+         <path>adminhtml/default/default/layout/deliverydate.xml</path>
+         <path>adminhtml/default/default/template/deliverydate</path>
+         <path>adminhtml/default/default/images/irvinesystems/delivery_date_optimum.png</path>
+         <path>frontend/base/default/css/deliverydate</path>
+      </path>
+      <type>
+         <type>file</type>
+         <type>file</type>
+         <type>dir</type>
+         <type>dir</type>
+         <type>file</type>
+         <type>dir</type>
+         <type>file</type>
+         <type>dir</type>
+         <type>file</type>
+         <type>dir</type>
+      </type>
+      <include>
+         <include/>
+         <include/>
+         <include/>
+         <include>#IrvineSystems_Deliverydate.csv#</include>
+         <include/>
+         <include/>
+         <include/>
+         <include/>
+         <include/>
+         <include/>
+      </include>
+      <ignore>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+      </ignore>
+   </contents>
+</_>

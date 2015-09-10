@@ -1,0 +1,73 @@
+﻿<?xml version="1.0"?>
+<!--
+/*
+ * Irvine Systems Delivery Date Optimum
+ *
+ * NOTICE OF LICENSE
+ * This source file is subject to the Revised BSD License which is bundled with
+ * this package in the files LICENSE.txt and LICENSE.html.
+ *
+ * @category	Magento Catalog Extension
+ * @package		IrvineSystems_Deliverydate
+ * @author Irvine Systems, Inc.
+ * @copyright Copyright (c) 2015, Irvine Systems, Inc. (http://irvinesystems.co.jp/)
+ * @license     Revised BSD License
+ */
+-->
+<layout version="0.1.0">
+  <!-- ********************** CUSTOMER ACCOUNT ORDER/INVOICE AND SHIPMENT LAYOUT UPDATES ********************* -->
+	<sales_order_view>
+	    <reference name="my.account.wrapper">
+	        <block type="deliverydate/customer_info" after='sales.order.info'></block>
+	    </reference>
+	</sales_order_view>
+	<sales_order_invoice>
+	    <reference name="my.account.wrapper">
+	        <block type="deliverydate/customer_info" after='sales.order.info'></block>
+	    </reference>    
+	</sales_order_invoice>
+	<sales_order_shipment>
+	    <reference name="my.account.wrapper">
+	        <block type="deliverydate/customer_info" after='sales.order.info'></block>
+	    </reference>    
+	</sales_order_shipment>
+	<sales_order_creditmemo>
+	    <reference name="my.account.wrapper">
+	        <block type="deliverydate/customer_info" after='sales.order.info'></block>
+	    </reference>    
+	</sales_order_creditmemo>
+  
+  <!-- ********************** CHECKOUT ONEPAGE LAYOUT UPDATES ********************* -->
+  <!--
+   * Checkout Onepage Index
+   * Add Calendar JS and CSS to Checkout Index
+   -->
+  <checkout_onepage_index>
+    <reference name="head">
+      <action method="addItem">
+        <type>js</type>
+        <name>calendar/calendar.js</name>
+      </action>
+      <action method="addItem">
+        <type>js</type>
+        <name>calendar/calendar-setup.js</name>
+      </action>
+    </reference>
+  </checkout_onepage_index>
+  <!--
+   * Update Core onepage_shipping_method_available block
+   * for Delivery Date Implementation
+   -->
+  <checkout_onepage_additional>
+    <reference name="root">
+      <block type="core/html_calendar" name="head.calendar" as="calendar" output="toHtml" template="deliverydate/js/calendar.phtml"/>
+      <action method="setTemplate">
+        <template>deliverydate/additional.phtml</template>
+      </action>
+      <block type="checkout/onepage_shipping_method_additional" template="checkout/onepage/shipping_method/additional.phtml" name="deliverydate.additional"></block>
+      <block type="deliverydate/deliverydate" name="deliverydate.deliverydate">
+        <block type="deliverydate/deliverydate_form" name="deliverydate.form"></block>
+      </block>
+    </reference>
+  </checkout_onepage_additional>
+</layout>

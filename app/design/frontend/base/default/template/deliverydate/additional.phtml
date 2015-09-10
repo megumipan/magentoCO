@@ -1,0 +1,28 @@
+<?php
+/*
+ * Irvine Systems Delivery Date Optimum
+ *
+ * NOTICE OF LICENSE
+ * This source file is subject to the Revised BSD License which is bundled with
+ * this package in the files LICENSE.txt and LICENSE.html.
+ *
+ * @category	Magento Catalog Extension
+ * @package		IrvineSystems_Deliverydate
+ * @author Irvine Systems, Inc.
+ * @copyright Copyright (c) 2015, Irvine Systems, Inc. (http://irvinesystems.co.jp/)
+ * @license     Revised BSD License
+ */
+?>
+<?php
+/**
+* Shipping Available Method Block Overrride
+* 
+* The templeate will add to the original available methods the additional Delivery date block
+*/
+
+// Render Core Shipping Additional block
+echo $this->getChildHtml('deliverydate.additional');
+// Add Delivery Date Block if delivery date is enable
+if(Mage::getStoreConfig('deliverydate/general/enabled')) echo $this->getChildHtml('deliverydate.deliverydate');
+
+?>

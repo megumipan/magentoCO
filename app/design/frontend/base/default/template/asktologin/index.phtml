@@ -1,0 +1,60 @@
+<script type="text/javascript">// <![CDATA[
+/*	document.observe("dom:loaded", function() {
+		winAsktologin = new Window({className:'dialog',title:"Ask to login",resizable:false,draggable:false,closable:<?php echo $this->newCustomer()?>,closeOnEsc:<?php echo $this->newCustomer()?>,width:450,height:220,minimizable:false,maximizable:false,showEffectOptions:{duration:0.5},hideEffectOptions:{duration:0.5}});
+	    winAsktologin.setZIndex(100);
+	    winAsktologin.showCenter(true);
+	    winAsktologin.setContent("login-to-buy", false, false);
+	    
+		Event.observe('login-button', 'click', function(event){
+			$('asktologin-login-form').request({
+				onSuccess: function(r){
+					var result = r.responseText.evalJSON();
+                    if(result.success) {
+                        window.location = window.location;
+                    } else {
+                        $('loginerror').show().update(result.error);
+                    }
+				}
+			});
+		});
+	});
+*/	
+// ]]>
+</script>
+
+<div id="login-to-buy" style="display:none; padding: 10px;">
+	<div class="page-title"><h1 class="login-title"><?php echo $this->__('Please login to access site.') ?></h1></div>
+    <div id="loginerror" class="error-msg" style="display:none;"></div>
+    <div id="login-form-div">
+    	<form id="asktologin-login-form" method="POST" action="<?php echo $this->getLoginPostActionUrl();?>">
+		<ul class="form-list">
+	        <li>
+	            <label for="email" class="required"><em>*</em><?php echo $this->__('Email Address') ?></label>
+	            <div class="input-box">
+	                <input type="text" name="asktologin_username" value="<?php echo $this->escapeHtml($this->getUsername()) ?>" id="email" class="input-text required-entry validate-email" title="<?php echo $this->__('Email Address') ?>" />
+	            </div>
+	        </li>
+	        <li>
+	            <label for="pass" class="required"><em>*</em><?php echo $this->__('Password') ?></label>
+	            <div class="input-box">
+	                <input type="password" name="asktologin_password" class="input-text required-entry validate-password" id="pass" title="<?php echo $this->__('Password') ?>" />
+	            </div>
+	        </li>
+	        <li><a href="<?php echo $this->getForgotPasswordUrl() ?>" class="f-left"><?php echo $this->__('Forgot Your Password?') ?></a></li>
+	        <li>
+	        	<button id="login-button" type="button"><?php echo $this->__('Login'); ?></button>
+	        </li>
+	    </ul>
+	    </form>
+    </div>
+    <div>
+    <a href="<?php echo $this->getCreateAccountUrl() ?>" class="f-right"><?php echo $this->__('New Customers?') ?></a>
+    </div>
+</div>
+
+<style>
+.overlay_dialog{
+	background-color:#000;
+}
+h1.login-title {color:#fff;}
+</style>

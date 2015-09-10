@@ -1,0 +1,107 @@
+﻿<?php
+/*
+ * Irvine Systems Shipping Japan Jp
+ *
+ * NOTICE OF LICENSE
+ * This source file is subject to the Revised BSD License which is bundled with
+ * this package in the files LICENSE.txt and LICENSE.html.
+ *
+ * @category	Magento Shipping Extension
+ * @package		IrvineSystems_JapanPost
+ * @author Irvine Systems, Inc.
+ * @copyright Copyright (c) 2015, Irvine Systems, Inc. (http://irvinesystems.co.jp/)
+ * @license     Revised BSD License
+ */
+?>
+
+<?php // if($this->canRender()):?>
+<?php $helper = Mage::helper('japanpost'); ?>
+
+<?php // Additional CSS style implementation for Delivery date form ?>
+<style type="text/css">
+    .shipping-info ul{ border:none !important; padding:0 !important; margin:0 !important;}
+    .shipping-info li{ margin-bottom:10px; text-align:left; }
+    .shipping-info label{ font-weight:bold; color:#666666;}
+</style>
+
+<?php // Carrier Otions Data Group ?>
+<div id="shipping-options-form" class="buttons-set shipping-info">
+	<?php echo $this->getChildHtml(); ?>
+</div>
+
+<?php // AJAX Loading Elements ?>
+<?php $message = $helper->__('Please wait, available shipping option are been calculated...'); ?>
+<span id="shipping-options-processing" class="a-left" style="display:none;">
+	<img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif');?>" alt="<?php echo $message?>" title="<?php echo $message?>" class="v-middle" />
+	<?php echo $message?>
+</span>
+
+<?php
+/*
+ * AJAX Request Management
+ *
+ * Choose to show or hide the delivery date form acording to
+ * Selected Shipping Method
+ */
+?>
+<script type="text/javascript">
+	//<![CDATA[
+	var ajaxURL = '<?php echo $this->getPostUrl() ?>';
+	$$('[id^="shipping-options-form"]').each( function(el){ el.hide(); });
+
+	var radioSelectorString = 'input[type="radio"][name="shipping_method"]';
+	var shippingCode;
+	$$(radioSelectorString).each( function(el){
+    	if (el.checked == true){
+        	shippingCode = el.getValue();
+			<?php if($helper->hasFirecheckout()):?>
+				var carrierCode = shippingCode.split("_");
+				if(carrierCode[0] != 'japanpost') return;
+			<?php endif;?> 
+			ajaxCheck();
+    	}
+		Event.observe(el, 'click', function(){
+	    	if (el.checked == true){
+	        	shippingCode = el.getValue();
+				<?php if($helper->hasFirecheckout()):?>
+					var carrierCode = shippingCode.split("_");
+					if(carrierCode[0] != 'japanpost') return;
+				<?php endif;?> 
+				ajaxCheck();
+	    	}
+		});
+	});
+
+	function ajaxCheck(){
+        // Disable console and show AJAX update during processing
+		$$(radioSelectorString).each( function(el){ el.disable(); } );
+        $('shipping-method-buttons-container') && $('shipping-method-buttons-container').hide();
+		$('shipping-options-form') && $('shipping-options-form').hide;
+        $('shipping-options-processing') && $('shipping-options-processing').show();
+        new Ajax.Request(ajaxURL, {
+            method: 'post',
+            parameters: { 'shipping_code': shippingCode },
+            onSuccess: function(transport){ 
+	            // On successfull Process hide Ajax update and show result
+                $('shipping-options-processing').hide();
+				// Proceed only if we actually have a form Data
+				try{
+					//alert('seino - will update');
+					var json = transport.responseText.evalJSON();
+					Element.update('shipping-options-form', json.optionsformhtml);
+   	                $('shipping-options-form').show();
+				  }catch(err){};
+                $('shipping-method-buttons-container') && $('shipping-method-buttons-container').show();
+                $$(radioSelectorString).each( function(el){ el.enable(); } );
+            },
+            onFailure: function(){ 
+	            // On failure Process hide Ajax update
+                $('shipping-options-processing').hide();
+                $('shipping-method-buttons-container') && $('shipping-method-buttons-container').show();
+                $$(radioSelectorString).each( function(el){ el.enable(); } );
+            }
+        });		
+	};
+	//]]>
+</script>
+<?php //endif;?>

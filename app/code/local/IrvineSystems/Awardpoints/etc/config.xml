@@ -1,0 +1,325 @@
+<?xml version="1.0"?>
+<!--
+/*
+ * Irvine Systems Award Points
+ *
+ * NOTICE OF LICENSE
+ * This source file is subject to the Revised BSD License which is bundled with
+ * this package in the files LICENSE.txt and LICENSE.html.
+ *
+ * @category    Magento Sale Extension
+ * @package        IrvineSystems_AwardPoints
+ * @author Irvine Systems, Inc.
+ * @copyright Copyright (c) 2015, Irvine Systems, Inc. (http://irvinesystems.co.jp/)
+ * @license     Revised BSD License
+ */
+-->
+<config>
+  <!-- ********************** MODULE PARAMETERS ********************* -->
+  <modules>
+    <IrvineSystems_Awardpoints>
+      <version>2.0.1.0</version>
+    </IrvineSystems_Awardpoints>
+  </modules>
+  
+  <!-- ********************** GLOBAL PARAMETERS ********************* -->
+  <global>
+    <!-- MODULE MODELS -->
+    <models>
+      <awardpoints>
+        <class>IrvineSystems_Awardpoints_Model</class>
+        <resourceModel>awardpoints_resource</resourceModel>
+      </awardpoints>
+      <awardpoints_resource>
+        <class>IrvineSystems_Awardpoints_Model_Resource</class>
+        <deprecatedNode>IrvineSystems_Awardpoints_Model_Mysql4</deprecatedNode>
+        <entities>
+          <account>
+            <table>awardpoints_account</table>
+          </account>
+          <referral>
+            <table>awardpoints_referral</table>
+          </referral>
+          <cartrules>
+            <table>awardpoints_cartrules</table>
+          </cartrules>
+          <catalogrules>
+            <table>awardpoints_catalogrules</table>
+          </catalogrules>
+		  <customer_entity>
+			<table>customer_entity</table>
+          </customer_entity>
+		  <customer_entity_varchar>
+			<table>customer_entity_varchar</table>
+          </customer_entity_varchar>
+        </entities>
+      </awardpoints_resource>
+      <!-- Note: This rewrite is used for the automatic use of points -->
+      <salesrule>
+        <rewrite>
+          <validator>IrvineSystems_Awardpoints_Model_Salesrule_Validator</validator>
+        </rewrite>
+      </salesrule>
+    </models>
+    <!-- DATABASE RESOURCES -->
+    <resources>
+      <awardpoints_setup>
+        <setup>
+          <module>IrvineSystems_Awardpoints</module>
+          <class>Mage_Core_Model_Resource_Setup</class>
+        </setup>
+        <connection>
+          <use>core_setup</use>
+        </connection>
+      </awardpoints_setup>
+      <awardpoints_write>
+        <connection>
+          <use>core_write</use>
+        </connection>
+      </awardpoints_write>
+      <awardpoints_read>
+        <connection>
+          <use>core_read</use>
+        </connection>
+      </awardpoints_read>
+    </resources>
+    <!-- EMAIL TEMPLATES -->
+    <template>
+      <email>
+        <awardpoints_referralnotif_template translate="label" module="awardpoints">
+          <label>Invitation</label>
+          <file>awardpoints_referral.html</file>
+          <type>html</type>
+        </awardpoints_referralnotif_template>
+        <awardpoints_referralordernotif_template translate="label" module="awardpoints">
+          <label>Order Confirmation</label>
+          <file>awardpoints_order_confirmation.html</file>
+          <type>html</type>
+        </awardpoints_referralordernotif_template>
+        <awardpoints_referralregistrationnotif_template translate="label" module="awardpoints">
+          <label>Registration Confirmation</label>
+          <file>awardpoints_registration_confirmation.html</file>
+          <type>html</type>
+        </awardpoints_referralregistrationnotif_template>
+        <awardpoints_pointsbalancenotif_template translate="label" module="awardpoints">
+          <label>Balance</label>
+          <file>awardpoints_balance.html</file>
+          <type>html</type>
+        </awardpoints_pointsbalancenotif_template>
+        <awardpoints_pointsexpirationnotif_template translate="label" module="awardpoints">
+          <label>Expiration</label>
+          <file>awardpoints_expiration.html</file>
+          <type>html</type>
+        </awardpoints_pointsexpirationnotif_template>
+      </email>
+    </template>
+    <!-- MODULE HELPERS -->
+    <helpers>
+      <awardpoints>
+        <class>IrvineSystems_Awardpoints_Helper</class>
+      </awardpoints>
+    </helpers>
+    <!-- MODULE BLOCKS -->
+    <blocks>
+      <awardpoints>
+        <class>IrvineSystems_Awardpoints_Block</class>
+      </awardpoints>
+	  <catalog>
+		  <rewrite>
+			  <product_list>IrvineSystems_Awardpoints_Block_Productlist</product_list>
+		  </rewrite>
+	  </catalog>
+	</blocks>
+  </global>
+  
+  <!-- ********************* FRONTEND PARAMETERS ******************** -->
+  <frontend>
+    <!-- FRONTEND OBSERVERS -->
+    <events>
+      <review_save_after>
+        <observers>
+          <awardpoints>
+            <class>awardpoints/observer</class>
+            <method>recordPointsUponReview</method>
+          </awardpoints>
+        </observers>
+      </review_save_after>
+      <newsletter_subscriber_save_after>
+        <observers>
+          <awardpoints>
+            <class>awardpoints/observer</class>
+            <method>recordPointsUponNewsletterSubscribe</method>
+          </awardpoints>
+        </observers>
+      </newsletter_subscriber_save_after>
+      <checkout_submit_all_after>
+        <observers>
+          <awardpoints>
+            <type>singleton</type>
+            <class>awardpoints/observer</class>
+            <method>recordPointsUponOrder</method>
+          </awardpoints>
+        </observers>
+      </checkout_submit_all_after>
+      <customer_login>
+        <observers>
+          <awardpoints>
+            <type>singleton</type>
+            <class>awardpoints/observer</class>
+            <method>recordPointsUponRegistration</method>
+          </awardpoints>
+        </observers>
+      </customer_login>
+    </events>
+    <!-- FRONTEND TRANSLATION CSV -->
+    <translate>
+      <modules>
+        <IrvineSystems_Awardpoints>
+          <files>
+            <default>IrvineSystems_Awardpoints.csv</default>
+          </files>
+        </IrvineSystems_Awardpoints>
+      </modules>
+    </translate>
+    <!-- FRONTEND LAYOUT UPDATES -->
+    <layout>
+      <updates>
+        <awardpoints>
+          <file>awardpoints.xml</file>
+        </awardpoints>
+      </updates>
+    </layout>
+    <!-- FRONTEND ROUTERS -->
+    <routers>
+      <awardpoints>
+        <use>standard</use>
+        <args>
+          <module>IrvineSystems_Awardpoints</module>
+          <frontName>awardpoints</frontName>
+        </args>
+      </awardpoints>
+    </routers>
+  </frontend>
+  
+  <!-- ********************* BACKEND TRANSLATION PARAMETERS ******************** -->
+  <adminhtml>
+    <translate>
+      <modules>
+        <IrvineSystems_Awardpoints>
+          <files>
+            <default>IrvineSystems_Awardpoints.csv</default>
+          </files>
+        </IrvineSystems_Awardpoints>
+      </modules>
+    </translate>
+  </adminhtml>
+  
+  <!-- ********************* ADMIN PARAMETERS ******************** -->
+  <admin>
+    <!-- ADMIN ROUTERS -->
+    <routers>
+      <awardpoints>
+        <use>admin</use>
+        <args>
+          <module>IrvineSystems_Awardpoints</module>
+          <frontName>awardpoints</frontName>
+        </args>
+      </awardpoints>
+    </routers>
+  </admin>
+  
+  <!-- ********************* CRON JOBS PARAMETERS ******************** -->
+  <crontab>
+    <jobs>
+      <awardpoints_balance_points_cron>
+        <run>
+          <model>awardpoints/observer::notifyBalance</model>
+        </run>
+      </awardpoints_balance_points_cron>
+      <awardpoints_expiration_points_cron>
+        <run>
+          <model>awardpoints/observer::notifyExpiration</model>
+        </run>
+      </awardpoints_expiration_points_cron>
+    </jobs>
+  </crontab>
+  
+  <!-- ********************** DEFAULT PARAMETERS ******************** -->
+  <default>
+    <awardpoints>
+      <about>
+        <version>2.0.1.0</version>
+      </about>
+      <general>
+        <money_points>1</money_points>
+        <points_money>50</points_money>
+        <math_method>0</math_method>
+        <cart_method>0</cart_method>
+        <points_duration>0</points_duration>
+        <auto_use>0</auto_use>
+        <step_apply>0</step_apply>
+        <step_value>100</step_value>
+        <full_use>0</full_use>
+        <coupon_codes>0</coupon_codes>
+        <store_scope>0</store_scope>
+      </general>
+      <registration>
+        <registration_show>1</registration_show>
+        <registration_points>0</registration_points>
+      </registration>
+      <newsletter>
+        <newsletter_show>1</newsletter_show>
+        <newsletter_points>0</newsletter_points>
+      </newsletter>
+      <shopping>
+        <shopping_show>1</shopping_show>
+        <max_point_collect_order>0</max_point_collect_order>
+        <max_point_used_order>0</max_point_used_order>
+        <min_subtotal>0</min_subtotal>
+      </shopping>
+      <referral>
+        <referral_show>1</referral_show>
+        <referral_points>0</referral_points>
+        <referral_orders_mode>1</referral_orders_mode>
+        <referral_orders_number>1</referral_orders_number>
+        <referral_parent_order>0</referral_parent_order>
+        <referral_child_order>0</referral_child_order>
+        <referral_permanent>0</referral_permanent>
+        <referral_addthis>0</referral_addthis>
+      </referral>
+      <review>
+        <review_show>1</review_show>
+        <review_points>0</review_points>
+      </review>
+      <referral_notifications>
+        <enable>0</enable>
+        <template>awardpoints_referral_notifications_template</template>
+      </referral_notifications>
+      <referral_order_notifications>
+        <enable>0</enable>
+        <template>awardpoints_referral_order_notifications_template</template>
+      </referral_order_notifications>
+      <referral_registration_notifications>
+        <enable>0</enable>
+        <template>awardpoints_referral_registration_notifications_template</template>
+      </referral_registration_notifications>
+      <points_balance_notifications>
+        <enable>0</enable>
+        <template>awardpoints_points_balance_notifications_template</template>
+        <frequency>M</frequency>
+        <time>01,00,00</time>
+        <weekday>0</weekday>
+        <monthdate>1</monthdate>
+      </points_balance_notifications>
+      <points_expiration_notifications>
+        <enable>0</enable>
+        <template>awardpoints_points_expiration_notifications_template</template>
+        <days>10</days>
+        <frequency>D</frequency>
+        <time>01,00,00</time>
+        <weekday>0</weekday>
+        <monthdate>1</monthdate>
+      </points_expiration_notifications>
+    </awardpoints>
+  </default>
+</config>

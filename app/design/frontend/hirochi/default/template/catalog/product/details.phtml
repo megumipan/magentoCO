@@ -1,0 +1,237 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2006-2014 X.commerce, Inc. (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+/**
+ * Product view template
+ *
+ * @see Mage_Catalog_Block_Product_View
+ * @see Mage_Review_Block_Product_View
+ */
+?>
+<?php $_helper = $this->helper('catalog/output'); ?>
+<?php $_product = $this->getProduct(); ?>
+<div class="shop_04">
+<h2 class="h2_heading"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h2><!-- 中央カラム 見出し common.cssに定義 -->
+<div class="shop_04_item">
+<div class="cf clear">
+<?php //print_r($_product); ?>
+
+
+<?php if ($_product->getImage() != 'no_selection' && $_product->getImage()): ?>
+<div class="image_area flL">
+<div class="large_image">
+<?php
+$_img = '<img id="image" src="'.$this->helper('catalog/image')->init($_product, 'image').'" alt="'.$this->escapeHtml($this->getImageLabel()).'" title="'.$this->escapeHtml($this->getImageLabel()).'" />';
+echo $_helper->productAttribute($_product, $_img, 'image');
+?>
+<?php endif; ?>
+</div>
+<ul class="cf">
+<li><a href="#"><img src="<?php echo $this->getSkinUrl('images/review_sample01.png'); ?>" alt="image01"></a></li>
+<li><a href="#"><img src="<?php echo $this->getSkinUrl('images/review_sample01.png'); ?>" alt="image02"></a></li>
+<li><a href="#"><img src="<?php echo $this->getSkinUrl('images/review_sample01.png'); ?>" alt="image03"></a></li>
+<li><a href="#"><img src="<?php echo $this->getSkinUrl('images/review_sample01.png'); ?>" alt="image04"></a></li>
+</ul>
+<ul>
+<li><a href="#"><img src="<?php echo $this->getSkinUrl('images/review_sample01.png'); ?>" alt="image05"></a></li>
+<li><a href="#"><img src="<?php echo $this->getSkinUrl('images/review_sample01.png'); ?>" alt="image06"></a></li>
+<li><a href="#"><img src="<?php echo $this->getSkinUrl('images/review_sample01.png'); ?>" alt="image07"></a></li>
+<li><a href="#"><img src="<?php echo $this->getSkinUrl('images/review_sample01.png'); ?>" alt="image08"></a></li>
+</ul>
+<a href="javascript:history.back();" class="clear">&laquo; 戻る</a>
+</div>
+
+
+
+<div class="item_info flR">
+<h2>【商 品 名】<br><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h2>
+<div class="review_info disTable">
+<ul class="star disTablecell mr15">
+<li>レビュー評価</li>
+<?php
+//////レビュー数の表示プログラム
+$storeId = Mage::app()->getStore()->getId();
+$summaryData = Mage::getModel('review/review_summary')->setStoreId($storeId)->load($_product->getId());
+$pId = $_product->getId();
+$ratequt = $summaryData['rating_summary'];
+$rvcount = $summaryData['reviews_count'];
+//$reviewCount = $summaryData['ReviewsCount'];
+$st_y = '<li><img src="'.$this->getSkinUrl('images/star_yellow.png').'" alt="star"></li>';
+$st_g = '<li><img src="'.$this->getSkinUrl('images/star_gray.png').'" alt="star"></li>';
+//平均端数の数字の為IF
+
+
+    if($ratequt < 21){
+        echo $st_y.$st_g.$st_g.$st_g.$st_g;
+    }else if($ratequt < 41){
+        echo $st_y.$st_y.$st_g.$st_g.$st_g;
+    }else if($ratequt < 61){
+        echo $st_y.$st_y.$st_y.$st_g.$st_g;
+    }else if($ratequt < 81){
+        echo $st_y.$st_y.$st_y.$st_y.$st_g;
+    }else if($ratequt < 100){
+        echo $st_y.$st_y.$st_y.$st_y.$st_y;
+    }
+
+    ?>
+</ul>
+
+<a href="<?php echo Mage::getUrl('review/product/list', array('id'=> $_product->getId())); ?>" class="disTablecell"><?php echo $rvcount; ?>件のレビュー &raquo;</a>
+</div>
+<script type="text/javascript">
+var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
+</script>
+<div class="item_desc">
+<p>【価格】<br>
+定価：<?php echo number_format($_product->getMsrp(),'0', '.', ','); ?>円</p>
+<p class="fwB fs20">販売価格：<span class="fcRed"><?php echo number_format($_product->getPrice(),'0', '.', ','); ?>円</span></p>
+
+
+
+
+<p class="fs14">関東近郊 ９月10日頃お届け可</p>
+<p>獲得ポイント数：428P(１P = 1円)</p>
+<p><?php echo $this->getChildHtml('product_type_data') ?></p>
+<p>在庫数：<?php echo number_format($_product->getStockItem()->getQty(),'0'); ?>
+</p>
+
+<div class="disTable">
+<form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form" <?php if($_product->getOptions()): ?> enctype="multipart/form-data" <?php endif; ?>>
+<?php echo $this->getBlockHtml('formkey') ?>
+<div class="no-display">
+<input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
+<input type="hidden" name="related_product" id="related-products-field" value="" />
+</div>
+
+<p class="fwB fs18 disTablecell">数量：<input type="number" name="qty"></p>
+<div class="disTablecell">
+<?php //echo $this->getChildHtml('addto') ?>
+<input type="submit" class="toCart" value="カートに入れる"></p>
+</div>
+</form>
+</div>
+</div>
+    <ul>
+        <li><a href="#" class="fwB">・この商品についてお問い合わせ</a></li>
+        <li><?php echo $this->getChildHtml('addto') ?></li>
+    </ul>
+</div>
+</div>
+<div class="shop_04_info">              
+<?php foreach ($this->getChildGroup('detailed_info', 'getChildHtml') as $alias => $html):?>
+    <h3 class="gray_line">【商品情報】</h3>
+    <ul>
+    <li><?php echo $html; ?></li>
+        <?php if ($_product->getShortDescription()):?>
+    <li><?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?></li>
+        <?php endif;?>
+<?php endforeach;?>
+</ul>
+</div>
+
+
+<div class="shop_04_relation">
+    <h3 class="gray_line">関連商品</h3>       
+    <ul>
+    <?php echo $this->getChildHtml('upsell_products') ?>
+    </ul>
+</div>
+<div class="shop_04_other">
+    <h3 class="gray_line">この商品を買っている人はこんな商品も買っています</h3>
+</div>
+<?php /*
+
+
+                                <div class="product-img-box">
+                                </div>
+
+                                <div class="clearer"></div>
+                                <?php if ($_product->isSaleable() && $this->hasOptions()):?>
+                                    <?php echo $this->getChildChildHtml('container2', '', true, true) ?>container2
+                                        <?php endif;?>
+                    </form>
+*/ ?>
+
+                       
+<script type="text/javascript">
+                        //<![CDATA[
+                        var productAddToCartForm = new VarienForm('product_addtocart_form');
+                        productAddToCartForm.submit = function (button, url) {
+                            if (this.validator.validate()) {
+                                var form = this.form;
+                                var oldUrl = form.action;
+
+                                if (url) {
+                                    form.action = url;
+                                }
+                                var e = null;
+                                try {
+                                    this.form.submit();
+                                } catch (e) {}
+                                this.form.action = oldUrl;
+                                if (e) {
+                                    throw e;
+                                }
+
+                                if (button && button != 'undefined') {
+                                    button.disabled = true;
+                                }
+                            }
+                        }.bind(productAddToCartForm);
+
+                        productAddToCartForm.submitLight = function (button, url) {
+                            if (this.validator) {
+                                var nv = Validation.methods;
+                                delete Validation.methods['required-entry'];
+                                delete Validation.methods['validate-one-required'];
+                                delete Validation.methods['validate-one-required-by-name'];
+                                // Remove custom datetime validators
+                                for (var methodName in Validation.methods) {
+                                    if (methodName.match(/^validate-datetime-.*/i)) {
+                                        delete Validation.methods[methodName];
+                                    }
+                                }
+
+                                if (this.validator.validate()) {
+                                    if (url) {
+                                        this.form.action = url;
+                                    }
+                                    this.form.submit();
+                                }
+                                Object.extend(Validation.methods, nv);
+                            }
+                        }.bind(productAddToCartForm);
+                        //]]>
+                    </script>
+
+
+</div>
+/magento/app/design/frontend/hirochi/default/template/catalog/product/details.phtml
+
+        
+
+
+

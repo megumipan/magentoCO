@@ -1,0 +1,177 @@
+<?php
+/*
+ * Irvine Systems Award Points
+ *
+ * NOTICE OF LICENSE
+ * This source file is subject to the Revised BSD License which is bundled with
+ * this package in the files LICENSE.txt and LICENSE.html.
+ *
+ * @category    Magento Sale Extension
+ * @package        IrvineSystems_AwardPoints
+ * @author Irvine Systems, Inc.
+ * @copyright Copyright (c) 2015, Irvine Systems, Inc. (http://irvinesystems.co.jp/)
+ * @license     Revised BSD License
+ */
+ ?>
+
+<?php // Helper Definition ?>
+<?php $helper = Mage::helper('awardpoints');?>
+
+<div class="my-account">
+	<?php  /*  PAGE HEAD BLOCK */  ?>
+	<div class="page-title">
+	    <h1><?php echo $helper->__('Friends Referral') ?></h1>
+	</div>
+
+	<?php  /*  POINTS INFORMATION BLOCK */  ?>
+	<?php // Check if, either, the referral points or the friends points are available ?>
+	<?php if($this->getReferrerPoints() || $this->getParentOrderPoints() || $this->getChildOrderPoints()):?>
+	    <div class="fieldset">
+			<h2 class="legend"><?php echo $helper->__('Points Information') ?></h2>
+	        <p class="form-list">
+			<?php // show referral point amount if available ?>
+			<?php if($this->getReferrerPoints()):?>
+				<?php echo $helper->__('For a referred friend which will register to our store you will earn: <strong>%s points</strong>', $this->getReferrerPoints());?><br/>
+			<?php endif;?>
+			<?php // show Parent Order Points point amount if available ?>
+			<?php if($this->getParentOrderPoints()):?>
+				<?php echo $helper->__('For valid order placed by a referred friend you will earn: <strong>%s points</strong>', $this->getParentOrderPoints());?><br/>
+			<?php endif;?>
+			<?php // show Child Order Points point amount if available ?>
+			<?php if($this->getChildOrderPoints()):?>
+				<?php echo $helper->__('For valid order placed by a referred friend he will earn: <strong>%s extra points!</strong>', $this->getChildOrderPoints());?><br/>
+			<?php endif;?>
+			<?php // Show order Quantity information if order points are available ?>
+			<?php if($this->getParentOrderPoints() || $this->getChildOrderPoints()):?>
+				<?php echo $helper->__('The total amount of order which will be considered is: <strong>%s Orders!</strong>', $this->getMaximumOrder());?>
+			<?php endif;?>
+			</p>
+		</div>
+	<?php endif;?>
+
+	<?php  /*  PERMANENT LINK BLOCK  */  ?>
+	<?php // Check if the permanent link is enable ?>
+    <?php if($this->isPermanentLink()):?>
+		<div class="fieldset">
+			<h2 class="legend"><?php echo $helper->__('Your Permanent Link') ?></h2>
+	        <p class="form-list">
+		        <?php echo $helper->__('Share the following link with your friends') ?>:<br/>
+		        <strong><?php echo $this->getReferringUrl() ?></strong>
+			</p>
+	    </div>
+    <?php endif;?>
+
+	<?php  /*  ADDTHIS BLOCK */  ?>
+	<?php // Check if AddThis Sharring is enable ?>
+    <?php if($this->isAddthis()):?>
+	    <div class="fieldset">
+            <h2 class="legend"><?php echo $helper->__('Share Referring link') ?></h2>
+	        <ul class="form-list">
+	            <li class="fields">
+	                <div class="field">
+						<label for="name"><?php echo $helper->__('Title') ?></label>
+	                    <div class="input-box">
+							<input onkeyup="awardAddThisUpdate();" type="text" name="award-share-title" id="award-share-title" value="<?php echo $this->__('Great deals here!');?>" class="input-text" />
+						</div>
+					</div>
+				</li>
+	            <li class="wide">
+	                <div class="field">
+						<label for="comment"><?php echo $helper->__('Comment') ?></label>
+	                    <div class="input-box">
+							<textarea onkeyup="awardAddThisUpdate();" id="award-share-description" name="award-share-description" cols="100" rows="5" class="input-text"><?php echo $helper->__('Visit this Store for great deals!');?></textarea>
+	                    </div>
+                    </div>
+				</li>
+	            <li class="fields">
+	                <div class="field">
+							<a class="addthis_counter addthis_pill_style" id="award-post-share" addthis:url="<?php echo $this->getReferringUrl();?>" addthis:title="<?php echo $this->__('Great deals here!');?>" addthis:description="<?php echo $this->__('Visit this Store for great deals!');?>"></a>
+					</div>
+				</li>
+			</ul>
+		</div>
+        <script type="text/javascript">
+            function awardAddThisUpdate(){
+              if (window.addthis){
+                 $('award-post-share').writeAttribute('addthis:title', $('award-share-title').value);
+                 $('award-post-share').writeAttribute('addthis:description', $('award-share-description').value);
+                 window.addthis.ost = 0;
+                 window.addthis.ready();
+              }
+            addthis.button('#award-post-share');
+           }
+        </script>
+    <?php endif;?>
+
+	<?php  /*  REFEAR A FRIEND BLOCK */  ?>
+	<?php // Check if Referral by email is enable ?>
+    <?php if($this->isEmailReferral()):?>
+		<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+		<div class="fieldset">
+			<h2 class="legend"><?php echo $helper->__('Refer a Friend') ?></h2>
+			<form class="form-list" action="<?php echo $this->getUrl('awardpoints/index/referral/') ?>" method="post" id="form-validate">
+		        <fieldset class="fields">
+					<ul>
+						<li>
+							<div class="field">
+								<label for="name" class="required"><em>*</em><?php echo $helper->__('Name') ?> <span class="required"></label>
+								<div class="input-box">
+									<input type="text" name="name" value="" title="<?php echo $helper->__('Name') ?>" class="required-entry input-text" id="name" />
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="field">
+								<label for="email" class="required"><em>*</em><?php echo $helper->__('Email Address') ?></label>
+								<div class="input-box">
+									<input type="text" name="email" id="email" title="<?php echo $helper->__('Email Address') ?>" value="" class="input-text required-entry validate-email" />
+								</div>
+							</div>
+                            <br/>
+							<div class="buttons-set">
+								<p class="required"><?php echo $helper->__('* Required Fields') ?></p>
+								<input type="text" name="hideit" id="hideit" value="" style="display:none !important;" />
+								<button type="submit" title="<?php echo $this->__('Submit') ?>" class="button"><span><?php echo $helper->__('Submit') ?></span></button>
+							</div>
+						</li>
+					</ul>
+		        </fieldset>
+			</form>
+	    </div>
+	<?php endif;?>
+	<?php // Initialize Form validation ?>
+	<script type="text/javascript">
+	    var dataForm = new VarienForm('form-validate', true);
+	</script>
+
+	<?php  /*  REFERRAL HISTORY BLOCK */  ?>
+	<?php $_referred = $this->getReferred();?>
+	<div class="fieldset">
+		<h2 class="legend"><?php echo $helper->__('Your Referral History') ?></h2>
+		<?php if($_referred->getSize()): ?>
+			<?php echo $this->getPagerHtml() ?>
+			<table cellspacing="0" class="data-table" id="referred-friends-table">
+				<thead>
+					<tr>
+						<th><?php echo $helper->__('Full Name') ?></th>
+						<th><?php echo $helper->__('Email') ?></th>
+						<th><?php echo $helper->__('Referral Status') ?></th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php $_odd = ''; ?>
+					<?php foreach ($_referred as $_friend): ?>
+						<tr>
+							<td><?php echo $_friend->getChild_name() ?></td>
+							<td><?php echo $_friend->getChild_email() ?></td>
+							<td><?php echo $this->getStatuslabel($_friend->getReferral_status()) ?></td>
+						</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+			<?php echo $this->getPagerHtml() ?>
+			<?php else: ?>
+			<p><?php echo $helper->__('You did not made any friends referral yet.'); ?></p>
+		<?php endif ?>
+	</div>
+</div>

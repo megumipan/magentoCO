@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+  <checkout_onepage_shippingmethod> 
+    <reference name="root">
+      <action method="setTemplate" ifconfig="deliverydate/settings/enable"> 
+        <template>deliverydate/input.phtml</template> 
+      </action> 
+    </reference> 
+  </checkout_onepage_shippingmethod>
+  <checkout_onepage_progress>
+    <!-- Mage_Checkout -->
+    <block type="checkout/onepage_progress" name="root" output="toHtml" template="deliverydate/progress.phtml">
+      <block type="checkout/onepage_payment_info" name="payment_info">
+        <action method="setInfoTemplate" ifconfig="deliverydate/settings_enable"><method></method><template></template></action>
+      </block>
+    </block>
+  </checkout_onepage_progress>
+</layout>

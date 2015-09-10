@@ -1,0 +1,512 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <flatz_base translate="label" module="flatz_base">
+            <label>FLATz Base Setting</label>
+            <sort_order>400</sort_order>
+        </flatz_base>
+    </tabs>
+    <sections>
+        <flatz_base_japanese translate="label" module="flatz_base">
+            <label>Japanese Environment Setting</label>
+            <tab>flatz_base</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>10</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <name translate="label">
+                    <label>Name Configuration</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enablejp translate="label">
+                            <label>Use Japanese name order format</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>flatz_base/system_config</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enablejp>
+                        <usekana translate="label">
+                            <label>Use Furigana</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>flatz_base/system_config</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </usekana>
+                    </fields>
+                </name>
+                <address translate="label">
+                    <label>Address Format Configration</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enablejp translate="label">
+                            <label>Use Japanese address format</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>flatz_base/system_config</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </enablejp>
+                        <onlyjp translate="label">
+                            <label>Hide country select box</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>flatz_base/system_config</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </onlyjp>
+                        <showaddress translate="label">
+                            <label>Show address fields on customer registration form</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>flatz_base/system_config</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </showaddress>
+                    </fields>
+                </address>
+                <currency translate="label">
+                    <label>Currency Configration</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <position translate="label">
+                            <label>Japanese Yen symbol position</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>flatz_base/system_currency</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </position>
+                    </fields>
+                </currency>
+                <additional translate="label">
+                    <label>Additional Configration</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>3</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <useselectfordob translate="label">
+                            <label>Use Select box for Dob</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>flatz_base/system_config</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </useselectfordob>
+                        <startyear translate="label">
+                            <label>Start year of Dob</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <useselectfordob>1</useselectfordob>
+                            </depends>
+                        </startyear>
+                        <defaultyear translate="label">
+                            <label>Default year of Dob</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <useselectfordob>1</useselectfordob>
+                            </depends>
+                        </defaultyear>
+                        <useradioforgender translate="label">
+                            <label>Use Radio button for Gender</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>flatz_base/system_config</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </useradioforgender>
+                        <defaultgender translate="label">
+                            <label>Default value of gender</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>flatz_base/system_gender</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </defaultgender>
+                    </fields>
+                </additional>
+                <validator translate="label">
+                    <label>Validation setting for Japanese</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <namelength translate="label">
+                            <label>Caracter length of name fields</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </namelength>
+                        <addresslength translate="label">
+                            <label>Caracter length of address fields</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </addresslength>
+                        <validateaddresstotallength translate="label">
+                            <label>Check address length separately or not</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </validateaddresstotallength>
+                        <forcefullwidthaddress translate="label">
+                            <label>Force full width caracters for address fields</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </forcefullwidthaddress>
+                        <forcefullwidthname translate="label">
+                            <label>Force full width caracters for name fields</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>13</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </forcefullwidthname>
+                        <separatepostcode translate="label">
+                            <label>Separate Zip/Postalcode form fields</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>14</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </separatepostcode>
+                        <forcedigitsforpost translate="label">
+                            <label>Force digits only for Zip/Postalcode</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <separatepostcode>0</separatepostcode>
+                            </depends>
+                        </forcedigitsforpost>
+                        <postmaxlength translate="label">
+                            <label>Maximum length of Zip/Postalcode</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>18</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </postmaxlength>
+                        <separatetel translate="label">
+                            <label>Separate Phone number form fields</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>19</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </separatetel>
+                        <forcedigitsfortel translate="label">
+                            <label>Force digits only for phone number</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <separatetel>0</separatetel>
+                            </depends>
+                        </forcedigitsfortel>
+                        <telmaxlength translate="label">
+                            <label>Maximum length of Phone number</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>23</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </telmaxlength>
+            
+                    </fields>
+                </validator>
+            </groups>
+        </flatz_base_japanese>
+        <tax translate="label" module="tax">
+            <groups>
+                <calculation translate="label">
+                    <fields>
+                        <round translate="label comment" module="flatz_base">
+                            <label>Round method</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>flatz_base/system_round</source_model>
+                            <sort_order>61</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <price_includes_tax>0</price_includes_tax>
+                            </depends>
+                        </round>
+                    </fields>
+                </calculation>
+            </groups>
+        </tax> 
+        <flatz_base_mail translate="label" module="flatz_base">
+            <label>Mail Setting</label>
+            <tab>flatz_base</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>20</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <jpmail translate="label">
+                    <label>Multibyte Email Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <text_charset translate="label">
+                            <label>text mail character set</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </text_charset>
+                        <html_charset translate="label">
+                            <label>html mail character set</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </html_charset>
+                        <use_return_path translate="label">
+                            <label>use return path</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </use_return_path>
+                        <return_path translate="label">
+                            <label>return path</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>13</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <use_return_path>1</use_return_path>
+                            </depends>
+                        </return_path>
+                        <use_reply_to translate="label">
+                            <label>use reply to</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>14</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </use_reply_to>
+                        <reply_to translate="label">
+                            <label>reply to</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <use_reply_to>1</use_reply_to>
+                            </depends>
+                        </reply_to>
+                    </fields>
+                </jpmail>
+                <extsmtp translate="label">
+                    <label>External Smtp Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <use_external translate="label">
+                            <label>Use External SMTP</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </use_external>
+                        <smtp_host translate="label">
+                            <label>SMTP Host</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </smtp_host>
+                        <smtp_port translate="label">
+                            <label>SMTP Port</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </smtp_port>
+                        <smtp_protocol translate="label">
+                            <label>Use SSL/TLS</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>flatz_base/system_mail_protocol</source_model>
+                            <sort_order>13</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </smtp_protocol>
+                        <smtp_user translate="label">
+                            <label>SMTP User</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>14</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </smtp_user>
+                        <smtp_password translate="label">
+                            <label>SMTP Password</label>
+                            <frontend_type>password</frontend_type>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </smtp_password>
+                    </fields>
+                </extsmtp>
+            </groups>
+        </flatz_base_mail>
+
+        <flatz_base_pdf translate="label" module="flatz_base">
+            <label>Pdf Setting</label>
+            <tab>flatz_base</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>30</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <font translate="label">
+                    <label>Pdf Font Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <reguler translate="label">
+                            <label>regular font path</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </reguler>
+                        <bold translate="label">
+                            <label>bold font path</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </bold>
+                        <italic translate="label">
+                            <label>italic font path</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </italic>                 
+                    </fields>
+                </font>
+            </groups>
+        </flatz_base_pdf>        
+        
+        <flatz_base_admin translate="label" module="flatz_base">
+            <label>Admin Setting</label>
+            <tab>flatz_base</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>40</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>0</show_in_website>
+            <show_in_store>0</show_in_store>
+            <groups>
+                <menu translate="label">
+                    <label>Menu Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <use_extend translate="label">
+                            <label>Use Extend Menu</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </use_extend>               
+                    </fields>
+                </menu>
+            </groups>        
+        </flatz_base_admin>            
+        
+    </sections>
+</config>

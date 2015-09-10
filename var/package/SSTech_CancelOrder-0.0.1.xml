@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package>
+    <name>SSTech_CancelOrder</name>
+    <version>0.0.1</version>
+    <stability>stable</stability>
+    <license>Open Source License</license>
+    <channel>community</channel>
+    <extends/>
+    <summary>Extension which allow to cancel the order from Frontend to the Register customer only</summary>
+    <description>Extension which allow to cancel the order from Frontend to the Register customer only</description>
+    <notes>stable version release</notes>
+    <authors><author><name>SSTech</name><user>SSTech</user><email>sandynareshg@gmail.com</email></author></authors>
+    <date>2014-10-25</date>
+    <time>11:33:36</time>
+    <contents><target name="mageetc"><dir name="modules"><file name="SSTech_CancelOrder.xml" hash="05d2b9e680e6d1db5b83e259209caaa4"/></dir></target><target name="magecommunity"><dir name="SSTech"><dir name="CancelOrder"><dir name="Helper"><file name="Customer.php" hash="f5d37e8505889c254d02c237ec0977f3"/><file name="Data.php" hash="05232ec98edb60f31bde4027be37ecda"/></dir><dir name="Model"><file name="Cron.php" hash="9914c5c4c0032590a3ffb1d2710016da"/><dir name="System"><dir name="Config"><dir name="Source"><dir name="Order"><dir name="Status"><file name="Canceled.php" hash="0039f22d05163083a3e2add8c65d9d62"/></dir></dir></dir></dir></dir></dir><dir name="controllers"><file name="OrderController.php" hash="bae81d331da7f250a38f36676d4fe0ea"/></dir><dir name="etc"><file name="config.xml" hash="5473c2fb29185f275794d6adda52fa6d"/><file name="system.xml" hash="51c7cf3142d92e48d90a8e061dab6c5a"/></dir></dir></dir></target><target name="magedesign"><dir name="frontend"><dir name="base"><dir name="default"><dir name="layout"><file name="sstech_cancelorder.xml" hash="80b14a4ba1a8668ebc45d412462bbefd"/></dir><dir name="template"><dir name="cancelorder"><file name="buttons.phtml" hash="c96e280db219ee5f75a690e61ffe2f9b"/><file name="history.phtml" hash="7d2e9e928dbc5494f664864a035638ca"/><file name="recent.phtml" hash="8a48e77e37281902424f697d3cbb5bf5"/></dir></dir></dir></dir></dir></target><target name="mageskin"><dir name="frontend"><dir name="base"><dir name="default"><dir name="css"><file name="cancelorder.css" hash="1dc37867a1bc502ae4365b069e0bacb7"/></dir></dir></dir></dir></target></contents>
+    <compatible/>
+    <dependencies><required><php><min>5.1.0</min><max>6.0.0</max></php></required></dependencies>
+</package>

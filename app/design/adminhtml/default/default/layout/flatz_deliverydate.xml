@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<layout>
+    <adminhtml_sales_order_create_load_block_shipping_method>
+        <reference name="shipping_method">
+            <remove name="shipping_method.form" />
+            <block type="adminhtml/sales_order_create_shipping_method_form" name="form" template="deliverydate/order/create/form.phtml" />
+        </reference>
+    </adminhtml_sales_order_create_load_block_shipping_method>
+    <adminhtml_sales_order_create_index>
+        <reference name="shipping_method">
+            <remove name="shipping_method.form" />
+            <block type="adminhtml/sales_order_create_shipping_method_form" name="form" template="deliverydate/order/create/form.phtml" />
+        </reference>
+    </adminhtml_sales_order_create_index>
+</layout>

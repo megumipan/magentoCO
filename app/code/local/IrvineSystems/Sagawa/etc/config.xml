@@ -1,0 +1,213 @@
+<?xml version="1.0"?>
+<!--
+/*
+ * Irvine Systems Shipping Japan Sgw
+ *
+ * NOTICE OF LICENSE
+ * This source file is subject to the Revised BSD License which is bundled with
+ * this package in the files LICENSE.txt and LICENSE.html.
+ *
+ * @category	Magento Shipping Extension
+ * @package		IrvineSystems_Sagawa
+ * @author Irvine Systems, Inc.
+ * @copyright Copyright (c) 2015, Irvine Systems, Inc. (http://irvinesystems.co.jp/)
+ * @license     Revised BSD License
+ */
+-->
+<config>
+  
+  <!-- ************************* MODULE CONFIGURATION ************************** -->
+  <modules>
+    <IrvineSystems_Sagawa>
+      <version>1.0.1.2</version>
+    </IrvineSystems_Sagawa>
+  </modules>
+  
+  <!-- ************************* GLOBAL CONFIGURATION ************************** -->
+  <global>
+    <!-- MODULE MODELS -->
+    <models>
+      <sagawa>
+        <class>IrvineSystems_Sagawa_Model</class>
+        <resourceModel>sagawa_resource</resourceModel>
+      </sagawa>
+      <sagawa_resource>
+        <class>IrvineSystems_Sagawa_Resource</class>
+        <deprecatedNode>IrvineSystems_Sagawa_Mysql4</deprecatedNode>
+        <entities>
+          <slips>
+            <table>sagawa_slips</table>
+          </slips>
+        </entities>
+      </sagawa_resource>
+    </models>
+    <!-- MODULE RESOURCES -->
+    <resources>
+      <sagawa_setup>
+        <setup>
+          <module>IrvineSystems_Sagawa</module>
+          <class>Mage_Eav_Model_Entity_Setup</class>
+        </setup>
+        <connection>
+          <use>core_setup</use>
+        </connection>
+      </sagawa_setup>
+      <sagawa_write>
+        <connection>
+          <use>core_write</use>
+        </connection>
+      </sagawa_write>
+      <sagawa_read>
+        <connection>
+          <use>core_read</use>
+        </connection>
+      </sagawa_read>
+    </resources>
+    <!-- MODULE HELPERS -->
+    <helpers>
+      <sagawa>
+        <class>IrvineSystems_Sagawa_Helper</class>
+      </sagawa>
+    </helpers>
+    <!-- MODULE BLOCKS -->
+    <blocks>
+      <sagawa>
+        <class>IrvineSystems_Sagawa_Block</class>
+      </sagawa>
+    </blocks>
+    <!-- MODULE GLOBAL OBSERVERS -->
+    <events>
+      <!-- Order Save Observer for Shipping Slips Option Management and Invoice Creation -->
+      <sales_order_place_after>
+        <observers>
+          <sagawa>
+            <type>singleton</type>
+            <class>sagawa/observer</class>
+            <method>processOrderAfterSave</method>
+          </sagawa>
+        </observers>
+      </sales_order_place_after>
+      <!-- Quote Update Observer for Cash on Delivery Payments Option -->
+      <sales_quote_collect_totals_after>
+        <observers>
+          <sagawa>
+            <type>singleton</type>
+            <class>sagawa/observer</class>
+            <method>updateCheckoutQuote</method>
+          </sagawa>
+        </observers>
+      </sales_quote_collect_totals_after>
+    </events>
+  </global>
+  
+  <!-- ************************ FRONTEND CONFIGURATION ************************* -->
+  <frontend>
+    <!-- TRANSLATION CSV -->
+    <translate>
+      <modules>
+        <IrvineSystems_Sagawa>
+          <files>
+            <default>IrvineSystems_Sagawa.csv</default>
+          </files>
+        </IrvineSystems_Sagawa>
+      </modules>
+    </translate>
+    <!-- LAYOUT UPDATES -->
+    <layout>
+      <updates>
+        <sagawa>
+          <file>sagawa.xml</file>
+        </sagawa>
+      </updates>
+    </layout>
+  </frontend>
+  
+  <!-- ************************* BACKEND CONFIGURATION ************************* -->
+  <adminhtml>
+    <!-- TRANSLATION CSV -->
+    <translate>
+      <modules>
+        <IrvineSystems_Sagawa>
+          <files>
+            <default>IrvineSystems_Sagawa.csv</default>
+          </files>
+        </IrvineSystems_Sagawa>
+      </modules>
+    </translate>
+    <!-- ROUTERS UPDATES -->
+    <routers>
+      <adminhtml>
+        <args>
+          <modules>
+            <IrvineSystems_Sagawa after="Mage_Adminhtml">IrvineSystems_Sagawa</IrvineSystems_Sagawa>
+          </modules>
+        </args>
+      </adminhtml>
+    </routers>
+  </adminhtml>
+  
+  <!-- ************************** ADMIN CONFIGURATION ************************** -->
+  <admin>
+    <!-- ROUTERS UPDATES -->
+    <routers>
+      <sagawa>
+        <use>admin</use>
+        <args>
+          <module>IrvineSystems_Sagawa</module>
+          <frontName>sagawa</frontName>
+        </args>
+      </sagawa>
+    </routers>
+  </admin>
+  
+  <!-- ********************** DEFAULT PARAMETERS ******************** -->
+  <default>
+    <!-- Shipping Carriers Group -->
+    <carriers>
+      <sagawa>
+        <active>1</active>
+        <title>Sagawa</title>
+        <unit_of_measure>KG</unit_of_measure>
+        <sallowspecific>0</sallowspecific>
+        <model>sagawa/carrier_sagawa</model>
+        <showmethod>1</showmethod>
+        <handling_type>F</handling_type>
+        <handling_action>O</handling_action>
+      </sagawa>
+    </carriers>
+    <!-- Extension Group -->
+    <sagawa>
+      <about>
+        <version>1.0.1.2</version>
+      </about>
+      <general>
+        <profit_type>P</profit_type>
+        <profit_fee>15</profit_fee>
+        <max_package_weight>50000</max_package_weight>
+        <locmaxsize>2600</locmaxsize>
+        <stdlabel>Standard Size</stdlabel>
+        <freelabel>Free Size</freelabel>
+      </general>
+      <hikyakumail>
+        <title>Hikyaku Mail Express</title>
+        <showmethod>1</showmethod>
+        <maxlength>400</maxlength>
+        <maxdepth>20</maxdepth>
+        <maxtotal>700</maxtotal>
+        <maxweight>1000</maxweight>
+        <finaladd>0</finaladd>
+      </hikyakumail>
+      <hikyakuexpress>
+        <title>Hikyaku Express</title>
+        <showmethod>1</showmethod>
+        <showcool>1</showcool>
+		<showcod>0</showcod>
+		<internalcod>1</internalcod>
+        <finaladd>0</finaladd>
+      </hikyakuexpress>
+      <slips>
+        <ajaxenable>1</ajaxenable>
+      </slips>
+    </sagawa>
+  </default>
+</config>

@@ -1,0 +1,150 @@
+<_>
+   <form_key>sColCClniS2y3hAt</form_key>
+   <name>IrvineSystems_Awardpoints</name>
+   <channel>community</channel>
+   <version_ids>
+      <version_ids>2</version_ids>
+      <version_ids>1</version_ids>
+   </version_ids>
+   <summary>Award Points allow evident and immediate sales improvements to any store by rewarding customer with points which can be spent as discounts.
+You can now practically improve your sales and the motivation of your customers with this great extension!</summary>
+   <description>Reward your Customer and improve your sales with many sweets Points!
+
+You can now practically improve your sales and the motivation of your customers with this great extension!
+This module will allow your customers to gather points according to your directives; your customer will have access to points according to the products, the shopping carts, your personal rules for campaign, for website registration, for friends&apos; referral, for their review and much, much more!
+All the point gathered by the customer can be used as discount and you can freely and fully decide all the rules on how these points can be spent!
+
+Many other shopping points extension are available for Magento, each one featuring very specific properties. In order to have a complete system for reward and shopping points it would be required to purchase and install many of these extension and make it work together.
+However now this is not any more necessary, Award Points is the first and unique extension to feature all the advantage of any other extension plus unique and exclusive features.
+Finally you can have a truly complete system with only one Magento extension.</description>
+   <license>BSD</license>
+   <license_uri>http://opensource.org/licenses/BSD-3-Clause</license_uri>
+   <version>2.0.1.0</version>
+   <stability>stable</stability>
+   <notes>Not compatible with Magento CE prior 1.4.2</notes>
+   <authors>
+      <name>
+         <name>Irvine Mage</name>
+      </name>
+      <user>
+         <user>IrvineMage</user>
+      </user>
+      <email>
+         <email>magentosupport@irvine.jp</email>
+      </email>
+   </authors>
+   <depends_php_min>3.1.0</depends_php_min>
+   <depends_php_max>7.0.0</depends_php_max>
+   <depends>
+      <package>
+         <name>
+            <name/>
+            <name>IrvineSystems_Adminhtml</name>
+         </name>
+         <channel>
+            <channel/>
+            <channel>community</channel>
+         </channel>
+         <min>
+            <min/>
+            <min>1.0.0.0</min>
+         </min>
+         <max>
+            <max/>
+            <max>9.0.0.0</max>
+         </max>
+         <files>
+            <files>                                                                 </files>
+            <files>                                                                 </files>
+         </files>
+      </package>
+      <extension>
+         <name>
+            <name>Core</name>
+         </name>
+         <min>
+            <min/>
+         </min>
+         <max>
+            <max/>
+         </max>
+      </extension>
+   </depends>
+   <contents>
+      <target>
+         <target>magelocal</target>
+         <target>mageetc</target>
+         <target>magelocal</target>
+         <target>magelocale</target>
+         <target>magelocale</target>
+         <target>magelocale</target>
+         <target>magelocale</target>
+         <target>magelocale</target>
+         <target>magelocale</target>
+         <target>magedesign</target>
+         <target>magedesign</target>
+         <target>mageskin</target>
+         <target>mageskin</target>
+      </target>
+      <path>
+         <path/>
+         <path>modules/IrvineSystems_Awardpoints.xml</path>
+         <path>IrvineSystems/Awardpoints</path>
+         <path/>
+         <path/>
+         <path/>
+         <path/>
+         <path/>
+         <path/>
+         <path>frontend/base/default/layout/awardpoints.xml</path>
+         <path>frontend/base/default/template/awardpoints</path>
+         <path>frontend/base/default/images/AwardPoints</path>
+         <path>adminhtml/default/default/images/irvinesystems/award_points.png</path>
+      </path>
+      <type>
+         <type>file</type>
+         <type>file</type>
+         <type>dir</type>
+         <type>dir</type>
+         <type>dir</type>
+         <type>dir</type>
+         <type>dir</type>
+         <type>dir</type>
+         <type>dir</type>
+         <type>file</type>
+         <type>dir</type>
+         <type>dir</type>
+         <type>file</type>
+      </type>
+      <include>
+         <include/>
+         <include/>
+         <include/>
+         <include>#IrvineSystems_Awardpoints.csv#</include>
+         <include>#awardpoints_balance.html#</include>
+         <include>#awardpoints_expiration.html#</include>
+         <include>#awardpoints_order_confirmation.html#</include>
+         <include>#awardpoints_referral.html#</include>
+         <include>#awardpoints_registration_confirmation.html#</include>
+         <include/>
+         <include/>
+         <include/>
+         <include/>
+      </include>
+      <ignore>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+         <ignore/>
+      </ignore>
+   </contents>
+</_>
