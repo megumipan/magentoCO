@@ -1,0 +1,17 @@
+<?php $_code=$this->getMethodCode() ?>
+<ul class="form-list" id="payment_form_<?php echo $_code ?>" style="display:none;">
+<li>
+<label for="<?php echo $_code ?>_dc_cvs" class="required"><em>*</em><?php echo $this->__('CVS Method') ?></label>
+<div class="input-box">
+<select id="<?php echo $_code ?>_dc_cvs" name="payment[dc_cvs]" class="required-entry">
+<option value=""><?php echo $this->__('--Please Select--')?></option>
+<?php $_dcCvs = $this->getInfoData('dc_cvs') ?>
+<?php foreach ($this->getStoreNumber() as $_cvsCode => $_cvsName): ?>
+<option value="<?php echo $_cvsCode ?>"<?php if($_cvsCode==$_dcCvs): ?> selected="selected"<?php endif ?>><?php echo $_cvsName ?></option>
+<?php endforeach ?>
+</select>
+</div>
+</li>
+</ul>
+
+

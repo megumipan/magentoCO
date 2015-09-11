@@ -1,0 +1,8 @@
+<?php $_code = $this->getMethodCode(); ?>
+<?php if ($_code=='digitalcheck_cvs' || $_code=='digitalcheck_pe'):?>
+<br/><br/>
+<a href="<?php echo Mage::getSingleton('checkout/session')->getReceiptUrl(); ?>"><?php echo $this->__('お支払方法はこちらのリンクからご確認ください。')?></a><br />
+お支払期限　<?php echo preg_replace('/^(\d\d\d\d)(\d\d)(\d\d)$/', '$1/$2/$3', Mage::getSingleton('checkout/session')->getLimitDate()); ?><br/>
+※上記内容は注文完了時に送信されるメールでもご確認頂けます。
+<br /><br/>
+<?php endif; ?>

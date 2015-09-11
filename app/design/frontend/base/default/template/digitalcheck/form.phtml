@@ -1,0 +1,77 @@
+<!-- added maruweb for form validation -->
+<script type="text/javascript" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN); ?>frontend/base/default/maruweb/js/jquery-1.6.3.js"></script>
+<script type="text/javascript">
+jQuery.noConflict();
+var j$ = jQuery;
+</script>
+<script type="text/javascript">
+var cardNum;
+var dateNum;
+jQuery(document).ready(function() {
+	jQuery('#submitBtn').hide();
+	jQuery('#cardNum_one, #cardNum_two, #cardNum_three, #cardNum_four, #cardDate_month, #cardDate_year, #csc').change(function(){
+		var cardNum_one = jQuery('#cardNum_one').val();
+		var cardNum_two = jQuery('#cardNum_two').val();
+		var cardNum_three = jQuery('#cardNum_three').val();
+		var cardNum_four = jQuery('#cardNum_four').val();
+		cardNum = cardNum_one + cardNum_two + cardNum_three + cardNum_four;
+		var cardDateM = jQuery('#cardDate_month').val();
+                var cardDateY = jQuery('#cardDate_year').val();
+                dateNum = cardDateY + cardDateM;
+		if(typeof jQuery('#csc').val() === 'undefined' || jQuery('#csc').val().length > 0) {
+		var csc = true;
+		}
+
+		if(cardNum_one.length == 4 && cardNum_two.length == 4 && cardNum_three.length == 4 && cardNum_four.length >= 3 && cardDateM.length == 2 && cardDateY.length == 2 && csc == true ) {
+	jQuery('#submitBtn').show();
+        var cardNumStr = cardNum.toString();
+        var cardExpDateStr = dateNum.toString();
+        jQuery('#cardNumber').val(cardNumStr);
+        jQuery('#cardExpDate').val(cardExpDateStr);
+		}
+	});
+
+jQuery("form").submit(function(){
+        jQuery('#submitBtn').attr('disabled','disabled');
+    });
+
+});
+
+
+</script>
+<!-- added maruweb for form validation -->
+
+<?php $_code=$this->getMethodCode() ?>
+
+<form action="<?php echo Mage::getStoreConfig('payment/digitalcheck_cc/settle_cr_cpt25_url') ?>" method="post">
+<input type="hidden" name="settle_req_crypt" value="<?php echo Mage::getSingleton('checkout/session')->getSettleReqCrypt() ?>" />
+<input type="hidden" name="settle_seq" value="<?php echo Mage::getSingleton('checkout/session')->getSettleSeq() ?>" />
+<em>*</em><?php echo $this->__('Credit Card Number') ?>
+
+<!-- added maruweb for form validation -->
+<input type="text" id="cardNum_one" maxlength="4" style="width:35px" class="input-text required-entry validate-digits"> -
+<input type="text" id="cardNum_two" maxlength="4" style="width:35px" class="input-text required-entry validate-digits"> -
+<input type="text" id="cardNum_three" maxlength="4" style="width:35px" class="input-text required-entry validate-digits"> -
+<input type="text" id="cardNum_four" maxlength="4" style="width:35px" class="input-text required-entry validate-digits">
+<!-- added maruweb for form validation -->
+<br>(<?php echo $this->__('Type credit numbers(15 or 16 characters)') ?>)<br>
+<input id="cardNumber" type="hidden" name="CARDNO" title="<?php echo $this->__('Credit Card Number') ?>" class="input-text required-entry validate-digits" value="" maxlength=16" /><br />
+<em>*</em><?php echo $this->__('Expiration Date') ?>
+
+<!-- added maruweb for form validation -->
+(MM/YY) <select id="cardDate_month" class="input-text required-entry validate-digits"><option value=""></option><option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option><option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select> / 20<select id="cardDate_year" class="nput-text required-entry validate-digits"><option value=""></option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option></select><br> (<?php echo $this->__('Date should be 0213 if February 2013.') ?>) <br><br>
+
+<?php echo $this->__('This page is for transferring credit data to your credit card company.') ?><br />
+<?php echo $this->__('In case of input error') ?><br />
+<?php echo $this->__('Input your credit card number carefully') ?><br />
+
+<!-- added maruweb for form validation -->
+
+<input id="cardExpDate" type="hidden" name="EXP" title="<?php echo $this->__('Expiration Date') ?>" class="input-text required-entry validate-digits" value="" maxlength="4" /><br />
+<?php if($this->hasVerification()): ?>
+<em>*</em><?php echo $this->__('Card Verification Number') ?>
+
+<input type="text" id="csc" name="csc" title="<?php echo $this->__('Card Verification Number') ?>" class="input-text required-entry validate-digits" value="" maxlength="4" /><br />
+<?php endif; ?>
+<input id="submitBtn" type="submit" value="<?php echo $this->__('Place Order') ?>" />
+</form>
