@@ -907,7 +907,7 @@ tr.summary-details-excluded { font-style:italic; }
 
 /* Product View ========================================================================== */
 /* Rating */
-/*
+
 .no-rating { margin:0; }
 
 .ratings { font-size:11px; line-height:1.25; margin:7px 0; }
@@ -924,7 +924,7 @@ tr.summary-details-excluded { font-style:italic; }
 .ratings-table th,
 .ratings-table td { font-size:11px; line-height:1.15; padding:3px 0; }
 .ratings-table th { font-weight:bold; padding-right:8px; }
-*/
+
 
 /* Availability */
 .availability { margin:0; }

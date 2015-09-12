@@ -42,28 +42,6 @@ var_dump($aaa);
 echo '</pre>';
 */
 ?>
-<?php
-//////レビュー数の表示プログラム
-$_product = $this->getProduct();
-$storeId = Mage::app()->getStore()->getId();
-$summaryData = Mage::getModel('review/review_summary')->setStoreId($storeId)->load($_product->getId());
-$ratequt = $summaryData['rating_summary'];
-$st_y = '<li><img src="'.$this->getSkinUrl('images/star_yellow.png').'" alt="star"></li>';
-$st_g = '<li><img src="'.$this->getSkinUrl('images/star_gray.png').'" alt="star"></li>';
-// percent表示のため、star表示に変換
-    if($ratequt < 21){
-        $star = $st_y.$st_g.$st_g.$st_g.$st_g;
-    }else if($ratequt < 41){
-        $star =  $st_y.$st_y.$st_g.$st_g.$st_g;
-    }else if($ratequt < 61){
-        $star =  $st_y.$st_y.$st_y.$st_g.$st_g;
-    }else if($ratequt < 81){
-        $star =  $st_y.$st_y.$st_y.$st_y.$st_g;
-    }else if($ratequt < 100){
-        $star =  $st_y.$st_y.$st_y.$st_y.$st_y;
-    }
-
-    ?>
 <div class="product-review page_review02">
     <div class="page-title">
         <h2 class="h2_heading"><?php echo $this->__('Review Details') ?></h1>
@@ -78,7 +56,11 @@ $st_g = '<li><img src="'.$this->getSkinUrl('images/star_gray.png').'" alt="star"
         <div class="disTable">
                 <ul class="star disTablecell">
                     <li class="fs16 fwB">平均評価：</li>
-                    <?php echo $star; ?>
+                    <li><img src="<?php echo $this->getSkinUrl('images/star_yellow.png'); ?>" alt="star"></li>
+                    <li><img src="<?php echo $this->getSkinUrl('images/star_yellow.png'); ?>" alt="star"></li>
+                    <li><img src="<?php echo $this->getSkinUrl('images/star_yellow.png'); ?>" alt="star"></li>
+                    <li><img src="<?php echo $this->getSkinUrl('images/star_yellow.png'); ?>" alt="star"></li>
+                    <li><img src="<?php echo $this->getSkinUrl('images/star_gray.png'); ?>" alt="star"></li>
                 </ul>
         </div>
         <p class="disTable">
@@ -90,7 +72,23 @@ $st_g = '<li><img src="'.$this->getSkinUrl('images/star_gray.png').'" alt="star"
             <div class="disTable">
                 <ul class="star disTablecell">
                     <li class="fs14 fwB">レビュー評価</li>
-                    <?php echo $star; ?>
+        <?php if( $this->getRating() && $this->getRating()->getSize()): ?>
+            <h3><?php echo $this->__('Product Rating:') ?></h3>
+            <table class="ratings-table">
+            <?php foreach ($this->getRating() as $_rating): ?>
+                <?php if($_rating->getPercent()): ?>
+                    <tr>
+                        <th><?php echo $this->__($this->escapeHtml($_rating->getRatingCode())) ?></th>
+                        <td>
+                            <div class="rating-box">
+                                <div class="rating" style="width:<?php echo ceil($_rating->getPercent()) ?>%;"></div>
+                            </div>
+                        </td>
+                    </tr>
+                <?php endif; ?>
+            <?php endforeach; ?>
+            </table>
+        <?php endif; ?>
                 </ul>
             </div>
             <p class="fwB fs14 style">投稿日：<?php echo $this->dateFormat($this->getReviewData()->getCreatedAt()); ?>

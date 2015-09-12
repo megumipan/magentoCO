@@ -24,6 +24,8 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
-<p style="text-align:center;">
-<button type="submit" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Place Order')) ?>" class="btnOrange btn-checkout" style="padding:13px 0; margin:0;" onclick="review.save();"><?php echo $this->__('Place Order') ?></button>
-</p>
+
+<?php $_product = Mage::registry('product'); ?>
+<div class="buttons-set">
+    <p class="back-link"><a href="<?php echo $_product->getProductUrl() ?>"><small>&laquo; </small><?php echo $this->__('Back to Main Product Info') ?></a></p>
+</div>

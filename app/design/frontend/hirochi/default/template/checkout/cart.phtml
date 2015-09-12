@@ -70,7 +70,24 @@
 
                     <table class="table_04">
                         <tr>
-                            <td><p class="c_red">あと14,800円で送料無料です！</p><input type="submit" class="gray_submit" value="お買い物を続ける"><input type="submit" class="gray_submit" value="ショッピングカートを更新"></td>
+                            <td><p class="c_red">
+                                <?php
+                                    $x_totals = $this->getChildHtml('totals');
+                                    explode( "", $x_totals);
+                                    $x_totals = strip_tags($x_totals);
+                                    $x_totals = strstr($x_totals, '小計', true);
+                                    $del = array("合計", " ", ",", "￥");
+                                    $x_totals = str_replace($del, "", $x_totals);
+                                    if($x_totals < 3000){
+                                    $free =  number_format(3000 - $x_totals);
+                                    echo 'あと'.$free.'円で送料無料!!';
+                                    }else{
+                                        echo '送料無料です!!';
+                                    }
+                                 ?>
+                                
+                                </p>
+                            <input type="submit" class="gray_submit" value="お買い物を続ける"><input type="submit" class="gray_submit" value="ショッピングカートを更新"></td>
                         </tr>
                         <tr>
                             <td>          </td>
@@ -95,11 +112,7 @@
                         <tr>
                             <td>
                                 <?php
-     $x_totals = $this->getChildHtml('totals');
-explode( "", $x_totals);
-     echo $this->getChildHtml('totals');
-
-
+                                    echo $this->getChildHtml('totals');
                                 ?>
                                 <?php if(!$this->hasError()): ?>
                                 <ul class="checkout-types">

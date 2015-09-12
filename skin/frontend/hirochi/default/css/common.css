@@ -8,7 +8,7 @@ page Style Seet
 
 /* 00.基本レイアウト
 ———————————————————— */
-html,body{ height:100%; }
+/* html,body{ height:100%; } */
 body{ 
 	background-color:#efefef;/* 背景色 */
 	font-family: 'Lucida Grande', 'Lucida Sans Unicode', "游ゴシック", YuGothic, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, 'ＭＳ Ｐゴシック', Helvetica, Arial, Verdana, sans-serif;

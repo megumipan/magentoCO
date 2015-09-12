@@ -24,6 +24,6 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
-<p style="text-align:center;">
-<button type="submit" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Place Order')) ?>" class="btnOrange btn-checkout" style="padding:13px 0; margin:0;" onclick="review.save();"><?php echo $this->__('Place Order') ?></button>
-</p>
+<?php if (!empty($count)):?>
+    <a href="#customer-reviews"><?php echo $this->__('%s 件のレビュー', $count) ?></a>
+<?php endif;?>

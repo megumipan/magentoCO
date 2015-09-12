@@ -262,11 +262,11 @@ Multi address shipping checkout billing information
             <block type="checkout/multishipping_billing" name="checkout_billing" template="checkout/multishipping/billing.phtml">
                 <action method="setMethodFormTemplate"><method>purchaseorder</method><template>payment/form/purchaseorder.phtml</template></action>
 
-                <!--<block type="checkout/multishipping_billing_items" name="checkout_billing_items" template="checkout/multishipping/billing/items.phtml">
+                <block type="checkout/multishipping_billing_items" name="checkout_billing_items" template="checkout/multishipping/billing/items.phtml">
                     <action method="addItemRender"><type>default</type><block>checkout/cart_item_renderer</block><template>checkout/multishipping/item/default.phtml</template></action>
                     <action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>checkout/multishipping/item/default.phtml</template></action>
                     <action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>checkout/multishipping/item/default.phtml</template></action>
-                </block>-->
+                </block>
 
             </block>
         </reference>
@@ -324,7 +324,7 @@ One page checkout main layout
         <reference name="root">
             <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
         </reference>
-        <reference name="right">
+        <reference name="content">
             <action method="unsetChildren"></action>
             <block type="page/html_wrapper" name="checkout.progress.wrapper" translate="label">
                 <label>Checkout Progress Wrapper</label>
@@ -473,6 +473,12 @@ One page checkout order review block
 <!--        <remove name="left"/>-->
 
         <block type="checkout/onepage_review_info" name="root" output="toHtml" template="checkout/onepage/review/info.phtml">
+           
+            <block type="checkout/onepage_progress" name="billing.progress" template="checkout/onepage/progress/billing.phtml"></block>
+            <block type="checkout/onepage_progress" name="shipping.progress" template="checkout/onepage/progress/shipping.phtml"></block>
+            <block type="checkout/onepage_progress" name="shippingmethod.progress" template="checkout/onepage/progress/shipping_method.phtml"></block>
+            <block type="checkout/onepage_progress" name="payment.progress" template="checkout/onepage/progress/payment.phtml"></block>
+           
             <action method="addItemRender"><type>default</type><block>checkout/cart_item_renderer</block><template>checkout/onepage/review/item.phtml</template></action>
             <action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>checkout/onepage/review/item.phtml</template></action>
             <action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>checkout/onepage/review/item.phtml</template></action>

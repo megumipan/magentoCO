@@ -36,6 +36,7 @@
             <article>
             <h4><a href="<?php echo $this->getReviewUrl($_review->getId()) ?>"><?php echo $this->escapeHtml($_review->getTitle()) ?></a></h4>
             <?php $_votes = $_review->getRatingVotes(); ?>
+            <?php  ?>
             <?php if (count($_votes)): ?>
             <?php foreach ($_votes as $_vote): ?>
             <div class="disTable clear">

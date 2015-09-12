@@ -4,7 +4,7 @@
 ***********************************/
 
 
-html,body{ height:100%; }
+/* html,body{ height:100%; } */
 body{ 
 	background-color:#fff;/* 背景色 */
 	font-family: "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, 'ＭＳ Ｐゴシック', Helvetica, Arial, Verdana, sans-serif;
@@ -13,7 +13,13 @@ body{
 	/* 基本フォントサイズ */
 	font-size:14px;
 }
+.col-right .block-review {
+    display: none;
+}
 
+.col-right .h3_point {
+    display: none;
+}
 
 
 /* topページ
@@ -236,7 +242,7 @@ input[type="image"]{
     margin: 20px auto 60px;
     width: 1000px;
 }
-#main .col-main{
+body.cms-home #main .col-main{
     display: block;
     margin: 0 20px;
     width: 580px;
