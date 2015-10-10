@@ -82,11 +82,9 @@ Category default layout
 
     <catalog_category_default translate="label">
         <label>Catalog Category (Non-Anchor)</label>
-        <reference name="left">
-            <block type="catalog/navigation" name="catalog.leftnav" after="currency" template="catalog/navigation/left.phtml"/>
-        </reference>
         <reference name="content">
             <block type="catalog/category_view" name="category.products" template="catalog/category/view.phtml">
+                <block type="catalog/product_list" name="product_list_sub_categories" template="catalog/product/sub_categories.phtml"></block>
                 <block type="catalog/product_list" name="product_list" template="catalog/product/list.phtml">
                     <block type="catalog/product_list_toolbar" name="product_list_toolbar" template="catalog/product/list/toolbar.phtml">
                         <block type="page/html_pager" name="product_list_toolbar_pager"/>
@@ -112,6 +110,14 @@ Category default layout
                 </block>
 				<block type="catalog/product_list" name="product_list_fl" template="catalog/product/featured_list_category.phtml"></block>
             </block>
+	    <block type="featuredproducts/featuredproducts" name="featuredproducts">
+		<action method="setTemplate" ifconfig="featuredproducts/featuredproductsdisplay/enabledfeatured">
+		       <template>mcsfeaturedproducts/mcsfeaturedproducts_category.phtml</template> 
+		</action>
+        </block>
+        <block type="relatedproducts/relatedproducts" name="catalog.product.awrelated.community" as="awrelated" template="catalog/product/list/awrelated.phtml">
+            <action method="disableRelated"/>
+        </block>
         </reference>
     </catalog_category_default>
 
@@ -181,6 +187,13 @@ Compare products page
         <reference name="content">
             <block type="catalog/product_compare_list" name="catalog.compare.list" template="catalog/product/compare/list.phtml"/>
         </reference>
+        <reference name="content">
+	    <block type="featuredproducts/featuredproducts" name="featuredproducts">
+		<action method="setTemplate" ifconfig="featuredproducts/featuredproductsdisplay/enabledfeatured">
+		       <template>mcsfeaturedproducts/mcsfeaturedproducts.phtml</template> 
+		</action>
+        </block>
+        </reference>
     </catalog_product_compare_index>
 
     <customer_account_index>
@@ -216,12 +229,18 @@ Product view
                 <action method="addReviewSummaryTemplate"><type>short</type><template>review/helper/summary_short.phtml</template></action>
                 <action method="addReviewSummaryTemplate"><type>...</type><template>...</template></action>
                 -->
-<!--                <block type="catalog/product_view_media" name="product.info.media" as="media" template="catalog/product/view/media.phtml"/>-->
+                <block type="catalog/product_view_media" name="product.info.media" as="media" template="catalog/product/view/media.phtml"/>
                 <block type="core/text_list" name="alert.urls" as="alert_urls" translate="label">
                     <label>Alert Urls</label>
                 </block>
 
                 <action method="setTierPriceTemplate"><template>catalog/product/view/tierprices.phtml</template></action>
+
+				<block type="featuredproducts/featuredproducts" as="featured_products" name="featuredproducts">
+				<action method="setTemplate" ifconfig="featuredproducts/featuredproductsdisplay/enabledfeatured">
+					   <template>mcsfeaturedproducts/mcsfeaturedproducts.phtml</template> 
+				</action>
+				</block>
 
                 <block type="catalog/product_list_upsell" name="product.info.upsell" as="upsell_products" template="catalog/product/list/upsell.phtml">
                     <action method="setColumnCount"><columns>4</columns></action>

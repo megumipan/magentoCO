@@ -1,0 +1,14 @@
+<!--@subject {{var store.getFrontendName()}}: ポイント残高更新 @-->
+{{var customer.lastname}} {{var customer.firstname}}様
+<br />
+{{depend creditmemo.getPointReceived()}}
+<h2>加算予定ポイント取消しのお知らせ:</h2>
+{{layout area="frontend" handle="rackpoint_email_creditmemo_items" creditmemo=$creditmemo order=$order}}
+{{/depend}}
+{{depend creditmemo.getPointUsed()}}
+<h2>ご使用ポイント払い戻しのお知らせ</h2>
+<p>払い戻しポイント: <strong>{{var creditmemo.point_used}} ポイント</strong></p>
+{{/depend}}
+<h2>現在のポイント残高: </h2>
+残高: <strong>{{var balance.balance}} ポイント</strong><br/>
+有効期限: <strong>{{var balance.getExpiredAtWithLocale()}}</strong>

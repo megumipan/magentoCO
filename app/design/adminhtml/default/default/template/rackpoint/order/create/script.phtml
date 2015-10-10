@@ -1,0 +1,17 @@
+<?php
+/**
+ * Created by Celtic Corporation.
+ * User: ndlinh
+ * Date: 11/12/2012
+ *
+ * Copyright ©2012 Celtic Corporation. All Rights Reserved.
+ */
+?>
+<script type="text/javascript">
+    quoteBaseGrandTotal = <?php echo $this->getRawBaseGrandTotal() ?>;
+    oldQuoteBaseGrandTotal = quoteBaseGrandTotal;
+    <?php if ($this->getQuote()->getPointUsed() > 0): ?>
+    $('payment_use_point').checked = true;
+    order.switchUsePointCheckbox();
+    <?php endif ?>
+</script>

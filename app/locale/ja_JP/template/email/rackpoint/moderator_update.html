@@ -1,0 +1,14 @@
+<!--@subject {{var store.getFrontendName()}}: Point Balance Updated @-->
+{{var customer.lastname}} {{var customer.firstname}}様
+<br />
+お客様の {{var store.getFrontendName()}} でのポイント残高がサイト運営者によって更新されました。
+
+<h2>更新詳細:</h2>
+ポイント変動量: {{var history.point}} ポイント <br />
+コメント: {{var history.comment}}
+
+{{depend balance.balance}}
+<h2>現在のポイント残高: </h2>
+残高: <strong>{{var balance.balance}} ポイント</strong><br/>
+有効期限: <strong>{{var balance.getExpiredAtWithLocale()}}</strong>
+{{/depend}}

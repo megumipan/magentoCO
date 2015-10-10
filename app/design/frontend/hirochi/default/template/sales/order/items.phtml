@@ -25,24 +25,20 @@
  */
 ?>
 <?php  $_order = $this->getOrder() ?>
-<table class="data-table" id="my-orders-table" summary="<?php echo Mage::helper('core')->quoteEscape($this->__('Items Ordered')) ?>">
-    <col />
-    <col width="1" />
-    <col width="1" />
-    <col width="1" />
-    <col width="1" />
-    <thead>
-        <tr>
-            <th><?php echo $this->__('Product Name') ?></th>
-            <th><?php echo $this->__('SKU') ?></th>
-            <th class="a-right"><?php echo $this->__('Price') ?></th>
-            <th class="a-center"><?php echo $this->__('Qty') ?></th>
-            <th class="a-right"><?php echo $this->__('Subtotal') ?></th>
+<h3 class="gray_line">ショッピングカート</h3>
+<div class="total">
+    <table class="table_03" id="my-orders-table" summary="<?php echo Mage::helper('core')->quoteEscape($this->__('Items Ordered')) ?>">
+        <thead><tr>
+            <th>商品名</th>
+            <th>商品番号</th>
+            <th>価格</th>
+            <th>個数</th>
+            <th>小計</th>
         </tr>
-    </thead>
-    <tfoot>
-        <?php echo $this->getChildHtml('order_totals') ?>
-    </tfoot>
+        </thead>
+        <tfoot class="total_orange">
+            <?php echo $this->getChildHtml('order_totals') ?>
+        </tfoot>
         <?php $_items = $_order->getItemsCollection(); ?>
         <?php $_index = 0; ?>
             <?php $_count = $_items->count(); ?>
@@ -65,6 +61,6 @@
             <?php endif ?>
         </tbody>
         <?php endforeach; ?>
-</table>
+    </table>
+</div>
 <script type="text/javascript">decorateTable('my-orders-table', {'tbody' : ['odd', 'even'], 'tbody tr' : ['first', 'last']})</script>
-<div class="all_pages_comment">/magento/app/design/frontend/hirochi/default/template/sales/order/items.phtml</div>

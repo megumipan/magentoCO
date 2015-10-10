@@ -1,0 +1,15 @@
+<?php
+    // サブカテゴリを取得する
+    $catId = $this->getLayer()->getCurrentCategory()->getId();
+    $recursiveLevel = 2;
+    $subCategories = Mage::getModel('catalog/category')->getCategories($catId,$recursiveLevel);
+?>
+<?php if(count($subCategories)>0): ?>
+<section id="shop_01_list" class="type_image">
+    <ul>
+    <?php foreach ($subCategories as $cat): ?>
+        <li><a href="<?php echo $cat->getUrl();?>"><?php echo $cat->getName(); ?></a></li>
+    <?php endforeach; ?>
+    </ul>
+</section>
+<?php endif;?>

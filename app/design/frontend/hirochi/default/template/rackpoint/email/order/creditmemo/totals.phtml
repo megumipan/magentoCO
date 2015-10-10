@@ -1,0 +1,32 @@
+<?php foreach ($this->getTotals() as $_code => $_total): ?>
+    <?php if ($_total->getBlockName()): ?>
+        <?php echo $this->getChildHtml($_total->getBlockName(), false); ?>
+    <?php else:?>
+    <tr class="<?php echo $_code?>">
+        <td <?php echo $this->getLabelProperties()?>>
+            <?php if ($_total->getStrong()):?>
+            <strong><?php echo $_total->getLabel()?></strong>
+            <?php else:?>
+            <?php echo $_total->getLabel()?>
+            <?php endif?>
+        </td>
+        <td <?php echo $this->getValueProperties()?>>
+            <?php if ($_total->getStrong()):?>
+            <strong><?php echo $this->formatValue($_total) ?></strong>
+            <?php else:?>
+            <?php echo $this->formatValue($_total) ?>
+            <?php endif?>
+        </td>
+    </tr>
+    <?php endif?>
+<?php endforeach?>
+<?php if ($this->getOrder()->getPointReceived()): ?>
+    <tr class="point_received">
+        <td colspan="4" align="right" style="padding:3px 9px">
+            <strong><?php echo $this->__('Received Points Cancelled')?></strong>
+        </td>
+        <td align="right" style="padding:3px 9px">
+            <strong><?php echo number_format($this->getOrder()->getPointReceived()) ?> <?php echo $this->__('points') ?></strong>
+        </td>
+    </tr>
+<?php endif; ?>

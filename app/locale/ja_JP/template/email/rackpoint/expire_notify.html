@@ -1,0 +1,10 @@
+<!--@subject {{var store.getFrontendName()}}: ポイント期限切れ通知 @-->
+{{var customer.lastname}} {{var customer.firstname}}様
+<br />
+<br />
+{{var store.getFrontendName()}} のお客様のポイントが {{var balance.expired_at}} に期限切れを迎えます。 <br />
+有効期限切れになると、ポイントをお使いいただけなくなってしまいます。
+<br />
+<h2>現在の残高: </h2>
+残高: <strong>{{var balance.balance}} ポイント</strong><br/>
+有効期限: <strong>{{var balance.getExpiredAtWithLocale()}}</strong>

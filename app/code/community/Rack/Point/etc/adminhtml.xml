@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <menu>
+        <rackpoint module="rackpoint">
+            <title>Rack Point</title>
+            <sort_order>60</sort_order>
+            <children>
+                <pointrule>
+                    <title>Manage Point Rule</title>
+                    <action>adminhtml/pointrule</action>
+                    <sort_order>10</sort_order>
+                </pointrule>
+                <point_customer>
+                    <title>Manage Customer Point</title>
+                    <action>adminhtml/point_customer</action>
+                    <sort_order>20</sort_order>
+                </point_customer>
+                <point_history>
+                    <title>Manage Point History</title>
+                    <action>adminhtml/point_history</action>
+                    <sort_order>30</sort_order>
+                </point_history>
+                <point_import>
+                    <title>Import Point</title>
+                    <action>adminhtml/point_import</action>
+                    <sort_order>40</sort_order>
+                </point_import>
+            </children>
+        </rackpoint>
+    </menu>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <rackpoint>
+                        <title>Rack Point</title>
+                        <children>
+                            <pointrule>
+                                <title>Manage Point Rule</title>
+                            </pointrule>
+                        </children>
+                    </rackpoint>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <rackpoint>
+                                        <title>Manage Rack Point</title>
+                                    </rackpoint>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

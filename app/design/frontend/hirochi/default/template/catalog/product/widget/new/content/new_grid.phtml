@@ -25,22 +25,32 @@
  */
 ?>
 <?php if (($_products = $this->getProductCollection()) && $_products->getSize()): ?>
-<div class="widget widget-new-products">
-    <div class="widget-title">
-        <h2><?php echo $this->__('New Products') ?></h2>
+
+    <div class="h3_gray_bg">
+        <h3 class="h3_gray_bg"><?php echo $this->__('New Products') ?></h3>
     </div>
-    <div class="widget-products">
+<div class="gray_bg">
     <?php echo $this->getPagerHtml() ?>
     <?php $_columnCount = $this->getColumnCount(); ?>
         <?php $i=0; foreach ($_products->getItems() as $_product): ?>
         <?php if ($i++%$_columnCount==0): ?>
-        <ul class="products-grid">
+
         <?php endif ?>
-            <li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">
-                <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(85) ?>" width="85" height="85" alt="<?php echo $this->stripTags($_product->getName(), null, true) ?>" /></a>
-                <h3 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>)"><?php echo $this->helper('catalog/output')->productAttribute($_product, $_product->getName() , 'name') ?></a></h3>
-                <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
-                <?php echo $this->getPriceHtml($_product, true, '-widget-new-grid') ?>
+<?php /*
+<!--<dt class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">-->
+*/ ?>
+<div class="h3_point_inner">
+<dl>
+
+<dt><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>" class="product-image">
+<img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(85) ?>" width="85" height="85" alt="<?php echo $this->stripTags($_product->getName(), null, true) ?>" /></a></dt>
+<dd><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>)"><?php echo $this->helper('catalog/output')->productAttribute($_product, $_product->getName() , 'name') ?></a></dd>
+<!--   </h3>-->
+</dl>
+<p><?php echo $this->getReviewsSummaryHtml($_product, 'short') ?></p>
+</div>
+                <?php //echo $this->getPriceHtml($_product, true, '-widget-new-grid') ?>
+                <?php /*
                 <div class="actions">
                     <?php if ($_product->isSaleable()): ?>
                         <button type="button" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Add to Cart')) ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
@@ -57,10 +67,9 @@
                     </ul>
                 </div>
             </li>
+                */ ?>
         <?php if ($i%$_columnCount==0 || $i==count($_products)): ?>
-        </ul>
         <?php endif ?>
         <?php endforeach; ?>
-    </div>
 </div>
 <?php endif; ?>

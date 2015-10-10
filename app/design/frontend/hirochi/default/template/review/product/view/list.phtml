@@ -34,14 +34,14 @@
         <?php foreach ($_items as $_review):?>
         <li class="clear">
             <article>
-            <h4><a href="<?php echo $this->getReviewUrl($_review->getId()) ?>"><?php echo $this->escapeHtml($_review->getTitle()) ?></a></h4>
+            <!-- <h4><a href="<?php echo $this->getReviewUrl($_review->getId()) ?>"><?php echo $this->escapeHtml($_review->getTitle()) ?></a></h4> -->
             <?php $_votes = $_review->getRatingVotes(); ?>
             <?php if (count($_votes)): ?>
             <?php foreach ($_votes as $_vote): ?>
             <div class="disTable clear">
             <ul class="star disTablecell"><?php $ratequt = $_vote->getPercent(); ?>
             <?php
-            //////レビュー数の表示プログラム
+            //レビュー数の表示プログラム
             $storeId = Mage::app()->getStore()->getId();
             $st_y = '<li><img src="'.$this->getSkinUrl('images/star_yellow.png').'" alt="star"></li>';
             $st_g = '<li><img src="'.$this->getSkinUrl('images/star_gray.png').'" alt="star"></li>';
@@ -63,7 +63,7 @@
                     echo $st_y.$st_y.$st_y.$st_y.$st_y;
                     break;
                 default:
-                    echo $st_g.$st_g.$st_g.$st_g.$st_g;    
+                    echo $st_g.$st_g.$st_g.$st_g.$st_g;
             }
                 ?>
             </ul>

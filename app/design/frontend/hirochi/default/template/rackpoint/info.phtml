@@ -1,0 +1,74 @@
+<?php $info = $this->getCalculationInfo(); ?>
+<?php if (count($info) > 0): ?>
+<a href="#calculation_details" id="modal"><?php echo $this->__("Calculation Details") ?></a>
+<div id="calculation_details" class="point-info-content" style="display: none;">
+    <table class="data-table point-info" id="modalWindowContent">
+        <thead>
+        <tr>
+            <th><span><?php echo $this->__('Product') ?></span></th>
+            <th>
+                    <span>
+                        <?php echo $this->__('Row total') ?>
+                        <?php if ($this->isIncludeTax()) { echo '(' . $this->__('Incl. Tax') . ')'; } ?>
+                    </span>
+            </th>
+            <th><span><?php echo $this->__('Point before discount') ?></span></th>
+            <th><span><?php echo $this->__('Point after discount') ?></span></th>
+        </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($info as $item): $_pointDetails = $item->getPointType(); ?>
+
+        <tr>
+            <td><span><?php echo $item->getProductName() ?></span></td>
+            <td><span><?php echo $this->formatPrice($item->getRowTotal()) ?></span></td>
+            <td>
+                <span>
+                    <?php echo $this->formatPoint($item->getPointBeforeDiscount(), 2) ?>
+                    <?php if (is_array($_pointDetails)): ?>
+                        <?php foreach ($_pointDetails as $type => $data): ?>
+                            <?php if ($type == Rack_Point_Model_Catalog_Rule::PERCENT): ?>
+                                <div>- <?php echo number_format($data['amount'], 0) ?>%</div>
+                            <?php else: ?>
+                                <div>- <?php echo number_format($data['amount'], 0) ?> <?php echo $this->__('fixed points') ?></div>
+                            <?php endif ?>
+                        <?php endforeach ?>
+                    <?php endif ?>
+                </span>
+            </td>
+            <td><span><?php echo $this->formatPoint($item->getPointReceived(), 2) ?></span></td>
+        </tr>
+            <?php endforeach ?>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="3" class="a-right"><span><?php echo $this->__('Received Point') ?></span></td>
+            <td>
+                <span>
+                    <strong>
+                        <?php if ($this->getQuote()->getIsVirtual()): ?>
+                            <?php echo $this->formatPoint($this->getQuote()->getBillingAddress()->getPointReceived()); ?>
+                        <?php else: ?>
+                            <?php echo $this->formatPoint($this->getQuote()->getPointReceived()); ?>
+                        <?php endif ?>
+                    </strong>
+                </span>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+<script type="text/javascript">
+    //document.observe("dom:loaded", function() {
+    if (Prototype.Browser.IE && parseInt(navigator.userAgent.substring(navigator.userAgent.indexOf("MSIE")+5)) <= 7) {
+        $('modal').hide();
+    } else {
+        var detailWindow = new Control.Modal($('modal'),{
+            className: 'modal',
+            closeOnClick: true,
+            width: 600
+        });
+    }
+    //});
+</script>
+<?php endif ?>

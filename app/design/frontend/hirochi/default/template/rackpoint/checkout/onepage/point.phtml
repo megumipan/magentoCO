@@ -1,0 +1,118 @@
+<?php if (Mage::helper('rackpoint')->isEnabled()):
+      $currentBalance = $this->getCurrentBalance();
+      $quote = Mage::getSingleton('checkout/session')->getQuote();
+      $requirePoint = Mage::helper('rackpoint')->getRequirePoints($quote, true);
+      if ($this->getUsedPoint() <= 0) {
+          $currentPoint = $requirePoint;
+          $currentPoint = min($currentPoint, $currentBalance->getPoint());
+      } else {
+          $currentPoint = Mage::getSingleton('checkout/session')->getPointUsed();
+      }
+      $pointInput = '<input type="text" class="validate-digits-range digits-range-1-' . min($currentBalance->getPoint(), $requirePoint) . ' validate-greater-than-zero validate-digits" name="payment[used_point]" id="payment_used_point_input" value="' . $currentPoint . '" />';
+      $minRequiredPoint = (float)Mage::getStoreConfig('rackpoint/config/min_required_point');
+?>
+<?php if ($currentBalance->getPoint() > 0): ?>
+    <ul class="point-form">
+        <li>
+            <label for="payment_use_point"><?php echo $this->__('Would you like to use point to pay for this order?') ?><br/>
+            <?php if ($minRequiredPoint > 0): ?>
+                (<?php echo $this->__('You can use maximum %s points to pay for this order, and Please enter point amount greater than %s points.', number_format(min($currentBalance->getPoint(), $requirePoint), 0), number_format($minRequiredPoint, 0)) ?>)</label>
+            <?php else: ?>
+                (<?php echo $this->__('You can use maximum %s points to pay for this order.', number_format(min($currentBalance->getPoint(), $requirePoint), 0)) ?>)</label>
+            <?php endif ?>
+            <div class="field-row">
+                <input type="checkbox" <?php if (Mage::getSingleton('checkout/session')->getPointUsed()) { ?> checked="checked" <?php } ?> name="payment[use_point]" id="payment_use_point" value="1" />
+                <span>
+                    <?php echo $this->__('Use points:%s', $pointInput) ?>
+                </span>
+            </div>
+        </li>
+    </ul>
+
+    <script type="text/javascript">
+        var validateClass = ['validate-digits-range digits-range-1-<?php echo $requirePoint ?>', 'validate-greater-than-zero', 'validate-digits'];
+        function toggleValidate(add) {
+            validateClass.each(function(el) {
+                if (add == true) {
+                    $('payment_used_point_input').addClassName(el)
+                } else {
+                    $('payment_used_point_input').removeClassName(el);
+                }
+            });
+        }
+        pointRate = 0 + <?php echo Mage::helper('rackpoint')->getPointRate() ?>;
+        oldQuoteBaseGrandTotal = quoteBaseGrandTotal;
+        Payment.prototype.switchUsePointCheckbox = function() {
+            $('payment_used_point_input').disabled = !$('payment_use_point').checked;
+            if ($('payment_use_point').checked == true) {
+                $('payment_used_point_input').focus();
+                quoteBaseGrandTotal = oldQuoteBaseGrandTotal - getCurrentPointCurrency();
+
+                toggleValidate(true);
+            } else if ($('payment_use_point').checked == false) {
+                quoteBaseGrandTotal = oldQuoteBaseGrandTotal;
+
+                Validation.reset($('payment_used_point_input'));
+                toggleValidate(false);
+                if ($('advice-validate-digits-range-payment_used_point_input')) {
+                    $('advice-validate-digits-range-payment_used_point_input').remove();
+                }
+            }
+
+            if (quoteBaseGrandTotal < 0.0001) {
+                var elements = Form.getElements(this.form);
+                for (var i=0; i<elements.length; i++) {
+                    if ($('payment_use_point').checked) {
+                        if (elements[i].name == 'payment[method]') {
+                            elements[i].disabled = true;
+                        }
+                    }
+                    if (elements[i].name == 'payment[method]' && elements[i].value == 'free') {
+                        elements[i].checked = false;
+                        elements[i].disabled = true;
+                        $(elements[i].parentNode).hide();
+                    }
+                }
+                if ($('payment_use_point').checked) {
+                    $('checkout-payment-method-load-methods').hide();
+                }
+            } else {
+                var elements = Form.getElements(this.form);
+                for (var i=0; i<elements.length; i++) {
+                    if (elements[i].name == 'payment[method]') {
+                        elements[i].disabled = false;
+                    }
+                }
+                $('checkout-payment-method-load-methods').show();
+            }
+        }
+
+        if (payment) {
+            payment.addAfterInitFunction('rackpoint', function() {
+                $('payment_use_point').disabled = false;
+                if ($('payment_use_point').checked) {
+                    $('payment_used_point_input').disabled = false;
+                } else {
+                    $('payment_used_point_input').disabled = true;
+                }
+            });
+            payment.switchUsePointCheckbox();
+            var pointPaymentValidate = function() {
+                if (quoteBaseGrandTotal < 0.0001) {
+                    return true;
+                }
+                return false;
+            }
+            payment.addBeforeValidateFunction('rackpoint', pointPaymentValidate.bind(payment));
+
+            Event.observe($('payment_use_point'), 'click', payment.switchUsePointCheckbox);
+            Event.observe($('payment_used_point_input'), 'keyup', payment.switchUsePointCheckbox);
+        }
+        
+        function getCurrentPointCurrency() {
+            var point = $('payment_used_point_input').value;
+            return point/pointRate;
+        }
+    </script>
+<?php endif ?>
+<?php endif ?>

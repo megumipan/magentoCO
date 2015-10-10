@@ -24,50 +24,67 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
-<div id="messages_product_view"><?php echo $this->getMessagesBlock()->toHtml() ?></div>
 <div class="page-title">
-    <h1><?php echo Mage::helper('contacts')->__('Contact Us') ?></h1>
+    <h2 class="h2_heading">お問い合わせ</h2>
 </div>
+
+
+                           		<div class="contact_01">
+                                    <p>ご注文方法や配送、商品についてのご質問、ご不明な点などございましたら、お気軽にお電話・E-mail、お問い合せフォームからお問い合せ下さい。</p>
+                           		    <p class="contact_title">お電話でのお問い合わせ</p>
+                           		    <p>お電話でのお問い合せも承っております。お急ぎのお客様は、どうぞご利用ください。</p>
+                           		    <ul class="contact_tel">
+                           		        <li>TEL:<span>043-293-2244</span></li>
+                           		        <li>(営業時間：10:00～16:00)</li>
+                           		    </ul>
+                           		    <p class="contact_title">E-mailでのお問い合わせ</p>
+                           		    <p>メールでのお問い合せは下記アドレス宛にお寄せください。</p>
+                           		    <ul class="contact_mail">
+                           		        <li>E-mail:<span>hd_admin@hirochi.co.jp</span></li>
+                           		    </ul>
+                           		    <p class="contact_title">お問い合わせ</p>
+                           		    <p>以下のフォームに必要事項を入力し、「送信」ボタンをクリックしてください。<br>
+3営業日以内に、担当者から折り返しご連絡させて頂きます。<br>
+尚、お問い合せフォーム送信後4日以上返信がない場合、システムエラーの可能性がございます。<br>
+大変恐縮ですが、再度送信していただくか、お電話、またはメールにてご連絡ください。<span>【必須】</span> は必須入力項目です。</p>
+
+<div id="messages_product_view" style="margin:1.5em 0;"><?php echo $this->getMessagesBlock()->toHtml() ?></div>
+
 <form action="<?php echo $this->getFormAction(); ?>" id="contactForm" method="post">
-    <div class="fieldset">
-        <h2 class="legend"><?php echo Mage::helper('contacts')->__('Contact Information') ?></h2>
-        <ul class="form-list">
-            <li class="fields">
-                <div class="field">
-                    <label for="name" class="required"><em>*</em><?php echo Mage::helper('contacts')->__('Name') ?></label>
-                    <div class="input-box">
-                        <input name="name" id="name" title="<?php echo Mage::helper('core')->quoteEscape(Mage::helper('contacts')->__('Name')) ?>" value="<?php echo $this->escapeHtml($this->helper('contacts')->getUserName()) ?>" class="input-text required-entry" type="text" />
-                    </div>
-                </div>
-                <div class="field">
-                    <label for="email" class="required"><em>*</em><?php echo Mage::helper('contacts')->__('Email') ?></label>
-                    <div class="input-box">
-                        <input name="email" id="email" title="<?php echo Mage::helper('core')->quoteEscape(Mage::helper('contacts')->__('Email')) ?>" value="<?php echo $this->escapeHtml($this->helper('contacts')->getUserEmail()) ?>" class="input-text required-entry validate-email" type="text" />
-                    </div>
-                </div>
-            </li>
-            <li>
-                <label for="telephone"><?php echo Mage::helper('contacts')->__('Telephone') ?></label>
-                <div class="input-box">
-                    <input name="telephone" id="telephone" title="<?php echo Mage::helper('core')->quoteEscape(Mage::helper('contacts')->__('Telephone')) ?>" value="" class="input-text" type="text" />
-                </div>
-            </li>
-            <li class="wide">
-                <label for="comment" class="required"><em>*</em><?php echo Mage::helper('contacts')->__('Comment') ?></label>
-                <div class="input-box">
-                    <textarea name="comment" id="comment" title="<?php echo Mage::helper('core')->quoteEscape(Mage::helper('contacts')->__('Comment')) ?>" class="required-entry input-text" cols="5" rows="3"></textarea>
-                </div>
-            </li>
-        </ul>
-    </div>
+                                  <div class="contact_form">
+                                      <form action="#" method="post">
+                                          <ul>
+                                              <li class="name">
+                                                  <p>お名前：<span>【必須】</span></p>
+                                                  <input name="name" id="name" title="<?php echo Mage::helper('core')->quoteEscape(Mage::helper('contacts')->__('Name')) ?>" value="<?php echo $this->escapeHtml($this->helper('contacts')->getUserName()) ?>" class="input-text required-entry" type="text" />
+                                              </li>
+                                              <li class="email">
+                                                  <p>E-mailアドレス：<span>【必須】</span></p>
+                                                  <input name="email" id="email" title="<?php echo Mage::helper('core')->quoteEscape(Mage::helper('contacts')->__('Email')) ?>" value="<?php echo $this->escapeHtml($this->helper('contacts')->getUserEmail()) ?>" class="input-text required-entry validate-email" type="text" />
+                                              </li>
+                                              <li class="tel">
+                                                  <p>電話番号：</p>
+                                                  <input name="telephone" id="telephone" title="<?php echo Mage::helper('core')->quoteEscape(Mage::helper('contacts')->__('Telephone')) ?>" value="" class="input-text" type="text" />
+                                              </li>
+                                              <li class="contact_main">
+                                                  <p>お問い合わせ：<span>【必須】</span></p>
+                                                   <textarea name="comment" id="comment" title="<?php echo Mage::helper('core')->quoteEscape(Mage::helper('contacts')->__('Comment')) ?>" class="required-entry input-text" cols="5" rows="3"></textarea>
+                                              </li>
+                                              <li><label><input type="checkbox" name="check" class="required-entry" value="yes"><a href="<?php echo $this->getUrl('privacy'); ?>">個人情報保護方針</a>に同意する<span>【必須】</span></label></li>
+                                          </ul>
     <div class="buttons-set">
         <p class="required"><?php echo Mage::helper('contacts')->__('* Required Fields') ?></p>
-        <input type="text" name="hideit" id="hideit" value="" style="display:none !important;" />
-        <button type="submit" title="<?php echo Mage::helper('core')->quoteEscape(Mage::helper('contacts')->__('Submit')) ?>" class="button"><span><span><?php echo Mage::helper('contacts')->__('Submit') ?></span></span></button>
+        <p><input type="text" name="hideit" id="hideit" value="" style="display:none !important;" />
+        <p style="text-align:center; margin-top:2em;"><button type="submit" title="<?php echo Mage::helper('core')->quoteEscape(Mage::helper('contacts')->__('Submit')) ?>" class="btnOrange" style="width:auto; padding:10px 20px;"><?php echo Mage::helper('contacts')->__('Submit') ?></button></p>
     </div>
+
 </form>
+
 <script type="text/javascript">
 //<![CDATA[
     var contactForm = new VarienForm('contactForm', true);
 //]]>
 </script>
+                                  </div>
+                           		</div>
+                                <!-- contact_01 -->

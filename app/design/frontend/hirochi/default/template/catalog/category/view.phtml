@@ -36,6 +36,9 @@
     $_category  = $this->getCurrentCategory();
     $_imgHtml   = '';
 ?>
+
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
 <div class="page-title category-title">
     <?php if($this->IsRssCatalogEnable() && $this->IsTopCategory()): ?>
         <a href="<?php echo $this->getRssLink() ?>" class="link-rss"><?php echo $this->__('Subscribe to RSS Feed') ?></a>
@@ -54,6 +57,7 @@
     <?php echo $_imgHtml ?>
 <?php endif; ?>
 
+<?php echo $this->getChildHtml('product_list_sub_categories'); ?>
 
 <?php if($this->isContentMode()): ?>
 	<section id="news" class="news_01">
@@ -82,12 +86,5 @@
     <?php echo $this->getProductListHtml() ?>
 <?php endif; ?>
 
-<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
-
-<h2 class="h2_heading mb10">おすすめ商品</h2>
-<section id="featured_products">
-<?php echo $this->getChildHtml('product_list_fl'); ?>
-</section>
-default
 </div>
 <!-- /category -->

@@ -1,0 +1,64 @@
+<?php 
+
+    $_months = $this->buildDays();
+    $_names = $this->getDayNames();
+    $_details = $this->getHolidaysWithDetail();
+?>
+<div id="calendar" class="block block-calendar">
+<div class="block-title">
+    <h3><img src="<?php echo $this->getSkinUrl('images/calendar.png') ?>" alt="<?php echo $this->__('Calendar')?>"></h3>
+</div>
+    <table width="100%" cellspacing="1" border="1" cellpadding="0" bordercolor="#CCCCCC">
+        <?php foreach ($_months as $_m => $_days): ?>
+        <tr class="month">
+            <td class="calendar-month" colspan="7"><?php echo date(Y); ?>年 <?php echo sprintf('%d', $_m); ?>月</td>
+        </tr>
+       <tr class="days">
+            <td>
+                <table width="100%" cellspacing="1" cellpadding="0">
+                    <thead>
+                    <tr>
+                        <?php foreach ($_names as $_n): ?>
+                        <th class="cal-day cal-header"><?php echo $this->__($_n) ?></th>
+                        <?php endforeach ?>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php while($_d = $_days->fetch()): ?>
+                    <?php if ($_d->isFirst()): ?>
+                    <tr>
+                    <?php endif ?>
+                    <?php if ($_d->isEmpty()): ?>
+                        <td class="cal-day <?php if ($_d->isFirst()) { echo 'day-first'; } elseif ($_d->isLast()) { echo 'day-last'; } ?>">&nbsp;</td>
+                    <?php else: ?>
+                        <td class="cal-day <?php echo $this->getHolidayCssClass($_d) ?> <?php if ($_d->isFirst()) { echo 'day-first'; } elseif ($_d->isLast()) { echo 'day-last'; } if ($_d->isToday()) { echo ' day-current';} ?>">
+                            <?php echo $_d->thisDay() ?>
+                        </td>
+                    <?php endif ?>
+                    <?php if ($_d->isLast()): ?>
+                    </tr>
+                    <?php endif ?>
+                    <?php endwhile ?>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <?php endforeach ?>
+    </table>
+   <p><img src="<?php echo $this->getSkinUrl('images/cal_red.png'); ?>"> 休業日<br><img src="<?php echo $this->getSkinUrl('images/cal_yellow.png'); ?>"> 配送のみ</p>
+    <?php /*
+		if ($_details->count()): ?>
+    <ul>
+       <?php foreach ($_details->getItems() as $_item): ?>
+        <?php if ($_item->getDayComment() != ''): ?>
+        <li class="<?php //echo $this->getHolidayCssClass($_item->getDay()) ?>">
+            <span class="date-part"><?php echo $_item->getDay() ?></span>
+            <span class="date-comment"><?php echo $_item->getDayComment() ?></span>
+        </li>
+        <?php endif ?>
+       <?php endforeach; ?>
+    </ul>
+    <?php endif
+	*/
+	?>
+</div>

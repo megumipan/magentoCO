@@ -1,0 +1,1294 @@
+/**
+ * Main CSS Stylesheet
+ *
+ * @package templateSystem
+ * @copyright Copyright 2003-2005 Zen Cart Development Team
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
+ * @version $Id: stylesheet.css 3688 2006-06-02 00:12:18Z drbyte $
+ */
+
+h4.optionName {
+	line-height: 1.5em;
+	padding: 0.2em;
+	}
+
+LABEL.checkboxLabel, LABEL.radioButtonLabel {
+	margin: 0.5em 0.3em;
+	}
+
+.centerBoxContents, .specialsListBoxContents, .categoryListBoxContents, .attribImg {
+	float: left;
+	}
+
+.centerBoxContentsAlsoPurch {
+        float: left;
+	text-align: center;
+}
+
+#logo {
+	padding: 0;
+	margin: 0;
+	margin-top: 0px;
+	background: #fff;
+	height: 22px;
+	}
+
+LABEL.inputLabel {
+	width: 10em;
+	float: left;
+	}
+
+LABEL.inputLabelPayment {
+	/* width: 15em; */
+	float: left;
+	}
+
+LABEL.selectLabel, LABEL.switchedLabel, LABEL.uploadsLabel  {
+	width: 12em;
+	float: left;
+	}
+
+.clearBoth {
+	clear: both;
+	}
+
+HR {
+	height: 1px;
+	margin-top: 0.5em;
+	border: none;
+	border-bottom: 1px solid #9a9a9a;
+	}
+
+#topWrapper {
+	margin: 0px;
+	padding: 0px;
+	text-align: center;
+	width: 100% !important;
+	float: left;
+	background: #fff /* url(../images/top_bg.gif) no-repeat top; */
+	}
+
+/*warnings, errors, messages*/
+.messageStackWarning, .messageStackError, .messageStackSuccess, .messageStackCaution {
+	line-height: 1.8em;
+	padding: 0.2em;
+	border: 1px solid #000000;
+	}
+
+.messageStackWarning, .messageStackError {
+/* mod 2010-01-27 Y.UEHARA 
+	background: #ff0000; 
+	color: #ffffff; */
+	background: #ffffff;
+	color: #ff0000;
+/* add 2010-01-27 Y.UEHARA */
+	font-weight: bold;
+	}
+
+.messageStackSuccess {
+	background: #99FF99;
+	color: #000000;
+	}
+
+.messageStackCaution {
+	background: #FFFF66;
+	color: #000000;
+	}
+
+/*wrappers - page or section containers*/
+#mainWrapper {
+	text-align: left;
+	width: 801px;
+	vertical-align: top;
+	margin: 0 auto;
+	padding: 0;
+	clear: both;
+	}
+
+#cartBoxListWrapper, #ezPageBoxList, #cartBoxListWrapper ul, #ezPageBoxList ul, #popupAdditionalImage, #popupImage {
+	margin: 0em;
+	padding: 0em;
+	}
+
+#contentMainWrapper {
+	margin: 0;
+	padding: 0;
+	width: 800px;
+	float: left;
+	}
+
+#logoWrapper {
+	margin: 0;
+	padding: 0;
+	position: relative;
+	top: 0px;
+	}
+
+#headerWrapper {
+	margin: 0;
+	padding: 0;
+	width: 801px;
+	}
+
+* html #headerWrapper {
+	width: 801px;
+	}
+
+div#eznavibar {
+	margin: 0;
+	padding: 0;
+/*	float: left; */
+	float: top;
+	background: #fff;
+	width: 100%;
+	}
+
+#navColumnOneWrapper, #navColumnTwoWrapper {
+	width: 200px;
+	margin: auto;
+	padding-right: 5px;
+	clear: both;
+	} 
+
+#tagline {
+	color:#000;
+	font-size: 1em;
+	text-align : left;
+/*	vertical-align: middle; */
+	padding-bottom: 0;
+	}
+
+#sendSpendWrapper {
+	border: 1px solid #cacaca;
+	float: right;
+	margin: 0em 0em 1em 1em;
+	}
+
+.floatingBox, #accountLinksWrapper, #sendSpendWrapper, #checkoutShipto, #checkoutBillto, #navEZPagesTOCWrapper {
+	margin: 0;
+	width: 47%;
+	}
+
+.wrapperAttribsOptions {
+	margin: 0.3em 0em;
+	}
+
+/*navigation*/
+
+.navSplitPagesResult {
+        font-weight: bold;
+        font-size: 14px;
+	margin: 4px;
+	margin-bottom: 12px;
+	color: #f0f;
+}
+.navSplitPagesLinks {
+	font-weight: bold;
+	font-size: 14px;
+	margin: 4px;
+	margin-bottom: 12px;
+	color: #f0f;
+}
+.navNextPrevCounter {
+	margin: 0em;
+	font-size: 0.9em;
+	}
+.navNextPrevList {
+	display: inline;
+	white-space: nowrap;
+	margin: 0;
+	padding:  0.5em 0em;
+	list-style-type: none;
+	}
+
+#navSuppWrapper, #navCatTabsWrapper {
+	margin: 0em;
+	background: #fff;
+	font-weight: bold;
+	color: #333;
+	height: 1%;
+	width: 800px;
+	clear: both;
+	margin: 0 auto;
+	padding: 10px 0 0 0;
+	}
+
+/* add 2010-01-19 Y.UEHARA*/
+#navSupp2 {
+	color: #000;
+	margin: 5px;
+	}
+	
+/* add 2010-01-19 Y.UEHARA*/
+.footlink {
+	margin: 5px;
+	}
+
+
+#navMainWrapper {
+	margin: 0;
+	font-weight: bold;
+	color: #333;
+	height: 1%;
+	padding-right: 10px;
+	}
+
+div#navMain {
+	float:left;
+	text-align:right;
+	}
+
+#navMain ul, #navSupp ul, #navSupp2 ul, #navCatTabs ul  {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	text-align: center;
+	line-height: 1em;
+	}
+
+#navMain ul {
+	width: 790px;
+	}
+
+#navMain ul li, #navSupp ul li, #navSupp2 ul li, #navCatTabs ul li {
+	display: inline;
+	white-space: normal;
+	}
+
+#navMain ul li a, #navSupp ul li a, #navSupp2 ul li a, #navCatTabs ul li a {
+	text-decoration: none;
+	padding: 0em 0.5em;
+	margin: 0;
+	color: #666;
+	}
+
+#navMain ul li {
+	border-right: 1px solid #ccc;
+	display: block;
+	float: right;
+	}
+
+#navEZPagesTOCWrapper {
+	font-weight: bold;
+	float: right;
+	height: 1%;
+	border: 1px solid #000000;
+	}
+
+#navEZPagesTOC ul {
+	margin: 0;
+	padding:  0.5em 0em;
+	list-style-type: none;
+	line-height: 1.5em;
+	}
+
+#navEZPagesTOC ul li {
+	white-space: nowrap;
+	}
+
+#navEZPagesTOC ul li a {
+	padding: 0em 0.5em;
+	margin: 0;
+	}
+
+#navMainSearch, #navCategoryIcon, .buttonRow, #indexProductListCatDescription {
+	margin: 0.5em;
+	}
+
+#navBreadCrumb {
+	background: #ff8844;
+        font-size: 0.75em;
+        font-weight: bold;
+        margin: 0em;
+        padding: 0.5em;
+        clear: both;
+	}
+
+#navEZPagesTop {
+	background: #eee;
+	margin: 0;
+	padding: 0;
+	float: left;
+	font-size: 0.95em;
+	font-weight: bold;
+	width: 100%;
+	}
+
+#navEZPagesTop ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	}
+
+#navEZPagesTop li {
+	display: block;
+	background: #eee;
+	padding: 0 15px 0 5px;
+	line-height: 20px;
+	float: left;
+	margin: 0;
+	white-space:nowrap;
+	}
+
+#navColumnOne {
+	background: #fff;
+	float: left;
+	}
+
+#navColumnTwo {
+	background: #fff;
+	float: left;
+	}
+
+/*The main content classes*/
+#contentColumnMain, #navColumnOne, #navColumnTwo, .centerBoxContents, .specialsListBoxContents, .categoryListBoxContents, .additionalImages, .centerBoxContentsSpecials, .centerBoxContentsAlsoPurch, .centerBoxContentsFeatured, .centerBoxContentsNew, .alert {
+	vertical-align: top;
+	}
+
+/*.content,*/ 
+#productDescription, .shippingEstimatorWrapper {
+	/*font-size: 1.2em;*/
+	padding: 0em;
+	}
+
+/*
+.productGeneral p {
+	border:1px solid #ccc;
+	
+}
+*/
+
+.alert {
+	color: #FF0000;
+	margin-left: 0.5em;
+	}
+.advisory {}
+.important {
+	font-weight: bold;
+	}
+.notice {}
+.rating{}
+.gvBal {
+	float: right;
+	}
+#bannerOne, #bannerTwo,  #bannerThree,  #bannerFour,  #bannerFive,  #bannerSix {
+	padding: 0;
+	}
+
+.centerColumn {
+	margin-top: 0;
+	margin-bottom: 0;
+	margin-left: 10px;
+	margin-right: auto;
+	text-align: left;
+	}
+
+.smallText, #siteinfoCredits, #siteinfoStatus {
+	font-size: 0.9em;
+	}
+
+/*Shopping Cart Display*/
+#cartAdd {
+	float: right;
+	text-align: center;
+/*	margin: 0.5em: */
+	margin-top: 0.3em;
+	border: 1px solid #EE0000;
+	padding: 0.5em;
+	background-color: #FFdddd;
+	}
+
+
+.tableHeading TH {
+	border-bottom: 1px solid #cccccc;
+	}
+
+.tableHeading, #cartSubTotal {
+	background: #e9e9e9;
+	 }
+
+#cartSubTotal {
+	border-top: 1px solid #cccccc;
+	font-weight: bold;
+	text-align: right;
+	line-height: 2.2em;
+	padding-right: 2.5em;
+	}
+
+.tableRow, .tableHeading, #cartSubTotal {
+	height: 2.2em;
+	}
+
+.cartProductDisplay, .cartUnitDisplay, .cartTotalDisplay, .cartRemoveItemDisplay, .cartQuantityUpdate, .cartQuantity, #cartInstructionsDisplay, .cartTotalsDisplay   {
+	padding: 0.5em 0em;
+	}
+
+.cartUnitDisplay, .cartTotalDisplay {
+	text-align: right;
+	padding-right: 0.2em;
+	}
+
+#scUpdateQuantity {
+	width: 2em;
+	}
+
+.cartQuantity {
+	width: 4.7em;
+	}
+
+.cartNewItem {
+	color: #33CC33;
+	position: relative;  /*do not remove-fixes stupid IEbug*/
+	}
+
+.cartOldItem {
+	color: #660099;
+	position: relative;   /*do not remove-fixes stupid IEbug*/
+	}
+
+.cartBoxTotal {
+	text-align: right;
+	font-weight: bold;
+	}
+
+.cartRemoveItemDisplay {
+	width: 3.5em;
+	}
+
+#cartAttribsList {
+	margin-left: 1em;
+	}
+
+#mediaManager {
+width: 50%; 
+margin: 0.2em;
+padding: 0.5em;
+}
+.productSpecialPriceSale {
+	text-decoration: line-through;
+	}
+
+.specialpricetag {
+	color: #E00
+}
+
+.normalpricetag {
+	color: #999;
+}
+
+.normalprice {
+	color: #999;
+	font-weight: normal;
+}
+
+.productSalePrice, .productSpecialPriceSale {
+	color: #ff0000;
+	}
+
+.productSpecialPrice {
+        color: #E00;
+	font-weight: bold;
+        }
+
+.productPriceDiscount {
+        color: #ff0000;
+        font-size: smaller;
+        }
+
+#cartBoxListWrapper ul, #ezPageBoxList ul {
+	list-style-type: none;
+	}
+
+#cartBoxListWrapper li, #ezPageBoxList li, .cartBoxTotal {
+	margin: 0;
+	padding: 0.2em 0em;
+	} 
+
+.totalBox {
+	width: 5.5em;
+	text-align: right;
+	padding: 0.2em;
+	}
+
+.lineTitle, .amount {
+	text-align: right;
+	padding: 0.2em;
+	width: 10em;
+	}
+
+.amount {
+	width: 5.5em;
+	}
+
+/*Image Display*/
+#reviewsInfoDefaultProductImage, #productReviewsDefaultProductImage, #reviewWriteMainImage {
+	margin: 0em 1em 1em 0em ;
+	}
+
+#productMainImage {
+        margin: 0em 10px 1em 0em ;
+        }
+
+.categoryIcon {}
+#cartImage {
+	margin: 0.5em 1em;
+	}
+
+/*Attributes*/
+.attribImg {
+	width: 20%;
+	margin: 0.3em 0em;
+}
+
+.attributesComments {}
+
+/*list box contents*/
+.centerBoxContents, .specialsListBoxContents, .categoryListBoxContents, .additionalImages, .centerBoxContentsSpecials, .centerBoxContentsAlsoPurch, .centerBoxContentsFeatured, .centerBoxContentsNew {
+	margin: 1em 0em;
+	}
+
+/*sideboxes*/
+.columnLeft {}
+
+/* add START 2010-01-11 Y.UEHARA */
+#loginboxHeading{
+	/* add START 2010-01-12 Y.UEHARA */
+/* 	height:20px; */
+	/* add -END- 2010-01-12 Y.UEHARA */
+    background-color: #9C3;
+    border-top-color: #f84;
+    border-right-color-value: #f84;
+    border-bottom-color: #f84;
+    border-left-color-value: #f84;
+    color: #fff;
+    text-align: left;
+    font-size: 1.1em;
+    line-height: 1.5em;
+	}
+
+/* edit 2010-01-12 Y.UEHARA */
+#searchHeading, #shoppingcartHeading, #categoriesHeading, #whatsnewHeading, #featuredHeading, #informationHeading, #moreinformationHeading, #reviewsHeading, #calendarHeading, #bestsellersHeading, #categoriestreeHeading {
+	height:20px;
+	font-size: 1.1em;
+	line-height: 1.5em; 
+    color: #000;
+    text-align: left;
+	}
+
+/* add -END- 2010-01-11 Y.UEHARA */
+
+h3.leftBoxHeading, h3.leftBoxHeading a, h3.rightBoxHeading, h3.rightBoxHeading a {
+/* edit 2010-01-11 Y.UEHARA
+	font-size: 1em; */
+	font-size: 1.1em;
+	background-color: #f84;
+	border-top-color: #f84;
+	border-right-color-value: #f84;
+	border-bottom-color: #f84;
+	border-left-color-value: #f84;
+	color: #000;
+	text-align: left;
+/* edit 2010-01-11 Y.UEHARA 
+	padding: 0 0 0 5px; */
+	padding: 0.2em 0.2em 0.2em 0.2em;
+	}
+
+.leftBoxHeading, .rightBoxHeading {
+	margin: 0em;
+	padding: 0.5em 0.2em;
+	}
+
+.centerBoxHeading {
+	margin: 0em;
+	background: #404040;
+	padding: 10px 0;
+	line-height: 1.5em;
+	color: #fff;
+	}
+
+.leftBoxContainer {
+	border-top: 1px solid #f84;
+	border-left: 1px solid #f84;
+	border-right: 1px solid #f84;
+	border-bottom: 1px solid #f84;
+	margin: 5px 0;
+	}
+
+div#loginbox {
+        border-top: 1px solid #9c3;
+        border-left: 1px solid #9c3;
+        border-right: 1px solid #9c3;
+        border-bottom: 1px solid #9c3;
+        margin: 5px 0;
+        }
+
+.rightBoxContainer {
+	border-top: 5px solid #000;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	margin: 5px 0;
+	background: #eee;
+	}
+
+.sideBoxContent {
+	padding: 0.4em;
+	font-size: 1.1em;
+	}
+
+#categories a {
+ 	background: url(../images/box_icon1.gif) no-repeat left top;
+	padding-left: 15px;
+	margin: 5px 0;
+	line-height: 1.5em;
+	}
+
+h3.leftBoxHeading a:hover {
+	color: #890C08;
+	text-decoration: underline;
+	} 
+
+h3.rightBoxHeading a:hover {
+	color: #890C08;
+	text-decoration: underline;
+	}
+
+.rightBoxContent {
+	background: #ffffff;
+	margin-bottom: 1em;
+	}
+
+.centeredContent, TH, #cartEmptyText, #cartBoxGVButton, #navCatTabsWrapper, #navEZPageNextPrev, #bannerOne, #bannerTwo,  #bannerThree,  #bannerFour,  #bannerFive,  #bannerSix, #siteinfoCredits, #siteinfoStatus, .center, .cartRemoveItemDisplay, .cartQuantityUpdate, .cartQuantity, .cartTotalsDisplay, #cartBoxGVBalance, .leftBoxHeading, .centerBoxHeading,.rightBoxHeading, .productListing-data, .accountQuantityDisplay, .ratingRow, LABEL#textAreaReviews, #productMainImage, #reviewsInfoDefaultProductImage, #productReviewsDefaultProductImage, #reviewWriteMainImage, .centerBoxContents, .specialsListBoxContents, .categoryListBoxContents, .additionalImages, .centerBoxContentsSpecials, .centerBoxContentsFeatured, .gvBal, .attribImg {
+	text-align: center;
+	}
+
+.centerBoxContentsNew {
+        text-align: left;
+}
+
+#siteinfoLegal {
+	font-size: 0.9em;
+	text-align: center;
+	background: #fff;
+	margin-bottom: 10px;
+	padding-bottom: 5px;
+	}
+
+#siteinfoIP {
+	text-align: center;
+	background: #eee;
+	font-size: 0.9em;
+	padding-bottom: 5px;
+	}
+
+#bestsellers .wrapper {
+	margin: 0px 0px 0px 10px;
+	}
+
+#bestsellers ol {
+	padding: 0;
+	margin: 0;
+	margin-left: 1.1em;
+	}
+
+#bestsellers li {
+	padding: 0;
+	/* margin: 0.3em 0em 0.3em 0em; */
+	margin: 2px 0px 2px 0px;
+	position: relative;
+	list-style-position:outside;
+	}
+
+#bannerboxHeading {
+	background: #0000CC;
+}
+
+#upProductsHeading {
+	text-align: left;
+	}
+
+#upDateHeading {
+	text-align: right;
+	}
+
+/*misc*/
+.back {
+	float: left;
+	}
+
+.forward {
+	float: left;
+	}
+
+.bold {
+	font-weight: bold;
+	}
+
+.rowOdd {
+	background: #E8E8E8;
+	height: 1.5em;
+	vertical-align: top;
+	}
+
+.rowEven {
+	background: #F0F0F0;
+	height: 1.5em;
+	vertical-align: top;
+	}
+
+CAPTION {
+	/*display: none;*/
+	}
+
+#myAccountGen li, #myAccountNotify li {
+	margin: 0;
+	} 
+
+.accountTotalDisplay, .accountTaxDisplay {
+	width: 20%;
+	text-align: right;
+	/*vertical-align: top*/
+	}
+
+.accountQuantityDisplay {
+	width: 10%;
+	vertical-align: top
+	}
+
+TR.tableHeading {
+	background: #cacaca;
+	height: 2em;
+	}
+
+#siteMapList {
+	width: 90%;
+	float: right;
+	}
+
+.ratingRow {
+	margin: 1em 0em 1.5em 0em;
+	}
+
+LABEL#textAreaReviews {
+	font-weight: normal;
+	margin: 1em 0em;
+	}
+
+#popupShippingEstimator, #popupSearchHelp, #popupAdditionalImage, #popupImage, #popupCVVHelp, #popupCouponHelp, #popupAtrribsQuantityPricesHelp, #infoShoppingCart {
+	background: #ffffff;
+	}
+
+div#mainarea {
+	width: 800px;
+	margin: 0 auto;
+	}
+
+div#centerOuterBorder {
+	float: right;
+	text-align: center;
+	width: 598px;
+	}
+
+* html table {
+	font-size: 1.2em;
+	}
+
+div#naviWrapper {
+	background: #eee;
+	float: left;
+	margin: 0;
+	padding: 0 0 0 0;
+	width: 800px;
+	}
+
+div#headerinner {
+	float: left;	
+}
+
+div.navilanguages {
+	float: right;
+	width: 200px;
+	border-right: 1px dotted #000000;
+	line-height: 25px;
+	}
+
+div.navMainSearch {
+	float: right;
+	width: 250px;
+	border-right: 1px dotted #000000;
+	line-height: 25px;
+	}
+
+ div.navicurrencies {
+	float: right;
+	width: 200px;
+	line-height: 25px;
+	}
+
+span.navi_text {
+	font-size: 1.2em;
+	padding: 0 5px 0 0;
+	line-height: 25px;
+	}
+
+/* add 2010-01-15 Y.UEHARA */
+h3.itemTitle{
+	font-size: 1em;
+	text-align: left;
+	margin: 0;
+	padding: 0;
+	padding-right: 16px;
+}
+
+
+/* �潟�＜�潟�� */
+.M14_1_table {
+	border-collapse: collapse;
+}
+.M14_1_table table{
+    margin: 10px 0;
+}
+.M14_1_table td{
+    padding: 5px 10px;
+    line-height: 1.5;
+}
+.M14_1_table td p{
+    line-height: 1.5!important;
+    margin: 0 0 10px;
+}
+.M14_1_table td p:last-child{
+    margin: 0;
+}
+.M14_1_list_head{
+	background-color: #EEEEEE;
+	border: solid 1px #CCCCCC;
+	padding: 4px;
+	vertical-align: top;
+	white-space: nowrap;
+	width: 1%;
+}
+.M14_1_list_body{
+	background-color: #FFFFFF;
+	border: solid 1px #CCCCCC;
+	padding: 4px;
+	vertical-align: top;
+}
+
+/* define_privacy.php add 2010-01-15 Y.UEHARA */
+.M15_1_table{
+	border-collapse: collapse;
+        background-color: #FFFFFF;
+        border: solid 1px #CCCCCC;
+	width: 100%;
+}
+
+.M15_1_list_head{
+	background-color: #FFFFFF;
+        border: solid 1px #CCCCCC;
+        padding: 4px;
+}
+
+.M15_1_list_body{
+	background-color: #FFFFFF;
+	border: solid 1px #CCCCCC;
+	padding: 4px;
+}
+
+.M15_1_font_contents{
+	font-size: small;
+  	font-weight: normal;
+	font-style: normal;
+	color: #000000;
+}
+
+/* add 2010-01-18 Y.UEHARA 
+   edit 2010-01-22 Y.UEHARA */
+ul.level1 li{
+	margin-top: 2px;
+	margin-bottom: 2px;
+	position: relative;
+}
+
+/* del 2010-01-22 Y.UEHARA
+ul.level2 li{
+	background-image: url(../../../../images/list-image/gicon_green.gif);
+	background-attachment: scroll;
+	background-position: 0% 0%;
+}
+
+ul.level3 li{
+        margin-top: 2px;
+	margin-bottom: 2px;
+	position: relative;
+}
+
+ul.level4 li{
+        margin-top: 2px;
+        margin-bottom: 2px;
+        position: relative;
+}
+
+ul.level5 li{
+        margin-top: 2px;
+        margin-bottom: 2px;
+        position: relative;
+}
+
+ul.level6 li{
+        margin-top: 2px;
+        margin-bottom: 2px;
+        position: relative;
+}
+
+ul.level7 li{
+        margin-top: 2px;
+        margin-bottom: 2px;
+        position: relative;
+}
+
+
+*/
+
+/* add 2010-01-19 Y.UEHARA
+   edit 2010-01-22 Y.UEHARA
+   edit 2010-02-23 Y.UEHARA */
+
+ul.level1 {
+	margin: 0 0 0 1.5em;
+	padding: 0 0 0 0;
+	list-style-position: outside;
+}
+
+ul.level2 {
+	margin: 0 0 0 1.5em;
+	padding: 0 0 0 0;
+	list-style-position: outside;
+}
+
+ul.level3 {
+        margin: 0 0 0 1.5em;
+        padding: 0 0 0 0;
+        list-style-position: outside;
+}
+
+ul.level4 {
+        margin: 0 0 0 1.5em;
+        padding: 0 0 0 0;
+        list-style-position: outside;
+}
+
+ul.level5 {
+        margin: 0 0 0 1.5em;
+        padding: 0 0 0 0;
+        list-style-position: outside;
+}
+
+ul.level6 {
+        margin: 0 0 0 1.5em;
+        padding: 0 0 0 0;
+        list-style-position: outside;
+}
+
+ul.level7 {
+        margin: 0 0 0 1.5em;
+        padding: 0 0 0 0;
+        list-style-position: outside;
+}
+
+
+/* add 2010-01-22 Y.UEHARA */
+ul.orderHistList{
+	margin: 0 0 0 1.5em;
+	padding: 0 0 0 0;
+	list-style-position: outside;
+}
+
+/* add 2010-01-22 Y.UEHARA */
+ul.myPage{
+	margin: 0 0 0 1.5em;
+	padding: 0 0 0 0;
+	list-style-position: outside;
+}
+
+/* add 2010-01-28 Y.UEHARA */
+.navNextPrevWrapper {
+	text-align: right;
+	padding-top: 5px;
+}
+
+.M12_diary_line {
+	padding-top: 8px;
+	padding-right: 0px;
+	padding-bottom: 8px;
+	padding-left: 0px;
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: -moz-use-text-color;
+}
+
+.M12_2_font_date {
+	font-size: small;
+	font-weight: normal;
+	font-style: normal;
+	color: #999999;
+	background-color: transparent;
+	background-image: url(../../../../images/list-image/gicon_green.gif);
+	background-attachment: scroll;
+	background-position: 0% 0%;
+	background-repeat: no-repeat;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 4px;
+	padding-left: 20px;
+	margin-top: 0pt;
+	margin-right: 0pt;
+	margin-bottom: 0pt;
+	margin-left: 0pt;
+}
+
+/* add 2010-02-01 Y.UEHARA */
+.centerBoxContentsProducts  {
+	margin-top: 5px;
+	margin-bottom: 25px;
+	text-align: left;
+}
+
+.centerBoxContentsRelatedProducts {
+        margin-top: 10px;
+        margin-bottom: 5px;
+        padding-left: 0em;
+        padding-right: 0em;
+}
+
+.related_products_name {
+	padding-left: 8px;
+	padding-right: 8px;
+}
+
+.also_purchased_products_name {
+        padding-left: 8px;
+        padding-right: 8px;
+}
+
+.new_products_name {
+        padding-left: 8px;
+        padding-right: 8px;
+}
+
+ul#productDetailsList.floatingBox li {
+	padding-left: 8px;
+	list-style-type: none;
+}
+
+.search_word {
+	font-size: 12px;
+	text-align: center;
+}
+
+.search_word2 {
+	font-size: 10px;
+	text-align: center;
+}
+
+/* add 2010-02-04 Y.UEHARA */
+/* ���若�����������帥�潟��綏�劻��������
+#button_back{
+	float: left;
+}
+
+#button_forward{
+	float: right;
+}
+*/
+
+.alert_quantity {
+	font-size: 12px;
+	font-weight: bold;
+}
+
+
+/* add  2010-02-26 Y.UEHARA
+*/
+.navNumber {
+	float: right;
+}
+
+/* add 2010-02-26 Y.UEHARA 
+   guest_buy */
+.guestBuy {
+	font-size: 14px;
+	font-weight: bold;
+}
+
+div#loginboxContent ul {
+	font-size: 16px;
+	list-style-position:outside;
+	margin:0 0 0 1.5em;
+	padding:0;
+
+}
+
+#categoriestreeContent {
+	font-size: 12px;
+}
+
+.td_head {
+	background-color: #eeeeee;
+	border:1px solid #CCCCCC;
+	padding: 4px;
+}
+
+.td_head2 {
+        border-color: #CCCCCC;
+	border-style: solid;
+        border-width: 1px;
+}
+
+.spaecer {
+	margin: 6px;
+}
+
+.h2 {
+	font-size: 1.4em;
+}
+
+.p05 {
+	padding: 0.5em;
+}
+
+#searchContent {
+	text-align: left;
+}
+
+/* 莖弱�ュ�篋�緇��脂�≪���鴻�帥�ゃ��申��
+	2010-03-16 Y.UEHARA */
+#checkoutSuccessMainContent {
+	font-size: 12px;
+}
+
+p#productDateAdded {
+        color: #fff;
+}
+
+/* ���潟�������鴻�����鴻�帥�ゃ��申��
+	2010-04-19 Y.UEHARA */
+#navBreadCrumbHeader {
+	margin-left: 10px;
+	margin-right: 0em;
+	margin-top: 6px;
+	margin-bottom: 5px;
+	width: 590px;
+}
+
+/* */
+div#checkoutShipping {
+	margin-left: 0px
+	}
+div#checkoutPayment {
+	margin-left: 0px;
+	}
+div#checkoutConfirmDefault {
+	margin-left: 0px;
+	}
+
+div#productDetailsList {
+	padding-bottom: 10px;
+	margin-right: 10px;
+	width: 350px;
+}
+
+/*products_info pages style add 2010-05-26 */
+.info_products_model {
+	color: #008000;
+	font-size: 15px;
+}
+
+.info_products_qty {
+	color: #FF0000;
+        font-size: 15px;
+}
+
+.info_manufacturers_name {
+	color: #000000;
+        font-size: 15px;
+}
+
+.info_products_weight {
+	color: #000000;
+        font-size: 15px;
+}
+
+#reviewsWrite.customer-review-image {
+	float:left;
+	margin:0;
+	padding:0;
+	text-align:center;
+}
+#reviewsWrite .file {
+	overflow: hidden;
+	position: relative;
+	padding: .3em;
+	border: 1px solid #999;
+	background-color: #eee;
+}
+
+#reviewsWrite .file input[type="file"] {
+	opacity: 0;
+	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
+	position: absolute;
+	right: 0;
+	top: 0;
+	margin: 0;
+	font-size: 100px;
+	height: 22px;
+	cursor: pointer;
+}
+#reviewsWrite .review_image_form_wrapper {
+	position:relative;
+	height:100px;
+}
+#reviewsWrite .review_image_form {
+	float:left;
+	position:relative;
+	height:100px;
+	width:400px;
+}
+#reviewsWrite .review_image_form div {
+	position:absolute;
+	bottom:0;
+}
+#reviewsWrite .image_preview {
+	float:left;
+	border: 1px #000 solid;
+	width:100px;
+	height: 100px; 
+}
+.review_list_image {
+	float:left;
+	padding: 0 5px;
+	margin:0;
+}
+.customer-review-image {
+	float:left;
+	text-align:center;
+	padding: 0 5px;
+	margin:0;
+}
+#reviewsInfoDefaultMainContent {
+	width:315px;
+	float:left;
+}
+#reviewsInfoDefaultDate{
+	text-align:right;
+}
+.h2_heading{
+    border-bottom: #000 4px solid;
+    font-size: 21px;
+    font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+    color: #595959;
+    font-weight: bold;
+    font-size: 21px;
+    padding: 11px 0 5px 10px;
+    margin: 0 0 34px;
+}

@@ -28,7 +28,7 @@
  * @see Mage_Sales_Block_Order_Totals
  */
 ?>
-<?php foreach ($this->getTotals() as $_code => $_total): ?>
+   <?php foreach ($this->getTotals() as $_code => $_total): ?>
     <?php if ($_total->getBlockName()): ?>
         <?php echo $this->getChildHtml($_total->getBlockName(), false); ?>
     <?php else:?>
@@ -50,4 +50,3 @@
     </tr>
     <?php endif?>
 <?php endforeach?>
-<div class="all_pages_comment">/magento/app/design/frontend/hirochi/default/template/sales/order/totales.phtml</div>

@@ -1,0 +1,8 @@
+<?php if ((float) $this->getSource()->getPointReceived()): ?>
+    <tr>
+        <td class="label"><strong><?php echo $this->__('Received point for this invoice') ?></strong></td>
+        <td class="nobr">
+            <strong><?php echo $this->__('%s points', number_format($this->getSource()->getPointReceived())) ?></strong>
+        </td>
+    </tr>
+<?php endif; ?>

@@ -1,0 +1,33 @@
+<?php if ($this->getSource()->getPointReceived() > 0): ?>
+    <tr>
+        <td class="label"><strong><?php echo $this->__('Received point for this order') ?></strong></td>
+        <td class="nobr">
+            <strong><?php echo $this->__('%s points', number_format($this->getSource()->getPointReceived())) ?></strong>
+        </td>
+    </tr>
+<?php endif; ?>
+<?php if ($this->getSource()->getPointReceivedInvoiced() > 0): ?>
+    <tr>
+        <td class="label"><strong><?php echo $this->__('Received point invoiced') ?></strong></td>
+        <td class="nobr">
+            <strong><?php echo $this->__('%s points', number_format($this->getSource()->getPointReceivedInvoiced())) ?></strong>
+        </td>
+    </tr>
+<?php endif; ?>
+<?php if ($this->getSource()->getPointReceivedRefunded() > 0): ?>
+    <tr>
+        <td class="label"><strong><?php echo $this->__('Received point refunded') ?></strong></td>
+        <td class="nobr">
+            <strong><?php echo $this->__('%s points', number_format($this->getSource()->getPointReceivedRefunded())) ?></strong>
+        </td>
+    </tr>
+<?php endif; ?>
+<?php if ($this->getSource()->getPointReceivedCanceled() > 0): ?>
+    <tr>
+        <td class="label"><strong><?php echo $this->__('Received point cancelled') ?></strong></td>
+        <td class="nobr">
+            <strong><?php echo $this->__('%s points', number_format($this->getSource()->getPointReceivedCanceled())) ?></strong>
+        </td>
+    </tr>
+<?php endif; ?>
+

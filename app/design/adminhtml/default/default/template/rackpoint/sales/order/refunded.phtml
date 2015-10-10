@@ -1,0 +1,12 @@
+<?php if ($this->getSource()->getPointUsedRefunded()): ?>
+    <tr>
+        <td class="label"><strong><?php echo Mage::helper('rackpoint')->__('Point Used Refunded') ?></strong></td>
+        <td><strong><?php echo $this->__('%s points', number_format($this->getSource()->getPointUsedRefunded())) ?></strong></td>
+    </tr>
+<?php endif; ?>
+<?php if ($this->getSource()->getPointUsedCanceled()): ?>
+    <tr>
+        <td class="label"><strong><?php echo Mage::helper('rackpoint')->__('Point Used Cancelled') ?></strong></td>
+        <td><strong><?php echo $this->__('%s points', number_format($this->getSource()->getPointUsedCanceled())) ?></strong></td>
+    </tr>
+<?php endif; ?>

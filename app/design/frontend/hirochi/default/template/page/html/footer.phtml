@@ -53,15 +53,13 @@
                        </div>
              <div class="quick-access">
                 <p>ハーレー/国産車&nbsp;バイクパーツ・バイク用品の通販｜ヒロチー商事</p>
-
 <ul>
                     <li class="gray">
                         <?php if (! Mage::getSingleton( 'customer/session')->isLoggedIn()): ?>
-                        <a href="<?php echo Mage::helper('customer')->getLoginUrl(); ?>">
+                        <a href="#loginPop" class="fancybox">
                             <?php echo $this->__('Login') ?></a>
                         <?php else: ?>
-                        <a href="<?php echo Mage::helper('customer')->getLogoutUrl(); ?>">
-                            <?php echo $this->__('Logout') ?></a>
+                        <a href="<?php echo Mage::helper('customer')->getLogoutUrl(); ?>">ログアウト</a>
                         <?php endif; ?>
                     </li>
                     <li class="gray">
@@ -86,3 +84,46 @@
            <p class="copy">Copyright 株式会社ヒロチー商事 All Rights Reserved,.</p>
 
         </footer>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+	jQuery(".fancybox").fancybox({
+	'scrolling'		: 'no',
+	'titleShow'		: false,
+	});
+});
+</script>
+<!-- //FancyBox -->
+<div style="display:none;">
+<div id="loginPop" style="width:350px;">
+<h1>ログイン</h1>
+<div class="loginForm">
+<h2>登録済の会員</h2>
+<form action="/magento/index.php/customer/account/loginPost/" method="post" id="login-form">
+<?php echo $this->getBlockHtml('formkey'); ?>
+<label for="email" class="required"><em>［必須］</em>メールアドレス</label>
+<div class="input-box">
+<input type="email" name="login[username]" value="<?php echo $this->escapeHtml($this->getUsername()) ?>" id="email" class="input-text required-entry validate-email" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Email Address')) ?>" />
+</div>
+<label for="password" class="required"><em>［必須］</em>パスワード</label>
+<div class="input-box">
+<input type="password" name="login[password]" class="input-text required-entry validate-password" id="pass" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Password')) ?>" />
+</div>
+<ul>
+	<li><a href="/magento/index.php/customer/account/forgotpassword/" class="f-left">パスワードをお忘れですか？</a></li>
+	<li style="text-align:right;"><button type="submit" class="button" style="width:130px;margin-right:10px;" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Login')) ?>" name="send" id="send2"><?php echo $this->__('Login') ?></button></li>
+</ul>
+
+
+<p>アカウント登録がまだのお客様はこちらからご登録ください。</p>
+<p style="text-align:right;"><a href="/magento/index.php/customer/account/create/" class="btnOrange">アカウントを作成</a></p>
+
+</form>
+</div>
+<!-- /.loginForm -->
+<script type="text/javascript">
+//<![CDATA[
+var dataForm = new VarienForm('login-form', true);
+//]]>
+</script>
+</div>
+</div>

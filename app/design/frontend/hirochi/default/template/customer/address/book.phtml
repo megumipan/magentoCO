@@ -30,37 +30,40 @@
  * @var $test Mage_Customer_Block_Address_Book
  */
 ?>
-<div class="page-title title-buttons">
+<section id="address">
+   <div class="page-title title-buttons btnArea">
     <h1><?php echo $this->__('Address Book') ?></h1>
-    <button type="button" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Add New Address')) ?>" class="button" onclick="window.location='<?php echo $this->getAddAddressUrl() ?>';"><span><span><?php echo $this->__('Add New Address') ?></span></span></button>
+    <button type="button" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Add New Address')) ?>" class="button btnNewAdd btnOrange" onclick="window.location='<?php echo $this->getAddAddressUrl() ?>';"><?php echo $this->__('Add New Address') ?></button>
 </div>
+
 <?php echo $this->getMessagesBlock()->toHtml() ?>
 <div class="col2-set addresses-list">
-    <div class="col-1 addresses-primary">
-        <h2><?php echo $this->__('Default Addresses') ?></h2>
-        <ol>
+    <div class="col-1 addresses-primary address_box">
+        <h3 class="gray_line"><?php echo $this->__('Default Addresses') ?></h3>
+        <ul>
         <?php if($_pAddsses = Mage::getSingleton('customer/session')->getCustomer()->getDefaultBilling()): ?>
-            <li class="item">
-                <h3><?php echo $this->__('Default Billing Address') ?></h3>
+            <li><?php echo $this->__('Default Billing Address') ?></li>
+            <li>
                 <address>
                     <?php echo $this->getAddressHtml(Mage::getSingleton('customer/session')->getCustomer()->getAddressById($_pAddsses)) ?>
                 </address>
-                <p><a href="<?php echo $this->getAddressEditUrl(Mage::getSingleton('customer/session')->getCustomer()->getAddressById($_pAddsses)) ?>"><?php echo $this->__('Change Billing Address') ?></a></p>
+                <p style="text-align:right;"><a href="<?php echo $this->getAddressEditUrl(Mage::getSingleton('customer/session')->getCustomer()->getAddressById($_pAddsses)) ?>"><?php echo $this->__('Change Billing Address') ?></a></p>
            </li>
         <?php else: ?>
-            <li class="item">
+            <li>
                 <h3><?php echo $this->__('Default Billing Address') ?></h3>
                 <?php echo $this->__('You have no default billing address in your address book.') ?>
             </li>
         <?php endif ?>
-
+        </ul>
+        <ul>
         <?php if($_pAddsses = Mage::getSingleton('customer/session')->getCustomer()->getDefaultShipping()): ?>
-            <li class="item">
-                <h3><?php echo $this->__('Default Shipping Address') ?></h3>
+            <li><?php echo $this->__('Default Shipping Address') ?></li>
+            <li>
                 <address>
                     <?php echo $this->getAddressHtml(Mage::getSingleton('customer/session')->getCustomer()->getAddressById($_pAddsses)) ?>
                 </address>
-                <p><a href="<?php echo $this->getAddressEditUrl(Mage::getSingleton('customer/session')->getCustomer()->getAddressById($_pAddsses)) ?>"><?php echo $this->__('Change Shipping Address') ?></a></p>
+                <p style="text-align:right;"><a href="<?php echo $this->getAddressEditUrl(Mage::getSingleton('customer/session')->getCustomer()->getAddressById($_pAddsses)) ?>"><?php echo $this->__('Change Shipping Address') ?></a></p>
             </li>
         <?php else: ?>
             <li class="item empty">
@@ -68,30 +71,27 @@
                 <p><?php echo $this->__('You have no default shipping address in your address book.') ?></p>
             </li>
         <?php endif ?>
-        </ol>
+        </ul>
     </div>
-    <div class="col-2 addresses-additional">
-        <h2><?php echo $this->__('Additional Address Entries') ?></h2>
-        <ol>
+    <div class="col-2 addresses-additional address_box" style="vertical-align: top;">
+        <h3 class="gray_line"><?php echo $this->__('Additional Address Entries') ?></h3>
+        <ul>
         <?php if($_pAddsses = $this->getAdditionalAddresses()): ?>
             <?php foreach($_pAddsses as $_address): ?>
-            <li class="item">
+            <li>
                 <address>
                     <?php echo $this->getAddressHtml($_address) ?>
                 </address>
-                <p><a href="<?php echo $this->getUrl('customer/address/edit', array('id'=>$_address->getId())) ?>"><?php echo $this->__('Edit Address') ?></a> <span class="separator">|</span> <a href="#" class="link-remove" onclick="return deleteAddress('<?php echo $_address->getId() ?>');"><?php echo $this->__('Delete Address') ?></a></p>
+                <p style="text-align:right;"><a href="<?php echo $this->getUrl('customer/address/edit', array('id'=>$_address->getId())) ?>"><?php echo $this->__('Edit Address') ?></a> <span class="separator">|</span> <a href="#" class="link-remove" onclick="return deleteAddress('<?php echo $_address->getId() ?>');"><?php echo $this->__('Delete Address') ?></a></p>
             </li>
             <?php endforeach; ?>
         <?php else: ?>
-            <li class="item empty">
+            <li class="empty">
                 <p><?php echo $this->__('You have no additional address entries in your address book.') ?></p>
             </li>
         <?php endif ?>
-        </ol>
+        </ul>
     </div>
-</div>
-<div class="buttons-set">
-    <p class="back-link"><a href="<?php echo $this->escapeUrl($this->getBackUrl()) ?>"><small>&laquo; </small><?php echo $this->__('Back') ?></a></p>
 </div>
 <script type="text/javascript">
 //<![CDATA[
@@ -103,3 +103,4 @@
     }
 //]]>
 </script>
+</section>

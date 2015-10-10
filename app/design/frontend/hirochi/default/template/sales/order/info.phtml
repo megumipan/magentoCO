@@ -24,13 +24,16 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
+<section id="order_number">
 <?php /** @var $this Mage_Sales_Block_Order_Info */ ?>
 <?php $_order = $this->getOrder() ?>
 <?php echo $this->getMessagesBlock()->toHtml() ?>
-<div class="page-title title-buttons">
+<div class="page-title title-buttons btnArea">
     <h1><?php echo $this->__('Order #%s - %s', $_order->getRealOrderId(), $_order->getStatusLabel()) ?></h1>
     <?php echo $this->getChildHtml('buttons') ?>
 </div>
+<div id="category">
+<!--
 <?php echo $this->getStatusHistoryRssUrl($_order) ?>
 <dl class="order-info">
     <dt><?php echo $this->__('About This Order:') ?></dt>
@@ -48,55 +51,49 @@
         <script type="text/javascript">decorateGeneric($('order-info-tabs').select('LI'),['first','last']);</script>
     </dd>
 </dl>
+-->
 <p class="order-date"><?php echo $this->__('Order Date: %s', $this->formatDate($_order->getCreatedAtStoreDate(), 'long')) ?></p>
+
 <?php if (!$_order->getIsVirtual()): ?>
-<div class="col2-set order-info-box">
-    <div class="col-1">
-        <div class="box">
-            <div class="box-title">
-                <h2><?php echo $this->__('Shipping Address') ?></h2>
-            </div>
-            <div class="box-content">
-                <address><?php echo $_order->getShippingAddress()->format('html') ?></address>
-            </div>
-        </div>
-    </div>
-    <div class="col-2">
-        <div class="box">
-            <div class="box-title">
-                <h2><?php echo $this->__('Shipping Method') ?></h2>
-            </div>
-            <div class="box-content">
-                <?php if ($_order->getShippingDescription()): ?>
-                    <?php echo $this->escapeHtml($_order->getShippingDescription()) ?>
-                <?php else: ?>
-                    <p><?php echo $this->helper('sales')->__('No shipping information available'); ?></p>
-                <?php endif; ?>
-            </div>
-        </div>
-    </div>
-</div>
+<table class="table_01">
+<thead>
+<tr>
+<th>配送先</th>
+<th>購入者住所</th>
+<th>配送方法</th>
+<th>支払方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<address><?php echo $_order->getShippingAddress()->format('html') ?></address>
+</td>
+<td>
+    <address><?php echo $_order->getBillingAddress()->format('html') ?></address>
+</td>
+<td>
+    <?php if ($_order->getShippingDescription()): ?>
+        <?php echo $this->escapeHtml($_order->getShippingDescription()) ?>
+    <?php else: ?>
+        <p><?php echo $this->helper('sales')->__('No shipping information available'); ?></p>
+    <?php endif; ?>
+</td>
+<td>
+    <?php echo $this->getPaymentInfoHtml() ?>
+</td>
+</tr>
+</tbody></table>
 <?php endif; ?>
-<div class="col2-set order-info-box">
-    <div class="col-1">
-        <div class="box">
-            <div class="box-title">
-                <h2><?php echo $this->__('Billing Address') ?></h2>
-            </div>
-            <div class="box-content">
-                <address><?php echo $_order->getBillingAddress()->format('html') ?></address>
-            </div>
-        </div>
-    </div>
-    <div class="col-2">
-        <div class="box box-payment">
-            <div class="box-title">
-                <h2><?php echo $this->__('Payment Method') ?></h2>
-            </div>
-            <div class="box-content">
-                <?php echo $this->getPaymentInfoHtml() ?>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="all_pages_comment">/magento/app/design/frontend/hirochi/default/template/sales/order/info.phtml</div>
+<!--
+<table class="table_02">
+<tbody><tr>
+<th>お届け希望日</th>
+<th>指定時間帯</th>
+</tr>
+<tr>
+<td>希望なし</td>
+<td>希望なし</td>
+</tr>
+</tbody></table>
+-->

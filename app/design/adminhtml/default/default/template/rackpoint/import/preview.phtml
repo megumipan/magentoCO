@@ -1,0 +1,73 @@
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            <td style="<?php echo $this->getHeaderWidth() ?>"><?php echo $this->getHeaderHtml() ?></td>
+            <td class="form-buttons"><?php echo $this->getButtonsHtml() ?></td>
+        </tr>
+    </table>
+</div>
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo Mage::helper('catalog')->__('Import Point To Website') ?></h4>
+    </div>
+    <form id="import_form" method="POST">
+    <fieldset id="grop_fields">
+    <?php foreach ($this->getWebsiteCollection() as $_website): ?>
+    <div>
+        <div class="website-name">
+            <input name="website_id" value="<?php echo $_website->getId() ?>" <?php if($this->getWebsitesReadonly()): ?>disabled="disabled"<?php endif;?> class="checkbox website-checkbox" id="website_<?php echo $_website->getId() ?>" type="radio" />
+            <big><strong><label for="website_<?php echo $_website->getId() ?>"><?php echo $_website->getName() ?></label></strong></big>
+        </div>
+        <div class="webiste-groups" id="add_product_website_<?php echo $_website->getId() ?>_data">
+        <?php foreach ($this->getGroupCollection($_website) as $_group): ?>
+            <h4><?php echo $_group->getName() ?></h4>
+            <div class="group-stores">
+            <table>
+            <?php foreach ($this->getStoreCollection($_group) as $_store): ?>
+                <tr>
+                    <td><?php echo $_store->getName() ?></td>
+                    <td>&nbsp;</td>
+                </tr>
+            <?php endforeach; ?>
+            </table>
+            </div>
+        <?php endforeach; ?>
+        </div>
+    </div>
+    <?php endforeach; ?>
+    </fieldset>
+    </form>    
+</div>
+<div>
+    <?php echo $this->getGridHtml() ?>
+</div>
+<div>
+    <button onclick="setLocation('<?php echo $this->getUrl('*/*')?>');" class="scalable button back" type="button" id="btn_back"><span><?php echo $this->__('Back') ?></span></button>
+    <button onclick="doImport();" class="scalable button save" type="button" id="btn_import"><span><?php echo $this->__('Import') ?></span></button>
+</div>
+<script type="text/javascript">
+   function doImport() {
+       var params = $('import_form').serialize(true);
+        new Ajax.Request('<?php echo $this->getUrl('*/*/import') ?>', {
+            method: 'post',
+            parameters: params,
+            onSuccess: function(tr) {
+                try {
+                    var result = JSON.parse(tr.responseText);
+                    if (result.success == true) {
+                        alert(result.message);
+                        window.location = '<?php echo $this->getUrl('*/point_history')?>';
+                    } else {
+                        alert(result.message);
+                        if (result.validate_error != true) {
+                            window.location = '<?php echo $this->getUrl('*/point_import')?>';
+                        }
+                    }
+                } catch (e){
+                    alert('<?php echo $this->__('Error while parsing response data.') ?>');
+                    window.location = '<?php echo $this->getUrl('*/point_import')?>';
+                }
+            }
+        });
+   }
+</script>

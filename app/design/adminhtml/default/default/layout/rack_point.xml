@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<layout>
+    <adminhtml_pointrule_edit>
+        <reference name="head">
+            <action method="setCanLoadExtJs"><flag>1</flag></action>
+            <action method="setCanLoadRulesJs"><flag>1</flag></action>
+        </reference>
+        <reference name="left">
+            <block type="rackpoint/adminhtml_rule_edit_tabs" name="point_rule_edit_tabs">
+                <block type="rackpoint/adminhtml_rule_edit_tab_main" name="point_rule_edit_tab_main"/>
+                <block type="rackpoint/adminhtml_rule_edit_tab_conditions" name="point_rule_edit_tab_conditions"/>
+                <block type="rackpoint/adminhtml_rule_edit_tab_actions" name="point_rule_edit_tab_actions"/>
+                <action method="addTab"><name>main_section</name><block>point_rule_edit_tab_main</block></action>
+                <action method="addTab"><name>conditions_section</name><block>point_rule_edit_tab_conditions</block></action>
+                <action method="addTab"><name>actions_section</name><block>point_rule_edit_tab_actions</block></action>
+            </block>
+        </reference>
+        <reference name="content">
+            <block type="rackpoint/adminhtml_rule_edit" name="point_rule_edit"/>
+        </reference>
+    </adminhtml_pointrule_edit>
+    
+    <adminhtml_customer_edit>
+        <reference name="customer_edit_tabs">
+            <block type="rackpoint/adminhtml_customer_view" name="rackpoint_customer_point" template="rackpoint/customer/point.phtml">
+                <action method="setAfter"><name>tags</name></action>
+                <block type="rackpoint/adminhtml_customer_account" name="rackpoint.account" template="rackpoint/customer/account.phtml" />
+                <block type="rackpoint/adminhtml_customer_form" name="rackpoint.updateform" />
+                <block type="rackpoint/adminhtml_customer_tab_history" name="rackpoint.history" />
+            </block>
+            <action method="addTab"><name>rackpoint_customer_point</name><block>rackpoint_customer_point</block></action>
+        </reference>
+    </adminhtml_customer_edit>
+    
+    <adminhtml_sales_order_view>
+        <reference name="order_totals">
+            <block type="adminhtml/sales_order_totals_item" name="rackpoint" template="rackpoint/sales/order/total.phtml">
+                <action method="setAfterCondition"><condition>last</condition></action>
+            </block>
+            <block type="adminhtml/sales_order_totals_item" name="rackppint.received" template="rackpoint/sales/order/received.phtml">
+                <action method="setDisplayArea"><area>footer</area></action>
+                <action method="setAfterCondition"><condition>last</condition></action>
+            </block>
+            <block type="adminhtml/sales_order_totals_item" name="rackpoint.used" template="rackpoint/sales/order/refunded.phtml">
+                <action method="setDisplayArea"><area>footer</area></action>
+                <action method="setAfterCondition"><condition>last</condition></action>
+            </block>
+        </reference>
+    </adminhtml_sales_order_view>
+
+    <adminhtml_sales_order_invoice_new>
+        <reference name="invoice_totals">
+            <block type="adminhtml/sales_order_totals_item" name="rackpoint" template="rackpoint/sales/order/total.phtml">
+                <action method="setAfterCondition"><condition>last</condition></action>
+            </block>
+        </reference>
+    </adminhtml_sales_order_invoice_new>
+
+    <adminhtml_sales_order_invoice_updateqty>
+        <reference name="invoice_totals">
+            <block type="adminhtml/sales_order_totals_item" name="rackpoint.used" template="rackpoint/sales/order/total.phtml">
+                <action method="setAfterCondition"><condition>last</condition></action>
+            </block>
+        </reference>
+    </adminhtml_sales_order_invoice_updateqty>
+
+    <adminhtml_sales_order_invoice_view>
+        <reference name="invoice_totals">
+            <block type="adminhtml/sales_order_totals_item" name="rackpoint" template="rackpoint/sales/order/total.phtml">
+                <action method="setAfterCondition"><condition>last</condition></action>
+            </block>
+            <block type="adminhtml/sales_order_totals_item" name="rackpoint.received" template="rackpoint/sales/invoice/total.phtml">
+                <action method="setDisplayArea"><area>footer</area></action>
+                <action method="setAfterCondition"><condition>last</condition></action>
+            </block>
+        </reference>
+    </adminhtml_sales_order_invoice_view>
+
+    <adminhtml_sales_order_creditmemo_new>
+        <reference name="creditmemo_totals">
+            <block type="adminhtml/sales_order_totals_item" name="rackpoint" template="rackpoint/sales/order/creditmemo/total.phtml">
+                <action method="setDisplayArea"><area>footer</area></action>
+                <action method="setBeforeCondition"><condition>grand_total</condition></action>
+            </block>
+        </reference>
+        <reference name="submit_before">
+            <block type="rackpoint/adminhtml_sales_order_creditmemo_received_input" name="received.input" template="rackpoint/sales/order/creditmemo/received/input.phtml">
+                <action method="setAfterCondition"><condition>last</condition></action>
+            </block>
+            <block type="rackpoint/adminhtml_sales_order_creditmemo_point" name="rackpoint.input" before="-" template="rackpoint/sales/order/creditmemo/point.phtml" />
+        </reference>
+    </adminhtml_sales_order_creditmemo_new>
+
+    <adminhtml_sales_order_creditmemo_updateqty>
+        <reference name="creditmemo_totals">
+            <block type="adminhtml/sales_order_totals_item" name="rackpoint" template="rackpoint/sales/order/creditmemo/total.phtml">
+                <action method="setDisplayArea"><area>footer</area></action>
+                <action method="setBeforeCondition"><condition>grand_total</condition></action>
+            </block>
+        </reference>
+        <reference name="submit_before">
+            <block type="rackpoint/adminhtml_sales_order_creditmemo_received_input" name="received.input" template="rackpoint/sales/order/creditmemo/received/input.phtml">
+                <action method="setAfterCondition"><condition>last</condition></action>
+            </block>
+            <block type="rackpoint/adminhtml_sales_order_creditmemo_point" name="rackpoint.input" before="-" template="rackpoint/sales/order/creditmemo/point.phtml" />
+        </reference>
+    </adminhtml_sales_order_creditmemo_updateqty>
+
+    <adminhtml_sales_order_creditmemo_view>
+        <reference name="creditmemo_totals">
+            <block type="adminhtml/sales_order_totals_item" name="rackpoint.used" template="rackpoint/sales/order/creditmemo/refunded.phtml">
+                <action method="setAfterCondition"><condition>last</condition></action>
+                <action method="setDisplayArea"><area>footer</area></action>
+            </block>
+            <block type="adminhtml/sales_order_totals_item" name="rackpoint.received" template="rackpoint/sales/order/creditmemo/received.phtml">
+                <action method="setAfterCondition"><condition>last</condition></action>
+                <action method="setDisplayArea"><area>footer</area></action>
+            </block>
+        </reference>
+    </adminhtml_sales_order_creditmemo_view> 
+    <adminhtml_point_import_preview>
+        <reference name="content">
+            <block type="rackpoint/adminhtml_import_preview" name="point.preview" template="rackpoint/import/preview.phtml" />
+        </reference>
+    </adminhtml_point_import_preview>
+    <adminhtml_sales_order_create_load_block_billing_method>
+        <reference name="billing_method">
+            <block type="rackpoint/adminhtml_order_create_point" name="form.point" before="billing_method" template="rackpoint/order/create/form.phtml" />
+        </reference>
+    </adminhtml_sales_order_create_load_block_billing_method>
+
+    <adminhtml_sales_order_create_index>
+        <reference name="billing_method">
+            <block type="rackpoint/adminhtml_order_create_point" name="form.point" before="billing_method" template="rackpoint/order/create/form.phtml" />
+        </reference>
+    </adminhtml_sales_order_create_index>
+    <adminhtml_sales_order_create_load_block_data>
+        <reference name="billing_method">
+            <block type="rackpoint/adminhtml_order_create_point" name="form.point" before="billing_method" template="rackpoint/order/create/form.phtml" />
+        </reference>
+    </adminhtml_sales_order_create_load_block_data>
+    <adminhtml_sales_order_create_load_block_totals>
+        <reference name="content">
+            <block type="rackpoint/adminhtml_order_create_point" name="form.point" template="rackpoint/order/create/script.phtml"/>
+        </reference>
+    </adminhtml_sales_order_create_load_block_totals>
+</layout>

@@ -33,43 +33,28 @@
 ?>
 <?php $_helper = $this->helper('catalog/output'); ?>
 <?php $_product = $this->getProduct(); ?>
+<script type="text/javascript">
+    var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
+</script>
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->toHtml() ?></div>
 <div class="shop_04">
-<h2 class="h2_heading"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h2><!-- 中央カラム 見出し common.cssに定義 -->
+<!-- <h2 class="h2_heading"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h2><!-- 中央カラム 見出し common.cssに定義 -->
 <div class="shop_04_item">
 <div class="cf clear">
 <?php //print_r($_product); ?>
 
 
-<?php if ($_product->getImage() != 'no_selection' && $_product->getImage()): ?>
 <div class="image_area flL">
-<div class="large_image">
-<?php
-$_img = '<img id="image" src="'.$this->helper('catalog/image')->init($_product, 'image').'" alt="'.$this->escapeHtml($this->getImageLabel()).'" title="'.$this->escapeHtml($this->getImageLabel()).'" />';
-echo $_helper->productAttribute($_product, $_img, 'image');
-?>
-<?php endif; ?>
-</div>
-<ul class="cf">
-<li><a href="#"><img src="<?php echo $this->getSkinUrl('images/review_sample01.png'); ?>" alt="image01"></a></li>
-<li><a href="#"><img src="<?php echo $this->getSkinUrl('images/review_sample01.png'); ?>" alt="image02"></a></li>
-<li><a href="#"><img src="<?php echo $this->getSkinUrl('images/review_sample01.png'); ?>" alt="image03"></a></li>
-<li><a href="#"><img src="<?php echo $this->getSkinUrl('images/review_sample01.png'); ?>" alt="image04"></a></li>
-</ul>
-<ul>
-<li><a href="#"><img src="<?php echo $this->getSkinUrl('images/review_sample01.png'); ?>" alt="image05"></a></li>
-<li><a href="#"><img src="<?php echo $this->getSkinUrl('images/review_sample01.png'); ?>" alt="image06"></a></li>
-<li><a href="#"><img src="<?php echo $this->getSkinUrl('images/review_sample01.png'); ?>" alt="image07"></a></li>
-<li><a href="#"><img src="<?php echo $this->getSkinUrl('images/review_sample01.png'); ?>" alt="image08"></a></li>
-</ul>
-<a href="javascript:history.back();" class="clear">&laquo; 戻る</a>
+<div class="product-img-box">
+    <?php echo $this->getChildHtml('media') ?>
 </div>
 
-
+</div>
 
 <div class="item_info flR">
-<h2>【商 品 名】<br><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h2>
+<h2 style="color:#000;"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h2>
 <div class="review_info disTable">
-<ul class="star disTablecell mr15">
+<ul class="star disTablecell" style="padding-right:15px;">
 <li>レビュー評価</li>
 <?php
 //////レビュー数の表示プログラム
@@ -84,7 +69,9 @@ $st_g = '<li><img src="'.$this->getSkinUrl('images/star_gray.png').'" alt="star"
 //平均端数の数字の為IF
 
 
-    if($ratequt < 21){
+    if($ratequt == 0){
+        echo $st_g.$st_g.$st_g.$st_g.$st_g;
+    }else if($ratequt < 21){
         echo $st_y.$st_g.$st_g.$st_g.$st_g;
     }else if($ratequt < 41){
         echo $st_y.$st_y.$st_g.$st_g.$st_g;
@@ -92,19 +79,25 @@ $st_g = '<li><img src="'.$this->getSkinUrl('images/star_gray.png').'" alt="star"
         echo $st_y.$st_y.$st_y.$st_g.$st_g;
     }else if($ratequt < 81){
         echo $st_y.$st_y.$st_y.$st_y.$st_g;
-    }else if($ratequt < 100){
+    }else{
         echo $st_y.$st_y.$st_y.$st_y.$st_y;
     }
+//獲得ポイント計算（1割）
+$price =  $_product->getPrice();
+$point = $price * 0.01;
 
     ?>
 </ul>
-
+<?php if(!empty($rvcount)): ?>
 <a href="<?php echo Mage::getUrl('review/product/list', array('id'=> $_product->getId())); ?>" class="disTablecell"><?php echo $rvcount; ?>件のレビュー &raquo;</a>
+<?php else:?>
+<a href="<?php echo Mage::getUrl('review/product/list', array('id'=> $_product->getId())); ?>" class="disTablecell">レビューを書く &raquo;</a>
+<?php endif; ?>
 </div>
 <script type="text/javascript">
 var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
 </script>
-<div class="item_desc">
+<div class="item_desc" style="margin:1em 0;">
 <p>【価格】<br>
 定価：<?php echo number_format($_product->getMsrp(),'0', '.', ','); ?>円</p>
 <p class="fwB fs20">販売価格：<span class="fcRed"><?php echo number_format($_product->getPrice(),'0', '.', ','); ?>円</span></p>
@@ -112,8 +105,8 @@ var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>
 
 
 
-<p class="fs14">関東近郊 ９月10日頃お届け可</p>
-<p>獲得ポイント数：428P(１P = 1円)</p>
+<p class="fs14">関東近郊 ○月○日頃お届け可</p>
+<p>獲得ポイント数：<?php echo round($point); ?>P(1P = 1円)</p>
 <p><?php echo $this->getChildHtml('product_type_data') ?></p>
 <p>在庫数：<?php echo number_format($_product->getStockItem()->getQty(),'0'); ?>
 </p>
@@ -126,7 +119,7 @@ var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>
 <input type="hidden" name="related_product" id="related-products-field" value="" />
 </div>
 
-<p class="fwB fs18 disTablecell">数量：<input type="number" name="qty"></p>
+<p class="fwB fs18 disTablecell">数量：<input type="number" name="qty" value="1"></p>
 <div class="disTablecell">
 <?php //echo $this->getChildHtml('addto') ?>
 <input type="submit" class="toCart" value="カートに入れる"></p>
@@ -135,12 +128,12 @@ var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>
 </div>
 </div>
     <ul>
-        <li><a href="#" class="fwB">・この商品についてお問い合わせ</a></li>
+        <li><a href="<?php echo $this->getUrl('contacts'); ?>" class="fwB">・この商品についてお問い合わせ</a></li>
         <li><?php echo $this->getChildHtml('addto') ?></li>
     </ul>
 </div>
 </div>
-<div class="shop_04_info">              
+<div class="shop_04_info">
 <?php foreach ($this->getChildGroup('detailed_info', 'getChildHtml') as $alias => $html):?>
     <h3 class="gray_line">【商品情報】</h3>
     <ul>
@@ -151,87 +144,72 @@ var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>
 <?php endforeach;?>
 </ul>
 </div>
-
-
-<div class="shop_04_relation">
-    <h3 class="gray_line">関連商品</h3>       
-    <ul>
-    <?php echo $this->getChildHtml('upsell_products') ?>
-    </ul>
-</div>
-<div class="shop_04_other">
-    <h3 class="gray_line">この商品を買っている人はこんな商品も買っています</h3>
-</div>
+<!-- 関連商品 -->
+    <?php echo $this->getChildHtml('featured_products') ?>
 <?php /*
+<div class="product-img-box">
+</div>
 
-
-                                <div class="product-img-box">
-                                </div>
-
-                                <div class="clearer"></div>
-                                <?php if ($_product->isSaleable() && $this->hasOptions()):?>
-                                    <?php echo $this->getChildChildHtml('container2', '', true, true) ?>container2
-                                        <?php endif;?>
-                    </form>
+<div class="clearer"></div>
+<?php if ($_product->isSaleable() && $this->hasOptions()):?>
+<?php echo $this->getChildChildHtml('container2', '', true, true) ?>container2
+<?php endif;?>
+</form>
 */ ?>
+<!-- 前のページに戻る -->
 
                        
 <script type="text/javascript">
-                        //<![CDATA[
-                        var productAddToCartForm = new VarienForm('product_addtocart_form');
-                        productAddToCartForm.submit = function (button, url) {
-                            if (this.validator.validate()) {
-                                var form = this.form;
-                                var oldUrl = form.action;
+    //<![CDATA[
+    var productAddToCartForm = new VarienForm('product_addtocart_form');
+    productAddToCartForm.submit = function (button, url) {
+        if (this.validator.validate()) {
+            var form = this.form;
+            var oldUrl = form.action;
 
-                                if (url) {
-                                    form.action = url;
-                                }
-                                var e = null;
-                                try {
-                                    this.form.submit();
-                                } catch (e) {}
-                                this.form.action = oldUrl;
-                                if (e) {
-                                    throw e;
-                                }
+            if (url) {
+                form.action = url;
+            }
+            var e = null;
+            try {
+                this.form.submit();
+            } catch (e) {}
+            this.form.action = oldUrl;
+            if (e) {
+                throw e;
+            }
 
-                                if (button && button != 'undefined') {
-                                    button.disabled = true;
-                                }
-                            }
-                        }.bind(productAddToCartForm);
+            if (button && button != 'undefined') {
+                button.disabled = true;
+            }
+        }
+    }.bind(productAddToCartForm);
 
-                        productAddToCartForm.submitLight = function (button, url) {
-                            if (this.validator) {
-                                var nv = Validation.methods;
-                                delete Validation.methods['required-entry'];
-                                delete Validation.methods['validate-one-required'];
-                                delete Validation.methods['validate-one-required-by-name'];
-                                // Remove custom datetime validators
-                                for (var methodName in Validation.methods) {
-                                    if (methodName.match(/^validate-datetime-.*/i)) {
-                                        delete Validation.methods[methodName];
-                                    }
-                                }
+    productAddToCartForm.submitLight = function (button, url) {
+        if (this.validator) {
+            var nv = Validation.methods;
+            delete Validation.methods['required-entry'];
+            delete Validation.methods['validate-one-required'];
+            delete Validation.methods['validate-one-required-by-name'];
+            // Remove custom datetime validators
+            for (var methodName in Validation.methods) {
+                if (methodName.match(/^validate-datetime-.*/i)) {
+                    delete Validation.methods[methodName];
+                }
+            }
 
-                                if (this.validator.validate()) {
-                                    if (url) {
-                                        this.form.action = url;
-                                    }
-                                    this.form.submit();
-                                }
-                                Object.extend(Validation.methods, nv);
-                            }
-                        }.bind(productAddToCartForm);
-                        //]]>
-                    </script>
+            if (this.validator.validate()) {
+                if (url) {
+                    this.form.action = url;
+                }
+                this.form.submit();
+            }
+            Object.extend(Validation.methods, nv);
+        }
+    }.bind(productAddToCartForm);
+    //]]>
+</script>
 
 
 </div>
-/magento/app/design/frontend/hirochi/default/template/catalog/product/details.phtml
-
-        
-
-
 

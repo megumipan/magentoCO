@@ -6,24 +6,11 @@
             <action method="addItem"><type>skin_css</type><name>css/common.css</name></action>
             <action method="addItem"><type>skin_css</type><name>css/top.css</name></action>
             <action method="addItem"><type>skin_css</type><name>css/column2.css</name></action>
-<!--
-            <action method="addItem"><type>js_css</type><name>calendar/calendar-win2k-1.css</name><params/></action>
-            <action method="addItem"><type>js</type><name>calendar/calendar.js</name></action>
-            <action method="addItem"><type>js</type><name>calendar/calendar-setup.js</name></action>
             <action method="addItem"><type>skin_js</type><name>js/jquery-1.11.3.min.js</name></action>
-
             <action method="addItem"><type>skin_js</type><name>js/accordion.js</name></action>
--->
-<!--
-            
-            
--->
-            
- 
 <!--
             <action method="addJs"><script>varien/product.js</script></action>
             <action method="addJs"><script>varien/configurable.js</script></action>
-
 -->
         </reference>
 <!--
@@ -37,26 +24,22 @@
         </reference>
 -->
 
-
 <reference name="left">
 <block type="calendar/widget" name="top-calendar" />
-
-
-
 <block type="checkout/cart_sidebar" name="cart_sidebar" template="checkout/cart/sidebar.phtml">
-                <action method="addItemRender"><type>simple</type><block>checkout/cart_item_renderer</block><template>checkout/cart/sidebar/default.phtml</template></action>
-    </block>
+    <action method="addItemRender"><type>simple</type><block>checkout/cart_item_renderer</block><template>checkout/cart/sidebar/default.phtml</template></action>
+</block>
+<block type="catalog/product_compare_sidebar" name="catalog.compare.sidebar" template="catalog/product/compare/sidebar.phtml"/>
+<!--//ニューアイテム-->
 <block type="cms/block" name="custom.15"><action method="setBlockId"><block_id>15</block_id></action></block>
-<block type="cms/block" name="custom.14"><action method="setBlockId"><block_id>14</block_id></action></block>
-
-
+<!--//比較
+<block type="cms/block" name="custom.14"><action method="setBlockId"><block_id>14</block_id></action></block>-->
+<!--//SSL -->
+<block type="cms/block" name="custom.13"><action method="setBlockId"><block_id>13</block_id></action></block>
 <!--
 <action method="addItemRender"><type>simple</type><block>checkout/cart_item_renderer</block><template>checkout/cart/sidebar/default.phtml</template></action>
 </block>
 -->
-
-<!--<block type="cms/block" name="custom.13"><action method="setBlockId"><block_id>13</block_id></action></block>-->
-
 </reference>
 
 
@@ -105,22 +88,17 @@
 <remove name="customer_account_dashboard_top"/>
 <remove name="cart_sidebar"/>
 -->
-<remove name="sale.reorder.sidebar"/>  
 <!--
 -->
-<remove name="catalog.compare.sidebar" />
+<!--<remove name="catalog.compare.sidebar" />-->
+<remove name="sale.reorder.sidebar"/>  
+
 <remove name="wishlist_sidebar"/> 
-
-
 <remove name="left.newsletter"/>
+<!--<remove name="cart_sidebar"/>-->
+<!--<remove name="amreview_sidebar"/>-->
 </default>
 
 
 
-
-
-<reference name="right">
-<remove name="amreview_sidebar"/>
-
-</reference>
 </layout>

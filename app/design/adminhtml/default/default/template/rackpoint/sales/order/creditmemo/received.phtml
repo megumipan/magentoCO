@@ -1,0 +1,8 @@
+<?php if ($this->getSource()->getPointReceived() > 0): ?>
+    <tr>
+        <td class="label"><strong><?php echo $this->__('Received point refunded') ?></strong></td>
+        <td class="nobr">
+            <strong><?php echo number_format($this->getSource()->getPointReceived()) ?> <?php echo $this->__('Point') ?></strong>
+        </td>
+    </tr>
+<?php endif; ?>

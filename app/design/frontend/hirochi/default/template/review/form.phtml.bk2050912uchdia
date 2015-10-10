@@ -1,0 +1,138 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<script type="text/javascript">
+    //<![CDATA[
+    var reviewStars = new SrkaReviewStars('product-review-table');
+    //]]>
+</script>
+<div class="review_form clear">
+<?php if ($this->getAllowWriteReviewFlag()): ?>
+<h3 class="gray_line">顧客レビュー</h3>
+<div class="fwB disTable">
+    <p class="disTablecell w20per"><?php echo $this->__("You're reviewing:"); ?></p>
+    <p class="disTablecell"><?php echo $this->escapeHtml($this->getProductInfo()->getName()) ?></p>
+</div>
+
+    <form action="<?php echo $this->getAction() ?>" method="post" id="review-form">
+        <?php echo $this->getBlockHtml('formkey'); ?>
+        <fieldset>
+            <?php echo $this->getChildHtml('form_fields_before')?>
+            <?php if( $this->getRatings() && $this->getRatings()->getSize()): ?>
+               <p class="fwB"><?php echo $this->__('How do you rate this product?') ?> <em class="required">【必須】</em></p>
+                <span id="input-message-box"></span>
+                <div class="style" style="width:70%;">
+                <ul>
+                                                <li>1つ星</li>
+                                                <li>2つ星</li>
+                                                <li>3つ星</li>
+                                                <li>4つ星</li>
+                                                <li>5つ星</li>
+                </ul>
+                <ul>
+                <?php foreach ($this->getRatings() as $_rating): ?>
+                <li><?php echo $this->escapeHtml($_rating->getRatingCode()) ?></li>
+                <?php foreach ($_rating->getOptions() as $_option): ?>
+                <li><input type="radio" name="ratings[<?php echo $_rating->getId() ?>]" id="<?php echo $this->escapeHtml($_rating->getRatingCode()) ?>_<?php echo $_option->getValue() ?>" value="<?php echo $_option->getId() ?>" class="radio" /></li>
+                <?php endforeach; ?>
+                <?php endforeach; ?>
+                </ul>
+                </div>
+                <input type="hidden" name="validate_rating" class="validate-rating" value="" />
+                <script type="text/javascript">decorateTable('product-review-table')</script>
+            <?php endif; ?>
+
+                <div class="form-list">
+                    <p>
+                        <label for="nickname_field"><?php echo $this->__('Nickname') ?></label>
+                        <div class="input-box">
+                            <input type="text" name="nickname" id="nickname_field" class="input-text" value="<?php echo $this->escapeHtml($data->getNickname()) ?>" />
+                        </div>
+                    </p>
+                    <?php if(Mage::helper("reviewimage")->getActive() == '1'):?>
+                    <p>
+                        <label for="reviewimage">画像投稿</label>
+                        <div class="input-box">
+                            <input type="file" name="reviewimage" class="input-text"/>
+                        </div>
+                      
+                    </p>
+                    <?php endif;?>
+                    <input type="hidden" name="title" id="summary_field" class="input-text" value="  " />
+                    <p>
+                        <label for="review_field" class="required"><?php echo $this->__('Review') ?><em>【必須】</em></label>
+                        <div class="input-box">
+                            <textarea name="detail" id="review_field" cols="5" rows="3" class="required-entry"><?php echo $this->escapeHtml($data->getDetail()) ?></textarea>
+                        </div>
+                    </p>
+                </div>
+            </fieldset>
+            <div class="buttons-set">
+                <button type="submit" title="<?php echo $this->__('Submit Review') ?>" class="button review_submit"><?php echo $this->__('Submit Review') ?></button>
+            </div>
+    </form>
+    
+    
+    <script type="text/javascript">
+    //<![CDATA[
+        var dataForm = new VarienForm('review-form');
+        Validation.addAllThese(
+        [
+               ['validate-rating', '<?php echo Mage::helper('core')->jsQuoteEscape($this->__('Please select one of each of the ratings above')) ?>', function(v) {
+                    var trs = $('product-review-table').select('tr');
+                    var inputs;
+                    var error = 1;
+
+                    for( var j=0; j < trs.length; j++ ) {
+                        var tr = trs[j];
+                        if( j > 0 ) {
+                            inputs = tr.select('input');
+
+                            for( i in inputs ) {
+                                if( inputs[i].checked == true ) {
+                                    error = 0;
+                                }
+                            }
+
+                            if( error == 1 ) {
+                                return false;
+                            } else {
+                                error = 1;
+                            }
+                        }
+                    }
+                    return true;
+                }]
+        ]
+        );
+    //]]>
+    </script>
+    <?php else: ?>
+    <p class="review-nologged" id="review-form">
+        <?php echo $this->__('Only registered users can write reviews. Please, <a href="%s">log in</a> or <a href="%s">register</a>', $this->getLoginLink(), Mage::helper('customer')->getRegisterUrl()) ?>
+    </p>
+    <?php endif ?>
+</div>

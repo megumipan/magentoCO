@@ -1,0 +1,22 @@
+<?php if ($this->canRefundPoint()): ?>
+    <p>
+        <label for="creditmemo_refund_point_enable"><?php echo Mage::helper('rackpoint')->__('Refund Used Points') ?></label>
+        <input type="hidden" name="creditmemo[refund_point_enable]" value="2" />
+        <input type="checkbox" checked="checked" name="creditmemo[refund_point_enable]" value="1" id="creditmemo_refund_point_enable" />
+        <input type="text" name="creditmemo[used_point]" value="<?php echo $this->getUsedPoint() ?>" id="creditmemo_refund_point" class="input-text not-negative-amount" style="width: 60px; text-align: right;">
+        <script type="text/javascript">
+        //<![CDATA[
+            function toggleRefundPointAmount() {
+                if ($('creditmemo_refund_point_enable').checked) {
+                    $('creditmemo_refund_point').disabled = false;
+                } else {
+                    $('creditmemo_refund_point').disabled = true;
+                    $('creditmemo_refund_point').value = 0;
+                }
+            }
+            Event.observe($('creditmemo_refund_point_enable'), 'change', toggleRefundPointAmount);
+            toggleRefundPointAmount();
+        //]]>
+        </script>
+    </p>
+<?php endif; ?>

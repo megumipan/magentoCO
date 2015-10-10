@@ -1,0 +1,45 @@
+<?php $info = $this->getInfo(); ?>
+<?php if (is_array($info)): ?>
+<div id="modalDialog" class="point-info-content">
+    <table class="data-table point-info" id="modalWindowContent">
+        <thead>
+        <tr>
+            <th><span><?php echo $this->__('Product') ?></span></th>
+            <th>
+                    <span>
+                        <?php echo $this->__('Row total') ?>
+                        (<?php if ($this->isIncludeTax()) { echo $this->__('Incl. Tax'); } ?>)
+                    </span>
+            </th>
+            <th><span><?php echo $this->__('Point before discount') ?></span></th>
+            <th><span><?php echo $this->__('Point after discount') ?></span></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($info as $item): ?>
+        <tr>
+            <td><span><?php echo $item->getProductName() ?></span></td>
+            <td><span><?php echo $this->formatPrice($item->getRowTotal()) ?></span></td>
+            <td>
+                <span>
+                    <?php echo $this->formatPoint($item->getPointBeforeDiscount()) ?>
+                    <?php if ($item->getPointType() == Rack_Point_Model_Catalog_Rule::PERCENT): ?>
+                    (<?php echo number_format($item->getPointAmount(), 0) ?>%)
+                    <?php else: ?>
+                    (<?php echo $this->__('Fixed') ?>)
+                    <?php endif ?>
+                </span>
+            </td>
+            <td><span><?php echo $this->formatPoint($item->getPointReceived()) ?></span></td>
+        </tr>
+            <?php endforeach ?>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="3" class="a-right"><span><?php echo $this->__('Received Point') ?></span></td>
+            <td><span><strong><?php echo $this->formatPoint($this->getQuote()->getPointReceived()) ?></strong></span></td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+<?php endif ?>

@@ -1,0 +1,24 @@
+<?php if ((float) $this->getSource()->getPointUsed()): ?>
+    <?php $_helper = Mage::helper('rackpoint') ?>
+    <?php if ($this->getSource() instanceof Mage_Sales_Model_Order_Invoice) {
+            $_order = $this->getSource()->getOrder();
+          } elseif ($this->getSource() instanceof Mage_Sales_Model_Order_Invoice) {
+            $_order = $this->getSource()->getOrder();  
+          } else {
+            $_order = $this->getSource();  
+          }
+    ?>
+    <tr>
+        <td class="label nobr">
+            <strong><?php echo $this->__('Point Used') ?></strong>
+            <span class="rate-desc">
+                (<?php echo $_helper->getPointRateDescription($_order->getPointRate(), $_order->getStoreId()) ?>)
+            </span>
+        </td>
+        <td class="nobr">
+            <strong><?php echo number_format($this->getSource()->getPointUsed()) ?> </strong>
+            <?php $point = $_helper->point2Currency($this->getSource()->getPointUsed(), $_order->getPointRate());?>
+            (<strong><?php echo $_order->formatPrice($_helper->convertCurrency($point, $_order->getOrderCurrencyCode())) ?></strong>)
+        </td>
+    </tr>
+<?php endif; ?>

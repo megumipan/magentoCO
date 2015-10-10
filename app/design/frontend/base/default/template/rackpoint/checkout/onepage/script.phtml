@@ -1,0 +1,3 @@
+<script type="text/javascript">
+    quoteBaseGrandTotal = <?php echo (float)Mage::getSingleton('checkout/session')->getQuote()->getBaseGrandTotal() + (float)Mage::getSingleton('checkout/session')->getQuote()->getPointCurrencyUsed() ; ?>;
+</script>

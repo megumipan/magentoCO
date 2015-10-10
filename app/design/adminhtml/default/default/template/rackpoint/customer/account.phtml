@@ -1,0 +1,54 @@
+<?php
+    $_currentBalance = $this->getCurrentBalance();
+    $_collection = $this->getBalanceCollection();
+?>
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-customer-view"><?php echo $this->__('Current Balance') ?></h4>
+    </div>
+    <div class="grid">
+        <?php if ($_collection->getSize() > 0): ?>
+        <table cellspacing="0" class="data">
+            <thead>
+                <tr class="headings">
+                    <th><?php echo $this->__('Website') ?></th>
+                    <th><?php echo $this->__('Balance') ?></th>
+                    <th><?php echo $this->__('Currency') ?></th>
+                    <th><?php echo $this->__('Point Rate') ?></th>
+                    <th><?php echo $this->__('Expired At') ?></th>
+                    <th><?php echo $this->__('Expired') ?></th>
+                    <th><?php echo $this->__('Renew') ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($_collection as $_balance): ?>
+                <tr>
+                    <td rowspan="1"><?php echo $_balance->getWebsiteName() ?></td>
+                    <td><?php echo number_format($_balance->getBalance()) ?></td>
+                    <td><?php echo $this->getCurrencyFormated($_balance) ?></td>
+                    <td><?php echo $this->getRateDescription() ?></td>
+                    <td><?php echo $_balance->getExpiredAtWithLocale() ?></td>
+                    <td><?php if ($_balance->isExpired()) { echo $this->__('Expired'); } else { echo $this->__('Not yet'); } ?></td>
+                    <td>
+                        <?php if ($_balance->isExpired()): ?>
+                        <form action="<?php echo $this->getUrl('adminhtml/point_customer/renew') ?>" method="POST">
+                            <input type="hidden" value="<?php echo $this->getCustomer()->getId() ?>" name="customer_id" />
+                            <input type="hidden" value="<?php echo $_balance->getWebsiteId() ?>" name="website_id" />
+                            <input type="hidden" name="form_key" value="<?php echo $this->getFormKey() ?>" />
+                            <button type="submit" class="button save">
+                                <span><?php echo $this->__('Renew 1 month') ?></span>
+                            </button>
+                        </form
+                        <?php endif ?>
+                    </td>
+                </tr>
+                <?php endforeach ?>
+            </tbody>
+        </table>
+        <?php else: ?>
+        <div class="fieldset">
+            <?php echo $this->__('There are no point balance for this customer at this time.') ?>
+        </div>
+        <?php endif ?>
+    </div>
+</div>

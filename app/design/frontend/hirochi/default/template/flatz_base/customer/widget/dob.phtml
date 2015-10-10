@@ -1,0 +1,76 @@
+<label for="<?php echo $this->getFieldId('month')?>"<?php if ($this->isRequired()) echo ' class="required"' ?>><?php if ($this->isRequired()) echo '<em>*</em>' ?><?php echo $this->__('Date of Birth') ?></label>
+<div class="input-box customer-dob">
+
+<?php
+    // year
+    $dob_year = '<div class="dob-year" style="width:80px;" >';
+    $dob_year .= '<select style="width:80px;" id="'.$this->getFieldId('year').'" name="'.$this->getFieldName('year').'" title="'.$this->__('Year').'" class="validate-custom"> ';
+    
+    
+    $year = $this->getYear(); 
+    if (!$year){
+        $year = 1970;
+    }
+    
+    $from_year = 1930;
+    $to_year = date("Y") - 15;
+    for ($y = $from_year; $y <= $to_year; $y++){
+            $dob_year .= '<option value="'.$y.'" ';
+            if ($y == $year) {
+                $dob_year .= ' selected="selected"';
+            }
+            $dob_year .=  '>'. $y.'</option>';
+    }    
+    $dob_year .= '</select></div>';
+    $this->setDateInput('y', $dob_year);
+    
+    
+    //month
+    $dob_month = '<div class="dob-month" style="width:60px;" >';
+    $dob_month .= '<select style="width:60px;" id="'.$this->getFieldId('month').'" name="'.$this->getFieldName('month').'" title="'.$this->__('Month').'" class="validate-custom">';
+       
+        
+    $month = $this->getMonth(); 
+    
+    for ($m = 1; $m <= 12; $m++){
+            $dob_month .= '<option value="'.sprintf('%02d', $m).'" ';
+            if ($m == $month) {
+                $dob_month .= ' selected="selected"';
+            }
+            $dob_month .=  '>'. $m.'</option>';
+    }    
+    $dob_month .= '</select></div>';
+    $this->setDateInput('m', $dob_month);
+    
+    
+    //day
+    $dob_day = '<div class="dob-day" style="width:60px;" >';
+    $dob_day .= '<select style="width:60px;" id="'.$this->getFieldName('day').'" name="'.$this->getFieldName('day').'" title="'.$this->__('Day').'" class="validate-custom">';
+       
+    
+    $day = $this->getDay(); 
+    
+    for ($d = 1; $d <= 31; $d++){
+            $dob_day .= '<option value="'.sprintf('%02d', $d).'" ';
+            if ($d == $day) {
+                $dob_day .= ' selected="selected"';
+            }
+            $dob_day .=  '>'. $d.'</option>';
+    }    
+    $dob_day .= '</select></div>';
+    $this->setDateInput('d', $dob_day);
+    
+    
+?>
+    <?php echo $this->getSortedDateInputs() ?>
+    <div class="dob-full" style="display:none;">
+        <input type="hidden" id="<?php echo $this->getFieldId('dob')?>" name="<?php echo $this->getFieldName('dob')?>" />
+    </div>
+
+    <div class="validation-advice" style="display:none;"></div>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+    var customer_dob = new Varien.DOB('.customer-dob', <?php echo $this->isRequired() ? 'true' : 'false' ?>, '<?php echo $this->getDateFormat() ?>');
+//]]>
+</script>

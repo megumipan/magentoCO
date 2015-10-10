@@ -1,0 +1,12 @@
+<!--@subject {{var store.getFrontendName()}}: ポイント残高更新 @-->
+{{var customer.lastname}} {{var customer.firstname}}様
+<br />
+{{depend invoice.getPointReceived()}}
+お客様のポイント残高に <strong>{{var invoice.point_received}} ポイント</strong> が ご注文番号{{var order.increment_id}}のお支払いに寄って加算されました。
+<h2>加算ポイント明細:</h2>
+{{layout area="frontend" handle="rackpoint_email_invoice_items" invoice=$invoice order=$order}}
+{{/depend}}
+<br />
+<h2>現在のポイント残高: </h2>
+残高: <strong>{{var balance.balance}} ポイント</strong><br/>
+有効期限: <strong>{{var balance.getExpiredAtWithLocale()}}</strong>

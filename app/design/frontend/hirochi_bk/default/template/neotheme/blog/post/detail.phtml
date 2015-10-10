@@ -1,0 +1,117 @@
+<?php
+/**
+ * NeoTheme Austrlia (Neo Industries Pty Ltd)
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to Neo Industries Pty LTD Non-Distributable Software Modification License (NDSML)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.neotheme.com.au/legal/licenses/NDSM.html
+ * If the license is not included with the package or for any other reason, 
+ * you did not receive your licence please send an email to 
+ * license@neotheme.com.au so we can send you a copy immediately.
+ *
+ * This software comes with no warrenty of any kind. By Using this software, the user agrees to hold 
+ * Neo Industries Pty Ltd harmless of any damage it may cause.
+ *
+ * @category    modules
+ * @module      NeoTheme_ImageRotator
+ * @copyright   Copyright (c) 2011 Neo Industries Pty Ltd (http://www.neotheme.com.au)
+ * @license     http://www.neotheme.com.au/  Non-Distributable Software Modification License(NDSML 1.0)
+ */
+/**
+ * @see NeoTheme_Blog_Block_Post
+ */
+
+ $formatType = Mage::getStoreConfig(NeoTheme_Blog_Helper_Data::XPATH_CONFIG_DATETIME_FORMAT_TYPE);
+ $format = ($formatType != 'custom')?
+    Mage::app()->getLocale()->getDateTimeFormat($formatType): 
+    Mage::getStoreConfig(NeoTheme_Blog_Helper_Data::XPATH_CONFIG_DATETIME_CUSTOM_FORMAT);
+$date = ($this->getPost()->getPostDate() != NULL)? $this->getPost()->getPostDate()  : $this->getPost()->getCreatedAt() ;
+?>
+
+
+<h2 class="h2_heading">ニュース</h2><!-- 中央カラム 見出し common.cssに定義 -->
+<section id="news" class="news_01">
+<p class="date"><time><?php echo date('Y/m/d', strtotime($date)); ?></time>Default</p>
+<h3 class="detailTitle"><?php echo $this->getPost()->getTitle(); ?></h3>
+
+<?php
+/*
+        <div class="post-metadata">
+            <ul>
+                <li class="post-time">
+                    <?php echo $this->__('Posted On: ');?>
+                </li>
+<?php if ($this->getPost()->getAuthor()): ?>
+                    <div class="post-author">
+                        <?php echo $this->__('by'); ?>
+                            <?php echo $this->getPost()->getAuthor(); ?>
+                    </div>
+                    <?php endif;?>
+                        </ul>
+        </div>
+*/
+?>
+
+        <div class="post">
+            <?php echo $this->getPost()->getContentHtml();?>
+        </div>
+<?php /*
+        <div class="post-info">
+            <?php if ( (int) $this->getPost()->getStatus() == NeoTheme_Blog_Model_Post::STATUS_DRAFT) : ?>
+                <h3 style="color:red;"><?php echo $this->__('[Draft] (not visible publicly)');?></h3>
+                <?php endif; ?>
+                    <?php if ( $this->getPost()->getCategories()->count()) : ?>
+                        <ul class="post-categories">
+                            <?php echo $this->__('Posted In: ');?>
+                                <?php $i = 0; ?>
+                                    <?php foreach($this->getPost()->getCategories() as $category):?>
+                                        <?php $catName =  ($i > 0)? ',' . $category->getName() : $category->getName(); ?>
+                                            <li>
+                                                <a href="<?php echo $category->getListUrl();?>">
+                                                    <?php echo $catName; ?>
+                                                </a>
+                                            </li>
+                                            <?php $i++; ?>
+                                                <?php endforeach; ?>
+                        </ul>
+                        <?php endif;?>
+                           <?/*
+                            <?php if ( Mage::helper('neotheme_blog')->isDefaultCommentingEnabled()) : ?>
+                                <?php 
+                $commentCount = $this->getPost()->getComments()->count();
+                $commentText =  ($commentCount == 1) ? $this->__("comment"):$this->__("comments");
+            ?>
+                                    <ul>
+                                        <li class="post-comments">
+                                            <?php echo $commentCount; ?>
+                                                <?php echo $commentText;?>
+                                        </li>
+                                    </ul>
+                                    <?php endif;?>
+                                    
+        </div>
+*/ ?>
+        <div class="clr"></div>
+                   <p><a href="/magento/index.php/hiroshi-news/news/">>>一覧にもどる</a></p>
+</section>
+                   
+                  <div class="back_btn">
+                        <p class="arr"></p><p class="arr_txt"><a href="javascript:history.back()">前のページに戻る</a></p>
+                  </div>    
+
+<?php
+/*
+<div class="comments-list">
+        <?php echo $this->getChildHtml('blog.post.comment.list');?>
+    </div>
+
+    <div class="comment-form">
+        <?php echo $this->getChildHtml('blog.post.comment.form');?>
+    </div>
+    */
+?>
+</div>
+<?php Zend_Date::setOptions(array('format_type' => 'iso')); ?>

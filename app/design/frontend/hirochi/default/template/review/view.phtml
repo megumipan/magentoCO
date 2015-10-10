@@ -44,6 +44,10 @@ echo '</pre>';
 ?>
 <?php
 //////レビュー数の表示プログラム
+
+//
+// 平均レビューの取得
+//
 $_product = $this->getProduct();
 $storeId = Mage::app()->getStore()->getId();
 $summaryData = Mage::getModel('review/review_summary')->setStoreId($storeId)->load($_product->getId());
@@ -52,16 +56,49 @@ $st_y = '<li><img src="'.$this->getSkinUrl('images/star_yellow.png').'" alt="sta
 $st_g = '<li><img src="'.$this->getSkinUrl('images/star_gray.png').'" alt="star"></li>';
 // percent表示のため、star表示に変換
     if($ratequt < 21){
-        $star = $st_y.$st_g.$st_g.$st_g.$st_g;
+        $star_avg = $st_y.$st_g.$st_g.$st_g.$st_g;
     }else if($ratequt < 41){
-        $star =  $st_y.$st_y.$st_g.$st_g.$st_g;
+        $star_avg =  $st_y.$st_y.$st_g.$st_g.$st_g;
     }else if($ratequt < 61){
-        $star =  $st_y.$st_y.$st_y.$st_g.$st_g;
+        $star_avg =  $st_y.$st_y.$st_y.$st_g.$st_g;
     }else if($ratequt < 81){
-        $star =  $st_y.$st_y.$st_y.$st_y.$st_g;
-    }else if($ratequt < 100){
-        $star =  $st_y.$st_y.$st_y.$st_y.$st_y;
+        $star_avg =  $st_y.$st_y.$st_y.$st_y.$st_g;
+    }else{
+        $star_avg =  $st_y.$st_y.$st_y.$st_y.$st_y;
     }
+
+//
+// 個別評価の取得
+//
+$reviewId = $this->getReviewData()->getId();
+$_review = Mage::getModel('review/review')->load($reviewId);
+$_reviewData = $_review->getData();
+$_votes = Mage::getModel('rating/rating_option_vote')
+->getResourceCollection()
+->addFilter('review_id', $reviewId)
+->load();
+
+
+$star = '';
+if(count($_votes)){
+    foreach ($_votes as $_vote) {
+        $ratequt = $_vote->getPercent();
+        $st_y = '<li><img src="'.$this->getSkinUrl('images/star_yellow.png').'" alt="star"></li>';
+        $st_g = '<li><img src="'.$this->getSkinUrl('images/star_gray.png').'" alt="star"></li>';
+        // percent表示のため、star表示に変換
+        if($ratequt < 21){
+            $star = $st_y.$st_g.$st_g.$st_g.$st_g;
+        }else if($ratequt < 41){
+            $star =  $st_y.$st_y.$st_g.$st_g.$st_g;
+        }else if($ratequt < 61){
+            $star =  $st_y.$st_y.$st_y.$st_g.$st_g;
+        }else if($ratequt < 81){
+            $star =  $st_y.$st_y.$st_y.$st_y.$st_g;
+        }else{
+            $star =  $st_y.$st_y.$st_y.$st_y.$st_y;
+        }
+    }
+}
 
     ?>
 <div class="product-review page_review02">
@@ -78,7 +115,7 @@ $st_g = '<li><img src="'.$this->getSkinUrl('images/star_gray.png').'" alt="star"
         <div class="disTable">
                 <ul class="star disTablecell">
                     <li class="fs16 fwB">平均評価：</li>
-                    <?php echo $star; ?>
+                    <?php echo $star_avg; ?>
                 </ul>
         </div>
         <p class="disTable">

@@ -29,22 +29,15 @@ $item = $this->getItem();
 $product = $item->getProduct();
 
 ?>
+<div class="cf">
 <!-- a class="product-image" href="<?php echo $this->getProductUrl($item) ?>" title="<?php echo $this->escapeHtml($product->getName()) ?>" -->
  <ul>	
- <li> <img src="<?php echo $this->helper('catalog/image')->init($product, 'small_image')->resize(113, 113); ?>" width="113" height="113" alt="<?php echo $this->escapeHtml($product->getName()) ?>" /></li>
+ <li> <img src="<?php echo $this->helper('catalog/image')->init($product, 'small_image')->resize(80, 80); ?>" width="80" height="80" alt="<?php echo $this->escapeHtml($product->getName()) ?>" /></li>
 
 <li>
 <a href="<?php echo $this->getProductUrl($item) ?>" title="<?php echo $this->escapeHtml($product->getName()) ?>"><?php echo $this->escapeHtml($product->getName()) ?></a>
 </li>
- <li>販売価格:<span><?php echo $this->getPriceHtml($product, empty($options));?></span></li>
-
-<!-- div class="description std">
-	<div class="inner"><?php echo $this->escapeHtml($this->stripTags($product->getShortDescription()));?></div>
-</div -->
-
-
-<!--li><a href="#">P-04テキストテキストテキストテキスト<br>(aaaa___bb)</a></li>
-<li>販売価格:<span>7600円</span></li-->
+ <li><span><?php echo $this->getPriceHtml($product, empty($options));?></span></li>
 </ul>
 <ul>
 <li>
@@ -59,33 +52,31 @@ $product = $item->getProduct();
 </li>
 </ul>
 <ul>
-<li>2015/8/01(仮)</li>
+<li class="fb"><?php echo $item->getAddedAt(); ?></li>
 </ul>
 
 
 
 
 <ul>
-   <li><input type="number"></li>
-
-
-
-   
-   <?php if ($product->isSaleable()): ?>
-   	<li><input type="submit" class="toCart" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Add to Cart')) ?>" onclick="addWItemToCart(<?php echo $item->getId()?>);"  value="カートに入れる"></li>
+<?php if ($item->canHaveQty() && $item->getProduct()->isVisibleInSiteVisibility()): ?>
+    <li><input type="number" class="input-text qty validate-not-negative-number" name="qty[<?php echo $item->getId() ?>]" value="<?php echo $this->getAddToCartQty($item) * 1 ?>" /></li>
+<?php endif; ?>
+<?php if ($product->isSaleable()): ?>
+    <li class="btnArea"><button type="button" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Add to Cart')) ?>" onclick="addWItemToCart(<?php echo $item->getId()?>);" class="toCart button btn-add"><?php echo $this->__('Add to Cart') ?></button></li>
 <?php else: ?>
     <?php if ($product->getIsSalable()): ?>
-        <p class="availability in-stock"><span><?php echo $this->__('In stock') ?></span></p>
+        <li><p class="availability in-stock"><span><?php echo $this->__('In stock') ?></span></p></li>
     <?php else: ?>
-        <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+        <li><p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p></li>
     <?php endif; ?>
 <?php endif; ?>
 
-
-
+    <!--
    <?php if ($product->isVisibleInSiteVisibility()): ?>
    <li><a class="link-edit" href="<?php echo $this->getItemConfigureUrl($item) ?>"><?php echo $this->__('編集') ?></a></li>
    <?php endif ?>
+-->
 </ul>
 
 
@@ -98,3 +89,4 @@ $product = $item->getProduct();
    </li>
 </ul>
 <!-- /a -->
+</div>

@@ -1,0 +1,93 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php //$_helper = $this->helper('catalog/output'); ?>
+<?php// $_product = $this->getProduct(); ?>
+<?php $_items = $this->getReviewsCollection()->getItems();?>
+
+<div class="review_comment">
+<?php if (count($_items)):?>
+<h3 class="gray_line"><?php echo $this->__('Customer Reviews') ?></h3>
+<?php echo $this->getChildHtml('toolbar') ?>
+        
+<ul class="clear">
+<li>
+<?php foreach ($_items as $_review):?>
+<article>
+<h4><a href="<?php echo $this->getReviewUrl($_review->getId()) ?>"><?php echo $this->escapeHtml($_review->getTitle()) ?></a></h4>
+<?php $_votes = $_review->getRatingVotes(); ?>
+<?php if (count($_votes)): ?>
+<?php foreach ($_votes as $_vote): ?>
+<div class="disTable clear">
+<ul class="star disTablecell"><?php $ratequt = $_vote->getPercent(); ?>
+<?php
+//////レビュー数の表示プログラム
+$storeId = Mage::app()->getStore()->getId();
+//$summaryData = Mage::getModel('review/review_summary')->setStoreId($storeId)->load($_product->getId());
+
+//$ratequt = $summaryData['rating_summary'];
+//$reviewCount = $summaryData['ReviewsCount'];
+$st_y = '<li><img src="'.$this->getSkinUrl('images/star_yellow.png').'" alt="star"></li>';
+$st_g = '<li><img src="'.$this->getSkinUrl('images/star_gray.png').'" alt="star"></li>';
+
+switch($ratequt){
+    case '20':
+        echo $st_y.$st_g.$st_g.$st_g.$st_g;
+        break;
+    case '40':
+        echo $st_y.$st_y.$st_g.$st_g.$st_g;
+        break;
+    case '60':
+        echo $st_y.$st_y.$st_y.$st_g.$st_g;
+        break;
+    case '80':
+        echo $st_y.$st_y.$st_y.$st_y.$st_g;
+        break;
+    case '100':
+        echo $st_y.$st_y.$st_y.$st_y.$st_y;
+        break;
+    default:
+        echo $st_g.$st_g.$st_g.$st_g.$st_g;    
+}
+    ?>
+</ul>
+
+<?php //echo $this->escapeHtml($_vote->getRatingCode()) ?>
+<? /*      <div class="rating" style="width:<?php echo $_vote->getPercent() ?>%;"></div> */?>
+<p class="disTablecell"><?php echo nl2br($this->escapeHtml($_review->getDetail())) ?></p>
+<?php /* <small class="date"><?php echo $this->__('(Posted on %s)', $this->formatDate($_review->getCreatedAt()), 'long') ?></small> */?>
+
+</div>
+</article>
+</li>
+                        <?php endforeach; ?>
+                <?php endif; ?>
+        <?php endforeach; ?>
+</ul>
+        <?php echo $this->getChildHtml('toolbar') ?>
+    <?php endif;?>
+    <?php echo $this->getChildHtml('review_form') ?>
+</div>

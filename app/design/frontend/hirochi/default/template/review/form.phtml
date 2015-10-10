@@ -37,7 +37,7 @@
     <p class="disTablecell"><?php echo $this->escapeHtml($this->getProductInfo()->getName()) ?></p>
 </div>
 
-    <form action="<?php echo $this->getAction() ?>" method="post" id="review-form">
+    <form action="<?php echo $this->getAction() ?>" method="post" id="review-form" enctype="multipart/form-data">
         <?php echo $this->getBlockHtml('formkey'); ?>
         <fieldset>
             <?php echo $this->getChildHtml('form_fields_before')?>
@@ -56,7 +56,7 @@
                 <?php foreach ($this->getRatings() as $_rating): ?>
                 <li><?php echo $this->escapeHtml($_rating->getRatingCode()) ?></li>
                 <?php foreach ($_rating->getOptions() as $_option): ?>
-                <li><input type="radio" name="ratings[<?php echo $_rating->getId() ?>]" id="<?php echo $this->escapeHtml($_rating->getRatingCode()) ?>_<?php echo $_option->getValue() ?>" value="<?php echo $_option->getId() ?>" class="radio" /></li>
+                <li><input type="radio" name="ratings[<?php echo $_rating->getId() ?>]" id="<?php echo $this->escapeHtml($_rating->getRatingCode()) ?>_<?php echo $_option->getValue() ?>" value="<?php echo $_option->getId() ?>" class="radio" <?php if($_option->getId() == 3){echo 'checked';}?>/></li>
                 <?php endforeach; ?>
                 <?php endforeach; ?>
                 </ul>
@@ -81,7 +81,7 @@
                       
                     </p>
                     <?php endif;?>
-                    <input type="hidden" name="title" id="summary_field" class="input-text" value="  " />
+                    <input type="hidden" name="title" id="summary_field" class="input-text" value="" />
                     <p>
                         <label for="review_field" class="required"><?php echo $this->__('Review') ?><em>【必須】</em></label>
                         <div class="input-box">
@@ -98,36 +98,36 @@
     
     <script type="text/javascript">
     //<![CDATA[
-        var dataForm = new VarienForm('review-form');
-        Validation.addAllThese(
-        [
-               ['validate-rating', '<?php echo Mage::helper('core')->jsQuoteEscape($this->__('Please select one of each of the ratings above')) ?>', function(v) {
-                    var trs = $('product-review-table').select('tr');
-                    var inputs;
-                    var error = 1;
+        // var dataForm = new VarienForm('review-form');
+        // Validation.addAllThese(
+        // [
+        //        ['validate-rating', '<?php echo Mage::helper('core')->jsQuoteEscape($this->__('Please select one of each of the ratings above')) ?>', function(v) {
+        //             var trs = $('product-review-table').select('tr');
+        //             var inputs;
+        //             var error = 1;
 
-                    for( var j=0; j < trs.length; j++ ) {
-                        var tr = trs[j];
-                        if( j > 0 ) {
-                            inputs = tr.select('input');
+        //             for( var j=0; j < trs.length; j++ ) {
+        //                 var tr = trs[j];
+        //                 if( j > 0 ) {
+        //                     inputs = tr.select('input');
 
-                            for( i in inputs ) {
-                                if( inputs[i].checked == true ) {
-                                    error = 0;
-                                }
-                            }
+        //                     for( i in inputs ) {
+        //                         if( inputs[i].checked == true ) {
+        //                             error = 0;
+        //                         }
+        //                     }
 
-                            if( error == 1 ) {
-                                return false;
-                            } else {
-                                error = 1;
-                            }
-                        }
-                    }
-                    return true;
-                }]
-        ]
-        );
+        //                     if( error == 1 ) {
+        //                         return false;
+        //                     } else {
+        //                         error = 1;
+        //                     }
+        //                 }
+        //             }
+        //             return true;
+        //         }]
+        // ]
+        // );
     //]]>
     </script>
     <?php else: ?>

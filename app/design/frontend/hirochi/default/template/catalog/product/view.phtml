@@ -34,40 +34,24 @@
 <?php $_helper = $this->helper('catalog/output'); ?>
     <?php $_product = $this->getProduct(); ?>
 <div class="page_review">
+<!-- <h2 class="h2_heading"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h2> -->
 <div class="review_item">
 <div class="cf clear">
    
 
-<?php if ($_product->getImage() != 'no_selection' && $_product->getImage()): ?>
+
 <div class="image_area flL">
-<div class="large_image">
-<?php
-$_img = '<img id="image" src="'.$this->helper('catalog/image')->init($_product, 'image').'" alt="'.$this->escapeHtml($this->getImageLabel()).'" title="'.$this->escapeHtml($this->getImageLabel()).'" />';
-echo $_helper->productAttribute($_product, $_img, 'image');
-?>
-<?php endif; ?>
+<div class="product-img-box">
+    <?php echo $this->getChildHtml('media') ?>
 </div>
-<ul class="cf">
-<li><a href="#"><img src="<?php echo $this->getSkinUrl('images/review_sample01.png'); ?>" alt="image01"></a></li>
-<li><a href="#"><img src="<?php echo $this->getSkinUrl('images/review_sample01.png'); ?>" alt="image02"></a></li>
-<li><a href="#"><img src="<?php echo $this->getSkinUrl('images/review_sample01.png'); ?>" alt="image03"></a></li>
-<li><a href="#"><img src="<?php echo $this->getSkinUrl('images/review_sample01.png'); ?>" alt="image04"></a></li>
-</ul>
-<ul>
-<li><a href="#"><img src="<?php echo $this->getSkinUrl('images/review_sample01.png'); ?>" alt="image05"></a></li>
-<li><a href="#"><img src="<?php echo $this->getSkinUrl('images/review_sample01.png'); ?>" alt="image06"></a></li>
-<li><a href="#"><img src="<?php echo $this->getSkinUrl('images/review_sample01.png'); ?>" alt="image07"></a></li>
-<li><a href="#"><img src="<?php echo $this->getSkinUrl('images/review_sample01.png'); ?>" alt="image08"></a></li>
-</ul>
-<a href="#" class="clear">&laquo; 商品メイン情報に戻る</a>
 </div>
 
 
 <?php print_r($summaryData); ?>
 <div class="item_info flR">
-<h2>【商 品 名】<br><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h2>
+<h2 style="color:#000; font-size:20px;"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h2>
 <div class="review_info disTable">
-<ul class="star disTablecell mr15">
+<ul class="star disTablecell">
 <li>レビュー評価</li>
 <?php
 //////レビュー数の表示プログラム
@@ -76,13 +60,16 @@ $summaryData = Mage::getModel('review/review_summary')->setStoreId($storeId)->lo
 $pId = $_product->getId();
 $ratequt = $summaryData['rating_summary'];
 $rvcount = $summaryData['reviews_count'];
+if(empty($rvcount)) $rvcount = 0;
 //$reviewCount = $summaryData['ReviewsCount'];
 $st_y = '<li><img src="'.$this->getSkinUrl('images/star_yellow.png').'" alt="star"></li>';
 $st_g = '<li><img src="'.$this->getSkinUrl('images/star_gray.png').'" alt="star"></li>';
 //平均端数の数字の為IF
 
 
-    if($ratequt < 21){
+    if($ratequt == 0){
+        echo $st_g.$st_g.$st_g.$st_g.$st_g;
+    }else if($ratequt < 21){
         echo $st_y.$st_g.$st_g.$st_g.$st_g;
     }else if($ratequt < 41){
         echo $st_y.$st_y.$st_g.$st_g.$st_g;
@@ -90,29 +77,31 @@ $st_g = '<li><img src="'.$this->getSkinUrl('images/star_gray.png').'" alt="star"
         echo $st_y.$st_y.$st_y.$st_g.$st_g;
     }else if($ratequt < 81){
         echo $st_y.$st_y.$st_y.$st_y.$st_g;
-    }else if($ratequt < 100){
+    }else{
         echo $st_y.$st_y.$st_y.$st_y.$st_y;
     }
-
+//獲得ポイント計算（1割）
+$price =  number_format($_product->getPrice(),'0', '.', ',');
+$point = $price * 0.01;
     ?>
 </ul><?php// print_r($_product); ?>
-<a href="<?php echo $this->getReviewUrl($pId) ?>" class="disTablecell"><?php echo $rvcount; ?>件のレビュー &raquo;</a>
+
 </div>
 <script type="text/javascript">
 var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
 </script>
-<div class="item_desc">
-<p>【価格】<br>
+<div class="item_desc" style="margin:1em 0;">
+<p style="color:#000;">【価格】<br>
 定価：<?php echo number_format($_product->getMsrp(),'0', '.', ','); ?>円</p>
-<p class="fwB fs20">販売価格：<span class="fcRed"><?php echo number_format($_product->getPrice(),'0', '.', ','); ?>円</span></p>
+<p class="fwB fs20" style="color:#000;">販売価格：<span class="fcRed"><?php echo number_format($_product->getPrice(),'0', '.', ','); ?>円</span></p>
 
 
 
 
-<p class="fs14">関東近郊 ９月10日頃お届け可</p>
-<p>獲得ポイント数：428P(１P = 1円)</p>
-<p><?php echo $this->getChildHtml('product_type_data') ?></p>
-<p>在庫数：<?php echo number_format($_product->getStockItem()->getQty(),'0'); ?>
+<p class="fs14" style="color:#000;">関東近郊 ９月10日頃お届け可</p>
+<p style="color:#000;">獲得ポイント数：<?php echo round($point); ?>P(1P = 1円)</p>
+<p style="color:#000;"><?php echo $this->getChildHtml('product_type_data') ?></p>
+<p style="color:#000;">在庫数：<?php echo number_format($_product->getStockItem()->getQty(),'0'); ?>
 </p>
 
 <div class="disTable">
@@ -131,7 +120,7 @@ var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>
 </div>
 </div>
     <ul>
-        <li><a href="#" class="fwB">・この商品についてお問い合わせ</a></li>
+        <li><a href="<?php echo $this->getUrl('contacts'); ?>" class="fwB">・この商品についてお問い合わせ</a></li>
         <li><?php echo $this->getChildHtml('addto') ?></li>
     </ul>
 </div>
@@ -205,9 +194,5 @@ var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>
 <?php endforeach;?>
         <?php echo $this->getChildHtml('upsell_products') ?>
         <?php echo $this->getChildHtml('product_additional_data') ?>
-
-view2
-    </div>
-
-<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('12')->toHtml(); ?>
-    </div>
+</div>
+</div>

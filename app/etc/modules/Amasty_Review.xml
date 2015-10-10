@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2015 Amasty (https://www.amasty.com)
+ * @package Amasty_Review
+ */
+-->
+<config>
+    <modules>
+        <Amasty_Review>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Amasty_Review>
+    </modules>
+</config> 

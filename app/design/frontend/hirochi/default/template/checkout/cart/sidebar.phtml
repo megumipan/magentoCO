@@ -32,17 +32,17 @@
 
 ?>
 <?php if ($this->getIsNeedToDisplaySideBar()):?>
-<!--<div class="block block-cart">-->
+<div class="sideBox">
 <div class="h3_point">
 <?php $_cartQty = $this->getSummaryCount() ?>
 <!--    <div class="block-title">-->
-        <h3>カート</h3>
-       <div class="h3_point_inner">
 <!--
     </div>
     <div class="block-content">
 -->
     <?php if ($_cartQty>0): ?>
+        <h3>カート</h3>
+       <div class="h3_point_inner">
         <div class="summary">
             <?php if ($_cartQty==1): ?>
                 <p class="amount"><?php echo $this->__('There is <a href="%s">1 item</a> in your cart.', $this->getUrl('checkout/cart')) ?></p>
@@ -64,7 +64,8 @@
     <?php if($_cartQty && $this->isPossibleOnepageCheckout()): ?>
     <div class="actions">
         <?php echo $this->getChildHtml('extra_actions') ?>
-        <button type="button" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Checkout')) ?>" class="button" onclick="setLocation('<?php echo $this->getCheckoutUrl() ?>')"><span><span><?php echo $this->__('Checkout') ?></span></span></button>
+        <button type="button" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Checkout')) ?>" class="btnOrange" onclick="setLocation('<?php echo $this->getCheckoutUrl() ?>')"><span><span><?php echo $this->__('Checkout') ?></span></span></button>
+    </div>
     </div>
     <?php endif ?>
     <?php /*
@@ -81,6 +82,6 @@
         <p class="empty"><?php echo $this->__('You have no items in your shopping cart.') ?></p>
     <?php endif ?>
     */?>
-    </div>
+</div>
 </div>
 <?php endif;?>

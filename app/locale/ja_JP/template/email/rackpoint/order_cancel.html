@@ -1,0 +1,16 @@
+<!--@subject {{var store.getFrontendName()}}: ポイント残高更新 @-->
+{{var customer.lastname}} {{var customer.firstname}}様
+<br />
+お客様のお使いになられたポイントをご注文のキャンセルに伴い払い戻し致しました。
+<br />
+{{depend order.getPointUsedCanceled()}}
+払戻ポイント: +{{var order.point_used_canceled}} ポイント
+{{/depend}}
+
+{{depend order.getPointReceivedCanceled()}}
+<br />
+ご注文のキャンセルに伴う加算予定ポイントの取り消し:
+取消ポイント: -{{var order.point_received_canceled}} ポイント
+{{/depend}}
+<br />
+現在のポイント残高: <strong>{{var balance.balance}}</strong>

@@ -30,13 +30,7 @@
     
 <?php echo $this->getMessagesBlock()->toHtml() ?>
 <?php echo $this->getChildHtml('hello') ?>
-
-<div class="dashbord_point">
-<p class="dashbord_sub">ポイントの詳細</p>
-<p class="dashbord_p01">お客様のポイント<span>0</span></p>
-<p class="dashbord_p02"><span>480</span>ポイントが承認待ちです</p>
-<p><a href="#">ポイントの詳細はこちら</a></p>
-</div>
+<?php echo $this->getChildHtml('point') ?>
 
 <div class="dashbord_table">
 <?php echo $this->getChildHtml('top') ?>
@@ -50,6 +44,6 @@
 <div class="dashbord_box02"><?php echo $this->getChildHtml('address') ?></div>
 </div>
 </section>
-    <?php echo $this->getChildHtml('info1') ?>
-    <?php echo $this->getChildHtml('info2') ?>
+    <?php //echo $this->getChildHtml('info1') ?>
+    <?php //echo $this->getChildHtml('info2') ?>
 </div>

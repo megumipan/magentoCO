@@ -1,0 +1,6 @@
+<?php if ($this->canShow() && $this->getReceivedPointForCreditmemo() > 0): ?>
+<p>
+  <label for="received_point_amount" class="normal"><?php echo $this->__('Adjustment received point refund') ?></label>
+  <input type="text" id="received_point_amount" style="width:60px;text-align:right" class="input-text not-negative-amount" value="<?php echo $this->getReceivedPointForCreditmemo() ?>" name="creditmemo[adjustment_point_received]" />
+</p>
+<?php endif; ?>

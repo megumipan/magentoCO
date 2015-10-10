@@ -24,17 +24,21 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
-
+<style>
+<!--
+    .back_btn{ display:none!important; }
+-->
+</style>
 <div class="page-title">
     <h2 class="h2_heading"><?php echo Mage::helper('customer')->__('You are now logged out') ?></h2>
 </div>
                    <div id="category">
                     <section id="log_out">
-                        <p style="font-size:16px; line-height:1.3;">ありがとうございます。またのご利用をおまちしております。<br>ログアウトしました。5秒後にTOPページに移動します。</p>
+                        <p style="font-size:16px; line-height:1.3;margin-bottom:1em;">ありがとうございます。またのご利用をおまちしております。<br>ログアウトしました。5秒後にTOPページに移動します。</p>
                     </section>
                     <!-- // log_out -->
-                       <div class="back_btn"><!-- 前のページに戻る -->
-                            <a href="<?php echo $this->getUrl('home'); ?>"><p class="arr"></p><p class="arr_txt">サイトトップへ</p></a>
+                       <div><!-- 前のページに戻る -->
+                            <p><a href="<?php echo $this->getUrl('home'); ?>">サイトトップへ</a></p>
                         </div>
                     
 

@@ -38,7 +38,7 @@
             <?php if ($this->helper('wishlist')->isRssAllow() && $this->hasWishlistItems()): ?>
                 <a href="<?php echo $this->helper('wishlist')->getRssUrl($this->getWishlistInstance()->getId()); ?>" class="link-rss"><?php echo $this->__('RSS Feed') ?></a>
             <?php endif; ?>
-            <h1><?php echo $this->getTitle(); ?></h1>
+            <h2 class="h2_heading"><?php echo $this->getTitle(); ?></h2>
         </div>
         <?php echo $this->getMessagesBlock()->toHtml() ?>
 
@@ -56,7 +56,7 @@
                 <?php else: ?>
                     <p class="wishlist-empty"><?php echo $this->__('You have no items in your wishlist.') ?></p>
                 <?php endif ?>
-                <div class="buttons-set buttons-set2">
+                <div class="btns" style="text-align:right;">
                     <?php echo $this->getChild('control_buttons')->toHtml();?>
                 </div>
             </fieldset>
@@ -98,8 +98,8 @@
         </script>
     </div>
     <?php echo $this->getChildHtml('bottom'); ?>
-    <div class="buttons-set">
-        <p class="back-link"><a href="<?php echo $this->escapeUrl($this->getBackUrl()) ?>"><small>&laquo; </small><?php echo $this->__('Back') ?></a></p>
-    </div>wishilist
+    <div>
+        <p class="back-link"><a href="<?php echo $this->escapeUrl($this->getBackUrl()) ?>" class="back_btn"><span class="arr_txt">前のページに戻る</span></a></p>
+    </div>
 <?php endif ?>
-J:\magento\ba\magento\app\design\frontend\hirochi\default\template\wishlist
+<!-- J:\magento\ba\magento\app\design\frontend\hirochi\default\template\wishlist -->

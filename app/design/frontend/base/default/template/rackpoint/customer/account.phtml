@@ -1,0 +1,30 @@
+<div class="dashboard">
+    <div class="page-title">
+        <h1><?php echo $this->__('Customer Points') ?></h1>
+    </div>
+    <div class="box-account box-info">
+        <div class="box-head">
+            <h2><?php echo $this->__('Current Balance') ?></h2>
+        </div>
+        <div class="box">
+            <div class="box-content">
+                <div>
+                    <?php echo $this->__('Current point balance') ?>: <strong><?php echo $this->formatPoint($this->getCurrentBalance()) ?></strong>
+                </div>
+                <div>
+                    <?php echo $this->__('Current point rate') ?>: <strong><?php echo $this->getRateDescription() ?></strong>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="box-account box-info">
+        <div class="box-head">
+            <h2><?php echo $this->__('Transaction History') ?></h2>
+        </div>
+        <div class="box">
+            <div class="box-content">
+                <?php echo $this->getChildHtml('rackpoint.history') ?>
+            </div>
+        </div>
+    </div>
+</div>

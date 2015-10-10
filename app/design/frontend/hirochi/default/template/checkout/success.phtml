@@ -24,12 +24,33 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
-<div class="page-title">
-    <h1><?php echo $this->__('Your order has been received.') ?></h1>
+<style>
+<!--
+    .back_btn{ display:none; }
+-->
+</style>
+<div class="col-main">
+    <h2 class="h2_heading">
+        <?php //echo $this->__('Your order has been received.') ?>
+        注文手続き完了
+    </h2>
+    <div id="register_07">
+        <section id="register_complet">
+            <div class="message">
+                <h3>ご注文を完了致しました！</h3>
+                <p class="fs16">ご指定通りご注文をお受けいたしました。<br>商品ご到着まで今しばらくお待ちください。</p>
+            </div>
+        </section>
+    </div>
 </div>
-<?php echo $this->getMessagesBlock()->toHtml() ?>
-<h2 class="sub-title"><?php echo $this->__('Thank you for your purchase!') ?></h2>
+<?php //echo $this->getMessagesBlock()->toHtml() ?>
+<!-- <h2 class="sub-title"><?php //echo $this->__('Thank you for your purchase!') ?></h2> -->
 
+
+
+
+
+<?php /*
 <?php if ($this->getOrderId()):?>
 <?php if ($this->getCanViewOrder()) :?>
     <p><?php echo $this->__('Your order # is: %s.', sprintf('<a href="%s">%s</a>', $this->escapeHtml($this->getViewOrderUrl()), $this->escapeHtml($this->getOrderId()))) ?></p>
@@ -62,3 +83,4 @@
 <div class="buttons-set">
     <button type="button" class="button" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Continue Shopping')) ?>" onclick="window.location='<?php echo $this->getUrl() ?>'"><span><span><?php echo $this->__('Continue Shopping') ?></span></span></button>
 </div>
+*/?>

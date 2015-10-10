@@ -35,7 +35,6 @@
     $_helper = $this->helper('catalog/output');
 ?>
    
-   
 <div class="page_review">
 <div class="review_item">
 <div class="cf clear">
@@ -68,9 +67,9 @@
         
         <script type="text/javascript">
             //<![CDATA[
-//            Event.observe(window, 'load', function () {
-//                product_zoom = new Product.Zoom('image', 'track', 'handle', 'zoom_in', 'zoom_out', 'track_hint');
-//            });
+            Event.observe(window, 'load', function () {
+                product_zoom = new Product.Zoom('image', 'track', 'handle', 'zoom_in', 'zoom_out', 'track_hint');
+            });
             //]]>
         </script>
         <?php else: ?>
@@ -78,14 +77,13 @@
         
             <p class="product-image">
                 <?php
-        $_img = '<img src="'.$this->helper('catalog/image')->init($_product, 'image')->resize(265).'" alt="'.$this->escapeHtml($this->getImageLabel()).'" title="'.$this->escapeHtml($this->getImageLabel()).'" />';
+        $_img = '<img src="'.$this->helper('catalog/image')->init($_product, 'image')->resize(80).'" alt="'.$this->escapeHtml($this->getImageLabel()).'" title="'.$this->escapeHtml($this->getImageLabel()).'" />';
         echo $_helper->productAttribute($_product, $_img, 'image');
     ?>
             </p>
             <?php endif; ?>
                 <?php if (count($this->getGalleryImages()) > 0): ?>
                     <div class="more-views">
-                        <h2><?php echo $this->__('More Views') ?></h2>
                         <ul>
                             <?php foreach ($this->getGalleryImages() as $_image): ?>
                                 <li>
@@ -100,5 +98,5 @@
 </div>
 </div>
 </div>
-                                                <?php // echo $this->getChildHtml('after'); ?>
-mediamedia
+                                                <?php  echo $this->getChildHtml('after'); ?>
+

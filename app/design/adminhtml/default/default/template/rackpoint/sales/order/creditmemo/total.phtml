@@ -1,0 +1,16 @@
+<?php $this->setPriceDataObject($this->getSource()) ?>
+<?php if ((float) $this->getSource()->getPointUsed()): ?>
+    <?php $_helper = Mage::helper('rackpoint') ?>
+    <tr>
+        <td class="label nobr">
+            <strong><?php echo $this->__('Point Used') ?></strong>
+            <span class="rate-desc">
+                (<?php echo $_helper->getPointRateDescription($this->getSource()->getOrder()->getPointRate(), $this->getSource()->getOrder()->getStoreId()) ?>)
+            </span>
+        </td>
+        <td class="nobr">
+            <strong><?php echo number_format($this->getSource()->getPointUsed()) ?> </strong>
+            (<strong><?php echo $this->getSource()->getOrder()->formatPrice($_helper->point2Currency($this->getSource()->getPointUsed(), $this->getSource()->getOrder()->getPointRate())) ?></strong>)
+        </td>
+    </tr>
+<?php endif ?>

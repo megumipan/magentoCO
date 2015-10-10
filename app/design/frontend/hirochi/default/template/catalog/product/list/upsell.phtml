@@ -27,6 +27,10 @@
 
 
 <?php if(count($this->getItemCollection()->getItems())): ?>
+<div class="shop_04_relation">
+    <h3 class="gray_line">関連商品</h3>
+    <ul>
+    <?php echo count($this->getItemCollection()->getItems()); ?>
     <?php $this->resetItemsIterator() ?>
     <?php for($_i=0;$_i<$this->getRowCount();$_i++): ?>
         <?php for($_j=0;$_j<$this->getColumnCount();$_j++): ?>
@@ -42,6 +46,7 @@
             <?php endif; ?>
         <?php endfor; ?>
     <?php endfor; ?>
+    </ul>
+</div>
 <?php endif ?>
-<!--    <script type="text/javascript">decorateTable('upsell-product-table')</script>-->
-/magento/app/design/frontend/hirochi/default/template/catalog/product/list/upsell.phtml
+<script type="text/javascript">decorateTable('upsell-product-table')</script>

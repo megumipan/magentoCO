@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addCss"><stylesheet>css/rackpoint.css</stylesheet></action>
+            <action method="addItem"><type>skin_js</type><name>js/livepipe.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/window.js</name></action>
+        </reference>
+    </default>
+    <customer_account>
+        <reference name="customer_account_navigation">
+            <action method="addLink" translate="label" module="customer"><name>rackpoint</name><path>rackpoint/account/</path><label>Customer Points</label></action>
+            <action method="addLink" translate="label" module="customer" ifconfig="rackpoint/invitation/enable"></action>
+        </reference>
+    </customer_account>
+    <rackpoint_account_index>
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="rackpoint/customer_account" name="rackpoint.customer.account" template="rackpoint/customer/account.phtml">
+                <block type="rackpoint/customer_history" name="rackpoint.history" template="rackpoint/customer/history.phtml" />
+            </block>
+        </reference>
+    </rackpoint_account_index>
+    <checkout_cart_index>
+        <reference name="checkout.cart.form.before">
+            <block type="rackpoint/checkout_cart_info" name="cart.point.info" template="rackpoint/checkout/cart/info.phtml" />
+            <block type="core/template" name="point.info.script" template="rackpoint/checkout/total/script.phtml" />
+        </reference>
+    </checkout_cart_index>
+    <checkout_onepage_index>
+        <reference name="before_body_end">
+            <block type="core/template" name="point.info.script" template="rackpoint/checkout/total/script.phtml" />
+        </reference>
+    </checkout_onepage_index>
+<!--    <checkout_onepage_index>
+        <reference name="checkout.onepage.payment">
+            <action method="setTemplate"><template>rackpoint/checkout/onepage/payment.phtml</template></action>
+            <block type="rackpoint/checkout_onepage_point" name="rackpoint.payment" as="additional" template="rackpoint/checkout/onepage/point.phtml" />
+            <block type="core/template" name="rackpoint.script" as="script" template="rackpoint/checkout/onepage/script.phtml" />
+        </reference>
+    </checkout_onepage_index>-->
+    
+    <checkout_onepage_paymentmethod>
+        <reference name="root">
+            <action method="setTemplate"><template>rackpoint/checkout/onepage/payment/methods.phtml</template></action>
+            <block type="core/text_list" name="rackpoint.form">
+                <block type="core/template" name="rackpoint.script" as="script" before="additional" template="rackpoint/checkout/onepage/script.phtml" />
+                <block type="rackpoint/checkout_onepage_point" name="rackpoint.payment" as="rackpoint.additional" template="rackpoint/checkout/onepage/point.phtml" />
+            </block>
+        </reference>
+    </checkout_onepage_paymentmethod>
+    
+    <sales_order_view>
+        <reference name="order_totals">
+            <block type="rackpoint/sales_order_total" name="rackpoint.sales.order.total" before="grand_total" />
+        </reference>
+    </sales_order_view>
+    <sales_order_print>
+        <reference name="order_totals">
+            <block type="rackpoint/sales_order_total" name="rackpoint.sales.order.total" />
+        </reference>
+    </sales_order_print>
+    <sales_email_order_items>
+        <reference name="order_totals">
+           <block type="rackpoint/sales_order_total" name="rackpoint.sales.order.total" />
+        </reference>
+    </sales_email_order_items>
+
+    <sales_order_invoice>
+        <reference name="invoice_totals">
+            <block type="rackpoint/sales_order_total" name="rackpoint.sales.order.total" />
+        </reference>
+    </sales_order_invoice>
+    <sales_order_printinvoice>
+        <reference name="invoice_totals">
+            <block type="rackpoint/sales_order_total" name="rackpoint.sales.order.total" />
+        </reference>
+    </sales_order_printinvoice>
+    <sales_email_order_invoice_items>
+        <reference name="invoice_totals">
+            <block type="rackpoint/sales_order_total" name="rackpoint.sales.order.total" />
+        </reference>
+    </sales_email_order_invoice_items>
+
+    <sales_order_creditmemo>
+        <reference name="creditmemo_totals">
+            <block type="rackpoint/sales_order_total" name="rackpoint.sales.order.total" />
+        </reference>
+    </sales_order_creditmemo>
+    
+    <sales_order_printcreditmemo>
+        <reference name="creditmemo_totals">
+            <block type="rackpoint/sales_order_total" name="rackpoint.sales.order.total" />
+        </reference>
+    </sales_order_printcreditmemo>
+    
+    <rackpoint_email_order_items>
+        <block type="sales/order_email_items" name="items" template="rackpoint/email/order/items.phtml">
+            <action method="addItemRender"><type>default</type><block>sales/order_email_items_order_default</block><template>rackpoint/email/order/items/order/default.phtml</template></action>
+            <action method="addItemRender"><type>grouped</type><block>sales/order_email_items_order_grouped</block><template>rackpoint/email/order/items/order/default.phtml</template></action>
+            <block type="sales/order_totals" name="order_totals" template="rackpoint/email/order/totals.phtml">
+                <action method="setLabelProperties"><value>colspan="4" align="right" style="padding:3px 9px"</value></action>
+                <action method="setValueProperties"><value>align="right" style="padding:3px 9px"</value></action>
+                <block type="tax/sales_order_tax" name="tax" template="tax/order/tax.phtml">
+                    <action method="setIsPlaneMode"><value>1</value></action>
+                </block>
+            </block>
+        </block>
+    </rackpoint_email_order_items>
+
+    <rackpoint_email_invoice_items>
+        <block type="sales/order_email_invoice_items" name="items" template="rackpoint/email/order/invoice/items.phtml">
+            <action method="addItemRender"><type>default</type><block>sales/order_email_items_default</block><template>rackpoint/email/order/items/invoice/default.phtml</template></action>
+            <action method="addItemRender"><type>grouped</type><block>sales/order_email_items_order_grouped</block><template>rackpoint/email/order/items/invoice/default.phtml</template></action>
+            <block type="sales/order_invoice_totals" name="invoice_totals" template="rackpoint/email/order/totals.phtml">
+                <action method="setLabelProperties"><value>colspan="4" align="right" style="padding:3px 9px"</value></action>
+                <action method="setValueProperties"><value>align="right" style="padding:3px 9px"</value></action>
+                <block type="tax/sales_order_tax" name="tax" template="tax/order/tax.phtml"/>
+            </block>
+        </block>
+    </rackpoint_email_invoice_items>
+    
+    <rackpoint_email_creditmemo_items>
+        <block type="sales/order_email_creditmemo_items" name="items" template="rackpoint/email/order/creditmemo/items.phtml">
+            <action method="addItemRender"><type>default</type><block>sales/order_email_items_default</block><template>rackpoint/email/order/items/creditmemo/default.phtml</template></action>
+            <action method="addItemRender"><type>grouped</type><block>sales/order_email_items_order_grouped</block><template>rackpoint/email/order/items/creditmemo/default.phtml</template></action>
+            <block type="sales/order_creditmemo_totals" name="creditmemo_totals" template="rackpoint/email/order/creditmemo/totals.phtml">
+                <action method="setLabelProperties"><value>colspan="4" align="right" style="padding:3px 9px"</value></action>
+                <action method="setValueProperties"><value>align="right" style="padding:3px 9px"</value></action>
+                <block type="tax/sales_order_tax" name="tax" template="tax/order/tax.phtml"/>
+            </block>
+        </block>
+    </rackpoint_email_creditmemo_items>
+    
+</layout>

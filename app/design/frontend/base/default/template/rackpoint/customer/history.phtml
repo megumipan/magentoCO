@@ -1,0 +1,46 @@
+<?php $_histories = $this->getHistories(); ?>
+<?php echo $this->getPagerHtml(); ?>
+<?php if($_histories->getSize()): ?>
+<table class="data-table" id="my-histories-table">
+    <col width="1" />
+    <col width="1" />
+    <col />
+    <col width="1" />
+    <col width="1" />
+    <col width="1" />
+    <thead>
+        <tr>
+            <th><?php echo $this->__('Ref #') ?></th>
+            <th><?php echo $this->__('Action') ?></th>
+            <th><?php echo $this->__('Point Delta') ?></th>
+            <th><?php echo $this->__('Currency') ?></th>
+            <th><?php echo $this->__('Point Rate') ?></th>
+            <th><?php echo $this->__('Comment') ?></th>
+            <th><span class="nobr"><?php echo $this->__('Date') ?></span></th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php $_odd = ''; ?>
+        <?php foreach ($_histories as $_h): ?>
+        <tr>
+            <td><?php echo $_h->getRefId() ?></td>
+            <td><?php echo $_h->getAction() ?></td>
+            <?php if ($_h->getPoint() > 0): ?>
+                <td class="nobr">+<?php echo number_format($_h->getPoint()) ?></td>
+                <td class="nobr">+<?php echo $_h->getCurrency(true, true) ?></td>
+            <?php else: ?>
+                <td class="nobr"><?php echo number_format($_h->getPoint()) ?></td>
+                <td class="nobr"><?php echo $_h->getCurrency(true, true) ?></td>
+            <?php endif ?>
+            <td><span class="nobr"><?php echo $_h->getRateDescription() ?></span></td>
+            <td width="99%"><?php echo $_h->getComment() ?></td>
+            <td><?php echo $_h->getCreatedAtFormated() ?></td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+<script type="text/javascript">decorateTable('my-histories-table');</script>
+<?php echo $this->getPagerHtml(); ?>
+<?php else: ?>
+    <p><?php echo $this->__('You have placed no point transaction history.'); ?></p>
+<?php endif ?>

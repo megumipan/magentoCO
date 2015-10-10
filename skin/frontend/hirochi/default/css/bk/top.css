@@ -1,0 +1,637 @@
+@charset 'UTF-8';
+/***********************************
+		汎用・基本クラス
+***********************************/
+
+
+html,body{ height:100%; }
+body{ 
+	background-color:#fff;/* 背景色 */
+	font-family: "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, 'ＭＳ Ｐゴシック', Helvetica, Arial, Verdana, sans-serif;
+	color:#000;/* 文字色 */
+	margin:0;
+	/* 基本フォントサイズ */
+	font-size:14px;
+}
+
+
+
+/* topページ
+-------------------------------------------------------*/
+body{
+    margin: 0;
+	padding:0;
+}
+body li{
+    list-style-type: none;
+}
+body p{
+    margin: 0;
+}
+/*-----ヘッダー　ここから-----*/
+#header-container{
+    position: relative;
+    width: 100%;
+    /*height: 250px;*/
+    display: block;
+    background-image: url(../images/black_gr.png);
+    background-repeat: repeat-x;
+	/*margin-bottom: 32px;*/
+}
+#header-container .header{
+    overflow: hidden;
+    margin: 0 auto;
+    width: 1000px;
+	padding: 0 0 15px;
+}
+#header-container .quick-access{
+    display: block;
+    vertical-align: bottom;
+    overflow: hidden;
+}
+#header-container .quick-access p{
+    margin: 0;
+    font-size: 12px;
+    float: left;
+    color: #fff;
+    padding: 9px;
+}
+#header-container .quick-access ul{
+    font-size: 0px;
+    margin-top: 9px;
+    padding: 0;
+    overflow: hidden;
+    float: right;
+}
+#header-container .quick-access li{
+    font-size: 12px;
+    float: left;
+}
+#header-container .quick-access a:hover{
+    opacity: 0.7;
+}
+#header-container .quick-access .gray a{
+    display: block;
+    float: left;
+    margin-left: 5px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #767171;
+    text-align: center;
+    width: 65px;
+    padding: 4px 0;
+}
+#header-container .quick-access .red a{
+    display: block;
+    float: left;
+    margin-left: 5px;
+    text-decoration: none;
+    color: #000000;
+    background-color: #ff3e08;
+    text-align: center;
+    width: 95px;
+    padding: 4px 0;
+}
+#header-container #title{
+    overflow: hidden;
+	padding:0 0 30px;
+	box-sizing:border-box;
+	}
+
+#header-container .logo{
+    display: block;
+    width: 690px;
+    float: left;
+}
+#header-container .logo img{
+    vertical-align: bottom;
+	
+}
+#header-container .logo p{
+    font-size: 18px;
+    width: 100%;
+    color: #fff;
+    margin: 3px 0 0;
+}
+#header-container .logo p span{
+    font-family: Impact,Charcoal;
+    font-size: 22px;
+}
+#header-container .info{
+    display: block;
+    color: #fff;
+    margin: 15px 0 0;
+    width: 235px;
+    float: right;
+}
+#header-container .info p{
+    font-size: 12px;
+    margin: 0;
+    text-align: center;
+}
+#header-container .info p:first-child{
+    font-size: 14px;
+    border: solid 1px #fff;
+	padding:5px;
+}
+#header-container .info p:nth-child(2){
+    font-size: 11px;
+    padding-top: 3px;
+}
+#header-container .info p:last-child{
+    font-family: sans-serif;
+    font-size: 24px;
+}
+
+/*----- メニュー部分 -----*/
+#nav{
+    display: block;
+    width: 1000px;
+    text-align: left;
+}
+#nav ul{
+    display: table;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 0;
+}
+#nav ul li{
+    display: table-cell;
+    color: #ed7d31;
+}
+#nav ul li:first-child{
+    border-left: solid 1px #ff3e08;
+}
+#nav ul li a{
+    font-size: 14px;
+    display: table-cell;
+    color: #ed7d31;
+    background-color: #404040;
+    text-align: center;
+    text-decoration: none;
+    padding: 3px 0;
+    width: 165px;
+    float: left;
+    border-top: solid 1px #ff3e08;
+    border-right: solid 1px #ff3e08;
+}
+#nav ul li a:hover{
+    background-color: #ed7d31;
+    color: #404040;
+}
+
+.nav_02{
+    border-bottom:solid 1px #ff3e08;
+}
+
+/*------- 検索窓 -------*/
+#search_box{
+    float: left;
+    margin-top: 10px;
+}
+#search_box .search{
+    position: absolute;
+    bottom: 10px;
+    height: 30px;
+}
+#search_box p{
+    color: #fff;
+    float: left;
+    margin:10px 10px 5px 0;
+}
+#search_box input[type="text"]{
+    padding: 7px;
+    width: 265px;
+    border: solid 1px #000000;
+}
+input[type="image"]{
+    height: 30px;
+    vertical-align: middle;
+}
+#link{
+    margin-top: 15px;
+    float: right;
+}
+#link .btn{
+    float: left;
+    margin: 0 0 0 5px;
+}
+#link .btn a{
+    display: block;
+    text-align: center;
+    color: #000000;
+    text-decoration: none;
+    width: 94px;
+    padding: 6px;
+    font-size: 12px;
+    border: solid 1px #000;
+    background-image: url(../images/gray_gr.png);   
+}
+/*-----ヘッダー　ここまで-----*/
+
+/*-----メインカラム　ここから-----*/
+#main{
+    overflow: hidden;
+    margin: 20px auto 60px;
+    width: 1000px;
+}
+#main .col-main{
+    display: block;
+    margin: 0 20px;
+    width: 580px;
+    float: left;
+}
+#main .col-main img{
+    vertical-align: bottom;
+}
+#news{
+    margin: 20px 0 ;
+}
+#news .news_title{
+    display: block;
+    overflow: hidden;
+    padding-bottom: 4px;
+    border-bottom: solid 3px #000000;
+}
+#news .news_title p{
+    float: left;
+    font-family: Impact,Charcoal;
+    font-size: 24px;
+    color: #595959;
+}
+#news .news_title img{
+    float: right;
+}
+#news ul{
+    padding: 0;
+}
+#news li{
+    padding: 10px 7px 7px 8px;
+    font-size: 12px;
+    border-bottom: solid 1px #d9d9d9;
+}
+#news li span{
+    margin-right: 20px;
+}
+#news li a{
+    text-decoration: none;
+    color: #000000;
+}
+#news li a:hover{
+    text-decoration: underline;
+}
+
+/* 各コンテンツ見出し  */
+.title{
+    text-align: center;
+    font-size: 25px;
+    color: #fff;
+    background-color:#7f7f7f;
+    padding: 15px;
+	font-family:'ヒラギノ明朝 Pro','Hiragino Mincho Pro','ＭＳ Ｐ明朝','MS PMincho',serif;
+	box-sizing:border-box;
+	height:50px;
+}
+
+
+#main .col-main .maker_box{
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+#main .col-main .maker_box ul{
+    text-align: center;
+    float: left;
+    width: 134px;
+    margin: 10px 9px 0 0;
+    padding: 0;
+}
+#main .col-main .maker_box ul li:last-child{
+    font-size: 11px;
+    padding: 8px 0;
+}
+#main .col-main .maker_box ul li span{
+    text-align: center;
+}
+#main .col-main .maker_box img{
+    margin: 0 9px 0 0;
+    border: solid 1px #d9d9d9;
+}
+/*#main .col-main .tire_maker{
+    overflow: hidden;
+}*/
+#main .col-main .tire_maker p{
+    margin-top: 11px;
+    padding: 0 10px;
+    font-size: 13px;
+}
+#main .col-main .lead p{
+    margin-top: 11px;
+    padding: 0 10px;
+    font-size: 13px;
+}
+#main .col-main .recommend .maker_box ul li a{
+    color: #000000;
+    text-decoration: none;
+}
+#main .col-main .recommend .maker_box ul li:nth-child(2){
+    text-align: left;
+    font-size: 11px;
+    padding: 8px 0 0;
+}
+#main .col-main .recommend .maker_box ul span{
+    color: #ff0000;
+    font-size: 11px;
+}
+/*-----メインカラム　ここまで-----*/
+
+/*-----左カラム　ここから-----*/
+#main .col-left{
+    display: block;
+    width: 190px;
+    text-align: left;
+    float: left;
+}
+#main .col-left .accordion,
+#main .col-left .accordion ul{
+     margin: 0;
+    padding: 0;
+}
+#main .col-left .accordion img{
+    margin-top: 20px;
+    vertical-align: bottom;
+}
+#main .col-left .accordion img:first-child{
+    margin-top: 0;
+}
+#main .col-left .accordion p{
+    font-size: 14px;
+    margin: 0;
+    padding: 10px 5px;
+    border-bottom: solid 1px #d9d9d9;
+	font-weight:bold;
+	}
+#main .col-left .accordion p:hover{
+    cursor: pointer;
+}
+/*　通常時＋が開いていないとき  */
+#main .col-left .accordion li p span{
+    padding-left: 20px;
+    background-image: url(../images/close.png);
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
+    background-size: 16px;
+    min-height: 16px;
+    line-height: 16px;
+    display: inline-block;
+    backface-visibility: hidden;
+}
+/*　クリックで＋が開いたとき  */
+#main .col-left .accordion li p span.open{
+    background-image: url(../images/open.png);
+    background-repeat: no-repeat;
+	}
+#main .col-left .accordion ul li{
+    padding: 5px;
+    font-size: 12px;
+    border-bottom: dotted 1px #d9d9d9;
+    position: relative;
+    height: 20px;
+}
+#main .col-left .box .mb05{
+	margin-bottom:5px;
+}
+#main .col-left .accordion ul li a{
+    text-decoration: none;
+    color: #000000;
+    position: absolute;
+    width: 100%;
+}
+#main .col-left .accordion ul li a:hover{
+    text-decoration: underline;
+}
+.calender{
+    width: 100%;
+    border: solid 1px #d9d9d9;
+    margin-top: 20px;
+    padding-bottom: 18px;
+}
+.calender p{
+    margin: 0 20px;
+    font-size: 12px;
+}
+.calender p img{
+    vertical-align: middle;
+    margin-right: 5px;
+}
+/*-----左カラム　ここまで-----*/
+
+/*-----右カラム　ここから-----*/
+#main .col-right{
+    width: 190px;
+    float: left;
+}
+#main .col-right p img{
+    vertical-align: bottom;
+    border: solid 1px #d9d9d9;
+}
+#main .col-right .pay{
+    margin-top: 20px;
+    border: solid 1px #d9d9d9;
+}
+#main .col-right .pay p{
+    font-size: 12px;
+    padding: 0 5px;
+}
+#main .col-right .pay ul{
+    padding: 0 5px;
+    margin: 0 0 25px;
+}
+#main .col-right .pay li{
+    font-size: 12px;
+    font-weight: bold;
+    padding-left: 14px;
+    text-indent: -12px;
+}
+#main .col-right .infomation{
+    margin-top: 20px;
+    background-color: #f8f8f8;
+    border: solid 1px #d9d9d9;
+}
+#main .col-right .infomation ul{
+    padding-left: 0px;
+    margin: 0 10px;
+}
+#main .col-right .infomation .info_box{
+    margin: 0 5px;
+}
+#main .col-right .infomation a{
+    text-decoration: none;
+    color: #000000;
+    font-size: 12px;
+    line-height: 1.3;
+}
+#main .col-right .infomation a:hover{
+    text-decoration: underline;
+}
+#main .col-right .infomation section{
+    border-bottom: solid 1px #d9d9d9;
+    height: 40px;
+}
+#main .col-right .infomation section img{
+    float: left;
+    margin-right: 10px;
+    padding-top: 3px;
+    
+}
+#main .col-right .infomation section p{
+    height: 40px;
+    display: table-cell;
+    vertical-align: middle;
+}
+/*-----右カラム　ここまで-----*/
+
+/*-----フッター　ここから-----*/
+footer{
+    overflow: hidden;
+    width: 100%;
+    height: 380px;
+    background-image: url(../images/footerblack_gr.png);
+    background-repeat: repeat-x;  
+}
+#footer-container{
+    width: 1000px;
+    margin: 10px auto 0;
+    overflow: hidden;
+}
+
+#footer-container #nav{
+    overflow: hidden;
+    width: 1000px;
+    text-align: left;
+    margin-top: 69px;
+}
+
+#footer-container #nav ul li{
+    display: table-cell;
+    color: #ed7d31;
+}
+
+#footer-container #nav ul li a:hover{
+    background-color: #ed7d31;
+    color: #404040;
+}
+
+
+
+#footer-container .quick-access{
+    display: block;
+    vertical-align: bottom;
+    overflow: hidden;
+    margin-top: 25px;
+}
+#footer-container .quick-access p{
+    margin: 0;
+    font-size: 12px;
+    float: left;
+    color: #fff;
+    padding: 9px;
+}
+#footer-container .quick-access ul{
+    font-size: 0px;
+    margin-top: 9px;
+    padding: 0;
+    overflow: hidden;
+    float: right;
+}
+#footer-container .quick-access li{
+    font-size: 12px;
+    float: left;
+}
+#footer-container .quick-access a:hover{
+    opacity: 0.7;
+}
+#footer-container .quick-access .gray a{
+    display: block;
+    float: left;
+    margin-left: 5px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #767171;
+    text-align: center;
+    width: 65px;
+    padding: 4px 0;
+}
+#footer-container .quick-access .red a{
+    display: block;
+    float: left;
+    margin-left: 5px;
+    text-decoration: none;
+    color: #000000;
+    background-color: #ff3e08;
+    text-align: center;
+    width: 95px;
+    padding: 4px 0;
+}
+#footer-container .logo{
+    display: block;
+    width: 690px;
+    float: left;
+}
+#footer-container .logo img{
+    vertical-align: bottom;
+}
+#footer-container .logo p{
+    font-size: 18px;
+    width: 100%;
+    color: #fff;
+    margin: 3px 0 0;
+}
+#footer-container .logo p span{
+    font-family: Impact,Charcoal;
+    font-size: 22px;
+}
+#footer-container .info{
+    display: block;
+    color: #fff;
+    margin: 15px 0 0;
+    width: 235px;
+    float: right;
+}
+#footer-container .info p{
+    font-size: 12px;
+    margin: 0;
+    text-align: center;
+}
+#footer-container .info p:first-child{
+    font-size: 14px;
+    border: solid 1px #fff;
+	padding:5px;
+}
+#footer-container .info p:nth-child(2){
+    font-size: 11px;
+    padding-top: 3px;
+}
+#footer-container .info p:last-child{
+    font-family: Century Gothic;
+    font-size: 29px;
+}
+
+footer .copy{
+	text-align:center;
+	font-size:12px;
+	color:#fff;
+	margin:37px auto 0;
+}
+
+/*-----フッター　ここまで-----*/
+
+
+.block.block-navigation {
+    display: none;
+}
+
+#main .box p{
+	cursor: pointer;
+}
+
+
