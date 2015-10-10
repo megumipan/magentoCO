@@ -25,17 +25,14 @@
 -->
 
 <reference name="left">
-<block type="calendar/widget" name="top-calendar" />
+<block type="calendar/widget" after="left.permanent.callout" name="top-calendar" />
 <block type="checkout/cart_sidebar" name="cart_sidebar" template="checkout/cart/sidebar.phtml">
     <action method="addItemRender"><type>simple</type><block>checkout/cart_item_renderer</block><template>checkout/cart/sidebar/default.phtml</template></action>
 </block>
-<block type="catalog/product_compare_sidebar" name="catalog.compare.sidebar" template="catalog/product/compare/sidebar.phtml"/>
-<!--//ニューアイテム-->
-<block type="cms/block" name="custom.15"><action method="setBlockId"><block_id>15</block_id></action></block>
-<!--//比較
-<block type="cms/block" name="custom.14"><action method="setBlockId"><block_id>14</block_id></action></block>-->
-<!--//SSL -->
-<block type="cms/block" name="custom.13"><action method="setBlockId"><block_id>13</block_id></action></block>
+<block type="amreview/sidebar" after="cart_sidebar" name="amreview_sidebar" template="amreview/sidebar.phtml" />
+<block type="catalog/product_compare_sidebar" name="catalog.compare.sidebar" template="catalog/product/compare/sidebar.phtml"/><!-- hikaku -->
+<block type="cms/block" name="newitems"><action method="setBlockId"><block_id>14</block_id></action></block><!-- newitems -->
+<block type="cms/block" name="sslicon"><action method="setBlockId"><block_id>13</block_id></action></block><!-- ssl -->
 <!--
 <action method="addItemRender"><type>simple</type><block>checkout/cart_item_renderer</block><template>checkout/cart/sidebar/default.phtml</template></action>
 </block>
@@ -45,10 +42,8 @@
 
 
 <reference name="right">
-<!--<remove name="cart_sidebar"/>-->
-<!--<remove name="amreview_sidebar"/>-->
-<remove name="right.reports.product.viewed"/>
 <block type="core/template" name="right.permanent.callout" template="callouts/right_col.phtml"></block>
+<remove name="right.reports.product.viewed"/>
 </reference>
 
 <!--
@@ -92,7 +87,6 @@
 -->
 <!--<remove name="catalog.compare.sidebar" />-->
 <remove name="sale.reorder.sidebar"/>  
-
 <remove name="wishlist_sidebar"/> 
 <remove name="left.newsletter"/>
 <!--<remove name="cart_sidebar"/>-->

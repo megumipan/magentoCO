@@ -35,17 +35,6 @@
 					<prepare>true</prepare>
 				</action>
 			</reference>
-			<reference name="right">
-				<remove name="right.reports.product.viewed" />
-				<block type="core/template" name="right.permanent.callout" template="callouts/right2_col.phtml"></block>
-			</reference>
-
-			<remove name="sale.reorder.sidebar"/>  
-
-			<remove name="wishlist_sidebar"/> 
-			<remove name="left.newsletter"/>
-			<remove name="cart_sidebar"/>
-			<remove name="amreview_sidebar"/>
 		</default>
 
 		<contacts_index_index translate="label">
@@ -66,5 +55,15 @@
 			<reference name="content">
 				<block type="core/template" name="contactForm" template="contacts/form.phtml" />
 			</reference>
+			<reference name="right">
+				<block type="core/template" name="right2.permanent.callout" before="rackpoint.customer.account" template="callouts/right2_col.phtml"></block>
+	            <block type="rackpoint/customer_account" name="rackpoint.customer.account" before="cart" template="rackpoint/customer/point_side.phtml" />
+				<remove name="right.permanent.callout"/>
+				<block type="cms/block" name="custom.13"><action method="setBlockId"><block_id>13</block_id></action></block>
+			</reference>
+			<remove name="sale.reorder.sidebar"/>
+			<remove name="wishlist_sidebar"/>
+			<remove name="left.newsletter"/>
+			<remove name="amreview_sidebar"/>
 		</contacts_index_index>
 	</layout>
