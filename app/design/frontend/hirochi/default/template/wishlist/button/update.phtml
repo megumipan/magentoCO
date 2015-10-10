@@ -26,5 +26,8 @@
 ?>
 
 <?php if($this->getWishlist()->getItemsCount()): ?>
+    <?php /*
     <button type="submit" name="do" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Update Wishlist')) ?>" class="button btn-update"><?php echo $this->__('Update Wishlist') ?></button>
+    */ ?>
+    <a href=""><button type="button" name="do" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Update Wishlist')) ?>" class="button"><?php echo $this->__('Update Wishlist') ?></button></a>
 <?php endif;?>
