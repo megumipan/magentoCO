@@ -1,11 +1,6 @@
 <!--<div class="box-account box-recent">-->
 <?php $_orders = $this->getOrders(); ?>
-    <div class="page-title">
-<h2 class="dashbord_sub"><?php echo $this->__('Recent Orders') ?></h2>
-<?php /*
-   <?php if( sizeof($_orders->getItems()) > 0 ): ?><a href="<?php echo $this->getUrl('sales/order/history') ?>"><?php echo $this->__('View All') ?></a><?php endif; ?>
-*/?>
-</div>
+   <?php if( sizeof($_orders->getItems()) > 0 ): ?><p class="allview"><a href="<?php echo $this->getUrl('sales/order/history') ?>"><?php echo $this->__('View All') ?></a></p><?php endif; ?>
     
 <?php if( sizeof($_orders->getItems()) > 0 ): ?>
     <section id="orders">
@@ -13,7 +8,7 @@
         <tr>
             <th><?php echo $this->__('Order #') ?></th>
             <th><?php echo $this->__('Date') ?></th>
-            <th>配送先</th>
+            <th><?php echo $this->__('Ship To') ?></th>
             <th><?php echo $this->__('Order Total') ?></th>
             <th><?php echo $this->__('Order Status') ?></th>
            <th>&nbsp;</th>
@@ -23,12 +18,20 @@
         <?php $_odd = ''; ?>
         <?php foreach ($_orders as $_order): ?>
         <tr>
-			<td><a href="<?php echo $this->getViewUrl($_order) ?>"><?php echo $_order->getRealOrderId() ?></a></td>
+			<td><a href="<?php echo $this->getViewUrl($_order) ?>" class="titleHistory"><?php echo $_order->getRealOrderId() ?></a></td>
             <td><?php echo $this->formatDate($_order->getCreatedAtStoreDate()) ?></td>
             <td><?php echo $_order->getShippingAddress() ? $this->htmlEscape($_order->getShippingAddress()->getName()) : '&nbsp;' ?></td>
             <td><?php echo $_order->formatPrice($_order->getGrandTotal()) ?></td>
             <td><?php echo $_order->getStatusLabel() ?></td>
-            <td><a href="<?php echo $this->getReorderUrl($_order) ?>">再注文</a></td>
+            <td>
+				<ul class="order_link">
+					<li><a href="<?php echo $this->getViewUrl($_order) ?>">詳細を表示</a></li>
+					<li><a href="<?php echo $this->getReorderUrl($_order) ?>">再注文</a></li>
+					<?php if ($this->helper('cancelorder/customer')->canCancel($_order)) : ?>
+						<li><a href="<?php echo $this->getUrl('sales/order/cancel', array('order_id' => $_order->getId())) ?>"><?php echo $this->__('Cancel') ?></a></li>
+					<?php endif ?>
+				</ul>
+            </td>
         </tr>
         <?php endforeach; ?>
  </table>                </tr>

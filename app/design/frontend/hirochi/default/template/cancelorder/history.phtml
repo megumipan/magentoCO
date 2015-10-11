@@ -3,21 +3,11 @@
 <div class="page-title">
     <h2 class="h2_heading"><?php echo $this->__('My Orders') ?></h2>
 </div>
-<div id="category">
-<?php echo $this->getPagerHtml(); ?>
-<?php if($_orders->getSize()): ?>
 <section id="order">
-                       <div class="select">
-                           <div>
-                           <p>表示</p>
-                                <select name="number">
-                                    <option value="10">10件
-                                    <option value="15">15件
-                                    <option value="20">20件
-                                </select>
-                            </div>
-                        </div>
-                         <p class="display">1件目～1件目まで表示 (全1件中)</p>
+<div class="select">
+<?php echo $this->getPagerHtml(); ?>
+</div>
+<?php if($_orders->getSize()): ?>
 <table>
         <tr>
             <th><?php echo $this->__('Order #') ?></th>
@@ -25,47 +15,35 @@
             <th><?php echo $this->__('Ship To') ?></th>
             <th><?php echo $this->__('Order Total') ?></th>
             <th><?php echo $this->__('Order Status') ?></th>
-<!--            <th>&nbsp;</th>-->
+            <th>&nbsp;</th>
         </tr>
     
     
         <?php $_odd = ''; ?>
         <?php foreach ($_orders as $_order): ?>
         <tr>
-            <td><?php echo $_order->getRealOrderId() ?></td>
+			<td><a href="<?php echo $this->getViewUrl($_order) ?>"><?php echo $_order->getRealOrderId() ?></a></td>
             <td><?php echo $this->formatDate($_order->getCreatedAtStoreDate()) ?></td>
             <td><?php echo $_order->getShippingAddress() ? $this->htmlEscape($_order->getShippingAddress()->getName()) : '&nbsp;' ?></td>
             <td><?php echo $_order->formatPrice($_order->getGrandTotal()) ?></td>
             <td><?php echo $_order->getStatusLabel() ?></td>
-<!--            <td></td>-->
+            <td>
+				<ul class="order_link">
+					<li><a href="<?php echo $this->getViewUrl($_order) ?>">詳細を表示</a></li>
+					<li><a href="<?php echo $this->getReorderUrl($_order) ?>">再注文</a></li>
+					<?php if ($this->helper('cancelorder/customer')->canCancel($_order)) : ?>
+						<li><a href="<?php echo $this->getUrl('sales/order/cancel', array('order_id' => $_order->getId())) ?>"><?php echo $this->__('Cancel') ?></a></li>
+					<?php endif ?>
+				</ul>
+            </td>
         </tr>
         <?php endforeach; ?>
  </table>
-    <div class="order_link">
-        <ul>
-            <li><a href="<?php echo $this->getViewUrl($_order) ?>">注文の詳細を表示</a></li>
-            <li>｜</li>
-            <li><a href="<?php echo $this->getReorderUrl($_order) ?>">再注文</a></li>
-        </ul>
-    </div>
-                        <div class="select">
-                           <div>
-                           <p>表示</p>
-                                <select name="number">
-                                    <option value="10">10件
-                                    <option value="15">15件
-                                    <option value="20">20件
-                                </select>
-                            </div>
-                            </div>
-                            <p class="display">1件目～1件目まで表示 (全1件中)</p>
-    </section>
-<!--<script type="text/javascript">decorateTable('my-orders-table');</script>-->
+<script type="text/javascript">decorateTable('my-orders-table');</script>
+<div class="select">
 <?php echo $this->getPagerHtml(); ?>
-<div class="back_btn"><!-- 前のページに戻る -->
-<a href="javascript:history.back();"><p class="arr"></p><p class="arr_txt">前のページに戻る</p></a>
 </div>
 <?php else: ?>
 <p><?php echo $this->__('You have placed no orders.'); ?></p>
 <?php endif ?>
-</div>
+</section>
