@@ -47,7 +47,9 @@
                 <table class="table_03">
                     <tr>
                         <th>商品名</th>
+    <?php if ($this->helper('wishlist')->isAllowInCart()) : ?>
                         <th>欲しいものリスト</th>
+    <?php endif ?>
                         <th>単価</th>
                         <th>個数</th>
                         <th>削除</th>
