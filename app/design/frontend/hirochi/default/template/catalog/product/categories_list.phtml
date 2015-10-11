@@ -1,0 +1,65 @@
+<?php
+    // サブカテゴリを取得する
+    //$catId = $this->getLayer()->getCurrentCategory()->getId();
+	$catId = 2;
+    $recursiveLevel = 6;
+    $subCategories = Mage::getModel('catalog/category')->getCategories($catId,$recursiveLevel);
+?>
+<?php if(count($subCategories)>0): ?>
+<pre>
+<?php 
+//var_dump(get_class_methods($subCategories[38]));
+//var_dump($subCategories); 
+// 全ての子孫カテゴリID
+//var_dump($subCategories[38]->getAllChildren()); 
+// 子カテゴリID
+//var_dump($subCategories[38]->getChildren()); 
+// 子カテゴリ
+//var_dump($subCategories[38]->getChildrenCategories()); 
+// 全ての子孫カテゴリ
+//var_dump($subCategories[38]->getChildrenCategoriesWithInactive()); 
+?>
+</pre>
+
+<section id="categories_list">
+<?php 
+function displayCategoryTree($array, $level=0){
+  if( is_array( $array ) ) {
+    echo '<ul class="level'.$level.'">'."\n";
+    foreach ($array as $item){
+      echo '<li>'."\n";
+      echo '<a href="' . $item->getUrl() . '">' . $item->getName() . '</a>'."\n";
+      displayCategoryTree( $item->getChildrenCategories(), ($level+1) );
+      echo '</li>'."\n";
+    }
+    echo '</ul>'."\n";
+  }
+}
+displayCategoryTree($subCategories);
+?>
+
+
+<?php 
+/*
+    <ul>
+<?php 
+        foreach ($subCategories as $cat): 
+    ?>
+        <li><a href="<?php echo $cat->getUrl();?>"><?php echo $cat->getName(); ?></a>
+        </li>
+    <?php 
+            $children = $cat->getChildrenCategories();
+            if($children) {
+                foreach ($children as $cat1){
+    ?>
+        <li><a href="<?php echo $cat1->getUrl();?>"><?php echo $cat1->getName(); ?></a>
+        </li>
+    <?php 
+                }
+            }
+        endforeach; 
+    ?>
+    </ul>
+*/    ?>
+</section>
+<?php endif;?>
