@@ -36,7 +36,7 @@ PostToAddr.prototype = {
   },
 
   getAddress: function(option) {
-    var url = "/postcodetoaddress/postcodetoaddress/get";
+    var url = "/magento/postcodetoaddress/postcodetoaddress/get";
     var postcode = '';
     var __this__ = this;
     for(var i=0;i<this.zipidArray.length;++i) {

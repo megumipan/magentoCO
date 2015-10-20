@@ -2,18 +2,15 @@
 <h3>お客様のポイント</h3>
 <div class="h3_point_inner">
 <div class="user_point">
-<?php
-$point = $this->formatPoint($this->getCurrentBalance());
-if(!isset($point) || empty($point)):
-?>
+<?php if (! Mage::getSingleton( 'customer/session')->isLoggedIn()): ?>
 <p>ログインするとポイントを確認できます。</p>
-<p class="user_btn">
-<a href="/magento/index.php/rackpoint/account/">ログイン新規登録はこちら</a>
-</p>
+<p>
+<a href="<?php echo $this->getUrl(''); ?>rackpoint/account/"><img src="<?php echo $this->getSkinUrl('images/btnLogin.png'); ?>" alt="ログイン新規登録はこちら"></a><br>
+<a href="<?php echo $this->getUrl(''); ?>customer/account/forgotpassword/">パスワード紛失</a></p>
 <?php else: ?>
-<p class="dashbord_p01">お客様のポイント<br><strong style="font-size:16px;"><?php echo $point; ?></strong></p>
+<p class="dashbord_p01">お客様のポイント<br><strong style="font-size:16px;"><?php echo $this->formatPoint($this->getCurrentBalance()) ?></strong></p>
 <p class="user_btn">
-<a href="/magento/index.php/rackpoint/account/">ポイントの詳細はこちら</a>
+<a href="<?php echo $this->getUrl(''); ?>rackpoint/account/">ポイントの詳細はこちら</a>
 </p>
 <?php endif; ?>
 </div>

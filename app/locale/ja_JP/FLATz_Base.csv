@@ -351,7 +351,7 @@
 "The title that goes before name (Mr., Mrs., etc.)","名前の前につけるタイトル (Mr., Mrs., など)"
 "There are no items in customer's wishlist at the moment","現在顧客の欲しいものリストに商品がありません"
 "There are no items in customer\'s shopping cart at the moment","顧客のショッピングカートに商品がありません"
-"There is already an account with this email address. If you are sure that it is your email address, <a href=""%s"">click here</a> to get your password and access your account.","このメールアドレスはすでに使用されています。もしこのメールアドレスがあなたも物である場合、 <a href=""%s"">ここをクリック</a>して新しいパスワードを発行してください。"
+"There is already an account with this email address. If you are sure that it is your email address, <a href=""%s"">click here</a> to get your password and access your account.","このメールアドレスはすでに使用されています。もしこのメールアドレスがあなたのものである場合、 <a href=""%s"">ここをクリック</a>して新しいパスワードを発行してください。"
 "This account is not confirmed.","このアカウントは認証されていません。"
 "This account is not confirmed. <a href=""%s"">Click here</a> to resend confirmation email.","このアカウントは拘束中です。 <a href=""%s"">ここをクリック</a>して確認メールを送信してください"
 "This customer email already exists","メールアドレスは登録済みです。"
@@ -524,4 +524,7 @@
 "Customer Order Comment","コメント欄"
 "Your Comment for this Order","コメント欄"
 "Yen","円"
+"Ship To","お届け先"
+"Male","男性"
+"Female","女性"
 

@@ -31,19 +31,19 @@
  * @see Mage_CatalogSearch_Block_Advanced_Form
  */
 ?>
+<div id="advanced_01">
 <?php $maxQueryLength= $this->helper('catalogsearch')->getMaxQueryLength();?>
 <div class="page-title">
-    <h1><?php echo $this->__('Catalog Advanced Search') ?></h1>
+    <h2 class="h2_heading"><?php echo $this->__('Catalog Advanced Search') ?></h2>
 </div>
 <?php echo $this->getMessagesBlock()->toHtml() ?>
+
 <form action="<?php echo $this->getSearchPostUrl() ?>" method="get" id="form-validate">
     <div class="fieldset advanced-search">
-        <h2 class="legend"><?php echo $this->__('Search Settings') ?></h2>
-        <ul class="form-list" id="advanced-search-list">
+        <h2 class="legend mb10 fzL"><?php echo $this->__('Search Settings') ?></h2>
+        <div class="form-list cf" id="advanced-search-list">
             <?php foreach ($this->getSearchableAttributes() as $_attribute): ?>
             <?php $_code = $_attribute->getAttributeCode() ?>
-            <li>
-                <label for="<?php echo $_code ?>"><?php echo $this->getAttributeLabel($_attribute) ?></label>
                 <?php switch($this->getAttributeInputType($_attribute)):
                     case 'number': ?>
                     <div class="input-range">
@@ -53,12 +53,19 @@
                     </div>
                     <?php break;
                     case 'price': ?>
-                    <div class="input-range">
-                        <input name="<?php echo $_code ?>[from]" value="<?php echo $this->escapeHtml($this->getAttributeValue($_attribute, 'from')) ?>" id="<?php echo $_code ?>" title="<?php echo $this->escapeHtml($this->getAttributeLabel($_attribute)) ?>"  class="input-text validate-number" type="text" maxlength="<?php echo $maxQueryLength;?>" />
-                        <span class="separator">-</span>
-                        <input name="<?php echo $_code ?>[to]" value="<?php echo $this->escapeHtml($this->getAttributeValue($_attribute, 'to')) ?>" id="<?php echo $_code ?>_to" title="<?php echo $this->escapeHtml($this->getAttributeLabel($_attribute)) ?>"  class="input-text validate-number" type="text" maxlength="<?php echo $maxQueryLength;?>" />
-                        <small>(<?php echo $this->getCurrency($_attribute); ?>)</small>
+               <fieldset class="w50per flL" style="border-right:none;">
+	               <legend>価格帯で検索</legend>
+                    <div>
+                       <fieldset class="mb10">
+                       <legend>価格下限</legend>
+                        <p><input name="<?php echo $_code ?>[from]" value="<?php echo $this->escapeHtml($this->getAttributeValue($_attribute, 'from')) ?>" id="<?php echo $_code ?>" title="<?php echo $this->escapeHtml($this->getAttributeLabel($_attribute)) ?>"  class="input-text validate-number" type="text" maxlength="<?php echo $maxQueryLength;?>" /></p>
+						</fieldset>
+                       <fieldset>
+                       <legend>価格上限</legend>
+                        <p><input name="<?php echo $_code ?>[to]" value="<?php echo $this->escapeHtml($this->getAttributeValue($_attribute, 'to')) ?>" id="<?php echo $_code ?>_to" title="<?php echo $this->escapeHtml($this->getAttributeLabel($_attribute)) ?>"  class="input-text validate-number" type="text" maxlength="<?php echo $maxQueryLength;?>" /></p>
+						</fieldset>
                     </div>
+				</fieldset>
                     <?php break;
                     case 'select': ?>
                         <div class="input-box">
@@ -69,24 +76,34 @@
                         <?php echo $this->getAttributeYesNoElement($_attribute) ?>
                     <?php break;
                     case 'date': ?>
-                    <div class="input-range">
+               <fieldset class="w50per flR">
+	               <legend>日付で検索</legend>
+                    <div>
+                       <fieldset class="mb10">
+                       <legend>開始日付</legend>
                         <?php echo $this->getDateInput($_attribute, 'from') ?>
-                        <span class="separator">-</span>
+						</fieldset>
+						<fieldset>
+                       <legend>終了日付</legend>
                         <?php echo $this->getDateInput($_attribute, 'to') ?>
+						</fieldset>
                     </div>
+				</fieldset>
                     <?php break;
                     default: ?>
+               <fieldset class="mb20">
+                   <legend>キーワードで検索</legend>
                     <div class="input-box">
-                        <input type="text" name="<?php echo $_code ?>" id="<?php echo $_code ?>" value="<?php echo $this->escapeHtml($this->getAttributeValue($_attribute)) ?>" title="<?php echo $this->escapeHtml($this->getAttributeLabel($_attribute)) ?>"  class="input-text <?php echo $this->getAttributeValidationClass($_attribute) ?>" maxlength="<?php echo $maxQueryLength;?>" />
+                        <input type="text" size="60" name="<?php echo $_code ?>" id="<?php echo $_code ?>" value="<?php echo $this->escapeHtml($this->getAttributeValue($_attribute)) ?>" title="<?php echo $this->escapeHtml($this->getAttributeLabel($_attribute)) ?>"  class="input-text <?php echo $this->getAttributeValidationClass($_attribute) ?>" maxlength="<?php echo $maxQueryLength;?>" />
                     </div>
+				</fieldset>
                 <?php endswitch; ?>
-            </li>
             <?php endforeach; ?>
-        </ul>
+        </div>
         <script type="text/javascript">decorateList('advanced-search-list')</script>
     </div>
     <div class="buttons-set">
-        <button type="submit" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Search')) ?>" class="button"><span><span><?php echo $this->__('Search') ?></span></span></button>
+        <button type="submit" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Search')) ?>" class="btnOrange"><?php echo $this->__('Search') ?></button>
     </div>
 </form>
 <script type="text/javascript">
@@ -94,3 +111,4 @@
     var dataForm = new VarienForm('form-validate', true);
 //]]>
 </script>
+</div>

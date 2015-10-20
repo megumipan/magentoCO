@@ -2,7 +2,7 @@
 <!--<div class="<?php //echo $this->getContainerClassName()?>">-->
 <?php if ($this->showPrefix()): ?>
     <div class="field name-prefix">
-        <label for="<?php echo $this->getFieldId('prefix')?>"<?php if ($this->isPrefixRequired()) echo ' class="required"' ?>><?php if ($this->isPrefixRequired()) echo '<em>*</em>' ?><?php echo $this->getStoreLabel('prefix') ?></label>
+        <label for="<?php echo $this->getFieldId('prefix')?>"<?php if ($this->isPrefixRequired()) echo ' class="required"' ?>><?php if ($this->isPrefixRequired()) echo '<em class="required">*</em>' ?><?php echo $this->getStoreLabel('prefix') ?></label>
         <div class="input-box">
             <?php if ($this->getPrefixOptions()===false): ?>
                 <input type="text" id="<?php echo $this->getFieldId('prefix')?>" name="<?php echo $this->getFieldName('prefix')?>" value="<?php echo $this->htmlEscape($this->getObject()->getPrefix()) ?>" title="<?php echo $this->getStoreLabel('prefix') ?>" class="input-text<?php if ($this->isPrefixRequired()):?> required-entry<?php endif; ?>" <?php echo $this->getFieldParams() ?> />
@@ -17,7 +17,7 @@
     </div>
 <?php endif; ?>
    
-<ul>
+<ul class="nameForm">
     <li>
         <label for="<?php echo $this->getFieldId('lastname')?>"><span>【必須】</span><?php echo $this->getStoreLabel('lastname') ?>
             <?php //<?php if ($_maxlength > 0):  echo $this->__('(Less than %d characters)', $_maxlength); endif ?>
@@ -26,21 +26,21 @@
     </li>
 
     <li>
-        <label for="<?php echo $this->getFieldId('firstname')?>" class="required"><span>【必須】</span><?php echo $this->getStoreLabel('firstname') ?> 
+        <label for="<?php echo $this->getFieldId('firstname')?>"><span>【必須】</span><?php echo $this->getStoreLabel('firstname') ?> 
             <?php //if ($_maxlength > 0):  echo $this->__('(Less than %d characters)', $_maxlength); endif ?></label><br />
         <input type="text" id="<?php echo $this->getFieldId('firstname')?>" name="<?php echo $this->getFieldName('firstname')?>" value="<?php echo $this->htmlEscape($this->getObject()->getFirstname()) ?>" title="<?php echo $this->getStoreLabel('firstname') ?>" class="input-text required-entry<?php if ($_maxlength > 0): ?> validate-length maximum-length-<?php echo $_maxlength; endif ?>" <?php echo $this->getFieldParams() ?> />
     </li>
 
     <?php if(Mage::getStoreConfig('flatz_base_japanese/name/usekana')) : ?>
 </ul>
-<ul>
+<ul class="nameForm">
 
     <?php $_required = Mage::getStoreConfig('flatz_base_japanese/name/requirekana'); ?>
     <?php $_kanaformat = Mage::getStoreConfig('flatz_base_japanese/name/kanaformat') ?>
     <li>
     <!--<div class="<?php //echo $this->getContainerClassName()?>">-->
     <!--    <div class="field name-lastname">-->
-            <label for="<?php echo $this->getFieldId('lastnamekana')?>" <?php if($_required): ?> class="required"<?php endif;?>>
+            <label for="<?php echo $this->getFieldId('lastnamekana')?>">
                 <?php if($_required): ?> <span>【必須】</span><?php endif;?>
                 <?php echo $this->__('Last Name Kana') ?> <?php //if ($_maxlength > 0):  echo $this->__('(Less than %d characters)', $_maxlength); endif ?>
             </label>
@@ -51,7 +51,7 @@
 
     <li>
     <!--    <div class="field name-firstname">-->
-    <label for="<?php echo $this->getFieldId('firstnamekana')?>" <?php if($_required): ?> class="required"<?php endif;?>>
+    <label for="<?php echo $this->getFieldId('firstnamekana')?>">
                 <?php if($_required): ?> <span>【必須】</span><?php endif;?>
                 <?php echo $this->__('First Name Kana') ?>
     <?php //if ($_maxlength > 0):  echo $this->__('(Less than %d characters)', $_maxlength); endif ?>
@@ -82,7 +82,7 @@
     <div>
 <?php if ($this->showSuffix()): ?>
     <div class="field name-suffix">
-        <label for="<?php echo $this->getFieldId('suffix')?>"<?php if ($this->isSuffixRequired()) echo ' class="required"' ?>><?php if ($this->isSuffixRequired()) echo '<em>*</em>' ?><?php echo $this->getStoreLabel('suffix') ?></label>
+        <label for="<?php echo $this->getFieldId('suffix')?>"<?php if ($this->isSuffixRequired()) echo ' class="required"' ?>><?php if ($this->isSuffixRequired()) echo '<em class="required">*</em>' ?><?php echo $this->getStoreLabel('suffix') ?></label>
         <div class="input-box">
         <?php if ($this->getSuffixOptions()===false): ?>
             <input type="text" id="<?php echo $this->getFieldId('suffix')?>" name="<?php echo $this->getFieldName('suffix')?>" value="<?php echo $this->htmlEscape($this->getObject()->getSuffix()) ?>" title="<?php echo $this->getStoreLabel('suffix') ?>" class="input-text<?php if ($this->isSuffixRequired()):?> required-entry<?php endif; ?>" <?php echo $this->getFieldParams() ?> />

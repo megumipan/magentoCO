@@ -1,3 +1,4 @@
+<script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
 <?php $_addressLength = (int)Mage::getStoreConfig('flatz_base_japanese/validator/addresslength') ?>
 <form action="" id="co-shipping-form">
     <ul class="form-list">
@@ -23,7 +24,7 @@
                         </div>
             <?php if(false): ?>
                         <div class="fields">
-                            <label for="shipping:email" class="required"><em>*</em><?php echo $this->__('Email Address') ?></label>
+                            <label for="shipping:email" class="required"><span>【必須】</span><?php echo $this->__('Email Address') ?></label>
                             <div class="input-box">
                                 <input type="text" name="shipping[email]" id="shipping:email" value="<?php echo $this->htmlEscape($this->getAddress()->getEmail()) ?>" title="<?php echo $this->__('Email Address') ?>" class="input-text validate-email required-entry" />
                             </div>
@@ -32,7 +33,7 @@
                     </li>
                     <li class="fields">
                         <div class="field">
-                            <label for="shipping:postcode" class="required"><em>*</em><?php echo $this->__('Zip/Postal Code') ?></label>
+                            <label for="shipping:postcode" class="required"><span>【必須】</span><?php echo $this->__('Zip/Postal Code') ?></label>
                             <div class="input-box">
                                 <?php if(Mage::getStoreConfig('flatz_base_japanese/validator/separatepostcode')) : ?>
                             <?php $_postarray = preg_split('/' . Mage::getStoreConfig('flatz_base_japanese/validator/postcodeseparator') . '/', $this->getAddress()->getPostcode()) ?>
@@ -44,7 +45,7 @@
                             <?php endfor; ?>
                             <?php echo join('&nbsp;' . Mage::getStoreConfig('flatz_base_japanese/validator/postcodeseparator') . '&nbsp;', $_post)?>
                             <?php else : ?>
-                            <input type="text" title="<?php echo $this->__('Zip/Postal Code') ?>" name="shipping[postcode]" id="shipping:postcode" value="<?php echo $this->htmlEscape($this->getAddress()->getPostcode()) ?>" class="input-text validate-zip-international required-entry" onchange="shipping.setSameAsBilling(false);"  style="width:150px;"/>
+                            <input type="text" title="<?php echo $this->__('Zip/Postal Code') ?>" name="shipping[postcode]" id="shipping:postcode" value="<?php echo $this->htmlEscape($this->getAddress()->getPostcode()) ?>" class="input-text validate-zip-international required-entry" onKeyUp="AjaxZip3.zip2addr(this,'shipping[region_id]','shipping[city]','');" onchange="shipping.setSameAsBilling(false);"  style="width:150px;"/>
                             <?php endif; ?>
                             </div>
                         </div>
@@ -52,8 +53,8 @@
                         <input type="hidden" id="shipping:country" name="shipping[country_id]" value="JP" />
                         <input type="hidden" id="shipping:country_id" name="shipping[country_id]" value="JP" />
                         <?php else : ?>
-                        <div class="field">
-                            <label for="shipping:country_id" class="required"><em>*</em><?php echo $this->__('Country') ?></label>
+                        <div class="field" style="display:none;">
+                            <label for="shipping:country_id" class="required"><span>【必須】</span><?php echo $this->__('Country') ?></label>
                             <div class="input-box">
                                 <?php echo $this->getCountryHtmlSelect('shipping') ?>
                             </div>
@@ -62,7 +63,7 @@
                     </li>
                     <li class="fields">
                         <div class="field">
-                            <label for="shipping:region" class="required"><em>*</em><?php echo $this->__('State/Province') ?></label>
+                            <label for="shipping:region" class="required"><span>【必須】</span><?php echo $this->__('State/Province') ?></label>
                             <div class="input-box">
                                 <select id="shipping:region_id" name="shipping[region_id]" title="<?php echo $this->__('State/Province') ?>" class="validate-select" style="display:none;">
                                     <option value=""><?php echo $this->__('Please select region, state or province') ?></option>
@@ -76,14 +77,14 @@
                             </div>
                         </div>
                         <div class="field">
-                            <label for="shipping:city" class="required"><em>*</em><?php echo $this->__('City') ?> <?php if ($_addressLength > 0):  echo $this->__('(Less than %d characters)', $_addressLength); endif ?></label>
+                            <label for="shipping:city" class="required"><span>【必須】</span><?php echo $this->__('City') ?> <?php if ($_addressLength > 0):  echo $this->__('(Less than %d characters)', $_addressLength); endif ?></label>
                             <div class="input-box">
                                 <input type="text" title="<?php echo $this->__('City') ?>" name="shipping[city]" value="<?php echo $this->htmlEscape($this->getAddress()->getCity()) ?>" class="input-text required-entry <?php if ($_addressLength > 0): ?> validate-length maximum-length-<?php echo $_addressLength; endif ?>" id="shipping:city" onchange="shipping.setSameAsBilling(false);" />
                             </div>
                         </div>
                     </li>
                     <li class="wide">
-                        <label for="shipping:street1" class="required"><em>*</em><?php echo $this->__('Address') ?> <?php if ($_addressLength > 0):  echo $this->__('(Less than %d characters)', $_addressLength); endif ?></label>
+                        <label for="shipping:street1" class="required"><span>【必須】</span><?php echo $this->__('Address') ?> <?php if ($_addressLength > 0):  echo $this->__('(Less than %d characters)', $_addressLength); endif ?></label>
                         <div class="input-box">
                             <input type="text" title="<?php echo $this->__('Street Address') ?>" name="shipping[street][]" id="shipping:street1" value="<?php echo $this->htmlEscape($this->getAddress()->getStreet(1)) ?>" class="input-text required-entry <?php if ($_addressLength > 0): ?> validate-length maximum-length-<?php echo $_addressLength; endif ?>" onchange="shipping.setSameAsBilling(false);" />
                         </div>
@@ -98,7 +99,7 @@
             <?php endfor ?>
                     <li class="fields">
                         <div class="field">
-                            <label for="shipping:telephone" class="required"><em>*</em><?php echo $this->__('Telephone') ?></label>
+                            <label for="shipping:telephone" class="required"><span>【必須】</span><?php echo $this->__('Telephone') ?></label>
                             <div class="input-box">
                                 <?php if(Mage::getStoreConfig('flatz_base_japanese/validator/separatetel')) : ?>
                             <?php $_telarray = preg_split('/' . Mage::getStoreConfig('flatz_base_japanese/validator/telseparator') . '/', $this->getAddress()->getTelephone()) ?>

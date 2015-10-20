@@ -1,308 +1,238 @@
-<?php
-/**
- * Magento
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Academic Free License (AFL 3.0)
- * that is bundled with this package in the file LICENSE_AFL.txt.
- * It is also available through the world-wide-web at this URL:
- * http://opensource.org/licenses/afl-3.0.php
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@magento.com so we can send you a copy immediately.
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade Magento to newer
- * versions in the future. If you wish to customize Magento for your
- * needs please refer to http://www.magento.com for more information.
- *
- * @category    design
- * @package     base_default
- * @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
- * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
- */
-?>
+<?php $_addressLength = (int)Mage::getStoreConfig('flatz_base_japanese/validator/addresslength') ?>
 <form id="co-billing-form" action="">
 <div class="register_02">
-<!--ac_content-->
 <div class="ac_content">
+
     <ul>
-        <?php if ($this->customerHasAddresses()): ?>
-        <li class="wide">
+    <?php if ($this->customerHasAddresses()): ?>
+        <li class="wide mb20">
             <label for="billing-address-select"><?php echo $this->__('Select a billing address from your address book or enter a new address.') ?></label>
             <div class="input-box">
                 <?php echo $this->getAddressesHtmlSelect('billing') ?>
             </div>
         </li>
-        <?php endif; ?>
-        <li id="billing-new-address-form"<?php if ($this->customerHasAddresses()): ?> style="display:none;"<?php endif; ?>>
-        <!--<fieldset>-->
-        <input type="hidden" name="billing[address_id]" value="<?php echo $this->getAddress()->getId() ?>" id="billing:address_id" />
-        <ul>
-            <li >
-                <?php echo $this->getLayout()->createBlock('customer/widget_name')->setObject($this->getAddress()->getFirstname() ? $this->getAddress() : $this->getQuote()->getCustomer())->setForceUseCustomerRequiredAttributes(!$this->isCustomerLoggedIn())->setFieldIdFormat('billing:%s')->setFieldNameFormat('billing[%s]')->toHtml() ?>
-            </li>
-            <div class="field">
-                <label for="billing:company"><?php echo $this->__('Company') ?></label>
-                <div class="input-box">
-                    <input type="text" id="billing:company" name="billing[company]" value="<?php echo $this->escapeHtml($this->getAddress()->getCompany()) ?>" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Company')) ?>" class="input-text <?php echo $this->helper('customer/address')->getAttributeValidationClass('company') ?>" />
-                </div>
-            </div>
-        </ul>
+    <?php endif; ?>
+    <li id="billing-new-address-form"<?php if ($this->customerHasAddresses()): ?> style="display:none;"<?php endif; ?>>
 
-
-
-        <p><span>【必須】</span>性別</p>
-        <ul>
-            <li><input value="1" type="radio" name="billing[gender]">男性</li>
-            <li><input  value="1"  type="radio" name="billing[gender]">女性</li>
-            <?php if(!$this->isCustomerLoggedIn()): ?>
-                <?php $_dob = $this->getLayout()->createBlock('customer/widget_dob') ?>
-                <?php $_gender = $this->getLayout()->createBlock('customer/widget_gender') ?>
-                    <?php if ($_dob->isEnabled() || $_gender->isEnabled()): ?>
-                        <li class="fields">
-                            <?php if ($_dob->isEnabled()): ?>
-                                <div class="field">
-                                    <?php echo $_dob->setDate($this->getQuote()->getCustomerDob())->setFieldIdFormat('billing:%s')->setFieldNameFormat('billing[%s]')->toHtml() ?>
-                                </div>
-                            <?php endif; ?>
-                            <?php if ($_gender->isEnabled()): ?>
-    <!--
-<div class="field">
-<?php //echo $_gender->setGender($this->getQuote()->getCustomerGender())->setFieldIdFormat('billing:%s')->setFieldNameFormat('billing[%s]')->toHtml() ?>
-</div>
--->
-                            <?php endif ?>
-                        </li>
-                    <?php endif ?>
-        </ul>
-
-
-
-        <ul>
-            <li>
-                <!-- <div class="input-box"> -->
-                <div class="post">
-                    <div class="left_contents">
-                        <!-- 郵便番号 -->
-                        <label for="billing:postcode" class="required"><span>【必須】</span><?php echo $this->__('Zip/Postal Code') ?></label><br>
-                        <input type="text" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Zip/Postal Code')) ?>" name="billing[postcode]" id="billing:postcode" value="<?php echo $this->escapeHtml($this->getAddress()->getPostcode()) ?>" class="input-text validate-zip-international <?php echo $this->helper('customer/address')->getAttributeValidationClass('postcode') ?>" style="margin-right:10px;" /><br>
-                    </div>
-                    <div class="right_contents">
-                        <ul>
-                            <li>※ハイフン(-)は除き半角数字で入力<br>例）2660005</li>
-                            <li>※郵便番号に対応した住所が自動入力されます。</li>
-                        </ul>
-                    </div>
-                </div>
-            </li>
-        </ul>
-
-
-        <!-- 国 -->
-        <ul>
-            <li>
-                <label for="billing:country_id" class="required"><span>【必須】</span><?php echo $this->__('Country') ?></label>
-                <div class="input-box">
-                    <?php echo $this->getCountryHtmlSelect('billing') ?>
-                </div>
-            </li>
-        </ul>
-
-        <!-- 都道府県 -->
-        <ul>
-            <li>
-                <label for="billing:region_id" class="required"><span>【必須】</span><?php echo $this->__('State/Province') ?></label>
-                <div class="input-box">
-                    <select id="billing:region_id" name="billing[region_id]" title="<?php echo Mage::helper('core')->quoteEscape($this->__('State/Province')) ?>" class="validate-select" style="display:none;">
-                        <option value=""><?php echo $this->__('Please select region, state or province') ?></option>
-                    </select>
-                    <script type="text/javascript">
-        //<![CDATA[
-                        $('billing:region_id').setAttribute('defaultValue',  "<?php echo $this->getAddress()->getRegionId() ?>");
-        //]]>
-                    </script>
-                    <input type="text" id="billing:region" name="billing[region]" value="<?php echo $this->escapeHtml($this->getAddress()->getRegion()) ?>"  title="<?php echo Mage::helper('core')->quoteEscape($this->__('State/Province')) ?>" class="input-text <?php echo $this->helper('customer/address')->getAttributeValidationClass('region') ?>" style="display:none;" />
-                </div>
-            </li>
-        </ul>
-
-        <ul>
-            <li>
-                <!-- <div class="input-box"> -->
-                <div class="post_02">
-                    <!-- 市区町村 -->
-                    <div class="left_contents">
-                    <label for="billing:city" class="required"><span>【必須】</span><?php echo $this->__('City') ?></label><br>
-                    <input type="text" title="<?php echo Mage::helper('core')->quoteEscape($this->__('City')) ?>" name="billing[city]" value="<?php echo $this->escapeHtml($this->getAddress()->getCity()) ?>" class="input-text <?php echo $this->helper('customer/address')->getAttributeValidationClass('city') ?>" id="billing:city" />
-                    </div>
-                    <div class="right_contents">
-                    <p class="balloon">例）千葉市緑区</p>
-                    </div>
-                </div>
-            </li>
-
-            <?php $_streetValidationClass = $this->helper('customer/address')->getAttributeValidationClass('street'); ?>
-        </ul>
-
-        <ul>
-            <li>
-                <!-- <div class="input-box"> -->
-                <div class="post_03">
-                    <div class="left_contents">
-                        <!-- 番地・マンション名など -->
-                        <label for="billing:street1" class="required"><span>【必須】</span><?php echo $this->__('Address') ?></label><br>
-                        <input type="text" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Street Address')) ?>" name="billing[street][]" id="billing:street1" value="<?php echo $this->escapeHtml($this->getAddress()->getStreet(1)) ?>" class="input-text <?php echo $_streetValidationClass ?>" />
-                    </div>
-                    <div class="right_contents">
-                        <ul>
-                            <li>※マンション名、アパート名、<br>部屋番号なども入力してください。</li>
-                            <li>例）誉田町2-23-157</li>
-                        </ul>
-                    </div>
-                </div>
-            </li>
-            <?php $_streetValidationClass = trim(str_replace('required-entry', '', $_streetValidationClass)); ?>
-        </ul>
-        <ul>
-            <?php for ($_i = 2, $_n = $this->helper('customer/address')->getStreetLines(); $_i <= $_n; $_i++): ?>
-                <li>
-                    <div class="input-box">
-                        <input type="text" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Street Address %s', $_i)) ?>" name="billing[street][]" id="billing:street<?php echo $_i ?>" value="<?php echo $this->escapeHtml($this->getAddress()->getStreet($_i)) ?>" class="input-text <?php echo $_streetValidationClass ?>" />
-                    </div>
-                </li>
-            <?php endfor; ?>
-            <?php if ($this->helper('customer/address')->isVatAttributeVisible()) : ?>
-                <li >
-                    <label for="billing:vat_id"><?php echo $this->__('VAT Number') ?></label>
-                    <div class="input-box">
-                        <input type="text" id="billing:vat_id" name="billing[vat_id]" value="<?php echo $this->escapeHtml($this->getAddress()->getVatId()) ?>" title="<?php echo Mage::helper('core')->quoteEscape($this->__('VAT Number')) ?>" class="input-text <?php echo $this->helper('customer/address')->getAttributeValidationClass('vat_id') ?>" />
-                    </div>
-                </li>
-            <?php endif; ?>
-
-
+            <input type="hidden" name="billing[address_id]" value="<?php echo $this->getAddress()->getId() ?>" id="billing:address_id" />
             <ul>
-                <li>
-                    <!-- <div class="input-box"> -->
-                    <div class="tel">
-                        <div class="left_contents">
-                            <!-- 電話番号 -->
-                            <label for="billing:telephone" class="required"><span>【必須】</span><?php echo $this->__('Telephone') ?></label><br>
-                            <input type="text" name="billing[telephone]" value="<?php echo $this->escapeHtml($this->getAddress()->getTelephone()) ?>" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Telephone')) ?>" class="input-text <?php echo $this->helper('customer/address')->getAttributeValidationClass('telephone') ?>" id="billing:telephone" /><br>
-
-                            <!-- FAX -->
-                            <label for="billing:fax"><?php echo $this->__('Fax') ?></label><br>
-                            <input type="text" name="billing[fax]" value="<?php echo $this->escapeHtml($this->getAddress()->getFax()) ?>" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Fax')) ?>" class="input-text <?php echo $this->helper('customer/address')->getAttributeValidationClass('fax') ?>" id="billing:fax" />
+                <li class="fields"><?php echo $this->getLayout()->createBlock('customer/widget_name')->setObject($this->getAddress()->getFirstname() ? $this->getAddress() : $this->getQuote()->getCustomer())->setFieldIdFormat('billing:%s')->setFieldNameFormat('billing[%s]')->toHtml() ?></li>
+                    <div class="field mb20">
+                        <label for="billing:company"><?php echo $this->__('Company') ?></label>
+                        <div class="input-box">
+                            <input type="text" id="billing:company" name="billing[company]" value="<?php echo $this->htmlEscape($this->getAddress()->getCompany()) ?>" title="<?php echo $this->__('Company') ?>" class="input-text" />
                         </div>
-                        <div class="right_contents">
-                            <ul>
-                                <li>※ハイフンは除き半角数字で入力<br>例）0432932244</li>
-                            </ul>
+                    </div>
+        <?php if(!$this->isCustomerLoggedIn()): ?>
+                    <div class="field mb20">
+                        <label for="billing:email"><span>【必須】</span><?php echo $this->__('Email Address') ?></label>
+                        <div class="input-box">
+                            <input type="text" name="billing[email]" id="billing:email" value="<?php echo $this->htmlEscape($this->getAddress()->getEmail()) ?>" title="<?php echo $this->__('Email Address') ?>" class="input-text validate-email required-entry" />
+                        </div>
+                    </div>
+        <?php endif ?>
+     </li>
+                <li class="fields" style="float:none; width:auto;">
+                    <div class="post mb20">
+						<div class="left_contents">
+							<label for="billing:postcode"><span>【必須】</span><?php echo $this->__('Zip/Postal Code') ?></label>
+							<div class="input-box">
+								<?php if(Mage::getStoreConfig('flatz_base_japanese/validator/separatepostcode')) : ?>
+								<?php $_postarray = preg_split('/' . Mage::getStoreConfig('flatz_base_japanese/validator/postcodeseparator') . '/', $this->getAddress()->getPostcode()) ?>
+								<?php for($i=1; $i <= Mage::getStoreConfig('flatz_base_japanese/validator/numberofpostcodeform'); $i++) : ?>
+								<?php $_method = 'getPostcode' . $i; ?>
+								<?php $_post[] = '<input type="text" name="billing[postcode' . $i . ']" value="' . 
+											  $this->htmlEscape(array_key_exists($i-1, $_postarray) ? $_postarray[$i-1] : '') . '" title="' . $this->__('Zip/Postal Code') .
+											  '" class="input-text required-entry" id="billing:postcode' . $i . '" style="width:60px;" />'; ?>
+								<?php endfor; ?>
+								<?php echo join('&nbsp;' . Mage::getStoreConfig('flatz_base_japanese/validator/postcodeseparator') . '&nbsp;', $_post)?>
+								<?php else : ?>
+								<input type="text" name="billing[postcode]" value="<?php echo $this->htmlEscape($this->getAddress()->getPostcode()) ?>" title="<?php echo $this->__('Zip/Postal Code') ?>" id="billing:postcode" class="input-text validate-zip-international required-entry" style="width:150px;margin-right:10px;" />
+								<?php endif; ?>
+							</div>
+						</div>
+						<div class="right_contents">
+							<ul>
+								<li>※ハイフン(-)は除き半角数字で入力<br>例）2660005</li>
+								<li>※郵便番号に対応した住所が自動入力されます。</li>
+							</ul>
+						</div>
+                    </div>
+                    <?php if(Mage::getStoreConfig('flatz_base_japanese/address/onlyjp')) : ?>
+                    <input type="hidden" id="billing:country_id" name="billing[country_id]" value="JP" />
+                    <input type="hidden" id="billing:country" name="billing[country_id]" value="JP" />
+                    <?php else : ?>
+                    <div class="field mb20" style="display:none;">
+                        <label for="billing:country_id"><span>【必須】</span><?php echo $this->__('Country') ?></label>
+                        <div class="input-box">
+                            <?php echo $this->getCountryHtmlSelect('billing') ?>
+                        </div>
+                    </div>
+                    <?php endif; ?>
+                </li>
+                <li class="fields" style="float:none; width:auto;">
+                    <div class="field mb20">
+                        <label for="billing:region_id"><span>【必須】</span><?php echo $this->__('State/Province') ?></label>
+                        <div class="input-box">
+                            <select id="billing:region_id" name="billing[region_id]" title="<?php echo $this->__('State/Province') ?>" class="validate-select" style="display:none;">
+                                <option value=""><?php echo $this->__('Please select region, state or province') ?></option>
+                            </select>
+                            <script type="text/javascript">
+                            //<![CDATA[
+                                $('billing:region_id').setAttribute('defaultValue',  "<?php echo $this->getAddress()->getRegionId() ?>");
+                            //]]>
+                            </script>
+                            <input type="text" id="billing:region" name="billing[region]" value="<?php echo $this->htmlEscape($this->getAddress()->getRegion()) ?>"  title="<?php echo $this->__('State/Province') ?>" class="input-text" style="display:none;" />
+                        </div>
+                    </div>
+                    <div class="field mb20">
+                        <label for="billing:city"><span>【必須】</span><?php echo $this->__('City') ?> <?php if ($_addressLength > 0):  echo $this->__('(Less than %d characters)', $_addressLength); endif ?></label>
+                        <div class="input-box">
+                            <input type="text" title="<?php echo $this->__('City') ?>" name="billing[city]" value="<?php echo $this->htmlEscape($this->getAddress()->getCity()) ?>" class="input-text required-entry <?php if ($_addressLength > 0): ?> validate-length maximum-length-<?php echo $_addressLength; endif ?>" id="billing:city" />
+                        <p class="balloon">例）千葉市緑区</p>
                         </div>
                     </div>
                 </li>
-            </ul>
-
-            <!-- <ul>
-                <label for="billing:fax"><?php echo $this->__('Fax') ?></label>
-                <div>
-                    <input type="text" name="billing[fax]" value="<?php echo $this->escapeHtml($this->getAddress()->getFax()) ?>" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Fax')) ?>" class="input-text <?php echo $this->helper('customer/address')->getAttributeValidationClass('fax') ?>" id="billing:fax" />
-                </div>
-            </ul> -->
-
-
-            <?php if(!$this->isCustomerLoggedIn()): ?>
-                <ul>
-                    <li>
-                        <label for="billing:email" class="required"><span>【必須】</span><?php echo $this->__('Email Address') ?></label>
-                        <div class="input-box">
-                            <input ty pe="text" name="billing[email]" id="billing:email" value="<?php echo $this->escapeHtml($this->getAddress()->getEmail()) ?>" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Email Address')) ?>" class="input-text validate-email required-entry" />
+                <li class="wide">
+                    <label for="billing:street1"><span>【必須】</span><?php echo $this->__('Address') ?> <?php if ($_addressLength > 0):  echo $this->__('(Less than %d characters)', $_addressLength); endif ?></label>
+                    <div class="input-box mt10">
+                        <input type="text" title="<?php echo $this->__('Street Address') ?>" name="billing[street][]" id="billing:street1" value="<?php echo $this->htmlEscape($this->getAddress()->getStreet(1)) ?>" class="input-text required-entry <?php if ($_addressLength > 0): ?> validate-length maximum-length-<?php echo $_addressLength; endif ?>" />
+                    </div>
+                </li>
+                        <ul class="balloon" style="margin-left:0; float:left;">
+							<li>※マンション名、アパート名、<br>部屋番号なども入力してください。</li>
+							<li>例）誉田町2-23-157</li>
+						</ul>
+        <?php for ($_i=2, $_n=$this->helper('customer/address')->getStreetLines(); $_i<=$_n; $_i++): ?>
+                <li class="wide">
+                    <label for="billing:street_<?php echo $_i?>"></label>
+                    <div class="input-box mb20">
+                        <input type="text" title="<?php echo $this->__('Street Address %s', $_i) ?>" name="billing[street][]" id="billing:street<?php echo $_i?>" value="<?php echo $this->htmlEscape($this->getAddress()->getStreet($_i)) ?>" class="input-text <?php if ($_addressLength > 0): ?> validate-length maximum-length-<?php echo $_addressLength; endif ?>" />
+                    </div>
+                </li>
+        <?php endfor ?>
+                <?php if ($this->helper('customer/address')->isVatAttributeVisible()) : ?>
+                <li class="wide" style="float:none; width:auto;">
+                    <label for="billing:vat_id"><?php echo $this->__('VAT Number') ?></label>
+                    <div class="input-box mb20">
+                        <input type="text" id="billing:vat_id" name="billing[vat_id]" value="<?php echo $this->escapeHtml($this->getAddress()->getVatId()) ?>" title="<?php echo $this->__('VAT Number') ?>" class="input-text <?php echo $this->helper('customer/address')->getAttributeValidationClass('vat_id') ?>" />
+                    </div>
+                </li>
+                <?php endif; ?>
+                <li class="fields">
+                    <div class="field">
+                        <label for="billing:telephone"><span>【必須】</span><?php echo $this->__('Telephone') ?></label>
+                        <div class="input-box mb20">
+                            <?php if(Mage::getStoreConfig('flatz_base_japanese/validator/separatetel')) : ?>
+                            <?php $_telarray = preg_split('/' . Mage::getStoreConfig('flatz_base_japanese/validator/telseparator') . '/', $this->getAddress()->getTelephone()) ?>
+                            <?php for($i=1; $i <= Mage::getStoreConfig('flatz_base_japanese/validator/numberoftelform'); $i++) : ?>
+                            <?php $_method = 'getTelephone' . $i; ?>
+                            <?php $_tel[] = '<input type="text" name="billing[telephone' . $i . ']" value="' . 
+                                          $this->htmlEscape(array_key_exists($i-1, $_telarray) ? $_telarray[$i-1] : '') . '" title="' . $this->__('Telephone') .
+                                          '" class="input-text required-entry" id="billing:telephone' . $i . '" style="width:60px;" />'; ?>
+                            <?php endfor; ?>
+                            <?php echo join('&nbsp;' . Mage::getStoreConfig('flatz_base_japanese/validator/telseparator') . '&nbsp;', $_tel)?>
+                            <?php else : ?>
+                            <input type="text" name="billing[telephone]" value="<?php echo $this->htmlEscape($this->getAddress()->getTelephone()) ?>" title="<?php echo $this->__('Telephone') ?>" class="input-text required-entry" id="billing:telephone" />
+                            <?php endif; ?>
                         </div>
-                    </li>
-                </ul>
-            <?php endif; ?>
+                    </div>
+                    <div class="field mb10">
+                        <label for="billing:fax"><?php echo $this->__('Fax') ?></label>
+                        <div class="input-box">
+                            <?php if(Mage::getStoreConfig('flatz_base_japanese/validator/separatetel')) : ?>
+                            <?php $_faxarray = preg_split('/' . Mage::getStoreConfig('flatz_base_japanese/validator/telseparator') . '/', $this->getAddress()->getFax()) ?>
+                            <?php for($i =1; $i <= Mage::getStoreConfig('flatz_base_japanese/validator/numberoftelform'); $i++) : ?>
+                            <?php $_method = 'getFax' . $i; ?>
+                            <?php $_fax[] = '<input type="text" name="billing[fax' . $i . ']" value="' . 
+                                          $this->htmlEscape(array_key_exists($i-1, $_faxarray) ? $_faxarray[$i-1] : '') . '" title="' . $this->__('Fax') .
+                                          '" class="input-text mb20" id="billing:fax' . $i . '" style="width:60px;" />'; ?>
+                            <?php endfor; ?>
+                            <?php echo join('&nbsp;' . Mage::getStoreConfig('flatz_base_japanese/validator/telseparator') . '&nbsp;', $_fax) ?>
+                            <?php else : ?>
+                            <input type="text" name="billing[fax]" id="billing:fax" title="<?php echo $this->__('Fax') ?>" value="<?php echo $this->htmlEscape($this->getAddress()->getFax()) ?>" class="input-text" />
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </li>
+					<ul class="balloon" style="margin:30px 0 0 0;">
+						<li>※ハイフンは除き半角数字で入力<br>例）0432932244</li>
+					</ul>
+                <?php if(!$this->isCustomerLoggedIn()): ?>
 
-
-
-            <?php $_taxvat = $this->getLayout()->createBlock('customer/widget_taxvat') ?>
-            <?php if ($_taxvat->isEnabled()): ?>
-                <li>
-                    <?php echo $_taxvat->setTaxvat($this->getQuote()->getCustomerTaxvat())->setFieldIdFormat('billing:%s')->setFieldNameFormat('billing[%s]')->toHtml() ?>
+        <?php $_dob = $this->getLayout()->createBlock('customer/widget_dob') ?>
+        <?php $_gender = $this->getLayout()->createBlock('customer/widget_gender') ?>
+            <?php if ($_dob->isEnabled() || $_gender->isEnabled()): ?>
+                <li class="fields mb10" style="float:none; width:auto; clear:both;">
+                <?php if ($_dob->isEnabled()): ?>
+                    <div class="field">
+                        <?php echo $_dob->setDate($this->getQuote()->getCustomerDob())->setFieldIdFormat('billing:%s')->setFieldNameFormat('billing[%s]')->toHtml() ?>
+                    </div>
+                <?php endif; ?>
+                <?php if ($_gender->isEnabled()): ?>
+                    <div class="field">
+                        <?php echo $_gender->setGender($this->getQuote()->getCustomerGender())->setFieldIdFormat('billing:%s')->setFieldNameFormat('billing[%s]')->toHtml() ?>
+                    </div>
+                <?php endif ?>
                 </li>
             <?php endif ?>
 
-            <li id="register-customer-password">
-                <div>
-                    <label for="billing:customer_password" class="required"><span>【必須】</span><?php echo $this->__('Password') ?></label>
-                    <div class="input-box">
-                        <input type="password" name="billing[customer_password]" id="billing:customer_password" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Password')) ?>" class="input-text required-entry validate-password" />
-                     </div>
-                </div>
-                <div>
-                    <label for="billing:confirm_password" class="required"><span>【必須】</span><?php echo $this->__('Confirm Password') ?></label>
-                    <div class="input-box">
-                        <input type="password" name="billing[confirm_password]" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Confirm Password')) ?>" id="billing:confirm_password" class="input-text required-entry validate-cpassword" />
-                    </div>
-                </div>
-            </li>
-
-
-            <?php endif; ?>
-
-
-            <?php if ($this->isCustomerLoggedIn() && $this->customerHasAddresses()):?>
-                <li class="control">
-                    <input type="checkbox" name="billing[save_in_address_book]" value="1" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Save in address book')) ?>" id="billing:save_in_address_book" onchange="if(window.shipping) shipping.setSameAsBilling(false);"<?php if ($this->getAddress()->getSaveInAddressBook()):?> checked="checked"<?php endif;?> class="checkbox" />
-                    <label for="billing:save_in_address_book"><?php echo $this->__('Save in address book') ?></label>
+        <?php $_taxvat = $this->getLayout()->createBlock('customer/widget_taxvat') ?>
+        <?php if ($_taxvat->isEnabled()): ?>
+                <li>
+                    <?php echo $_taxvat->setTaxvat($this->getQuote()->getCustomerTaxvat())->setFieldIdFormat('billing:%s')->setFieldNameFormat('billing[%s]')->toHtml() ?>
                 </li>
-            <?php else:?>
+        <?php endif ?>
 
-            <li class="no-display">
-                <input type="hidden" name="billing[save_in_address_book]" value="1" />
-            </li>
-
-
-            <?php endif; ?>
-
-
-            <?php echo $this->getChildHtml('form.additional.info'); ?>
-    </ul>
-</li>
-
-
-    <?php /* Extensions placeholder */ ?>
-    <?php echo $this->getChildHtml('checkout.onepage.billing.extra')?>
+                <li class="fields" id="register-customer-password" style="float:none; width:auto; clear:both;">
+                    <div class="field">
+                        <label for="billing:customer_password"><span>【必須】</span><?php echo $this->__('Password') ?></label>
+                        <div class="input-box mb10">
+                            <input type="password" name="billing[customer_password]" id="billing:customer_password" title="<?php echo $this->__('Password') ?>" class="input-text required-entry validate-password" />
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="billing:confirm_password"><span>【必須】</span><?php echo $this->__('Confirm Password') ?></label>
+                        <div class="input-box mb10">
+                            <input type="password" name="billing[confirm_password]" title="<?php echo $this->__('Confirm Password') ?>" id="billing:confirm_password" class="input-text required-entry validate-cpassword" />
+                        </div>
+                    </div>
+                </li>
+                <?php echo $this->getChildHtml('persistent.remember.me'); ?>
+                <?php endif; ?>
+                <?php if ($this->isCustomerLoggedIn() && $this->customerHasAddresses()):?>
+                    <li class="control" style="float:none; width:auto; clear:both;">
+                        <input type="checkbox" name="billing[save_in_address_book]" value="1" title="<?php echo $this->__('Save in address book') ?>" id="billing:save_in_address_book" onchange="if(window.shipping) shipping.setSameAsBilling(false);"<?php if ($this->getAddress()->getSaveInAddressBook()):?> checked="checked"<?php endif;?> class="checkbox" /><label for="billing:save_in_address_book"><?php echo $this->__('Save in address book') ?></label>
+                    </li>
+                <?php else:?>
+                    <li class="no-display"><input type="hidden" name="billing[save_in_address_book]" value="1" /></li>
+                <?php endif; ?>
+            </ul>
+            <?php echo $this->getChildHtml('persistent.remember.me.tooltip'); ?>
+        </fieldset>
+     </li>
     <?php if ($this->canShip()): ?>
         <li class="control">
-            <input type="radio" name="billing[use_for_shipping]" id="billing:use_for_shipping_yes" value="1"<?php if ($this->isUseBillingAddressForShipping()) {?> checked="checked"<?php }?> title="<?php echo Mage::helper('core')->quoteEscape($this->__('Ship to this address')) ?>" onclick="$('shipping:same_as_billing').checked = true;" class="radio" />
-            <label for="billing:use_for_shipping_yes"><?php echo  $this->__('Ship to this address') ?></label>
-        </li>
+            <input type="radio" name="billing[use_for_shipping]" id="billing:use_for_shipping_yes" value="1"<?php if ($this->isUseBillingAddressForShipping()) {?> checked="checked"<?php }?> title="<?php echo  $this->__('Ship to this address') ?>" onclick="$('shipping:same_as_billing').checked = true;" class="radio" /><label for="billing:use_for_shipping_yes"><?php echo  $this->__('Ship to this address') ?></label></li>
         <li class="control">
-            <input type="radio" name="billing[use_for_shipping]" id="billing:use_for_shipping_no" value="0"<?php if (!$this->isUseBillingAddressForShipping()) {?> checked="checked"<?php }?> title="<?php echo Mage::helper('core')->quoteEscape($this->__('Ship to different address')) ?>" onclick="$('shipping:same_as_billing').checked = false;" class="radio" />
-            <label for="billing:use_for_shipping_no"><?php echo $this->__('Ship to different address') ?></label>
+            <input type="radio" name="billing[use_for_shipping]" id="billing:use_for_shipping_no" value="0"<?php if (!$this->isUseBillingAddressForShipping()) {?> checked="checked"<?php }?> title="<?php echo $this->__('Ship to different address') ?>" onclick="$('shipping:same_as_billing').checked = false;" class="radio" /><label for="billing:use_for_shipping_no"><?php echo $this->__('Ship to different address') ?></label>
         </li>
     <?php endif; ?>
-</ul>
-
-            <?php if (!$this->canShip()): ?>
-                <input type="hidden" name="billing[use_for_shipping]" value="1" />
-            <?php endif; ?>
-            <div class="buttons-set" id="billing-buttons-container">
-                <p class="required"><?php echo $this->__('* Required Fields') ?></p>
-                <button type="button" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Continue')) ?>" class="btnOrange" onclick="billing.save()"><span><span><?php echo $this->__('Continue') ?></span></span></button>
-                <span class="please-wait" id="billing-please-wait" style="display:none;">
-                    <img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" alt="<?php echo Mage::helper('core')->quoteEscape($this->__('Loading next step...')) ?>" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Loading next step...')) ?>" class="v-middle" /> <?php echo $this->__('Loading next step...') ?>
-                </span>
-            </div>
-        </div>
+    </ul>
+    <?php if (!$this->canShip()): ?>
+        <input type="hidden" name="billing[use_for_shipping]" value="1" />
+    <?php endif; ?>
+    <div class="buttons-set" id="billing-buttons-container">
+        <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+        <button type="button" title="<?php echo $this->__('Continue') ?>" class="btnOrange" onclick="billing.save()"><?php echo $this->__('Continue') ?></button>
+        <span class="please-wait" id="billing-please-wait" style="display:none;">
+            <img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" alt="<?php echo $this->__('Loading next step...') ?>" title="<?php echo $this->__('Loading next step...') ?>" class="v-middle" /> <?php echo $this->__('Loading next step...') ?>
+        </span>
     </div>
+
+</div><!-- //ac_content -->
+</div><!-- //register_02 -->
 </form>
-
-
-
 <script type="text/javascript">
 //<![CDATA[
     var billing = new Billing('co-billing-form', '<?php echo $this->getUrl('checkout/onepage/getAddress') ?>address/', '<?php echo $this->getUrl('checkout/onepage/saveBilling') ?>');
@@ -312,5 +242,18 @@
     $('billing-address-select') && billing.newAddress(!$('billing-address-select').value);
 
     var billingRegionUpdater = new RegionUpdater('billing:country_id', 'billing:region', 'billing:region_id', <?php echo $this->helper('directory')->getRegionJson() ?>, undefined, 'billing:postcode');
+    if ($('onepage-guest-register-button')) {
+        Event.observe($('onepage-guest-register-button'), 'click', function(event) {
+            var billingRememberMe = $$('#billing-new-address-form li #remember-me-box');
+            if(billingRememberMe.length > 0) {
+                billingRememberMe = $(billingRememberMe[0].parentNode);
+                if ($('login:guest') && $('login:guest').checked) {
+                    billingRememberMe.hide();
+                } else if ($('login:register') && ($('login:register').checked || $('login:register').type == 'hidden')) {
+                    billingRememberMe.show();
+                }
+            }
+        });
+    }
 //]]>
 </script>

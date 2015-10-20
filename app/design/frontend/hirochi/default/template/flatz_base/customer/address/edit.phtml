@@ -25,9 +25,9 @@
                     <input type="text" name="company" id="company" title="<?php echo $this->__('Company') ?>" value="<?php echo $this->htmlEscape($this->getAddress()->getCompany()) ?>" class="input-text" />
                 </div>
             </li>
-            <li class="fields">
-                <div class="field">
-                    <label for="telephone" class="required"><em>*</em><?php echo $this->__('Telephone') ?></label>
+            <li class="fields mb00">
+                <div class="field mb10">
+                    <label for="telephone" class="required"><em>【必須】</em><?php echo $this->__('Telephone') ?></label>
                     <div class="input-box">
                         <?php if(Mage::getStoreConfig('flatz_base_japanese/validator/separatetel')) : ?>
                         <?php $_telarray = preg_split('/' . Mage::getStoreConfig('flatz_base_japanese/validator/telseparator') . '/', $this->getAddress()->getTelephone()) ?>
@@ -68,7 +68,7 @@
         <ul class="form-list">
             <li class="fields">
                 <div class="field">
-                    <label for="zip" class="required"><em>*</em><?php echo $this->__('Zip/Postal Code') ?></label>
+                    <label for="zip" class="required"><em>【必須】</em><?php echo $this->__('Zip/Postal Code') ?>（ハイフンを除く数字7桁）</label>
                     <div class="input-box">
                         <?php if(Mage::getStoreConfig('flatz_base_japanese/validator/separatepostcode')) : ?>
                         <?php $_postarray = preg_split('/' . Mage::getStoreConfig('flatz_base_japanese/validator/postcodeseparator') . '/', $this->getAddress()->getPostcode()) ?>
@@ -88,7 +88,7 @@
                 <input type="hidden" id="country" name="country_id" value="JP" />
                 <?php else : ?>
                 <div class="field">
-                    <label for="country" class="required"><em>*</em><?php echo $this->__('Country') ?></label>
+                    <label for="country" class="required"><em>【必須】</em><?php echo $this->__('Country') ?></label>
                     <div class="input-box">
                         <?php echo $this->getCountryHtmlSelect('JP') ?>
                     </div>
@@ -97,7 +97,7 @@
             </li>
             <li class="fields">
                 <div class="field">
-                    <label for="region_id" class="required"><em>*</em><?php echo $this->__('State/Province') ?></label>
+                    <label for="region_id" class="required"><em>【必須】</em><?php echo $this->__('State/Province') ?></label>
                     <div class="input-box">
                         <select id="region_id" name="region_id" title="<?php echo $this->__('State/Province') ?>" class="validate-select" style="display:none;">
                            <option value=""><?php echo $this->__('Please select region, state or province') ?></option>
@@ -111,14 +111,14 @@
                     </div>
                 </div>
                 <div class="field">
-                    <label for="city" class="required"><em>*</em><?php echo $this->__('City') ?> <?php if ($_addressLength > 0):  echo $this->__('(Less than %d characters)', $_addressLength); endif ?></label>
+                    <label for="city" class="required"><em>【必須】</em><?php echo $this->__('City') ?> <?php if ($_addressLength > 0):  echo $this->__('(Less than %d characters)', $_addressLength); endif ?></label>
                     <div class="input-box">
                         <input type="text" name="city" value="<?php echo $this->htmlEscape($this->getAddress()->getCity()) ?>"  title="<?php echo $this->__('City') ?>" class="input-text required-entry <?php if ($_addressLength > 0): ?> validate-length maximum-length-<?php echo $_addressLength; endif ?>" id="city" />
                     </div>
                 </div>
             </li>
-            <li class="wide">
-                <label for="street_1" class="required"><em>*</em><?php echo $this->__('Street Address') ?> <?php if ($_addressLength > 0):  echo $this->__('(Less than %d characters)', $_addressLength); endif ?></label>
+            <li class="wide mb00">
+                <label for="street_1" class="required"><em>【必須】</em><?php echo $this->__('Street Address') ?> <?php if ($_addressLength > 0):  echo $this->__('(Less than %d characters)', $_addressLength); endif ?></label>
                 <div class="input-box">
                     <input type="text" name="street[]" value="<?php echo $this->htmlEscape($this->getAddress()->getStreet(1)) ?>" title="<?php echo $this->__('Street Address') ?>" id="street_1" class="input-text required-entry <?php if ($_addressLength > 0): ?> validate-length maximum-length-<?php echo $_addressLength; endif ?>" />
                 </div>
@@ -138,8 +138,8 @@
                 </div>
             </li>
             <?php endif; ?>
-            <li<?php if($this->canSetAsDefaultBilling()) echo ' class="control"' ?>>
                 <?php if($this->isDefaultBilling()): ?>
+            <li class="hidden<?php if($this->canSetAsDefaultBilling()) echo ' control' ?>">
                     <strong><?php echo $this->__('Default Billing Address') ?></strong>
                 <?php elseif($this->canSetAsDefaultBilling()): ?>
                     <input type="checkbox" id="primary_billing" name="default_billing" value="1" title="<?php echo $this->__('Use as My Default Billing Address') ?>" class="checkbox" /><label for="primary_billing"><?php echo $this->__('Use as my default billing address') ?></label>
@@ -147,7 +147,7 @@
                     <input type="hidden" name="default_billing" value="1" />
                 <?php endif; ?>
             </li>
-            <li<?php if($this->canSetAsDefaultShipping()) echo ' class="control"' ?>>
+            <li class="hidden<?php if($this->canSetAsDefaultShipping()) echo ' control' ?>">
                 <?php if($this->isDefaultShipping()): ?>
                     <strong><?php echo $this->__('Default Shipping Address') ?></strong>
                 <?php elseif($this->canSetAsDefaultShipping()): ?>
@@ -159,7 +159,6 @@
         </ul>
     </div>
     <div class="buttons-set">
-        <p class="required"><?php echo $this->__('* Required Fields') ?></p>
         <p class="back-link"><a href="<?php echo $this->escapeUrl($this->getBackUrl()) ?>"><small>&laquo; </small><?php echo $this->__('Back') ?></a></p>
         <button type="submit" title="<?php echo $this->__('Save Address') ?>" class="button"><span><span><?php echo $this->__('Save Address') ?></span></span></button>
     </div>
@@ -170,5 +169,5 @@
 //<![CDATA[
     var dataForm = new VarienForm('form-validate', true);
     new RegionUpdater('country', 'region', 'region_id', <?php echo $this->helper('directory')->getRegionJson() ?>, undefined, 'zip');
-//]]>
+//test]]>
 </script>

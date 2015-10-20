@@ -58,11 +58,11 @@
 				<form action="#" method="post">
 					<ul>
 						<li class="name">
-							<p>お名前：<span>【必須】</span></p>
+							<p><span class="fwB">【必須】</span>お名前：</p>
 							<input name="name" id="name" title="<?php echo Mage::helper('core')->quoteEscape(Mage::helper('contacts')->__('Name')) ?>" value="<?php echo $this->escapeHtml($this->helper('contacts')->getUserName()) ?>" class="input-text required-entry" type="text" />
 						</li>
 						<li class="email">
-							<p>E-mailアドレス：<span>【必須】</span></p>
+							<p><span class="fwB">【必須】</span>E-mailアドレス：</p>
 							<input name="email" id="email" title="<?php echo Mage::helper('core')->quoteEscape(Mage::helper('contacts')->__('Email')) ?>" value="<?php echo $this->escapeHtml($this->helper('contacts')->getUserEmail()) ?>" class="input-text required-entry validate-email" type="text" />
 						</li>
 						<li class="tel">
@@ -70,12 +70,12 @@
 							<input name="telephone" id="telephone" title="<?php echo Mage::helper('core')->quoteEscape(Mage::helper('contacts')->__('Telephone')) ?>" value="" class="input-text" type="text" />
 						</li>
 						<li class="contact_main">
-							<p>お問い合わせ：<span>【必須】</span></p>
+							<p><span class="fwB">【必須】</span>お問い合わせ：</p>
 							<textarea name="comment" id="comment" title="<?php echo Mage::helper('core')->quoteEscape(Mage::helper('contacts')->__('Comment')) ?>" class="required-entry input-text" cols="5" rows="3"></textarea>
 						</li>
 						<li>
 							<label>
-								<input type="checkbox" name="check" class="required-entry" value="yes"><a href="<?php echo $this->getUrl('privacy'); ?>">個人情報保護方針</a>に同意する<span>【必須】</span></label>
+								<input type="checkbox" name="check" class="required-entry" value="yes"><span class="fwB">【必須】</span><a href="<?php echo $this->getUrl('privacy'); ?>">個人情報保護方針</a>に同意する</label>
 						</li>
 					</ul>
 					<div class="buttons-set">

@@ -62,13 +62,11 @@
         </div>
     <?php endif ?>
     <?php if($_cartQty && $this->isPossibleOnepageCheckout()): ?>
-    <div class="actions">
         <?php echo $this->getChildHtml('extra_actions') ?>
-        <button type="button" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Checkout')) ?>" class="btnOrange" onclick="setLocation('<?php echo $this->getCheckoutUrl() ?>')"><span><span><?php echo $this->__('Checkout') ?></span></span></button>
-    </div>
+        <p class="mt10 taC"><a href="javascript:void(0);" onclick="setLocation('<?php echo $this->getCheckoutUrl() ?>')"><img src="<?php echo $this->getSkinUrl('images/goCart.png'); ?>" alt="<?php echo Mage::helper('core')->quoteEscape($this->__('Checkout')) ?>" width="100%"></a></p>
     </div>
     <?php endif ?>
-    <?php /*
+    <?php /* 最近追加した商品 非表示
     <?php $_items = $this->getRecentItems() ?>
     <?php if(count($_items)): ?>
         <p class="block-subtitle"><?php echo $this->__('Recently added item(s)') ?></p>
@@ -81,7 +79,8 @@
     <?php else: ?>
         <p class="empty"><?php echo $this->__('You have no items in your shopping cart.') ?></p>
     <?php endif ?>
-    */?>
+    */ ?>
 </div>
 </div>
 <?php endif;?>
+

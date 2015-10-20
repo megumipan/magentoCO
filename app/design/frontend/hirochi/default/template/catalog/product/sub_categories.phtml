@@ -5,10 +5,20 @@
     $subCategories = Mage::getModel('catalog/category')->getCategories($catId,$recursiveLevel);
 ?>
 <?php if(count($subCategories)>0): ?>
-<section id="shop_01_list" class="type_image">
+<section id="category_list" class="type_list">
     <ul>
     <?php foreach ($subCategories as $cat): ?>
-        <li><a href="<?php echo $cat->getUrl();?>"><?php echo $cat->getName(); ?></a></li>
+        <li><a href="<?php echo $cat->getUrl();?>">
+        <?php 
+		//カテゴリー画像取得
+		$category = Mage::getModel('catalog/category')->load($cat->getId());
+		$catImg = $category->getImageUrl();
+		if(!empty($catImg)):
+		?>
+        <img src="<?php echo $catImg ?>" alt="<?php echo $cat->getName(); ?>">
+        <?php endif; ?>
+        <?php echo $cat->getName(); ?></a>
+        </li>
     <?php endforeach; ?>
     </ul>
 </section>

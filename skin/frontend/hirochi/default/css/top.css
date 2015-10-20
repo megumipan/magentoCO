@@ -17,10 +17,16 @@ body{
     display: none;
 }
 
-.col-right .h3_point {
-    display: none;
-}
-
+.h3_point h3{
+	background:#404040;	
+	color:#fff;
+	font-weight:bold;
+	text-align:center;
+	padding:10px 0;
+	font-size:12px;
+	margin-top: 20px;
+	box-sizing:border-box;
+	}
 
 /* topページ
 -------------------------------------------------------*/
@@ -214,7 +220,7 @@ body p{
     width: 265px;
     border: solid 1px #000000;
 }
-input[type="image"]{
+#search_box input[type="image"]{
     height: 29px;
     vertical-align: middle;
 }
@@ -352,28 +358,40 @@ body.cms-home #main .col-main{
     font-size: 11px;
 }
 #main .availability{
-	text-align: center;
 	font-size: 11px;
     padding: 8px 0 0;
 }
 #main .availability.out-of-stock span{
 	font-weight: normal;
-	background-color: #
+	font-size: 14px;
 }
 #main .recommend img{
 	margin: 0 0 0.5em;
 }
 #main .recommend .price-box{
-	text-align: center;
-	color: #ff0000;
-	font-size: 11px;
-	padding: 5px 0 0;
+	margin:10px 0 0;
+    font-size: 18px;
+    font-weight: bold;
+	text-align: right;
+    color: #ff1914;
 }
+
 #main .recommend a{
-	color: #242424;
-	text-decoration: none;
-    font-size: 11px;
+    color: #00E;
+    font-size: 14px;
+	font-weight: bold;
+    line-height: 1.3;
 }
+#main .recommend a:hover{
+		color: #08F;
+	}
+	#main .recommend a:visited,
+	#shop_01_item ul li a:visited{
+		color: #5F2892;
+	}
+	#main .recommend a:active{
+		color: #0ff;
+	}
 /*-----メインカラム　ここまで-----*/
 
 /*-----左カラム　ここから-----*/
@@ -494,7 +512,6 @@ height: 81px;
 }
 .col-left .infomation,
 .col-right .infomation{
-    margin-top: 20px;
     background-color: #f8f8f8;
     border: solid 1px #d9d9d9;
 }
@@ -532,8 +549,12 @@ height: 81px;
 .col-right .infomation section img{
     float: left;
     margin-right: 10px;
-    padding-top: 3px;
-    
+    background-color: #fff;
+    padding: 5px 4px;
+	margin: 3px 10px 0 5px;
+	border: 1px solid #eee;
+    border-radius: 50px;
+    width: 25px;
 }
 .col-left .infomation section p,
 .col-right .infomation section p{

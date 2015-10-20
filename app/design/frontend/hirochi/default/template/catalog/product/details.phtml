@@ -97,18 +97,15 @@ $point = $price * 0.01;
 <script type="text/javascript">
 var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
 </script>
-<div class="item_desc" style="margin:1em 0;">
+<div style="margin:1em 0; line-height: 1.5;">
 <p>【価格】<br>
-定価：<?php echo number_format($_product->getMsrp(),'0', '.', ','); ?>円</p>
-<p class="fwB fs20">販売価格：<span class="fcRed"><?php echo number_format($_product->getPrice(),'0', '.', ','); ?>円</span></p>
+<span class="c_gray">定価：&yen;<?php echo number_format($_product->getMsrp(),'0', '.', ','); ?></span></p>
+<p class="fwB fs20">販売価格：<span class="fcRed">&yen;<?php echo number_format($_product->getPrice(),'0', '.', ','); ?></span></p>
 
-
-
-
-<p class="fs14">関東近郊 ○月○日頃お届け可</p>
-<p>獲得ポイント数：<?php echo round($point); ?>P(1P = 1円)</p>
-<p><?php echo $this->getChildHtml('product_type_data') ?></p>
-<p>在庫数：<?php echo number_format($_product->getStockItem()->getQty(),'0'); ?>
+<p class="fs14 c_blue">関東近郊 ○月○日頃お届け可</p>
+<p>獲得ポイント数：<span class="c_point"><?php echo round($point); ?>P</span>(1P = &yen;1)</p>
+<p class="zaiko"><?php echo $this->getChildHtml('product_type_data') ?></p>
+<p><span class="c_red">在庫数：<?php echo number_format($_product->getStockItem()->getQty(),'0'); ?></span>
 </p>
 
 <div class="disTable">
@@ -118,12 +115,13 @@ var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>
 <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
 <input type="hidden" name="related_product" id="related-products-field" value="" />
 </div>
-
-<p class="fwB fs18 disTablecell">数量：<input type="number" name="qty" value="1"></p>
-<div class="disTablecell">
-<?php //echo $this->getChildHtml('addto') ?>
-<input type="submit" class="toCart" value="カートに入れる"></p>
-</div>
+<div class="item_desc cf mt15">
+	<p class="fwB fs18 flImgL pt08">数量：<input type="number" name="qty" value="1" min="1" max="999" id="qtyItem"></p>
+	<div class="flR">
+	<?php //echo $this->getChildHtml('addto') ?>
+	<p><input type="image" src="<?php echo $this->getSkinUrl('images/toCart.png'); ?>" value="カートに入れる"></p>
+	</div>
+</div><!-- //item_desc -->
 </form>
 </div>
 </div>
@@ -134,12 +132,12 @@ var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>
 </div>
 </div>
 <div class="shop_04_info">
+<h3 class="gray_line">【商品情報】</h3>
 <?php foreach ($this->getChildGroup('detailed_info', 'getChildHtml') as $alias => $html):?>
-    <h3 class="gray_line">【商品情報】</h3>
     <ul>
     <li><?php echo $html; ?></li>
         <?php if ($_product->getShortDescription()):?>
-    <li><?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?></li>
+    <li><?php //echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?></li>
         <?php endif;?>
 <?php endforeach;?>
 </ul>

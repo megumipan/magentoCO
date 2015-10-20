@@ -601,7 +601,7 @@ h3.leftBoxHeading, h3.leftBoxHeading a, h3.rightBoxHeading, h3.rightBoxHeading a
 
 .centerBoxHeading {
 	margin: 0em;
-	background: #404040;
+	background: #f84;
 	padding: 10px 0;
 	line-height: 1.5em;
 	color: #fff;
@@ -840,7 +840,12 @@ h3.itemTitle{
 	padding: 0;
 	padding-right: 16px;
 }
-
+/* table */
+table{
+	border: 1px solid #ccc;
+}
+tr{ border-bottom: 1px solid #ccc; }
+th{ background-color: #eee; border-right: 1px solid #ccc; font-weight: normal; }
 
 /* �潟�＜�潟�� */
 .M14_1_table {
@@ -1292,3 +1297,5 @@ div#productDetailsList {
     padding: 11px 0 5px 10px;
     margin: 0 0 34px;
 }
+
+#shippingInfo a{ color: green; text-decoration: underline; font-size: 14px; }

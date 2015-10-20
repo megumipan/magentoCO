@@ -32,3 +32,28 @@ $options = $this->getChild('customer.wishlist.item.options')
     ->setItem($item)
     ->getConfiguredOptions();
 ?>
+<?php echo $item->getAddedAt(); ?>
+</td><td class="taC">
+<div class="cart-cell">
+<div class="add-to-cart-alt">
+<?php if ($item->canHaveQty() && $item->getProduct()->isVisibleInSiteVisibility()): ?>
+    <input type="number" min="1" class="input-text qty validate-not-negative-number mb10" name="qty[<?php echo $item->getId() ?>]" value="<?php echo $this->getAddToCartQty($item) * 1 ?>" />
+<?php endif; ?>
+<?php if ($product->isSaleable()): ?>
+   
+    <button type="button" title="カートに入れる" onclick="addWItemToCart(<?php echo $item->getId()?>);" class="btn-cart-img">カートに入れる</button>
+<?php else: ?>
+    <?php if ($product->getIsSalable()): ?>
+        <p class="availability in-stock"><span><?php echo $this->__('In stock') ?></span></p>
+    <?php else: ?>
+        <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+    <?php endif; ?>
+<?php endif; ?>
+</div>
+<?php foreach($this->getSortedChildren() as $childName):?>
+    <?php echo $this->getChildHtml($childName, false);?>
+<?php endforeach;?>
+<?php /* if ($product->isVisibleInSiteVisibility()): ?>
+    <p><a class="link-edit" href="<?php echo $this->getItemConfigureUrl($item) ?>"><?php echo $this->__('Edit') ?></a></p>
+<?php endif */ ?>
+</div>

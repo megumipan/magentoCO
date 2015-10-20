@@ -51,6 +51,15 @@ body{
 /** a tag **/
 a{ color: #484848; text-decoration: none; }
 a:hover{ text-decoration: underline; }
+a:hover img{
+	opacity:0.8;
+	filter: alpha(opacity=80);        /* ie lt 8 */
+	-ms-filter: "alpha(opacity=80)";  /* ie 8 */
+	-moz-opacity:0.8;                 /* FF lt 1.5, Netscape */
+	-khtml-opacity: 0.8;              /* Safari 1.x */
+}
+
+input{ box-sizing: border-box; }
 
 /* 01.カレンダー
 ———————————————————————————————————————————————————————————— */
@@ -128,14 +137,14 @@ module
 /** base fonts **/
 .fwN { font-weight: normal;}
 .fwB, .fb { font-weight: bold;}
-.fzSS  { font-size:  78%;}/* base 12px ->  8px */
-.fzS   { font-size:  85%;}/* base 12px -> 10px */
-.fzM   { font-size: 100%;}
-.fzL   { font-size: 115%;}/* base 12px -> 14px */
-.fzLL  { font-size: 130%;}/* base 12px -> 16px */
-.fzLLL { font-size: 143%;}/* base 12px -> 18px */
-sup   { font-size: 78%; vertical-align: top;}
-sub   { font-size: 78%; vertical-align: baseline;}
+.fzSS  { font-size:  78%!important;}/* base 12px ->  8px */
+.fzS   { font-size:  85%!important;}/* base 12px -> 10px */
+.fzM   { font-size: 100%!important;}
+.fzL   { font-size: 115%!important;}/* base 12px -> 14px */
+.fzLL  { font-size: 130%!important;}/* base 12px -> 16px */
+.fzLLL { font-size: 143%!important;}/* base 12px -> 18px */
+.sup   { font-size: 78%; vertical-align: top;}
+.sub   { font-size: 78%; vertical-align: baseline;}
 
 /** Inline Align **/
 .taL { text-align: left   !important;}
@@ -158,24 +167,24 @@ sub   { font-size: 78%; vertical-align: baseline;}
 .w320	{ width: 320px;}
 .w160	{ width: 160px;}
 
-.wHalf  { width: 48%!important;}
-.wTri   { width: 33%!important;}
-.wQuart { width: 24%!important;}
-.wFull  { width: 99.9%!important;}
-.wMax   { width: 100%!important;}
+.wHalf  { width: 48%!important;    box-sizing: border-box;}
+.wTri   { width: 33%!important;    box-sizing: border-box;}
+.wQuart { width: 24%!important;    box-sizing: border-box;}
+.wFull  { width: 99.9%!important;    box-sizing: border-box;}
+.wMax   { width: 100%!important;    box-sizing: border-box;}
 
-.w03per { width: 3%  !important;}
-.w05per { width: 5%  !important;}
-.w10per { width: 10% !important;}
-.w13per { width: 13% !important;}
-.w15per { width: 15% !important;}
-.w20per { width: 20% !important;}
-.w25per { width: 25% !important;}
-.w30per { width: 30% !important;}
-.w35per { width: 35% !important;}
-.w40per { width: 40% !important;}
-.w45per { width: 45% !important;}
-.w50per { width: 50% !important;}
+.w03per { width: 3%  !important;    box-sizing: border-box;}
+.w05per { width: 5%  !important;    box-sizing: border-box;}
+.w10per { width: 10% !important;    box-sizing: border-box;}
+.w13per { width: 13% !important;    box-sizing: border-box;}
+.w15per { width: 15% !important;    box-sizing: border-box;}
+.w20per { width: 20% !important;    box-sizing: border-box;}
+.w25per { width: 25% !important;    box-sizing: border-box;}
+.w30per { width: 30% !important;    box-sizing: border-box;}
+.w35per { width: 35% !important;    box-sizing: border-box;}
+.w40per { width: 40% !important;    box-sizing: border-box;}
+.w45per { width: 45% !important;    box-sizing: border-box;}
+.w50per { width: 50% !important;    box-sizing: border-box;}
 
 /** float **/
 .flL    { display: inline; float: left;}
@@ -246,6 +255,7 @@ sub   { font-size: 78%; vertical-align: baseline;}
 /** padding **/
 .pt00 { padding-top: 0   !important;}
 .pt05 { padding-top: 5px !important;}
+.pt08 { padding-top: 8px !important;}
 .pt10 { padding-top:10px !important;}
 .pt12 { padding-top:12px !important;}
 .pt15 { padding-top:15px !important;}
@@ -294,10 +304,12 @@ sub   { font-size: 78%; vertical-align: baseline;}
 .pl50 { padding-left:50px !important;}
 
 /** color **/
-.cRed { color: #ff0101; }
-.cOrange { color: #f38401; }
-.cBlue { color: #38a1db; }
+.fcRed { color: #ff0000; }
+.fcOrange { color: #f38401; }
+.fcBlue { color: #38a1db; }
 
+/** display none **/
+.hidden{ display: none; }
 
 /* all_pages_comment 表示・非表示切り替え
 ———————————————————————————————————————— */
@@ -382,3 +394,8 @@ sub   { font-size: 78%; vertical-align: baseline;}
     background: linear-gradient(to bottom, #ff6600 20%,#ffa366 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff6600', endColorstr='#ffa366',GradientType=0 ); /* IE6-9 */
 }
+
+#mypage{ display: none; }
+body.customer-account #mypage{ display: block; }
+body.customer-account .col-left .dashboard{ display: none; }
+

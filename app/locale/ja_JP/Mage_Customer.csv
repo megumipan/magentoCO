@@ -490,3 +490,6 @@
 "Symbols Used in CAPTCHA","CAPTCHA（キャプチャ）で使われる記号の指定"
 "Please use only letters (a-z or A-Z) or numbers (0-9) in this field. No spaces or other characters are allowed.<br />Similar looking characters (e.g. ""i"", ""l"", ""1"") decrease chance of correct recognition by customer.","アルファベット (a-z or A-Z) もしくは数字 (0-9) を指定してください。スペースや他の記号などは入力できません。 <br />間違えやすい文字(例 ""i"", ""l"", ""1"")は顧客が認識しにくいので利用には十分注意します。"
 "Case Sensitive","大文字/小文字を区別する"
+"Male","男性"
+"Female","女性"
+

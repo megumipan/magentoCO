@@ -42,7 +42,7 @@
         <fieldset>
             <?php echo $this->getChildHtml('form_fields_before')?>
             <?php if( $this->getRatings() && $this->getRatings()->getSize()): ?>
-               <p class="fwB"><?php echo $this->__('How do you rate this product?') ?> <em class="required">【必須】</em></p>
+               <p class="fwB"><em class="required">【必須】</em><?php echo $this->__('How do you rate this product?') ?></p>
                 <span id="input-message-box"></span>
                 <div class="style" style="width:70%;">
                 <ul>
@@ -81,9 +81,9 @@
                       
                     </p>
                     <?php endif;?>
-                    <input type="hidden" name="title" id="summary_field" class="input-text" value="" />
+                    <input type="hidden" name="title" id="summary_field" class="input-text" value="<?php echo $this->__('Nickname') ?>さんのレビュー" />
                     <p>
-                        <label for="review_field" class="required"><?php echo $this->__('Review') ?><em>【必須】</em></label>
+                        <label for="review_field"><em class="required">【必須】</em><?php echo $this->__('Review') ?></label>
                         <div class="input-box">
                             <textarea name="detail" id="review_field" cols="5" rows="3" class="required-entry"><?php echo $this->escapeHtml($data->getDetail()) ?></textarea>
                         </div>

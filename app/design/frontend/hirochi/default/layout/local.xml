@@ -86,13 +86,24 @@
 <!--
 -->
 <!--<remove name="catalog.compare.sidebar" />-->
-<remove name="sale.reorder.sidebar"/>  
 <remove name="wishlist_sidebar"/> 
 <remove name="left.newsletter"/>
+<remove name="right.reports.product.compared"/>
 <!--<remove name="cart_sidebar"/>-->
 <!--<remove name="amreview_sidebar"/>-->
 </default>
 
+<reference name="before_body_end">
+  <block type="core/template" name="postcodetoaddress" template="postcodetoaddress/js.phtml">
+    <action method="setMode"><p></p></action>
+    <action method="setButtonId"><p>posttoaddr</p></action>
+    <action method="setZipId"><p>zip</p></action>
+    <action method="setRegionId"><p>region_id</p></action>
+    <action method="setCityId"><p>city</p></action>
+    <action method="setStreetId"><p>street_1</p></action>
+    <action method="setCountryId"><p>country</p></action>
+  </block>
+</reference>
 
 
 </layout>

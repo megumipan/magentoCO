@@ -48,16 +48,16 @@
 
 <div id="category">
 <?php
-    if ($_imgUrl = $_category->getImageUrl()) {
-        $_imgHtml = '<p class="topimage"><img src="'.$_imgUrl.'" alt="'.$this->htmlEscape($_category->getName()).'" title="'.$this->htmlEscape($_category->getName()).'" width="100%" /></p>';
-        $_imgHtml = $_helper->categoryAttribute($_category, $_imgHtml, 'image');
-    }
+	if($this->IsTopCategory()){
+		if ($_imgUrl = $_category->getImageUrl()) {
+			$_imgHtml = '<p class="topimage"><img src="'.$_imgUrl.'" alt="'.$this->htmlEscape($_category->getName()).'" title="'.$this->htmlEscape($_category->getName()).'" width="100%" /></p>';
+			$_imgHtml = $_helper->categoryAttribute($_category, $_imgHtml, 'image');
+		}
+	}
 ?>
 <?php if($_imgUrl): ?>
     <?php echo $_imgHtml ?>
 <?php endif; ?>
-
-<?php echo $this->getChildHtml('product_list_sub_categories'); ?>
 
 <?php if($this->isContentMode()): ?>
 	<section id="news" class="news_01">
@@ -70,6 +70,7 @@
 			<?php echo $_helper->categoryAttribute($_category, $_description, 'description') ?>
 		</div>
 	<?php endif; ?>
+	<?php echo $this->getChildHtml('product_list_sub_categories'); ?>
 
 <?php elseif($this->isMixedMode()): ?>
 
@@ -79,10 +80,12 @@
 		</div>
 	<?php endif; ?>
 	
+	<?php echo $this->getChildHtml('product_list_sub_categories'); ?>
 	<?php echo $this->getProductListHtml() ?>
 	<?php echo $this->getCmsBlockHtml() ?>
 
 <?php else: ?>
+	<?php echo $this->getChildHtml('product_list_sub_categories'); ?>
     <?php echo $this->getProductListHtml() ?>
 <?php endif; ?>
 

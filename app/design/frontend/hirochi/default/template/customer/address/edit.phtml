@@ -119,7 +119,7 @@
             </li>
             <li class="fields">
                 <div class="field">
-                    <label for="zip" class="required"><em>*</em><?php echo $this->__('Zip/Postal Code') ?></label>
+                    <label for="zip" class="required"><em>*</em><?php echo $this->__('Zip/Postal Code') ?>（ハイフンを除く数字7桁）</label>
                     <div class="input-box">
                         <input type="text" name="postcode" value="<?php echo $this->escapeHtml($this->getAddress()->getPostcode()) ?>" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Zip/Postal Code')) ?>" id="zip" class="input-text validate-zip-international <?php echo $this->helper('customer/address')->getAttributeValidationClass('postcode') ?>" />
                     </div>

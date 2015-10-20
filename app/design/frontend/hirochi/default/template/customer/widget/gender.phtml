@@ -28,9 +28,23 @@
 <div class="input-box">
     <select id="<?php echo $this->getFieldId('gender')?>" name="<?php echo $this->getFieldName('gender')?>" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Gender')) ?>"<?php if ($this->isRequired()):?> class="validate-select"<?php endif; ?> <?php echo $this->getFieldParams() ?>>
         <?php $options = Mage::getResourceSingleton('customer/customer')->getAttribute('gender')->getSource()->getAllOptions();?>
-        <?php $value = $this->getGender();?>
+        <?php $value = $this->getGender(); echo $value;?>
+			<option>選択してください</option>
         <?php foreach ($options as $option):?>
-            <option value="<?php echo $option['value'] ?>"<?php if ($option['value'] == $value) echo ' selected="selected"' ?>><?php echo $option['label'] ?></option>
+			<?php if(!empty($option['value'])): ?>
+            <option value="<?php echo $option['value'] ?>"<?php if ($option['value'] == $value) echo ' selected="selected"' ?>>
+            <?php
+	 			//echo $option['label']
+	 			//性別表記調整
+				if($option['value'] == 1){
+	 				echo '男性';
+ 				}if($option['value'] == 2){
+	 				echo '女性';
+				 }
+				if($option['value'] == $value){ echo '（選択中）'; }
+				?>
+            </option>
+        <?php endif;?>
         <?php endforeach;?>
     </select>
 </div>

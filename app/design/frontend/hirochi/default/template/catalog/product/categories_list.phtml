@@ -2,7 +2,7 @@
     // サブカテゴリを取得する
     //$catId = $this->getLayer()->getCurrentCategory()->getId();
 	$catId = 2;
-    $recursiveLevel = 6;
+    $recursiveLevel = 3;
     $subCategories = Mage::getModel('catalog/category')->getCategories($catId,$recursiveLevel);
 ?>
 <?php if(count($subCategories)>0): ?>
@@ -22,6 +22,7 @@
 </pre>
 
 <section id="categories_list">
+<h2 class="h2_heading">カテゴリ一覧</h2>
 <?php 
 function displayCategoryTree($array, $level=0){
   if( is_array( $array ) ) {

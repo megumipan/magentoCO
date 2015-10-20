@@ -476,7 +476,17 @@ class Mage_Wishlist_IndexController extends Mage_Wishlist_Controller_Abstract
 
         /* @var $item Mage_Wishlist_Model_Item */
         $item = Mage::getModel('wishlist/item')->load($itemId);
+/*
+var_dump(get_class_methods($item->getProduct()));
+echo '<hr />';
+var_dump();
+echo '<hr />';
+var_dump(get_class_methods($this));
+echo '<hr />';
+var_dump($item);
 
+exit();
+*/
         if (!$item->getId()) {
             return $this->_redirect('*/*');
         }

@@ -27,40 +27,30 @@
 <?php
     $columns = $this->getColumns();
 ?>
-<section id="list" class="list_01">
 <table class="data-table" id="wishlist-table">
+    <thead>
         <tr>
-            <th>商品名</th>
-            <th>コメント</th>
-            <th>登録日</th>
-            <th>カートに入れる</th>
-            <th>削除</th>
+        <th>商品名</th>
+        <th>コメント</th>
+        <th>登録日</th>
+        <th>カートに入れる</th>
+        <th>削除</th>
         </tr>
-
-
-</table>
-
-
-
-
-<div class="list_box">
-      <?php if (count($this->getItems())): ?>
-
-
+    </thead>
+    <tbody>
+        <?php if (count($this->getItems())): ?>
             <?php foreach ($this->getItems() as $item): ?>
-             
+                <tr id="item_<?php echo $item->getId();?>">
                     <?php foreach ($columns as $column): ?>
-                      <?php $column->setItem($item); echo $column->toHtml($item); ?>
+                        <td><?php $column->setItem($item); echo $column->toHtml($item);?></td>
                     <?php endforeach; ?>
-           
+                </tr>
             <?php endforeach ?>
         <?php else: ?>
-           <ul>class="wishlist-empty"><?php echo $this->__('This Wishlist has no Items');?></ul>
+            <td colspan="<?php echo count($columns);?>" class="wishlist-empty"><?php echo $this->__('This Wishlist has no Items');?></td>
         <?php endif; ?>
-</div>
-</section>
-
-
+    </tbody>
+</table>
 <?php foreach ($columns as $column): ?>
     <?php echo $column->getAdditionalHtml();?>
 <?php endforeach; ?>

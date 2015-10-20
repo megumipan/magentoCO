@@ -55,7 +55,9 @@ $ratequt = $summaryData['rating_summary'];
 $st_y = '<li><img src="'.$this->getSkinUrl('images/star_yellow.png').'" alt="star"></li>';
 $st_g = '<li><img src="'.$this->getSkinUrl('images/star_gray.png').'" alt="star"></li>';
 // percent表示のため、star表示に変換
-    if($ratequt < 21){
+    if($ratequt == 0){
+        $star_avg = $st_g.$st_g.$st_g.$st_g.$st_g;
+	}elseif($ratequt == 21){
         $star_avg = $st_y.$st_g.$st_g.$st_g.$st_g;
     }else if($ratequt < 41){
         $star_avg =  $st_y.$st_y.$st_g.$st_g.$st_g;
@@ -86,17 +88,19 @@ if(count($_votes)){
         $st_y = '<li><img src="'.$this->getSkinUrl('images/star_yellow.png').'" alt="star"></li>';
         $st_g = '<li><img src="'.$this->getSkinUrl('images/star_gray.png').'" alt="star"></li>';
         // percent表示のため、star表示に変換
-        if($ratequt < 21){
-            $star = $st_y.$st_g.$st_g.$st_g.$st_g;
-        }else if($ratequt < 41){
-            $star =  $st_y.$st_y.$st_g.$st_g.$st_g;
-        }else if($ratequt < 61){
-            $star =  $st_y.$st_y.$st_y.$st_g.$st_g;
-        }else if($ratequt < 81){
-            $star =  $st_y.$st_y.$st_y.$st_y.$st_g;
-        }else{
-            $star =  $st_y.$st_y.$st_y.$st_y.$st_y;
-        }
+		if($ratequt == 0){
+			$star_avg = $st_g.$st_g.$st_g.$st_g.$st_g;
+		}elseif($ratequt == 21){
+			$star_avg = $st_y.$st_g.$st_g.$st_g.$st_g;
+		}else if($ratequt < 41){
+			$star_avg =  $st_y.$st_y.$st_g.$st_g.$st_g;
+		}else if($ratequt < 61){
+			$star_avg =  $st_y.$st_y.$st_y.$st_g.$st_g;
+		}else if($ratequt < 81){
+			$star_avg =  $st_y.$st_y.$st_y.$st_y.$st_g;
+		}else{
+			$star_avg =  $st_y.$st_y.$st_y.$st_y.$st_y;
+		}
     }
 }
 

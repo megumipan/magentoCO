@@ -1,0 +1,38 @@
+<?php
+/**********************************
+layout.xmlに以下の追加をする
+action で各要素のIDを set する
+<reference name="before_body_end">
+  <block type="core/template" name="postcodetoaddress" template="postcodetoaddress/js.phtml">
+    <action method="setMode"><p></p></action>
+    <action method="setButtonId"><p>posttoaddr</p></action>
+    <action method="setZipId"><p>zip</p></action>
+    <action method="setRegionId"><p>region_id</p></action>
+    <action method="setCityId"><p>city</p></action>
+    <action method="setStreetId"><p>street_1</p></action>
+    <action method="setCountryId"><p>country</p></action>
+  </block>
+</reference>
+***********************************/
+if (Mage::getStoreConfig('postcodetoaddress/settings/enable')):
+$_helper = Mage::helper('postcodetoaddress');
+?>
+<script type="text/javascript">
+  var errorSize = <?php echo Mage::getStoreConfig('flatz_base_japanese/validator/postmaxlength');?>;
+  var sizeErrorMessage = '<?php echo $_helper->__('Please input the postal code number by %s characters.', Mage::getStoreConfig('flatz_base_japanese/validator/postmaxlength'));?>';
+  var <?php echo $this->getMode();?>ZipToAddr = new PostToAddr(
+    '<?php echo $this->getButtonId(); ?>',
+    '<?php echo $_helper->__('Get Address'); ?>',
+    '<?php echo $this->getStreetId(); ?>',
+    '<?php echo $this->getRegionId(); ?>',
+    '<?php echo $this->getCityId(); ?>',
+    '<?php echo $this->getCountryId(); ?>',
+    '<?php echo $this->getZipId(); ?>',
+    <?php echo Mage::getStoreConfig('flatz_base_japanese/validator/separatepostcode') ? 'true' : 'false'; ?>
+  );
+  <?php echo $this->getMode();?>ZipToAddr.setMessages({
+    "system_error": '<?php echo $_helper->__('System Error'); ?>'
+  });
+  //zip.addEventListener('blur', function() {getAddress(zipid);return false;}, false);
+</script>
+<?php endif;?>

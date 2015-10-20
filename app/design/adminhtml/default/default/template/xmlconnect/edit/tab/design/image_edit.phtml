@@ -43,7 +43,7 @@
 
             <div id="action_selector_cms" class="action">
                 <p><?php echo $this->__('2. Please select a page'); ?>:</p>
-                <select id="action_type_cms" name="action_type_cms" class="select"">
+                <select id="action_type_cms" name="action_type_cms" class="select">
                     <option value="0"></option>
                     <?php $pages = Mage::getResourceModel('xmlconnect/cms_page_collection')->toOptionIdArray(); ?>
                     <?php if (!count($pages)):?>
@@ -141,7 +141,7 @@
                             data.entity_name   = this.selectedEntityName;
                             break;
                         default:
-                            alert('<?php echo $this->jsQuoteEscape($this->__('Action type does\'t recognized.'));?>');
+                            alert('<?php echo $this->jsQuoteEscape($this->__('Action type does\t recognized.'));?>');
                             return;
                     }
 
@@ -151,7 +151,7 @@
         },
         sendActionData : function (data) {
             data.application_id = imageItems.application_id;
-            new Ajax.Request('<?php echo $this->getUrl('*/*/saveImageData')?>', {
+            new Ajax.Request('<?php echo $this->getUrl('saveImageData')?>', {
                 parameters: data,
                 onSuccess : function(transport) {
                     try {
@@ -179,7 +179,7 @@
         },
         sendDeleteActionData : function (data) {
             data.application_id = imageItems.application_id;
-            new Ajax.Request('<?php echo $this->getUrl('*/*/deleteImageData')?>', {
+            new Ajax.Request('<?php echo $this->getUrl('deleteImageData')?>', {
                 parameters: data,
                 onSuccess : function(transport) {
                     try {
@@ -248,7 +248,7 @@
                             $('xmlconnect_category_search').value = actionConfig.entity_name;
                             break;
                         default:
-                            alert('<?php echo $this->jsQuoteEscape($this->__('Action type does\'t recognized.'));?>');
+                            alert('<?php echo $this->jsQuoteEscape($this->__('Action type does\t recognized.'));?>');
                             return;
                     }
                 } else {
@@ -265,7 +265,7 @@
     }
 
     new Ajax.Autocompleter('xmlconnect_product_search', 'xmlconnect_product_search_autocomplete',
-        '<?php echo $this->getUrl('*/*/globalSearch', array('type' => 'product')) ?>',
+        '<?php echo $this->getUrl('globalSearch', array('type' => 'product')) ?>',
         {
             paramName:'query',
             minChars:1,
@@ -286,7 +286,7 @@
     }
 
     new Ajax.Autocompleter('xmlconnect_category_search', 'xmlconnect_category_search_autocomplete',
-        '<?php echo $this->getUrl('*/*/globalSearch', array('type' => 'category')) ?>',
+        '<?php echo $this->getUrl('globalSearch', array('type' => 'category')) ?>',
         {
             paramName:'query',
             minChars:1,

@@ -274,7 +274,7 @@ RegionUpdater.prototype = {
                     this.regionSelectEl.value = regionId;
                 }
             }
-            this.sortSelect();
+            //this.sortSelect();
             if (this.disableAction == 'hide') {
                 if (this.regionTextEl) {
                     this.regionTextEl.style.display = 'none';

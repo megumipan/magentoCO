@@ -1,0 +1,13 @@
+a:5:{i:0;s:164:"Cannot send headers; headers already sent in /home/airily/airily.sixcore.jp/public_html/magento/app/code/core/Mage/Checkout/controllers/CartController.php, line 229";i:1;s:1956:"#0 /home/airily/airily.sixcore.jp/public_html/magento/lib/Zend/Controller/Response/Abstract.php(148): Zend_Controller_Response_Abstract->canSendHeaders(true)
+#1 /home/airily/airily.sixcore.jp/public_html/magento/app/code/core/Mage/Core/Controller/Response/Http.php(107): Zend_Controller_Response_Abstract->setRedirect('http://airily.s...', 302)
+#2 /home/airily/airily.sixcore.jp/public_html/magento/app/code/core/Mage/Core/Controller/Varien/Action.php(711): Mage_Core_Controller_Response_Http->setRedirect('http://airily.s...')
+#3 /home/airily/airily.sixcore.jp/public_html/magento/app/code/core/Mage/Core/Controller/Varien/Action.php(689): Mage_Core_Controller_Varien_Action->setRedirectWithCookieCheck('checkout/cart', Array)
+#4 /home/airily/airily.sixcore.jp/public_html/magento/app/code/core/Mage/Checkout/controllers/CartController.php(95): Mage_Core_Controller_Varien_Action->_redirect('checkout/cart')
+#5 /home/airily/airily.sixcore.jp/public_html/magento/app/code/core/Mage/Checkout/controllers/CartController.php(263): Mage_Checkout_CartController->_goBack()
+#6 /home/airily/airily.sixcore.jp/public_html/magento/app/code/core/Mage/Core/Controller/Varien/Action.php(418): Mage_Checkout_CartController->addAction()
+#7 /home/airily/airily.sixcore.jp/public_html/magento/app/code/core/Mage/Core/Controller/Varien/Router/Standard.php(254): Mage_Core_Controller_Varien_Action->dispatch('add')
+#8 /home/airily/airily.sixcore.jp/public_html/magento/app/code/core/Mage/Core/Controller/Varien/Front.php(172): Mage_Core_Controller_Varien_Router_Standard->match(Object(Mage_Core_Controller_Request_Http))
+#9 /home/airily/airily.sixcore.jp/public_html/magento/app/code/core/Mage/Core/Model/App.php(365): Mage_Core_Controller_Varien_Front->dispatch()
+#10 /home/airily/airily.sixcore.jp/public_html/magento/app/Mage.php(684): Mage_Core_Model_App->run(Array)
+#11 /home/airily/airily.sixcore.jp/public_html/magento/index.php(83): Mage::run('', 'store')
+#12 {main}";s:3:"url";s:223:"/magento/index.php/checkout/cart/add/uenc/aHR0cDovL2FpcmlseS5zaXhjb3JlLmpwL21hZ2VudG8vaW5kZXgucGhwL2NhdGFsb2cvcHJvZHVjdC92aWV3L2lkLzgvcy8xNjg2MS0xODAxLTA2NzYtMy0xNC14bC9jYXRlZ29yeS8xMC8,/product/8/form_key/yzEW4LSVIuBloy4Y/";s:11:"script_name";s:18:"/magento/index.php";s:4:"skin";s:7:"default";}
