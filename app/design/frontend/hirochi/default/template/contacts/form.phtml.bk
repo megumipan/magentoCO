@@ -1,0 +1,106 @@
+<?php
+/**
+* Magento
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the Academic Free License (AFL 3.0)
+* that is bundled with this package in the file LICENSE_AFL.txt.
+* It is also available through the world-wide-web at this URL:
+* http://opensource.org/licenses/afl-3.0.php
+* If you did not receive a copy of the license and are unable to
+* obtain it through the world-wide-web, please send an email
+* to license@magento.com so we can send you a copy immediately.
+*
+* DISCLAIMER
+*
+* Do not edit or add to this file if you wish to upgrade Magento to newer
+* versions in the future. If you wish to customize Magento for your
+* needs please refer to http://www.magento.com for more information.
+*
+* @category    design
+* @package     base_default
+* @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+* @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+*/
+?>
+	<div class="page-title">
+		<h2 class="h2_heading">お問い合わせ</h2>
+	</div>
+
+
+	<div class="contact_01">
+		<p>ご注文方法や配送、商品についてのご質問、ご不明な点などございましたら、お気軽にお電話・E-mail、お問い合せフォームからお問い合せ下さい。</p>
+		<p class="contact_title">お電話でのお問い合わせ</p>
+		<p>お電話でのお問い合せも承っております。お急ぎのお客様は、どうぞご利用ください。</p>
+		<ul class="contact_tel">
+			<li>TEL:<span>043-293-2244</span></li>
+			<li>(営業時間：10:00～16:00)</li>
+		</ul>
+		<p class="contact_title">E-mailでのお問い合わせ</p>
+		<p>メールでのお問い合せは下記アドレス宛にお寄せください。</p>
+		<ul class="contact_mail">
+			<li>E-mail:<span>hd_admin@hirochi.co.jp</span></li>
+		</ul>
+		<p class="contact_title">お問い合わせ</p>
+		<p>以下のフォームに必要事項を入力し、「送信」ボタンをクリックしてください。
+			<br> 3営業日以内に、担当者から折り返しご連絡させて頂きます。
+			<br> 尚、お問い合せフォーム送信後4日以上返信がない場合、システムエラーの可能性がございます。
+			<br> 大変恐縮ですが、再度送信していただくか、お電話、またはメールにてご連絡ください。
+			<span>【必須】</span> は必須入力項目です。</p>
+
+		<div id="messages_product_view" style="margin:1.5em 0;">
+			<?php echo $this->getMessagesBlock()->toHtml() ?>
+		</div>
+
+		<form action="<?php echo $this->getFormAction(); ?>" id="contactForm" method="post">
+			<div class="contact_form">
+				<form action="#" method="post">
+					<ul>
+						<li class="name">
+							<p><span class="fwB">【必須】</span>お名前：</p>
+							<input name="name" id="name" title="<?php echo Mage::helper('core')->quoteEscape(Mage::helper('contacts')->__('Name')) ?>" value="<?php echo $this->escapeHtml($this->helper('contacts')->getUserName()) ?>" class="input-text required-entry" type="text" />
+						</li>
+						<li class="email">
+							<p><span class="fwB">【必須】</span>E-mailアドレス：</p>
+							<input name="email" id="email" title="<?php echo Mage::helper('core')->quoteEscape(Mage::helper('contacts')->__('Email')) ?>" value="<?php echo $this->escapeHtml($this->helper('contacts')->getUserEmail()) ?>" class="input-text required-entry validate-email" type="text" />
+						</li>
+						<li class="tel">
+							<p>電話番号：</p>
+							<input name="telephone" id="telephone" title="<?php echo Mage::helper('core')->quoteEscape(Mage::helper('contacts')->__('Telephone')) ?>" value="" class="input-text" type="text" />
+						</li>
+						<li class="contact_main">
+							<p><span class="fwB">【必須】</span>お問い合わせ：</p>
+							<textarea name="comment" id="comment" title="<?php echo Mage::helper('core')->quoteEscape(Mage::helper('contacts')->__('Comment')) ?>" class="required-entry input-text" cols="5" rows="3"></textarea>
+						</li>
+						<li>
+							<label>
+								<input type="checkbox" name="check" class="required-entry" value="yes"><span class="fwB">【必須】</span><a href="<?php echo $this->getUrl('privacy'); ?>">個人情報保護方針</a>に同意する</label>
+						</li>
+					</ul>
+					<div class="buttons-set">
+						<p class="required">
+							<?php echo Mage::helper('contacts')->__('* Required Fields') ?>
+						</p>
+						<p>
+							<input type="text" name="hideit" id="hideit" value="" style="display:none !important;" />
+							<p style="text-align:center; margin-top:2em;">
+								<button type="submit" title="<?php echo Mage::helper('core')->quoteEscape(Mage::helper('contacts')->__('Submit')) ?>" class="btnOrange" style="width:auto; padding:10px 20px;">
+									<?php echo Mage::helper('contacts')->__('Submit') ?>
+								</button>
+							</p>
+					</div>
+
+				</form>
+
+				<script type="text/javascript">
+					//<![CDATA[
+					var contactForm = new VarienForm('contactForm', true);
+					//]]>
+				</script>
+			</div>
+			<p class="mt50">「在庫にないアメリカ予約品」のご注文は、面倒なメールのやり取り不要!!<br>
+			即座に見積もり!!10万点パーツの「Yahoo!ショッピング ハーレーパーツアメリカ予約店」よりご注文ください。</p>
+			<p><a href="http://store.shopping.yahoo.co.jp/hirochi2/kuryakyn.html">http://store.shopping.yahoo.co.jp/hirochi2/kuryakyn.html</a></p>
+	</div>
+	<!-- contact_01 -->

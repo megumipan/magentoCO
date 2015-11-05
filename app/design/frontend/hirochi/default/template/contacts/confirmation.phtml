@@ -1,0 +1,93 @@
+<?php
+/**
+* Magento
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the Academic Free License (AFL 3.0)
+* that is bundled with this package in the file LICENSE_AFL.txt.
+* It is also available through the world-wide-web at this URL:
+* http://opensource.org/licenses/afl-3.0.php
+* If you did not receive a copy of the license and are unable to
+* obtain it through the world-wide-web, please send an email
+* to license@magento.com so we can send you a copy immediately.
+*
+* DISCLAIMER
+*
+* Do not edit or add to this file if you wish to upgrade Magento to newer
+* versions in the future. If you wish to customize Magento for your
+* needs please refer to http://www.magento.com for more information.
+*
+* @category    design
+* @package     base_default
+* @copyright   Copyright (c) 2006-2015 X.commerce, Inc. (http://www.magento.com)
+* @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+*/
+?>
+	<div class="page-title">
+		<h2 class="h2_heading">お問い合わせ確認</h2>
+	</div>
+
+
+	<div class="contact_01">
+
+		<div id="messages_product_view" style="margin:1.5em 0;">
+			<?php echo $this->getMessagesBlock()->toHtml() ?>
+		</div>
+
+		<form action="<?php echo $this->getFormAction(); ?>" id="contactForm" method="post">
+			<div class="contact_form">
+				<form action="#" method="post">
+					<ul>
+						<li class="name">
+							<p><span class="fwB">【必須】</span>お名前：</p>
+							<input name="name" id="name" title="<?php echo Mage::helper('core')->quoteEscape(Mage::helper('contacts')->__('Name')) ?>" value="<?php echo $this->getRequest()->getParam('name') ?>" class="input-text required-entry" type="text" />
+						</li>
+						<li class="email">
+							<p><span class="fwB">【必須】</span>E-mailアドレス：</p>
+							<input name="email" id="email" title="<?php echo Mage::helper('core')->quoteEscape(Mage::helper('contacts')->__('Email')) ?>" value="<?php echo $this->getRequest()->getParam('email') ?>" class="input-text required-entry validate-email" type="text" />
+						</li>
+						<li class="tel">
+							<p>電話番号：</p>
+							<input name="telephone" id="telephone" title="<?php echo Mage::helper('core')->quoteEscape(Mage::helper('contacts')->__('Telephone')) ?>" value="<?php echo $this->getRequest()->getParam('telephone') ?>" class="input-text" type="text" />
+						</li>
+						<li class="contact_main">
+							<p><span class="fwB">【必須】</span>お問い合わせ：</p>
+							<textarea name="comment" id="comment" title="<?php echo Mage::helper('core')->quoteEscape(Mage::helper('contacts')->__('Comment')) ?>" class="required-entry input-text" cols="5" rows="3"><?php echo $this->getRequest()->getParam('comment') ?></textarea>
+						</li>
+						<li>
+							<label>
+								<input type="checkbox" name="check" class="required-entry" value="yes" checked="checked"><span class="fwB">【必須】</span><a href="<?php echo $this->getUrl('privacy'); ?>">個人情報保護方針</a>に同意する</label>
+						</li>
+					</ul>
+					<div class="buttons-set">
+						<p class="required">
+							<?php echo Mage::helper('contacts')->__('* Required Fields') ?>
+						</p>
+						<p>
+							<input type="text" name="hideit" id="hideit" value="" style="display:none !important;" />
+							<p style="text-align:center; margin-top:2em;">
+								<button type="submit" title="<?php echo Mage::helper('core')->quoteEscape(Mage::helper('contacts')->__('Submit')) ?>" class="btnOrange" style="width:auto; padding:10px 20px;">
+									<?php echo Mage::helper('contacts')->__('Submit') ?>
+								</button>
+								<button type="button" title="<?php echo Mage::helper('core')->quoteEscape(Mage::helper('contacts')->__('Cancel')) ?>"  style="width:auto; padding:10px 20px;">
+								<a href="<?php echo $this->getUrl('contacts'); ?>">
+									<?php echo Mage::helper('contacts')->__('Cancel') ?>
+								</a>
+								</button>
+							</p>
+					</div>
+
+				</form>
+
+				<script type="text/javascript">
+					//<![CDATA[
+					var contactForm = new VarienForm('contactForm', true);
+					//]]>
+				</script>
+			</div>
+			<p class="mt50">「在庫にないアメリカ予約品」のご注文は、面倒なメールのやり取り不要!!<br>
+			即座に見積もり!!10万点パーツの「Yahoo!ショッピング ハーレーパーツアメリカ予約店」よりご注文ください。</p>
+			<p><a href="http://store.shopping.yahoo.co.jp/hirochi2/kuryakyn.html">http://store.shopping.yahoo.co.jp/hirochi2/kuryakyn.html</a></p>
+	</div>
+	<!-- contact_01 -->
